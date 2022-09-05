@@ -231,7 +231,7 @@ void Application::Render() {
     m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
     // Clear the back buffer
-    const float ClearColor[] = { 0.350f, 0.350f, 0.350f, 1.0f };
+    const float ClearColor[] = { 1, 0,0, 1.0f };
     // Let the engine perform required state transitions
     m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -251,4 +251,124 @@ void Application::Render() {
     m_pImmediateContext->Draw(drawAttrs);
 
 
+}
+
+
+void Application::CrWindow(const char* title, int width, int height, int hint) {
+
+    if (glfwInit() != GLFW_TRUE)
+        return;
+
+    glfwWindowHint(GLFW_CLIENT_API, hint);
+    if (hint == GLFW_OPENGL_API)
+    {
+        // We need compute shaders, so request OpenGL 4.2 at least
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    }
+
+    m_Window = glfwCreateWindow(width, height, title, nullptr, nullptr);
+    if (m_Window == nullptr)
+    {
+        LOG_ERROR_MESSAGE("Failed to create GLFW window");
+        return;
+    }
+    winWidth = width;
+    winHeight = height;
+    glfwSetWindowUserPointer(m_Window, this);
+    //glfwSetFramebufferSizeCallback(m_Window, &GLFW_ResizeCallback);
+   // glfwSetKeyCallback(m_Window, &GLFW_KeyCallback);
+   // glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
+  //  glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
+ //   glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
+    glfwSetFramebufferSizeCallback(m_Window, &GLFW_ResizeCallback);
+    glfwSetKeyCallback(m_Window, &GLFW_KeyCallback);
+    glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
+    //glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
+    glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
+
+    glfwSetWindowSizeLimits(m_Window, 320, 240, GLFW_DONT_CARE, GLFW_DONT_CARE);
+    return;
+
+}
+
+
+void Application::InitEngine() {
+
+    //Win32NativeWindow Window{ glfwGetWin32Window(m_Window) };
+    Initialize(glfwGetWin32Window(m_Window));
+
+
+}
+
+
+void Application::Run() {
+
+    mInput = new UserInput();
+
+    while (true) {
+
+        double xp, yp;
+        glfwGetCursorPos(m_Window, &xp, &yp);
+
+        if (mMouseFirst) {
+            mMouseX = xp;
+            mMouseY = yp;
+            mMouseFirst = false;
+        }
+
+        mDeltaX = xp - mMouseX;
+        mDeltaY = yp - mMouseY;
+
+        mMouseX = xp;
+        mMouseY = yp;
+
+        mInput->SetMouse(mMouseX, mMouseY, mDeltaX, mDeltaY);
+
+        Render();
+        Present();
+
+        glfwPollEvents();
+
+        //std::cout << "MX:" << mDeltaX << " MY:" << mDeltaY << std::endl;
+
+    }
+
+}
+
+
+
+void Application::GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h)
+{
+    //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
+    //if (pSelf->m_pSwapChain != nullptr)
+      //  pSelf->m_pSwapChain->Resize(static_cast<Uint32>(w), static_cast<Uint32>(h));
+}
+
+void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int)
+{
+    //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
+    //pSelf->OnKeyEvent(static_cast<Key>(key), static_cast<KeyState>(state));
+}
+
+void Application::GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int state, int)
+{
+   // auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
+   // pSelf->OnKeyEvent(static_cast<Key>(button), static_cast<KeyState>(state));
+}
+
+void Application::GLFW_CursorPosCallback(GLFWwindow* wnd, double xpos, double ypos)
+{
+    float xscale = 1;
+    float yscale = 1;
+    s_pThis->SetMousePos(xpos, ypos);
+    
+    //glfwGetWindowContentScale(wnd, &xscale, &yscale);
+    //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
+   // pSelf->MouseEvent(float2(static_cast<float>(xpos * xscale), static_cast<float>(ypos * yscale)));
+
+}
+
+void Application::GLFW_MouseWheelCallback(GLFWwindow* wnd, double dx, double dy)
+{
 }

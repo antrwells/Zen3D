@@ -4,7 +4,7 @@
 #include <memory>
 #include <iomanip>
 #include <iostream>
-
+#include "UserInput.h"
 #ifndef NOMINMAX
 #    define NOMINMAX
 #endif
@@ -36,6 +36,7 @@
 #    define VULKAN_SUPPORTED 1
 #endif
 
+
 #include "Graphics/GraphicsEngineD3D11/interface/EngineFactoryD3D11.h"
 #include "Graphics/GraphicsEngineD3D12/interface/EngineFactoryD3D12.h"
 #include "Graphics/GraphicsEngineOpenGL/interface/EngineFactoryOpenGL.h"
@@ -48,7 +49,11 @@
 #include "Common/interface/RefCntAutoPtr.hpp"
 
 #include "Common/interface/BasicMath.hpp"
-
+#if PLATFORM_WIN32
+#    define GLFW_EXPOSE_NATIVE_WIN32 1
+#endif
+#include "GLFW/glfw3.h"
+#include "GLFW/glfw3native.h"
 
 using namespace Diligent;
 
@@ -64,9 +69,12 @@ public:
 
 	Application();
 	bool Initialize(HWND hWnd);
+    void InitEngine();
     void Init() {};
     void Update() {  };
     void Render();
+
+    void CrWindow(const char* title, int width, int height, int hint);
 
     virtual void InitApp() {};
     virtual void UpdateApp() {};
@@ -202,8 +210,29 @@ public:
         return s_pThis->GetDevice();
     }
     static Application *s_pThis;
+    void Run();
+
+    void SetMousePos(int x, int y) {
+
+        mMouseX = x;
+        mMouseY = y;
+    }
+
+    int GetMouseX() {
+        return mMouseX;
+    }
+
+    int GetMouseY() {
+        return mMouseY;
+    }
+    UserInput* GetInput() {
+        return mInput;
+    }
 
 private:
+
+    UserInput* mInput;
+
     RefCntAutoPtr<IRenderDevice>  m_pDevice;
     RefCntAutoPtr<IDeviceContext> m_pImmediateContext;
     RefCntAutoPtr<ISwapChain>     m_pSwapChain;
@@ -211,6 +240,17 @@ private:
     RefCntAutoPtr<IEngineFactory> m_pEngFac;
     RENDER_DEVICE_TYPE            m_DeviceType = RENDER_DEVICE_TYPE_D3D12;
     int winWidth, winHeight;
+    GLFWwindow* m_Window = nullptr;
 
+    int mMouseX, mMouseY;
+    int mDeltaX, mDeltaY;
+    bool mMouseFirst = true;
+    
+
+    static void GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h);
+    static void GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int);
+    static void GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int state, int);
+    static void GLFW_CursorPosCallback(GLFWwindow* wnd, double xpos, double ypos);
+    static void GLFW_MouseWheelCallback(GLFWwindow* wnd, double dx, double dy);
 };
 

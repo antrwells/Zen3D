@@ -51,6 +51,14 @@ struct DrawList {
 
 };
 
+struct Vertex
+{
+	float3 pos;
+	float4 color;
+	float2 uv;
+};
+
+
 class SmartDraw
 {
 public:
@@ -99,5 +107,7 @@ private:
 	RefCntAutoPtr<IBuffer>                m_CubeIndexBuffer;
 	float cZ;
 	bool made = false;
+	Vertex* vertices;
+	Uint32* indices;
 };
 

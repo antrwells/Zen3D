@@ -10,7 +10,8 @@ SmartDraw::SmartDraw(Application* app) {
     //cZ = 1.00f;
 
    
-
+     vertices = new Vertex[2048];
+     indices = new Uint32[4096];
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
 
@@ -135,13 +136,7 @@ SmartDraw::SmartDraw(Application* app) {
 
 void SmartDraw::CreateVertexBuffer(DrawList* list) {
 
-    struct Vertex
-    {
-        float3 pos;
-        float4 color;
-        float2 uv;
-    };
-
+    
 
 
     int size = list->Draws.size();
@@ -149,7 +144,7 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
 
 
 
-    Vertex* vertices = new Vertex[size*4];
+
 
     int vi = 0;
 
@@ -183,6 +178,7 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
 
     if (made) {
         m_CubeVertexBuffer.Detach();
+        m_CubeVertexBuffer.Release();
     }
 
     BufferDesc VertBuffDesc;
@@ -195,8 +191,11 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
     VBData.DataSize = ds;
     gApp->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_CubeVertexBuffer);
     
+   // for (int i = 0;i < size * 4;i++) {
+  //      delete &vertices[i];
+//    }
 
-
+  //  delete vertices;
 
 
 }
@@ -207,7 +206,7 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
 
     int size = list->Draws.size();
 
-    Uint32* indices = new Uint32[size * 6];
+  
 
     int vi = 0;
     int cv = 0;
@@ -232,6 +231,7 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
 
     if (made) {
         m_CubeIndexBuffer.Detach();
+        m_CubeIndexBuffer.Release();
     }
 
     BufferDesc IndBuffDesc;
@@ -244,7 +244,7 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
     IBData.DataSize = ds;
     gApp->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_CubeIndexBuffer);
 
-
+  //  delete indices;
   
 
 }
@@ -337,9 +337,14 @@ void SmartDraw::DrawQuad(int x, int y, int w, int h, float r, float g, float b, 
 void SmartDraw::End() {
 
     //if (!made) {
+    auto m_pImmediateContext = gApp->GetContext();
 
+    float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
 
+    auto cont = gApp->GetContext();
 
+    MapHelper<float4x4> CBConstants(cont, m_VSConstants, MAP_WRITE, MAP_FLAG_DISCARD);
+    *CBConstants = proj.Transpose();
     for (int i = 0;i < Draws.size();i++)
     {
         CreateVertexBuffer(Draws[i]);
@@ -350,23 +355,18 @@ void SmartDraw::End() {
 
         m_pSRB->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(dd->Tex->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
 
-        float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
-
-        auto cont = gApp->GetContext();
-
-        MapHelper<float4x4> CBConstants(cont, m_VSConstants, MAP_WRITE, MAP_FLAG_DISCARD);
-        *CBConstants = proj.Transpose();
+        m_pImmediateContext->SetPipelineState(m_pPSO);
 
         const Uint64 offset = 0;
         IBuffer* pBuffs[] = { m_CubeVertexBuffer };
 
-        auto m_pImmediateContext = gApp->GetContext();
+     
 
         m_pImmediateContext->SetVertexBuffers(0, 1, pBuffs, &offset, RESOURCE_STATE_TRANSITION_MODE_TRANSITION, SET_VERTEX_BUFFERS_FLAG_RESET);
         m_pImmediateContext->SetIndexBuffer(m_CubeIndexBuffer, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
         // Set the pipeline state
-        m_pImmediateContext->SetPipelineState(m_pPSO);
+       
         // Commit shader resources. RESOURCE_STATE_TRANSITION_MODE_TRANSITION mode
         // makes sure that resources are transitioned to required states.
         m_pImmediateContext->CommitShaderResources(m_pSRB, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -375,14 +375,14 @@ void SmartDraw::End() {
         DrawAttrs.IndexType = VT_UINT32; // Index type
         DrawAttrs.NumIndices = Draws[0]->Draws.size() * 6;
         // Verify the state of vertex and index buffers
-        DrawAttrs.Flags = DRAW_FLAG_VERIFY_ALL;
+        DrawAttrs.Flags = DRAW_FLAG_NONE;
         m_pImmediateContext->DrawIndexed(DrawAttrs);
-
-        m_pImmediateContext->Flush();
+        //m_pImmediateContext->Flush();
+  //      m_pImmediateContext->Flush();
      
 
     }
-    auto m_pImmediateContext = gApp->GetContext();
+  //  auto m_pImmediateContext = gApp->GetContext();
    
     
 

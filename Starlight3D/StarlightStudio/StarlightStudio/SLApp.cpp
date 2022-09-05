@@ -19,17 +19,18 @@ int dx = 0;
 void SLApp::RenderApp() {
 
 	std::cout << "Rendering App.\n";
-
+	
 	mDraw->Begin();
 
 	
+
 
 	mDraw->DrawTexture(dx+20, dx+20, 290, 200,mTex1, 1, 0, 0, 1);
 	mDraw->DrawTexture(dx+200, 200, 255, 255,mTex2, 0, 1, 0, 1);
 	mDraw->DrawTexture(dx+100, 600, 96, 96,mTex3, 0, 0, 1,1);
 
 
-	dx = dx + 16;
+	dx = dx + 1;
 	if (dx > 1024) {
 		dx = 0;
 	}

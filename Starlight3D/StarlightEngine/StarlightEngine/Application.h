@@ -229,6 +229,10 @@ public:
         return mInput;
     }
 
+    static Application* GetApp() {
+        return s_pThis;
+    }
+
 private:
 
     UserInput* mInput;

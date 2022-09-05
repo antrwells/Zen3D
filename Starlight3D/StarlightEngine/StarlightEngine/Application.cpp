@@ -8,6 +8,7 @@ Application* Application::s_pThis = nullptr;
 Application::Application() {
 
     s_pThis = this;
+    mInput = new UserInput();
      
 }
 
@@ -231,7 +232,7 @@ void Application::Render() {
     m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
     // Clear the back buffer
-    const float ClearColor[] = { 1, 0,0, 1.0f };
+    const float ClearColor[] = { 0.2, 0.2,0.3, 1.0f };
     // Let the engine perform required state transitions
     m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -286,6 +287,7 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
     glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
     //glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
     glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
+    glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glfwSetWindowSizeLimits(m_Window, 320, 240, GLFW_DONT_CARE, GLFW_DONT_CARE);
     return;
@@ -304,7 +306,7 @@ void Application::InitEngine() {
 
 void Application::Run() {
 
-    mInput = new UserInput();
+   
 
     while (true) {
 

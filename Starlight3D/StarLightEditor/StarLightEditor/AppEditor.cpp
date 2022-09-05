@@ -1,5 +1,6 @@
 #include "AppEditor.h"
-
+#include "UITheme_Neon.h"
+#include "ButtonControl.h"
 
 AppEditor::AppEditor() {
 
@@ -13,13 +14,38 @@ void AppEditor::InitApp() {
 	mTex1 = new Texture2D("data/test1.jpg");
 	mTex2 = new Texture2D("data/test2.jpg");
 	mTex3 = new Texture2D("data/test3.jpg");
+	mUI = new UI(0, 0);
+	mUI->SetInput(GetInput());
+	UI::SetTheme(new UITheme_Neon);
+
+	ButtonControl* but1 = new ButtonControl;
+	but1->Set(20, 20, 200, 100);
+	mUI->GetRoot()->AddControl(but1);
+
+	//mFont1 = new TTFont("data/f1.ttf");
+	mFont1 = new kFont("data/fonts/f1.pf");
+
+
+
 }
+
+void AppEditor::UpdateApp() {
+
+	mUI->Update();
+
+}
+
 int dx = 0;
 void AppEditor::RenderApp() {
 
 		  std::cout << "Rendering App.\n";
-	
+		 //mUI->Render();
+		  mFont1->drawText("aaabbbcccddddeeefffggghhhiiijjjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 20, 300, 1, 1, 1, 1,mDraw);
+		  mFont1->drawText("This is another test to see if text rendering is working 0123456789", 20, 400, 1, 1, 1, 1, mDraw);
+		  /*
 	mDraw->Begin();
+
+	mFont
 
 	
 
@@ -35,7 +61,7 @@ void AppEditor::RenderApp() {
 	}
 
 	mDraw->End();
-
+	*/
 	dx = dx + 1;
 
 }

@@ -9,7 +9,11 @@ SmartDraw::SmartDraw(Application* app) {
 
     //cZ = 1.00f;
 
-   
+    BlendStateDesc BlendState;
+    BlendState.RenderTargets[0].BlendEnable = true;
+    BlendState.RenderTargets[0].SrcBlend = BLEND_FACTOR_SRC_ALPHA;
+    BlendState.RenderTargets[0].DestBlend = BLEND_FACTOR_INV_SRC_ALPHA;
+
      vertices = new Vertex[2048];
      indices = new Uint32[4096];
 
@@ -33,6 +37,8 @@ SmartDraw::SmartDraw(Application* app) {
     PSOCreateInfo.GraphicsPipeline.PrimitiveTopology = PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
     // Cull back faces
     PSOCreateInfo.GraphicsPipeline.RasterizerDesc.CullMode = CULL_MODE_BACK;
+    PSOCreateInfo.GraphicsPipeline.BlendDesc = BlendState;
+  
     // Enable depth testing
     PSOCreateInfo.GraphicsPipeline.DepthStencilDesc.DepthEnable = True;
     //PSOCreateInfo.GraphicsPipeline.DepthStencilDesc.DepthFunc = COMPARISON_FUNC_GREATER;
@@ -297,7 +303,7 @@ void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r,
 		info->b = b;
 		info->a = a;
 
-        drawZ -= 0.001f;
+        drawZ -= 0.0001f;
 
 		list->Draws.push_back(info);
 
@@ -327,7 +333,7 @@ void SmartDraw::DrawQuad(int x, int y, int w, int h, float r, float g, float b, 
     info->b = b;
     info->a = a;
 
-    drawZ -= 0.001f;
+    drawZ -= 0.01f;
 
     list->Draws.push_back(info);
 
@@ -337,14 +343,7 @@ void SmartDraw::DrawQuad(int x, int y, int w, int h, float r, float g, float b, 
 void SmartDraw::End() {
 
     //if (!made) {
-    auto m_pImmediateContext = gApp->GetContext();
-
-    float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
-
-    auto cont = gApp->GetContext();
-
-    MapHelper<float4x4> CBConstants(cont, m_VSConstants, MAP_WRITE, MAP_FLAG_DISCARD);
-    *CBConstants = proj.Transpose();
+   
     for (int i = 0;i < Draws.size();i++)
     {
         CreateVertexBuffer(Draws[i]);
@@ -355,6 +354,15 @@ void SmartDraw::End() {
 
         m_pSRB->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(dd->Tex->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
 
+
+        auto m_pImmediateContext = gApp->GetContext();
+
+        float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+
+        auto cont = gApp->GetContext();
+
+        MapHelper<float4x4> CBConstants(cont, m_VSConstants, MAP_WRITE, MAP_FLAG_DISCARD);
+        *CBConstants = proj.Transpose();
         m_pImmediateContext->SetPipelineState(m_pPSO);
 
         const Uint64 offset = 0;
@@ -373,7 +381,7 @@ void SmartDraw::End() {
 
         DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
         DrawAttrs.IndexType = VT_UINT32; // Index type
-        DrawAttrs.NumIndices = Draws[0]->Draws.size() * 6;
+        DrawAttrs.NumIndices = Draws[i]->Draws.size() * 6;
         // Verify the state of vertex and index buffers
         DrawAttrs.Flags = DRAW_FLAG_NONE;
         m_pImmediateContext->DrawIndexed(DrawAttrs);

@@ -1,0 +1,29 @@
+1 24 "C:/projects/Starlight3D/Tools/FontGen/.bmx/FontGen.debug.x64.manifest"
+
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEOS 0x40004
+FILETYPE 0x1
+{
+BLOCK "StringFileInfo"
+{
+BLOCK "040904b0"
+{
+VALUE "Comments", "BlitzMax Application"
+VALUE "CompanyName", "My company"
+VALUE "FileVersion", "1.0.0"
+VALUE "ProductVersion", "1.0.0"
+VALUE "FileDescription", "FontGen.debug"
+VALUE "InternalName", "FontGen.debug"
+VALUE "ProductName", "FontGen.debug"
+VALUE "LegalCopyright", "Copyright"
+VALUE "LegalTrademarks", "All rights reserved"
+VALUE "OriginalFilename", "FontGen.debug.exe"
+}
+}
+BLOCK "VarFileInfo"
+{
+VALUE "Translation", 0x0409, 0
+}
+}

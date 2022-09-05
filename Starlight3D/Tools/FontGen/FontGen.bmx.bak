@@ -1,9 +1,9 @@
 
 Graphics 800,600
 
-Local lf:String = "f2.tff"
+Local lf:String = "aqua.ttf"
 
-Local font:TimageFont = LoadImageFont("f2.ttf",15) 
+Local font:TimageFont = LoadImageFont(lf,16) 
 
 SetImageFont font 
 
@@ -13,12 +13,14 @@ Local op:TStream = WriteFile(lf+".pf")
 
 For Local i:Int =0 Until 256
 
-	cls
+	Cls
 
 	DrawText String(Chr(i)),0,0
 	
 	Local cw:Int = TextWidth(String(Chr(i)))
 	Local ch:Int = TextHeight(String(Chr(i)))
+	
+	Print "CW:"+cw+" CH:"+ch
 	
 	WriteInt op,cw
 	WriteInt op,ch

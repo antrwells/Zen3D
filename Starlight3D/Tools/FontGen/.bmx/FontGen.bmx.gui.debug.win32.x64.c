@@ -5,13 +5,13 @@ static BBString _s10={
 	2,
 	{13,10}
 };
-static BBString _s15={
+static BBString _s14={
 	&bbStringClass,
 	0x2fe105a741f7b240,
 	4,
 	{32,67,72,58}
 };
-static BBString _s13={
+static BBString _s12={
 	&bbStringClass,
 	0xa7f377fa77315946,
 	3,
@@ -35,7 +35,7 @@ static BBString _s1={
 	,97,100,121,32,101,120,105,115,116,115,32,105,110,32,116,104
 	,101,32,109,97,112}
 };
-static BBString _s14={
+static BBString _s13={
 	&bbStringClass,
 	0xd4ed6e3196c6da14,
 	3,
@@ -57,15 +57,9 @@ static BBString _s3={
 };
 static BBString _s11={
 	&bbStringClass,
-	0x3c32df5db6c1b11a,
-	6,
-	{102,50,46,116,102,102}
-};
-static BBString _s12={
-	&bbStringClass,
-	0x2221f4aa2792d69e,
-	6,
-	{102,50,46,116,116,102}
+	0x9961e357829dc19a,
+	7,
+	{97,105,114,46,116,116,102}
 };
 static BBString _s4={
 	&bbStringClass,
@@ -205,13 +199,13 @@ int _bb_main(){
 		bbt_lf=&_s11;
 		struct BBDebugStm __stmt_2 = {0x4c8412ee7fec7324, 6, 0};
 		bbOnDebugEnterStm(&__stmt_2);
-		bbt_font=(struct brl_max2d_imagefont_TImageFont_obj*)brl_max2d_LoadImageFont((BBOBJECT)&_s12,15,4);
+		bbt_font=(struct brl_max2d_imagefont_TImageFont_obj*)brl_max2d_LoadImageFont((BBOBJECT)bbt_lf,16,4);
 		struct BBDebugStm __stmt_3 = {0x4c8412ee7fec7324, 8, 0};
 		bbOnDebugEnterStm(&__stmt_3);
 		brl_max2d_SetImageFont((struct brl_max2d_imagefont_TImageFont_obj*)bbt_font);
 		struct BBDebugStm __stmt_4 = {0x4c8412ee7fec7324, 10, 0};
 		bbOnDebugEnterStm(&__stmt_4);
-		bbt_op=(struct brl_stream_TStream_obj*)brl_filesystem_WriteFile((BBOBJECT)bbStringConcat(bbt_lf,&_s13));
+		bbt_op=(struct brl_stream_TStream_obj*)brl_filesystem_WriteFile((BBOBJECT)bbStringConcat(bbt_lf,&_s12));
 		struct BBDebugStm __stmt_5 = {0x4c8412ee7fec7324, 14, 0};
 		bbOnDebugEnterStm(&__stmt_5);
 		{
@@ -266,7 +260,7 @@ int _bb_main(){
 				bbt_ch=brl_max2d_TextHeight(bbStringFromChar(bbt_i));
 				struct BBDebugStm __stmt_4 = {0x4c8412ee7fec7324, 23, 0};
 				bbOnDebugEnterStm(&__stmt_4);
-				brl_standardio_Print(bbStringConcat(bbStringConcat(bbStringConcat(&_s14,bbStringFromInt(bbt_cw)),&_s15),bbStringFromInt(bbt_ch)));
+				brl_standardio_Print(bbStringConcat(bbStringConcat(bbStringConcat(&_s13,bbStringFromInt(bbt_cw)),&_s14),bbStringFromInt(bbt_ch)));
 				struct BBDebugStm __stmt_5 = {0x4c8412ee7fec7324, 25, 0};
 				bbOnDebugEnterStm(&__stmt_5);
 				brl_stream_WriteInt((struct brl_stream_TStream_obj*)bbt_op,bbt_cw);

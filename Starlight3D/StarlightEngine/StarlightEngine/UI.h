@@ -7,13 +7,14 @@
 #include "Texture2D.h"
 #include "SmartDraw.h"
 //#include "UITheme.h"
-
+#include "kFont.h"
 
 class IDraw;
 //class Texture2D;
 
 class UITheme;
-class kFont;
+//class kFont;
+
 
 
 

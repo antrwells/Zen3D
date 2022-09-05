@@ -57,6 +57,11 @@ kFont::kFont(const char* path) {
 				
 				pixs[loc++] = (unsigned char)b;
 				
+				if (r == 0 && g == 0 && b == 0)
+				{
+					a = 0;
+				}
+
 				pixs[loc++] = (unsigned char)a;
 
 
@@ -118,7 +123,8 @@ int kFont::getWidth(const char* text) {
 
 int kFont::getHeight() {
 
-	return (float)(chars[0]->GetHeight()) * scale;
+
+	return (float)(chars[33]->GetHeight()) * scale;
 
 }
 

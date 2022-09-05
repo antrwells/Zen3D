@@ -34,6 +34,7 @@ void UITheme_Neon::DrawButton(int x, int y, int w, int h, const char* text,bool 
 
 
 	DrawImg(x, y, w, h, But, 1, 1, 1, 1);
+	UI::RenderText(x + w / 2 - (UI::TextWidth(text) / 2), y + h / 2 - (UI::TextHeight(text) / 2), text, 1, 1, 1, 1);
 	return;
 	if (pressed) {
 		//DrawDyanmicBox(x, y, w, h, ButTop, ButDown, ButLeft, ButRight, ButLeftTop, ButLeftDown, ButRightTop, ButRightDown, ButMid, 0.8, 1, 1, 1);

@@ -34,7 +34,7 @@ UI::UI(int w,int h) {
 	UW = w;
 	UH = h;
 
-	//UIFont = new kFont("font/font.pf");
+	UIFont = new kFont("data/fonts/air.pf");
 	Main = this;
 	//Control = new ControlInput();
 
@@ -737,7 +737,7 @@ void UI::RenderText(int x, int y, const char* txt, float r, float g, float b, fl
 
 	//***
 //	Drawer->Begin();
-	//UIFont->drawText(txt, x, y, r, g, b, a);
+	UIFont->drawText(txt, x, y, r, g, b, a);
 //	Drawer->End();
 };
 
@@ -749,15 +749,15 @@ void UI::RenderText(int x, int y, const char* txt, float r, float g, float b, fl
 int UI::TextWidth(const char* text) {
 
 	
-	return 0;
-	//return UIFont->getWidth(text);
+	
+	return UIFont->getWidth(text);
 
 }
 
 int UI::TextHeight(const char* text) {
 
-	return 0;
-	//return UIFont->getHeight();
+	//return 0;
+	return UIFont->getHeight();
 
 };
 

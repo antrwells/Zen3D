@@ -20,10 +20,11 @@ void AppEditor::InitApp() {
 
 	ButtonControl* but1 = new ButtonControl;
 	but1->Set(20, 20, 200, 100);
+	but1->SetText("Testing!");
 	mUI->GetRoot()->AddControl(but1);
 
 	//mFont1 = new TTFont("data/f1.ttf");
-	mFont1 = new kFont("data/fonts/f1.pf");
+	//mFont1 = new kFont("data/fonts/air.pf");
 
 
 
@@ -39,9 +40,9 @@ int dx = 0;
 void AppEditor::RenderApp() {
 
 		  std::cout << "Rendering App.\n";
-		 //mUI->Render();
-		  mFont1->drawText("aaabbbcccddddeeefffggghhhiiijjjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 20, 300, 1, 1, 1, 1,mDraw);
-		  mFont1->drawText("This is another test to see if text rendering is working 0123456789", 20, 400, 1, 1, 1, 1, mDraw);
+		 mUI->Render();
+		 // mFont1->drawText("aaabbbcccddddeeefffggghhhiiijjjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 20, 300, 1, 1, 1, 1,mDraw);
+		 // mFont1->drawText("This is another test to see if text rendering is working 0123456789", 20, 400, 1, 1, 1, 1, mDraw);
 		  /*
 	mDraw->Begin();
 

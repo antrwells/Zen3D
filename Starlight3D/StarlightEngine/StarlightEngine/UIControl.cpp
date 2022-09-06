@@ -14,6 +14,7 @@ UIControl::UIControl() {
 	H = 0;
 	Text = "";
 	Root = NULL;
+	Color = float3(1, 1, 1);
 	OffX = 0;
 	OffY = 0;
 };

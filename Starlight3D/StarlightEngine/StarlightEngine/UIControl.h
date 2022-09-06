@@ -3,6 +3,7 @@
 #include <functional>
 #include "Texture2D.h"
 //#include "DragObject.h"
+#include "Helper.h"
 #include<string>
 class UIControl
 {
@@ -198,6 +199,7 @@ protected:
 	bool Highlight = false;
 	Texture2D* BGTex = nullptr;
 	std::string StdText;
+	float3 Color;
 };
 
 

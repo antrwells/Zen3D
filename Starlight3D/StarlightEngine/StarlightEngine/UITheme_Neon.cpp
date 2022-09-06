@@ -29,24 +29,25 @@ UITheme_Neon::UITheme_Neon() {
 
 };
 
-void UITheme_Neon::DrawButton(int x, int y, int w, int h, const char* text,bool over,bool pressed)
+void UITheme_Neon::DrawButton(int x, int y, int w, int h, const char* text,float3 color)
 {
 
+	
 
-	DrawImg(x, y, w, h, But, 1, 1, 1, 1);
-	UI::RenderText(x + w / 2 - (UI::TextWidth(text) / 2), y + h / 2 - (UI::TextHeight(text) / 2), text, 1, 1, 1, 1);
+	DrawImg(x, y, w, h, But,color.x,color.y,color.z, 1);
+	UI::RenderText(x + w / 2 - (UI::TextWidth(text) / 2), y + h / 2 - (UI::TextHeight(text) / 2), text,1,1,1, 1);
 	return;
-	if (pressed) {
+	//if (pressed) {
 		//DrawDyanmicBox(x, y, w, h, ButTop, ButDown, ButLeft, ButRight, ButLeftTop, ButLeftDown, ButRightTop, ButRightDown, ButMid, 0.8, 1, 1, 1);
 		//DrawImg(x, y, w, h, ButMid,1.3f, 1.3f, 1.3f, 1);
-	}else if (over) {
+	//}else if (over) {
 		//DrawDyanmicBox(x, y, w, h, ButTop, ButDown, ButLeft, ButRight, ButLeftTop, ButLeftDown, ButRightTop, ButRightDown, ButMid, 0.6f, 0.9f, 0.9f, 1);
 		//DrawImg(x, y, w, h, ButMid, 1, 1, 1, 1.0f);
-	}
-	else {
+	//}
+	//else {
 		//DrawDyanmicBox(x, y, w, h, ButTop, ButDown, ButLeft, ButRight, ButLeftTop, ButLeftDown, ButRightTop, ButRightDown, ButMid, 0.5f, 0.7f, 0.7f, 1);
 		//DrawImg(x, y, w, h, ButMid, 0.8f, 0.8f, 0.8f, 1.0f);
-	}
+	//}
 	//printf(text);
 	//
 //	printf(text);

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Application.h"
-
+#include "UI.h"
 //RefCntAutoPtr<IRenderDevice> Application::s_pDevice
 
 Application* Application::s_pThis = nullptr;
@@ -355,8 +355,27 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int
 
 void Application::GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int state, int)
 {
-   // auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
-   // pSelf->OnKeyEvent(static_cast<Key>(button), static_cast<KeyState>(state));
+    if (button == GLFW_MOUSE_BUTTON_LEFT)
+    {
+        if (state == GLFW_PRESS) {
+            UI::SetMouseBut(0, true);
+        }
+        else {
+            UI::SetMouseBut(0, false);
+        }
+
+
+    }
+    if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        if (state == GLFW_PRESS) {
+            UI::SetMouseBut(1, true);
+        }
+        else {
+            UI::SetMouseBut(1, false);
+        }
+    }
+    // auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
+    // pSelf->OnKeyEvent(static_cast<Key>(button), static_cast<KeyState>(state));
 }
 
 void Application::GLFW_CursorPosCallback(GLFWwindow* wnd, double xpos, double ypos)

@@ -1,14 +1,9 @@
-﻿  kFont.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(120,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(127,41): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(136,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,105): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(176,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(191,116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(191,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(191,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  SceneGraph.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(174,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(74,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(74,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(128,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(132,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC4Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC4Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

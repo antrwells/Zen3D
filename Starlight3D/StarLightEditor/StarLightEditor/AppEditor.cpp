@@ -40,9 +40,16 @@ void AppEditor::InitApp() {
 	mEnt1 = real_node;
 
 	mLight1 = new NodeLight(false);
+	mLight2 = new NodeLight(false);
 
 	mGraph->AddLight(mLight1);
+
+	mGraph->AddLight(mLight2);
+	mLight2->SetRange(5);
+	mLight1->SetRange(10);
 	mLight1->SetPosition(float3(0, 10, 0));
+	mLight2->SetPosition(float3(0, 3, 0));
+	mLight2->SetDiffuse(float3(0.2, 2, 2));
 
 	auto tex = new Texture2D("data/testNorm.jpg");
 	real_node->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
@@ -51,7 +58,7 @@ void AppEditor::InitApp() {
 	//mFont1 = new kFont("data/fonts/air.pf");
 	auto cam = mGraph->GetCamera();
 	cam->SetPosition(float3(0, 5, -10));
-
+	mRT1 = new RenderTarget2D(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
 
 }
 
@@ -72,7 +79,16 @@ void AppEditor::RenderApp() {
 		
 		 anY++;
 		 anX++;
+
+		 //mUI->Render();
+		 mRT1->Bind();
 		 mGraph->Render();
+		 mRT1->Release();
+		 
+		 mDraw->Begin();
+		 mDraw->DrawTexture(20, 20, 512, 512,new Texture2D(mRT1), 1, 1, 1, 1);
+		 mDraw->End();
+		
 		 auto cam = mGraph->GetCamera();
 		 //cam->SetPosition(float3(0, -5, 10));
 		// mEnt1->SetRotation(anX, anY, 0);

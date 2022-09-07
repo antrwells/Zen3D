@@ -45,3 +45,11 @@ Texture2D::Texture2D(Application* app,int w, int h, bool alpha,const char* buf) 
     m_TextureSRV = Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
 
 }
+
+
+Texture2D::Texture2D(RenderTarget2D* target) {
+
+    Texture = target->GetColorTexture();
+    m_TextureSRV = target->GetColorTexture()->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
+
+}

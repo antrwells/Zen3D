@@ -5,6 +5,7 @@
 #include "kFont.h"
 #include "Importer.h"
 #include "SceneGraph.h"
+#include "RenderTarget2D.h"
 class AppEditor : public Application
 {
 public:
@@ -25,7 +26,8 @@ private:
     kFont* mFont1;
     SceneGraph* mGraph;
     NodeEntity* mEnt1;
-    NodeLight* mLight1;
+    NodeLight* mLight1, * mLight2;
+    RenderTarget2D* mRT1;
 
 };
 

@@ -181,6 +181,7 @@
     <ClInclude Include="NodeTerrain.h" />
     <ClInclude Include="NoRenderList.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RenderTarget2D.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="stb_truetype.h" />
@@ -225,6 +226,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RenderTarget2D.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="StarlightEngine.cpp" />

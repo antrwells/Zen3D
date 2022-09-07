@@ -17,6 +17,8 @@ struct PSInput
     float3 vPos : POSITION2;
     float3 lightProp : POSITION3;
     float3 fragPos : POSITION4;
+    float3 lDiff : POSITION5;
+    float3 lSpec : POSITION6;
    // float3 Norm : NORMAL0;x
 };
 
@@ -46,7 +48,7 @@ void main(in  PSInput  PSIn,
 
    
 
-    float dv = dis / 36.0f;
+    float dv = dis / PSIn.lightProp.x;
 
     if (dv > 1.0) {
         dv = 1.0;
@@ -68,8 +70,8 @@ void main(in  PSInput  PSIn,
     tNormal = g_TextureNorm.Sample(g_TextureNorm_sampler, nv).rgb;
 
 
-    tNormal = tNormal * 2.0 - 1.0;
-   // tNormal.z = -tNormal.z;
+   // tNormal = tNormal * 2.0 - 1.0;
+  
 
 
     //tNormal = -tNormal;
@@ -80,7 +82,8 @@ void main(in  PSInput  PSIn,
 
     //tNormal = float3(0.5, 0.5, 1.0f);
 
-    //tNormal = normalize(tNormal * 2.0 - 1.0);
+    tNormal = normalize(tNormal * 2.0 - 1.0);
+    tNormal.y = -tNormal.y;
 
     float3 lightDir = normalize(PSIn.TLP - PSIn.TFP);
 
@@ -89,7 +92,8 @@ void main(in  PSInput  PSIn,
     dis = dis * diff;
 
     
-    PSOut.Color = (g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * float4(dis,dis,dis,1.0f));
+    PSOut.Color = g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * float4(PSIn.lDiff.x*dis,PSIn.lDiff.y*dis,PSIn.lDiff.z*dis, 1.0);
+
 }
 
 //

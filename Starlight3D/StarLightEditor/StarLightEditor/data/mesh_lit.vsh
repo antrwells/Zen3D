@@ -9,6 +9,8 @@ cbuffer Constants
     float4 vPos;
     float4 lPos;
     float4 lProp;
+    float4 lightDiff;
+    float4 lightSpec;
 };
 
 // Vertex shader takes two inputs: vertex position and color.
@@ -37,6 +39,8 @@ struct PSInput
     float3 vPos : POSITION2;
     float3 lightProp : POSITION3;
     float3 fragPos : POSITION4;
+    float3 lDiff : POSITION5;
+    float3 lSpec : POSITION6;
 
 
 };
@@ -82,4 +86,6 @@ void main(in  VSInput VSIn,
     PSIn.vPos = vPos;
     PSIn.lightProp = lProp;
     PSIn.fragPos = fragPos;
+    PSIn.lDiff = lightDiff;
+    PSIn.lSpec = lightSpec;
 }

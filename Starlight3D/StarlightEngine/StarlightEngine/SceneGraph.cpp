@@ -6,6 +6,7 @@
 
 		mRootNode = new Node3D();
 		mCam = new NodeCamera;
+		mRenderer = new MeshRenderer;
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
 
@@ -262,7 +263,31 @@
 
 	}
 
+	void SceneGraph::RenderNodeBasic(NodeEntity* entity)
+	{
+
+		int a = 5;
+		mRenderer->RenderSimple(entity, mCam);
+
+	}
+
+	void SceneGraph::RenderNodeLit(NodeEntity* entity) {
+
+		mRenderer->RenderLit(entity, mCam, mLights[0],true);
+
+
+
+	}
+
 	void SceneGraph::Render() {
+
+
+		for (int i = 0;i < mRootNode->ChildrenCount();i++)
+		{
+			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+			
+			RenderNodeLit((NodeEntity*)entity);
+		}
 
 		/*
 		Kinetic::FX::Global::EffectGlobal::CurrentCamera = mCam;

@@ -5,6 +5,8 @@
 
 Application* Application::s_pThis = nullptr;
 
+
+
 Application::Application() {
 
     s_pThis = this;
@@ -15,6 +17,8 @@ Application::Application() {
 bool Application::Initialize(HWND hWnd) {
 
     SwapChainDesc SCDesc;
+    SCDesc.ColorBufferFormat = TEX_FORMAT_RGBA8_UNORM;
+    SCDesc.DepthBufferFormat = TEX_FORMAT_D16_UNORM;
     switch (m_DeviceType)
     {
 #if D3D11_SUPPORTED
@@ -148,7 +152,7 @@ void main(in  PSInput  PSIn,
 void Application::CreateResources() {
 
     // Pipeline state object encompasses configuration of all GPU stages
-
+    //return;
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
 
     // Pipeline state name is used by the engine to report issues.
@@ -232,7 +236,7 @@ void Application::Render() {
     m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
     // Clear the back buffer
-    const float ClearColor[] = { 0.2, 0.2,0.3, 1.0f };
+    const float ClearColor[] = { 0.5f,0.0f,1.0f, 0.0f };
     // Let the engine perform required state transitions
     m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -349,6 +353,107 @@ void Application::GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h)
 
 void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int)
 {
+
+    KeyID id = KeyID::None;
+
+    switch (key) {
+    case GLFW_KEY_A:
+        id = KeyID::A;
+        break;
+    case GLFW_KEY_B:
+        id = KeyID::B;
+        break;
+    case GLFW_KEY_C:
+        id = KeyID::C;
+        break;
+    case GLFW_KEY_D:
+        id = KeyID::D;
+        break;
+    case GLFW_KEY_E:
+        id = KeyID::E;
+        break;
+    case GLFW_KEY_F:
+        id = KeyID::F;
+        break;
+    case GLFW_KEY_G:
+        id = KeyID::G;
+        break;
+    case GLFW_KEY_H:
+        id = KeyID::H;
+        break;
+    case GLFW_KEY_I:
+        id = KeyID::I;
+        break;
+    case GLFW_KEY_J:
+        id = KeyID::J;
+        break;
+    case GLFW_KEY_K:
+        id = KeyID::K;
+        break;
+    case GLFW_KEY_L:
+        id = KeyID::L;
+        break;
+    case GLFW_KEY_M:
+        id = KeyID::M;
+        break;
+    case GLFW_KEY_N:
+        id = KeyID::N;
+        break;
+     case GLFW_KEY_O:
+        id = KeyID::O;
+        break;
+     case GLFW_KEY_P:
+         id = KeyID::P;
+         break;
+     case GLFW_KEY_Q:
+         id = KeyID::Q;
+         break;
+     case GLFW_KEY_R:
+         id = KeyID::R;
+         break;
+     case GLFW_KEY_S:
+         id = KeyID::S;
+         break;
+     case GLFW_KEY_T:
+         id = KeyID::T;
+         break;
+     case GLFW_KEY_U:
+         id = KeyID::U;
+         break;
+     case GLFW_KEY_V:
+         id = KeyID::V;
+         break;
+     case GLFW_KEY_W:
+         id = KeyID::W;
+         break;
+     case GLFW_KEY_X:
+         id = KeyID::X;
+         break;
+     case GLFW_KEY_Y:
+         id = KeyID::Y;
+         break;
+     case GLFW_KEY_Z:
+         id = KeyID::Z;
+         break;
+     case GLFW_KEY_SPACE:
+         id = KeyID::Space;
+         break;
+     case GLFW_KEY_ENTER:
+         id = KeyID::Return;
+         break;
+    }
+
+    if (id == KeyID::None)
+    {
+        return;
+    }
+    if (state == GLFW_PRESS) {
+        Application::GetApp()->GetInput()->SetKey(id, true);
+    }
+    else if(state == GLFW_RELEASE){
+       Application::GetApp()->GetInput()->SetKey(id, false);
+    }
+
     //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
     //pSelf->OnKeyEvent(static_cast<Key>(key), static_cast<KeyState>(state));
 }

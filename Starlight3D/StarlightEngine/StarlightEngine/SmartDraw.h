@@ -51,7 +51,7 @@ struct DrawList {
 
 };
 
-struct Vertex
+struct Vertex2D
 {
 	float3 pos;
 	float4 color;
@@ -107,7 +107,7 @@ private:
 	RefCntAutoPtr<IBuffer>                m_CubeIndexBuffer;
 	float cZ;
 	bool made = false;
-	Vertex* vertices;
+	Vertex2D* vertices;
 	Uint32* indices;
 };
 

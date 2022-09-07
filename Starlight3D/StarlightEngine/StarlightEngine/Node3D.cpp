@@ -3,7 +3,7 @@
 
 //#include "glm/gtc/matrix_transform.hpp"
 //#include "glm/gtx/transform.hpp"
-//#include "Maths.h"
+#include "Maths.h"
 
 
 
@@ -96,7 +96,7 @@
 		if (mTransformInvalidated) {
 
 			float4x4 previous_matrix = float4x4::Identity();
-
+			 
 			if (mRootNode != nullptr) {
 
 				previous_matrix = mRootNode->GetWorldMatrix();
@@ -105,15 +105,15 @@
 
 			float4x4 scale_matrix = float4x4::Scale(mScale);
 
-			float4x4 position_matrix = float4x4::Translation(mPosition);
+			float4x4 position_matrix = float4x4::Translation(mPosition).Inverse();
 
-			float4x4 final_matrix = position_matrix * mRotation * scale_matrix;
+			float4x4 final_matrix =  position_matrix * mRotation;// *scale_matrix;
 
 			mValidTransform = previous_matrix * final_matrix;
 
 			mTransformInvalidated = false;
 
-			return previous_matrix * final_matrix;
+			return final_matrix;
 
 		}
 		else {
@@ -162,18 +162,19 @@
 
 	void Node3D::SetRotation(float pitch, float yaw, float roll) {
 
-		//***
-		/*
-		pitch = Kinetic::Maths::Deg2Rad(pitch);
-		yaw = Kinetic::Maths::Deg2Rad(yaw);
-		roll = Kinetic::Maths::Deg2Rad(roll);
+		
+		
+		pitch = Maths::Deg2Rad(pitch);
+		yaw = Maths::Deg2Rad(yaw);
+		roll = Maths::Deg2Rad(roll);
 
-		glm::mat4 pitch_matrix = glm::rotate(pitch, glm::vec3(1.0, 0, 0));
-		glm::mat4 yaw_matrix = glm::rotate(yaw, glm::vec3(0, 1.0, 0));
-		glm::mat4 roll_matrix = glm::rotate(roll, glm::vec3(0, 0, 1.0));
+		float4x4 pitch_matrix = float4x4::RotationX(pitch);
+		float4x4 yaw_matrix = float4x4::RotationY(yaw);
+		float4x4 roll_matrix = float4x4::RotationZ(roll);
+
 
 		mRotation = yaw_matrix * pitch_matrix * roll_matrix;
-		*/
+		
 		InvalidateTransform();
 	}
 
@@ -193,14 +194,14 @@
 		InvalidateTransform();
 	}
 
-	Kinetic::Graph::Data::NodeProperty* Node3D::AddProperty(Kinetic::Graph::Data::NodeProperty* _property) {
+	NodeProperty* Node3D::AddProperty(NodeProperty* _property) {
 
 		mProperties.push_back(_property);
 		return _property;
 
 	}
 
-	Kinetic::Graph::Data::NodeProperty* Node3D::GetProperty(std::string name) {
+	NodeProperty* Node3D::GetProperty(std::string name) {
 
 		for (int i = 0; i < mProperties.size(); i++) {
 

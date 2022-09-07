@@ -14,7 +14,7 @@ SmartDraw::SmartDraw(Application* app) {
     BlendState.RenderTargets[0].SrcBlend = BLEND_FACTOR_SRC_ALPHA;
     BlendState.RenderTargets[0].DestBlend = BLEND_FACTOR_INV_SRC_ALPHA;
 
-     vertices = new Vertex[2048];
+     vertices = new Vertex2D[2048];
      indices = new Uint32[4096];
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;

@@ -5,7 +5,6 @@
 /// <summary>
 /// The data namespace is for using app specific data within nodes.
 /// </summary>
-namespace Kinetic::Graph::Data {
 
 	/// <summary>
 	/// NodeProperty is a named piece of data for a node/component.
@@ -42,4 +41,3 @@ namespace Kinetic::Graph::Data {
 
 	};
 
-}

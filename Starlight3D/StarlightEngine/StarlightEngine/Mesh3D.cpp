@@ -234,11 +234,12 @@
 
 	void Mesh3D::AddVertex(Vertex vertex,bool reset=true) {
 
+		//***
 		if (reset) {
 			for (int i = 0; i < 4; i++)
 			{
-				vertex.m_BoneIDS[i] = -1;
-				vertex.m_Weights[i] = 0.0f;
+				//vertex.m_BoneIDS[i] = -1;
+				//vertex.m_Weights[i] = 0.0f;
 			}
 		}
 		mVertices.push_back(vertex);
@@ -292,6 +293,37 @@
 
 	void Mesh3D::CreateVBO() {
 
+
+		int ds = sizeof(Vertex) * mVertices.size();
+
+
+	
+		BufferDesc VertBuffDesc;
+		VertBuffDesc.Name = "Mesh3D - vertex buffer";
+		VertBuffDesc.Usage = USAGE_IMMUTABLE;
+		VertBuffDesc.BindFlags = BIND_VERTEX_BUFFER;
+		VertBuffDesc.Size = ds;
+		BufferData VBData;
+		VBData.pData = mVertices.data();
+		VBData.DataSize = ds;
+		
+		Application::GetApp()->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_VertexBuffer);
+
+		int b = 5;
+
+		ds = sizeof(Tri) * mTris.size();
+
+		BufferDesc IndBuffDesc;
+		IndBuffDesc.Name = "Mesh3D - index buffer";
+		IndBuffDesc.Usage = USAGE_IMMUTABLE;
+		IndBuffDesc.BindFlags = BIND_INDEX_BUFFER;
+		IndBuffDesc.Size = ds;
+		BufferData IBData;
+		IBData.pData = mTris.data();
+		IBData.DataSize = ds;
+		Application::GetApp()->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_IndexBuffer);
+
+		b = 5;
 
 	}
 

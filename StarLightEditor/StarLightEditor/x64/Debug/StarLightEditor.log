@@ -1,7 +1,0 @@
-﻿  AppEditor.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(174,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(149,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(153,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(74,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(74,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  StarLightEditor.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\StarLightEditor.exe

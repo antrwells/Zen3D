@@ -3,6 +3,8 @@
 #include "SmartDraw.h"
 #include "UI.h"
 #include "kFont.h"
+#include "Importer.h"
+#include "SceneGraph.h"
 class AppEditor : public Application
 {
 public:
@@ -21,5 +23,9 @@ private:
     UI* mUI;
     //TTFont* mFont1;
     kFont* mFont1;
+    SceneGraph* mGraph;
+    NodeEntity* mEnt1;
+    NodeLight* mLight1;
+
 };
 

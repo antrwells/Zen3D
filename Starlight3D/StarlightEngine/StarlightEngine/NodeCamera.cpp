@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "NodeCamera.h"
 
-//#include "Maths.h"
+#include "Maths.h"
 #include "Application.h"
 
 	NodeCamera::NodeCamera() {
 
 //		mProjectionMatrix = 
-		//SetViewport(0, 0, Kinetic::App::Application::AppWidth, Kinetic::App::Application::AppHeight);
+		SetViewport(0, 0,Application::GetApp()->GetWidth(),Application::GetApp()->GetHeight());
 
 
 	}
@@ -15,6 +15,9 @@
 	void NodeCamera::SetViewport(int x, int y, int w, int h) {
 
 		//***
+
+		mProjectionMatrix = float4x4::Projection(Maths::Deg2Rad(mFOV), (float)(w) / (float)(h),mMinZ,mMaxZ,false);
+
 
 		//float nv = Kinetic::Maths::Deg2Rad(mFOV);
 		//mProjectionMatrix = glm::perspective<float>(nv, (float)w / (float)h, mMinZ, mMaxZ);

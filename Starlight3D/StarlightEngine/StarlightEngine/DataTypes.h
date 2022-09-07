@@ -7,11 +7,41 @@ using namespace Diligent;
 
 
 
+struct Vertex {
+	float3 position;
 
+
+
+	/// <summary>
+	/// The color of the vertex.
+	/// </summary>
+	float4 color;
+
+	/// <summary>
+/// The texture coord used.
+/// </summary>
+	float3 texture_coord;
+
+	/// <summary>
+	/// the 3D normal of the vertex.
+	/// </summary>
+	float3 normal;
+
+	/// <summary>
+	/// the Bi-Normal of the vertex.
+	/// </summary>
+	float3 bi_normal;
+
+	/// <summary>
+	/// The tangent of the vertex.
+	/// </summary>
+	float3 tangent;
+
+	};
 	/// <summary>
 	/// A vertex is a single point in a mesh or other vertex constructed entity.
 	/// </summary>
-	struct Vertex
+	struct VertexActor
 	{
 
 		/// <summary>

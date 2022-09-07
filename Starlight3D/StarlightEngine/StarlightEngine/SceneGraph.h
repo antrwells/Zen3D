@@ -3,9 +3,11 @@
 #include "Node3D.h"
 #include "NodeCamera.h"
 #include "NodeLight.h"
+#include "NodeEntity.h"
 //#include "Effect.h"
 //#include "Physics.h"
 #include "NodeBillboard.h"
+#include "MeshRenderer.h"
 
 
 /// <summary>
@@ -153,6 +155,10 @@
 			mParticles.push_back(nb);
 		}
 
+		void RenderNodeBasic(NodeEntity* entity);
+		void RenderNodeLit(NodeEntity* entity);
+	
+
 	private:
 	
 
@@ -171,5 +177,7 @@
 		std::vector<NodeBillboard*> mParticles;
 
 		NodeCamera* mCam;
+
+		MeshRenderer* mRenderer;
 
 	};

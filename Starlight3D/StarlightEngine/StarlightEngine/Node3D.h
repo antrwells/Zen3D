@@ -192,14 +192,14 @@ using namespace Diligent;
 		/// </summary>
 		/// <param name="property"></param>
 		/// <returns></returns>
-		Kinetic::Graph::Data::NodeProperty* AddProperty(Kinetic::Graph::Data::NodeProperty* property);
+		NodeProperty* AddProperty(NodeProperty* property);
 		
 		/// <summary>
 		/// Returns the given property.
 		/// </summary>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		Kinetic::Graph::Data::NodeProperty* GetProperty(std::string name);
+		NodeProperty* GetProperty(std::string name);
 
 
 		/// <summary>
@@ -314,7 +314,7 @@ using namespace Diligent;
 		std::vector<NodeComponent*> mComponents;
 
 		//Properties
-		std::vector<Kinetic::Graph::Data::NodeProperty*> mProperties;
+		std::vector<NodeProperty*> mProperties;
 
 
 	};

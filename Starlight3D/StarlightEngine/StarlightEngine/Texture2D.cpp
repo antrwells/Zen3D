@@ -53,3 +53,9 @@ Texture2D::Texture2D(RenderTarget2D* target) {
     m_TextureSRV = target->GetColorTexture()->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
 
 }
+
+Texture2D::Texture2D(RenderTargetCube* target, int face)
+{
+    Texture = target->GetColorTexture();
+    m_TextureSRV = target->GetColorViewFace(face);
+}

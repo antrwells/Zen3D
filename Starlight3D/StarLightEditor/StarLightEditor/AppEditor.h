@@ -6,6 +6,8 @@
 #include "Importer.h"
 #include "SceneGraph.h"
 #include "RenderTarget2D.h"
+#include "RenderTargetCube.h"
+#include "CubeRenderer.h"
 class AppEditor : public Application
 {
 public:
@@ -25,9 +27,10 @@ private:
     //TTFont* mFont1;
     kFont* mFont1;
     SceneGraph* mGraph;
-    NodeEntity* mEnt1;
+    NodeEntity* mEnt1,* mEnt2;
     NodeLight* mLight1, * mLight2;
     RenderTarget2D* mRT1;
-
+    RenderTargetCube* mRTC1;
+    CubeRenderer* mRC;
 };
 

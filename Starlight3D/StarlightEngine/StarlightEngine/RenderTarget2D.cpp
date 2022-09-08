@@ -24,7 +24,7 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 
 	//depth
 	TextureDesc RTDepthDesc = RTColorDesc;
-	RTDepthDesc.Name = "Offscreen depth buffer";
+	RTDepthDesc.Name = "Cube depth buffer";
 	RTDepthDesc.Format = TEX_FORMAT_D32_FLOAT;
 	RTDepthDesc.BindFlags = BIND_DEPTH_STENCIL;
 	// Define optimal clear value
@@ -42,12 +42,28 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 void RenderTarget2D::Bind() {
 
 	BoundTarget = this;
+	const float ClearColor[] = { 0,0,0, 1.0f };
+	Application* gApp = Application::GetApp();
+
+	auto m_pImmediateContext = gApp->GetContext();
+	m_pImmediateContext->SetRenderTargets(1, &RenderTarget2D::BoundTarget->GetColorView(), RenderTarget2D::BoundTarget->GetDepthView(), RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+	m_pImmediateContext->ClearRenderTarget(RenderTarget2D::BoundTarget->GetColorView(), ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+	m_pImmediateContext->ClearDepthStencil(RenderTarget2D::BoundTarget->GetDepthView(), CLEAR_DEPTH_FLAG, 1.0f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
 }
 
 void RenderTarget2D::Release() {
 
 	BoundTarget = nullptr;
+	Application* gApp = Application::GetApp();
+
+	auto m_pImmediateContext = gApp->GetContext();
+	auto* pRTV = gApp->GetSwap()->GetCurrentBackBufferRTV();
+	// Clear the default render target
+	const float Zero[] = { 0, 0, 0, 1.0f };
+	m_pImmediateContext->SetRenderTargets(1, &pRTV, gApp->GetSwap()->GetDepthBufferDSV(), RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+	//m_pImmediateContext->ClearRenderTarget(pRTV, Zero, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
 
 }
 

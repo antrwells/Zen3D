@@ -25,41 +25,49 @@ void AppEditor::InitApp() {
 
 	Importer* imp = new Importer;
 
-	NodeEntity* n1 = imp->ImportAI("data/test1.fbx", true);
+	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);
+	NodeEntity* sphere = imp->ImportAI("data/test2.fbx", true);
 
 	int b = 5;
 
 	mGraph = new SceneGraph();
 
 	auto real_node = (NodeEntity*)n1;//n1->GetChild(0);
+	auto real2 = (NodeEntity*)sphere;
 
 	int a = 5;
 
 	mGraph->AddNode(real_node);
+	mGraph->AddNode(real2);
+
+	real2->SetPosition(float3(0, 1.5f, 0));
 
 	mEnt1 = real_node;
+	mEnt2 = real2;
 
 	mLight1 = new NodeLight(false);
 	mLight2 = new NodeLight(false);
 
-	mGraph->AddLight(mLight1);
+	//mGraph->AddLight(mLight1);
 
 	mGraph->AddLight(mLight2);
-	mLight2->SetRange(5);
-	mLight1->SetRange(10);
+	mLight2->SetRange(50);
+	mLight1->SetRange(30);
 	mLight1->SetPosition(float3(0, 10, 0));
 	mLight2->SetPosition(float3(0, 3, 0));
-	mLight2->SetDiffuse(float3(0.2, 2, 2));
+	mLight2->SetDiffuse(float3(0.8, 0.8, 0.8));
 
 	auto tex = new Texture2D("data/testNorm.jpg");
-	real_node->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
-	real_node->GetMesh(1)->GetMaterial()->SetNormalMap(tex);
+	//real_node->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
+//	real_node->GetMesh(1)->GetMaterial()->SetNormalMap(tex);
+	//real2->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
 	//mFont1 = new TTFont("data/f1.ttf");
 	//mFont1 = new kFont("data/fonts/air.pf");
 	auto cam = mGraph->GetCamera();
 	cam->SetPosition(float3(0, 5, -10));
-	mRT1 = new RenderTarget2D(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
-
+	//mRT1 = new RenderTarget2D(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
+	mRTC1 = new RenderTargetCube(1024, 1024);
+	mRC = new CubeRenderer(mGraph, mRTC1);
 }
 
 void AppEditor::UpdateApp() {
@@ -67,6 +75,9 @@ void AppEditor::UpdateApp() {
 	mUI->Update();
 
 }
+
+
+
 float anX = 0;
 float anY = 0;
 float cX=0, cY=0;
@@ -80,15 +91,8 @@ void AppEditor::RenderApp() {
 		 anY++;
 		 anX++;
 
-		 //mUI->Render();
-		 mRT1->Bind();
-		 mGraph->Render();
-		 mRT1->Release();
-		 
-		 mDraw->Begin();
-		 mDraw->DrawTexture(20, 20, 512, 512,new Texture2D(mRT1), 1, 1, 1, 1);
-		 mDraw->End();
-		
+		 //control
+
 		 auto cam = mGraph->GetCamera();
 		 //cam->SetPosition(float3(0, -5, 10));
 		// mEnt1->SetRotation(anX, anY, 0);
@@ -96,18 +100,18 @@ void AppEditor::RenderApp() {
 		 lx = cos(Maths::Deg2Rad(la)) * 8;
 		 lz = sin(Maths::Deg2Rad(la)) * 8;
 		 int dx, dy;
-		// mEnt1->SetRotation(0, la, 0);
+		 // mEnt1->SetRotation(0, la, 0);
 		 dx = Application::GetInput()->GetMouseDX();
 		 dy = Application::GetInput()->GetMouseDY();
-		// mLight1->SetPosition(float3(lx, 8, lz));
+		 // mLight1->SetPosition(float3(lx, 8, lz));
 		 cX -= dy;
 		 cY -= dx;
-		// mUI->Render();
+		 // mUI->Render();
 		 cam->SetRotation(cX, cY, 0);
 		 if (Application::GetInput()->IsKeyDown(KeyID::Space))
 		 {
 			 float3 cp = cam->GetPosition();
-	
+
 			 mLight1->SetPosition(cp);
 		 }
 
@@ -116,7 +120,7 @@ void AppEditor::RenderApp() {
 		 if (Application::GetInput()->IsKeyDown(KeyID::W))
 		 {
 
-			 cam->Move(float3(0, 0,-spd));
+			 cam->Move(float3(0, 0, -spd));
 
 		 }
 		 if (Application::GetInput()->IsKeyDown(KeyID::S)) {
@@ -131,6 +135,35 @@ void AppEditor::RenderApp() {
 			 cam->Move(float3(-spd, 0, 0));
 		 }
 
+		 mEnt2->SetHidden(true);
+		 //*control
+		 mRC->Render(mEnt2->GetPosition());
+
+		 auto tc = mRC->GetTextureCube();
+
+		 mEnt2->GetMesh(0)->GetMaterial()->SetEnvMap(tc);
+
+		 mEnt2->SetHidden(false);
+
+
+		 mGraph->Render();
+
+
+		// mRC->Render(float3(0, 2.8, 0));
+		 //mUI->Render();
+		 //mRTC1->Bind(0);
+		// mGraph->Render();
+		// mRTC1->Release(0);
+		 
+		 //return
+
+		 return;
+		 
+		 mDraw->Begin();
+		 mDraw->DrawTexture(20, 20, 512, 512,new Texture2D(mRTC1,0), 1, 1, 1, 1);
+		 mDraw->End();
+		
+		
 
 
 		 // mFont1->drawText("aaabbbcccddddeeefffggghhhiiijjjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 20, 300, 1, 1, 1, 1,mDraw);

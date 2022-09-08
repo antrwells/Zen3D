@@ -18,7 +18,7 @@
 		mPosition = float3(0, 0, 0);
 		mScale = float3(1, 1, 1);
 		mComponents.resize(0);
-
+		mType = NodeType::Node;
 	
 
 	}
@@ -104,10 +104,20 @@
 			}
 
 			float4x4 scale_matrix = float4x4::Scale(mScale);
+			float4x4 position_matrix;
 
-			float4x4 position_matrix = float4x4::Translation(mPosition).Inverse();
+			if (mType == NodeType::Camera) {
+
+				position_matrix = float4x4::Translation(mPosition).Inverse();
+			}
+			else {
+				position_matrix = float4x4::Translation(mPosition);
+			}
+
+			 
 
 			float4x4 final_matrix =  position_matrix * mRotation;// *scale_matrix;
+
 
 			mValidTransform = previous_matrix * final_matrix;
 

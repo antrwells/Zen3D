@@ -1,1 +1,3 @@
 A post-processor that converts a frame into a palette of 256 colors.
+
+- EcoVerse - Built in shared development helper.

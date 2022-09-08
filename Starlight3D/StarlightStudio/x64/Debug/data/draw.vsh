@@ -11,12 +11,14 @@ struct VSInput
 {
     float3 Pos   : ATTRIB0;
     float4 Color : ATTRIB1;
+    float2 Uv : ATTRIB2;
 };
 
 struct PSInput
 {
     float4 Pos   : SV_POSITION;
     float4 Color : COLOR0;
+    float2 Uv : TEX_COORD;
 };
 
 // Note that if separate shader objects are not supported (this is only the case for old GLES3.0 devices), vertex
@@ -27,4 +29,5 @@ void main(in  VSInput VSIn,
 {
     PSIn.Pos = mul(float4(VSIn.Pos, 1.0), g_WorldViewProj);
     PSIn.Color = VSIn.Color;
+    PSIn.Uv = VSIn.Uv;
 }

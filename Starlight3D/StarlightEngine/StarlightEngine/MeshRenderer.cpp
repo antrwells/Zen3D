@@ -17,6 +17,7 @@ struct LitConstants {
     float4 lightProp;
     float4 lightDiff;
     float4 lightSpec;
+    float4 renderProps;
 
 
 };
@@ -272,7 +273,8 @@ void MeshRenderer::CreateLitGP() {
     ShaderResourceVariableDesc Vars[] =
     {
         {SHADER_TYPE_PIXEL, "g_Texture",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
-        {SHADER_TYPE_PIXEL,"g_TextureNorm",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC}
+        {SHADER_TYPE_PIXEL,"g_TextureNorm",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
+        {SHADER_TYPE_PIXEL,"g_Env",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC}
     };
 
     PSOCreateInfo.PSODesc.ResourceLayout.Variables = Vars;
@@ -281,12 +283,19 @@ void MeshRenderer::CreateLitGP() {
     SamplerDesc SamLinearClampDesc
     {
         FILTER_TYPE_LINEAR, FILTER_TYPE_LINEAR, FILTER_TYPE_LINEAR,
-        TEXTURE_ADDRESS_CLAMP, TEXTURE_ADDRESS_CLAMP, TEXTURE_ADDRESS_CLAMP
+        TEXTURE_ADDRESS_WRAP, TEXTURE_ADDRESS_WRAP, TEXTURE_ADDRESS_WRAP
     };
+    SamplerDesc EnvSam{
+
+        FILTER_TYPE_LINEAR, FILTER_TYPE_LINEAR, FILTER_TYPE_LINEAR,
+        TEXTURE_ADDRESS_CLAMP, TEXTURE_ADDRESS_CLAMP, TEXTURE_ADDRESS_CLAMP
+    };                                                                                                                             
+
     ImmutableSamplerDesc ImtblSamplers[] =
     {
         {SHADER_TYPE_PIXEL, "g_Texture", SamLinearClampDesc},
-        {SHADER_TYPE_PIXEL,"g_TextureNorm",SamLinearClampDesc}
+        {SHADER_TYPE_PIXEL,"g_TextureNorm",SamLinearClampDesc},
+        {SHADER_TYPE_PIXEL,"g_Env",EnvSam}
     };
 
     PSOCreateInfo.PSODesc.ResourceLayout.ImmutableSamplers = ImtblSamplers;
@@ -308,7 +317,7 @@ void MeshRenderer::CreateLitGP() {
     BlendState.RenderTargets[0].BlendEnable = true;
     BlendState.RenderTargets[0].SrcBlend = BLEND_FACTOR_ONE;
     BlendState.RenderTargets[0].DestBlend = BLEND_FACTOR_ONE;
-    //BlendState.RenderTargets[0].BlendEnable
+    //BlendState.RenderTargets[0].BlendEnabled
 
 
 
@@ -422,6 +431,16 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
          
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(tex_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+            auto env_map = mesh->GetMaterial()->GetEnvMap();
+
+            bool env_On = false;
+
+            if (env_map != nullptr) {
+
+                env_On = true;
+                m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_Env")->Set(env_map->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+
+            }
 
          
 
@@ -441,18 +460,28 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
 
             // Compute world-view-projection matrix
-            float4x4 m_WorldViewProjMatrix = View * Proj;
+            float4x4 m_WorldViewProjMatrix = model* View * Proj;
 
             auto cont = gApp->GetContext();
 
             //model = float4x4::Identity();
+            float p1, p2, p3, p4;
 
+            p1 = p2 = p3 = p4 = 0;
+
+            if (env_On)
+            {
+                p1 = 1;
+            }
+            else {
+                p1 = 0;
+            }
 
             LitConstants lc;
             lc.g_MVP = m_WorldViewProjMatrix.Transpose();
 
             lc.g_Model = model.Transpose();
-            lc.g_ModelInv = model.Transpose().Inverse();
+            lc.g_ModelInv = model.Inverse().Transpose();
             lc.g_View = View;
             lc.g_Proj = Proj.Transpose();
             lc.viewPos = float4(cam->GetPosition(), 1.0);
@@ -460,6 +489,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.lightProp = float4(light->GetRange(), 0, 0, 0);
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
+            lc.renderProps = float4(p1, p2, p3, p4);
 
 
             MapHelper<LitConstants> CBConstants(cont, m_LitConstants, MAP_WRITE, MAP_FLAG_DISCARD);
@@ -506,7 +536,16 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(tex_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+            auto env_map = mesh->GetMaterial()->GetEnvMap();
 
+            bool env_On = false;
+
+            if (env_map != nullptr) {
+
+                env_On = true;
+                m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_Env")->Set(env_map->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+
+            }
 
 
             auto m_pImmediateContext = gApp->GetContext();
@@ -527,18 +566,28 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
 
             // Compute world-view-projection matrix
-            float4x4 m_WorldViewProjMatrix = View * Proj;
+            float4x4 m_WorldViewProjMatrix = model* View * Proj;
 
             auto cont = gApp->GetContext();
 
             //model = float4x4::Identity();
+            float p1, p2, p3, p4;
 
+            p1 = p2 = p3 = p4 = 0;
+
+            if (env_On)
+            {
+                p1 = 1;
+            }
+            else {
+                p1 = 0;
+            }
 
             LitConstants lc;
             lc.g_MVP = m_WorldViewProjMatrix.Transpose();
 
             lc.g_Model = model.Transpose();
-            lc.g_ModelInv = model.Transpose().Inverse();
+            lc.g_ModelInv = model.Inverse().Transpose();
             lc.g_View = View;
             lc.g_Proj = Proj.Transpose();
             lc.viewPos = float4(cam->GetPosition(), 1.0);
@@ -546,7 +595,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.lightProp = float4(light->GetRange(), 0, 0, 0);
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
-
+            lc.renderProps = float4(p1, p2, p3, p4);
 
             MapHelper<LitConstants> CBConstants(cont, m_LitConstants, MAP_WRITE, MAP_FLAG_DISCARD);
             *CBConstants = lc;

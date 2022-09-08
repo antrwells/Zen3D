@@ -105,11 +105,11 @@
 
 	}
 
-	/*
-	void Material::SetEnvironmentMap(Kinetic::Textures::TextureCube* map) {
+	
+	void Material::SetEnvMap(TextureCube* map) {
 
-		mEnvironmentMap = map;
+		mEnvMap = map;
 
 	}
-	*/
+	
 

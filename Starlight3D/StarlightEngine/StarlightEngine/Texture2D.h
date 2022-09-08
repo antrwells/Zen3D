@@ -40,7 +40,7 @@
 //#include "GLFW/glfw3native.h"
 #include "Application.h"
 #include "RenderTarget2D.h"
-
+#include "RenderTargetCube.h"
 using namespace Diligent;
 
 
@@ -54,6 +54,7 @@ public:
 	Texture2D(const char* path);
 	Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
 	Texture2D(RenderTarget2D* target);
+	Texture2D(RenderTargetCube* cube, int face);
 	int GetWidth() {
 		return mWidth;
 	}

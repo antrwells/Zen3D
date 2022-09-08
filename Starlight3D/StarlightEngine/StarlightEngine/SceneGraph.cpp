@@ -274,43 +274,34 @@
 	void SceneGraph::RenderNodeLit(NodeEntity* entity) {
 
 		bool first = true;
-		for (int i = 0;i < mLights.size();i++)
-		{
+		if (entity->GetMeshes().size() > 0) {
+			for (int i = 0;i < mLights.size();i++)
+			{
 
-			mRenderer->RenderLit(entity, mCam, mLights[i],first);
-			first = false;
+				mRenderer->RenderLit(entity, mCam, mLights[i], first);
+				first = false;
+			}
 		}
 
+		for (int i = 0;i < entity->ChildrenCount();i++) {
 
+			RenderNodeLit((NodeEntity*)entity->GetChild(i));
+
+		}
 
 	}
 
 	void SceneGraph::Render() {
-		Application* gApp = Application::GetApp();
-
-		auto m_pImmediateContext = gApp->GetContext();
-		if (RenderTarget2D::BoundTarget != nullptr) {
-
-			const float ClearColor[] = { 0.350f, 0.350f, 0.350f, 1.0f };
-			m_pImmediateContext->SetRenderTargets(1, &RenderTarget2D::BoundTarget->GetColorView(), RenderTarget2D::BoundTarget->GetDepthView(), RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
-			m_pImmediateContext->ClearRenderTarget(RenderTarget2D::BoundTarget->GetColorView(), ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
-			m_pImmediateContext->ClearDepthStencil(RenderTarget2D::BoundTarget->GetDepthView(), CLEAR_DEPTH_FLAG, 1.0f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
-		}
+	
 		for (int i = 0;i < mRootNode->ChildrenCount();i++)
 		{
 			auto entity = (NodeEntity*)mRootNode->GetChild(i);
 			
+			if (entity->IsHidden()) continue;
+
 			RenderNodeLit((NodeEntity*)entity);
 		}
-		if (RenderTarget2D::BoundTarget != nullptr) {
 
-			auto* pRTV = gApp->GetSwap()->GetCurrentBackBufferRTV();
-			// Clear the default render target
-			const float Zero[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-			m_pImmediateContext->SetRenderTargets(1, &pRTV, gApp->GetSwap()->GetDepthBufferDSV(), RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
-			m_pImmediateContext->ClearRenderTarget(pRTV, Zero, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
-
-		}
 		/*
 		Kinetic::FX::Global::EffectGlobal::CurrentCamera = mCam;
 		

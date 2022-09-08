@@ -159,6 +159,7 @@
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneInfo.h" />
     <ClInclude Include="ButtonControl.h" />
+    <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Helper.h" />
@@ -182,10 +183,12 @@
     <ClInclude Include="NoRenderList.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RenderTarget2D.h" />
+    <ClInclude Include="RenderTargetCube.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="stb_truetype.h" />
     <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureCube.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UIControl.h" />
     <ClInclude Include="UITheme.h" />
@@ -202,6 +205,7 @@
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneInfo.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
+    <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Importer.cpp" />
     <ClCompile Include="kFont.cpp" />
@@ -227,10 +231,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RenderTarget2D.cpp" />
+    <ClCompile Include="RenderTargetCube.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="StarlightEngine.cpp" />
     <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="TextureCube.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="UIControl.cpp" />
     <ClCompile Include="UITheme.cpp" />

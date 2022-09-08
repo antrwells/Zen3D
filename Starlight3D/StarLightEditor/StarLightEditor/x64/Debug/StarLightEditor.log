@@ -1,2 +1,1 @@
-﻿StarlightEngine.lib(Image.obj) : warning LNK4099: PDB 'Diligent-TextureLoader.pdb' was not found with 'StarlightEngine.lib(Image.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-TextureLoader.pdb'; linking object as if no debug info
-  StarLightEditor.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\StarLightEditor.exe
+﻿  StarLightEditor.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\StarLightEditor.exe

@@ -138,6 +138,15 @@
     <ClInclude Include="RenderTarget2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RenderTargetCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -252,6 +261,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RenderTarget2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTargetCube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureCube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

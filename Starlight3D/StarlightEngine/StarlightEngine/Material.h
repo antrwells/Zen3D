@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Texture2D.h"
-
+#include "TextureCube.h"
 #include <vector>
 
 
@@ -57,11 +57,18 @@
 			return mSpecularMap;
 		}
 
+		TextureCube* GetEnvMap() {
+
+			return mEnvMap;
+
+		}
 
 		void SetColorMap(Texture2D* map);
 		void SetNormalMap(Texture2D* map);
 		void SetSpecularMap(Texture2D* map);
-		//void SetEnvironmentMap(TextureCube* map);
+		void SetEnvMap(TextureCube* map);
+
+
 
 		void SetTerrainTexture(Texture2D* color_map,Texture2D* norm_map, int index) {
 
@@ -126,6 +133,7 @@
 		Texture2D* mAuxMap[8];
 		Texture2D* mNormalMap = nullptr;
 		Texture2D* mSpecularMap = nullptr;
+		TextureCube* mEnvMap = nullptr;
 		
 		Texture2D* mDisplaceMap = nullptr;
 		bool RefractEnv = true;

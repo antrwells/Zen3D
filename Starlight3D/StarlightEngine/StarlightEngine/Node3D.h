@@ -9,6 +9,11 @@
 #include "Common/interface/BasicMath.hpp"
 
 using namespace Diligent;
+
+enum NodeType {
+	Entity,Node,Camera,Light,Other
+};
+
 /// <summary>
 /// Vivid::Graph::Nodes contains all the base-line graph nodes.
 /// </summary>
@@ -158,9 +163,16 @@ using namespace Diligent;
 		void LookAtZero(float3 l, float3 up)
 		{
 			//***
-			//mRotation = glm::lookAt(glm::vec3(0, 0, 0), glm::vec3(l.x, l.y, l.z), glm::vec3(up.x, up.y, up.z));
-			//LocalTurn = glm::inverse(LocalTurn);
+
+
 			InvalidateTransform();
+		}
+
+		void SetRotation(float4x4 mat) {
+
+			mRotation = mat;
+			InvalidateTransform();
+
 		}
 
 	//	static Kinetic::FX::Effect* FXDepth;
@@ -286,6 +298,14 @@ using namespace Diligent;
 			}
 		}
 
+		void SetHidden(bool hidden) {
+			mHidden = hidden;
+		}
+
+		bool IsHidden() {
+			return mHidden;
+		}
+
 	protected:
 
 		bool mTransformInvalidated = true;
@@ -309,6 +329,9 @@ using namespace Diligent;
 		//name
 		const char* mName;
 
+		NodeType mType;
+
+		bool mHidden = false;
 
 		//Components
 		std::vector<NodeComponent*> mComponents;

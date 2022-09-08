@@ -8,7 +8,7 @@
 
 //		mProjectionMatrix = 
 		SetViewport(0, 0,Application::GetApp()->GetWidth(),Application::GetApp()->GetHeight());
-
+		mType = NodeType::Camera;
 
 	}
 

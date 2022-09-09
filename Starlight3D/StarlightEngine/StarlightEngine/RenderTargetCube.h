@@ -60,7 +60,7 @@ public:
 	}
 
 private:
-
+	float4 mClearColor;
 	RefCntAutoPtr<ITexture> pRTColor;
 	RefCntAutoPtr<ITexture> pRTDepth;
 	RefCntAutoPtr<ITextureView> m_pColorRTV;

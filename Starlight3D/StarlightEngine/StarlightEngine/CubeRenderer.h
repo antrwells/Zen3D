@@ -7,6 +7,8 @@ public:
 
 	CubeRenderer(SceneGraph* graph, RenderTargetCube* cube);
 	void Render(float3 position);
+	void RenderDepth(float3 position,float maxZ);
+	void SetRenderTargetCube(RenderTargetCube* cube);
 	TextureCube* GetTextureCube();
 
 private:

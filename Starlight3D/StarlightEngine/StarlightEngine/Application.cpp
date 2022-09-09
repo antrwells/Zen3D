@@ -228,7 +228,7 @@ void Application::Render() {
     //RenderApp();
 
 
-
+    
     // Set render targets before issuing any draw command.
         // Note that Present() unbinds the back buffer if it is set as render target.
     auto* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();

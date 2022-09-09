@@ -59,7 +59,7 @@ void main(in  VSInput VSIn,
     float4 viewPosition = mul(worldPosition, g_View);
     PSIn.Pos = mul(float4(VSIn.Pos, 1.0), g_MVP);
 
-    float3 fragPos = mul(VSIn.Pos.xyz, (float3x3)g_Model);
+    float3 fragPos = mul(VSIn.Pos.xyz, (float3x3)g_ModelInv);
 
     //vec3 T = normalize(normalMatrix * vTan);
     //vec3 N = normalize(normalMatrix * vNorm);

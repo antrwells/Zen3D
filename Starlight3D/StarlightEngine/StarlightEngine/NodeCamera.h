@@ -62,6 +62,7 @@
         /// <param name="z"></param>
         void SetMaxZ(float z) {
             mMaxZ = z;
+            SetViewport(0, 0, mWidth, mHeight);
         }
 
         /// <summary>
@@ -80,7 +81,7 @@
 
         float mFOV = 45.0f;
         float mMinZ = 1.0f;
-        float mMaxZ = 200.0f;
+        float mMaxZ = 40.0f;
         float mWidth, mHeight;
 
     };

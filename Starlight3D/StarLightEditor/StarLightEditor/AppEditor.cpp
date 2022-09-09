@@ -48,19 +48,19 @@ void AppEditor::InitApp() {
 	mLight1 = new NodeLight(false);
 	mLight2 = new NodeLight(false);
 
-	//mGraph->AddLight(mLight1);
+	mGraph->AddLight(mLight1);
 
 	mGraph->AddLight(mLight2);
-	mLight2->SetRange(50);
+	mLight2->SetRange(30);
 	mLight1->SetRange(30);
 	mLight1->SetPosition(float3(0, 10, 0));
-	mLight2->SetPosition(float3(0, 3, 0));
-	mLight2->SetDiffuse(float3(0.8, 0.8, 0.8));
+	mLight2->SetPosition(float3(2, 8, 0));
+	mLight2->SetDiffuse(float3(0.1, 1, 1));
 
 	auto tex = new Texture2D("data/testNorm.jpg");
 	//real_node->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
 //	real_node->GetMesh(1)->GetMaterial()->SetNormalMap(tex);
-	//real2->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
+	//real2->GetMesh(0)->GetMaterial()->SetNormalMap(tex);e
 	//mFont1 = new TTFont("data/f1.ttf");
 	//mFont1 = new kFont("data/fonts/air.pf");
 	auto cam = mGraph->GetCamera();
@@ -135,6 +135,19 @@ void AppEditor::RenderApp() {
 			 cam->Move(float3(-spd, 0, 0));
 		 }
 
+		 
+		 
+		 mGraph->RenderShadowMaps();
+
+
+		 mGraph->Render();
+
+
+		// cam->SetMaxZ(mLight1->GetRange());
+		 
+
+		 //mGraph->RenderDepth();
+
 		 mEnt2->SetHidden(true);
 		 //*control
 		 mRC->Render(mEnt2->GetPosition());
@@ -146,7 +159,7 @@ void AppEditor::RenderApp() {
 		 mEnt2->SetHidden(false);
 
 
-		 mGraph->Render();
+		 //mGraph->RenderDepth();
 
 
 		// mRC->Render(float3(0, 2.8, 0));

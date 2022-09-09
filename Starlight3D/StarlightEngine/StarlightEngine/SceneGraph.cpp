@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "SceneGraph.h"
-
+#include "CubeRenderer.h"
 
 	SceneGraph::SceneGraph() {
 
 		mRootNode = new Node3D();
 		mCam = new NodeCamera;
 		mRenderer = new MeshRenderer;
+		mShadowRenderer = new CubeRenderer(this, nullptr);
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
 
@@ -231,13 +232,13 @@
 
 	void SceneGraph::RenderShadowMaps() {
 
-		int bt = clock();
-		for (int i = 0; i < mLights.size(); i++) {
+		for (int i = 0;i < mLights.size();i++) {
 
-			DrawShadowMap(mLights[i]);
+			mShadowRenderer->SetRenderTargetCube(mLights[i]->GetShadowCube());
+
+			mShadowRenderer->RenderDepth(mLights[i]->GetPosition(),mLights[i]->GetRange());
 
 		}
-		int et = clock();
 	//	printf("DS:%d\n",(int)(et - bt));
 
 	}
@@ -246,14 +247,29 @@
 
 	void SceneGraph::RenderDepth() {
 
+		const float ClearColor[] = { 1,1,1, 0.0f };
 
-		int bt = clock();
 
+		if (RenderTargetCube::BoundTarget != nullptr)
+		{
 
-		mRootNode->RenderDepth();
+		}
+		else {
+			auto con = Application::GetApp()->GetContext();
+			auto* pRTV = Application::GetApp()->GetSwap()->GetCurrentBackBufferRTV();
+			// Let the engine perform required state transitions
+			con->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+			//con->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+		}
 
-	
-		int et = clock();
+		for (int i = 0;i < mRootNode->ChildrenCount();i++)
+		{
+			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+			if (entity->IsHidden()) continue;
+
+			RenderNodeDepth((NodeEntity*)entity);
+		}
 
 		//printf("RDTime:%d\n", (int)(et - bt));
 
@@ -268,6 +284,26 @@
 
 		int a = 5;
 		mRenderer->RenderSimple(entity, mCam);
+
+	}
+
+	void SceneGraph::RenderNodeDepth(NodeEntity* entity)
+	{
+
+		bool first = true;
+		if (entity->GetMeshes().size() > 0) {
+		
+
+				mRenderer->RenderDepth(entity, mCam);
+				first = false;
+		
+		}
+
+		for (int i = 0;i < entity->ChildrenCount();i++) {
+
+			RenderNodeDepth((NodeEntity*)entity->GetChild(i));
+
+		}
 
 	}
 

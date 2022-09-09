@@ -1,6 +1,6 @@
 #pragma once
 #include "Node3D.h"
-
+#include "RenderTargetCube.h"
 
 
 
@@ -44,6 +44,10 @@
 		/// <returns></returns>
 		float GetRange() {
 			return mRange;
+		}
+
+		RenderTargetCube* GetShadowCube() {
+			return mShadowCube;
 		}
 
 		/// <summary>
@@ -132,6 +136,7 @@
 		bool mCastShadows = true;
 		//Kinetic::Framebuffer::FramebufferCube* ShadowFB;
 		bool mQueueRemove = false;
+		RenderTargetCube* mShadowCube = nullptr;
 
 
 	};

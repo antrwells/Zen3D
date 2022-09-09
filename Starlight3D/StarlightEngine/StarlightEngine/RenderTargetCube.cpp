@@ -5,14 +5,14 @@
 RenderTargetCube::RenderTargetCube(int width, int height) {
 	mWidth = width;
 	mHeight = height;
-
+	mClearColor = float4(1, 1, 1, 1);
 	//color
 	TextureDesc RTColorDesc;
 	RTColorDesc.Name = "RenderTargetCube Texture";
 	RTColorDesc.Type = RESOURCE_DIM_TEX_CUBE;
 	RTColorDesc.Width = width;// pSwapChain->GetDesc().Width;
 	RTColorDesc.Height = height;// pSwapChain->GetDesc().Height;
-	RTColorDesc.MipLevels = 0;
+	RTColorDesc.MipLevels = 1;
 	RTColorDesc.ArraySize = 6;
 	RTColorDesc.Usage = USAGE_DEFAULT;
 	
@@ -67,7 +67,7 @@ RenderTargetCube::RenderTargetCube(int width, int height) {
 void RenderTargetCube::Bind(int face) {
 
 	BoundTarget = this;
-	const float ClearColor[] = {0,0,0, 1.0f };
+	const float ClearColor[] = {mClearColor.x,mClearColor.y,mClearColor.z, 1.0f };
 	Application* gApp = Application::GetApp();
 
 	auto m_pImmediateContext = gApp->GetContext();

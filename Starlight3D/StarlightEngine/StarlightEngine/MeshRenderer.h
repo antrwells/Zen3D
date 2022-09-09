@@ -48,18 +48,24 @@ public:
 	MeshRenderer();
 	void CreateSimpleGP();
 	void CreateLitGP();
+	void CreateDepthGP();
 	void RenderSimple(NodeEntity* entity, NodeCamera* cam);
 	void RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* light,bool firstPass);
+	void RenderDepth(NodeEntity* entity, NodeCamera* cam);
 private:
 
 	RefCntAutoPtr<IPipelineState>         m_PSO_Basic;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Lit_FP;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Lit_SP;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_Depth;
 	RefCntAutoPtr<IBuffer> m_LitConstants;
+	RefCntAutoPtr<IBuffer> m_DepthConstants;
 	RefCntAutoPtr<IBuffer>                m_VSConstants;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Basic;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Lit;
+	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Depth;
 	float4x4                              m_Final;
+
 
 
 };

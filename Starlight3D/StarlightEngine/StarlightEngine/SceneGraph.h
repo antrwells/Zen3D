@@ -10,6 +10,8 @@
 #include "MeshRenderer.h"
 
 
+class CubeRenderer;
+
 /// <summary>
 /// Vivid::Graph is the namespace for the Vivid3D scene graph, this is what allows you to construct/render and update game scenes.
 /// </summary>
@@ -157,7 +159,7 @@
 
 		void RenderNodeBasic(NodeEntity* entity);
 		void RenderNodeLit(NodeEntity* entity);
-	
+		void RenderNodeDepth(NodeEntity* entity);
 
 	private:
 	
@@ -179,5 +181,6 @@
 		NodeCamera* mCam;
 
 		MeshRenderer* mRenderer;
+		CubeRenderer* mShadowRenderer;
 
 	};

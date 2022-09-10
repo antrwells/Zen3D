@@ -64,7 +64,7 @@ void main(in  VSInput VSIn,
     //vec3 T = normalize(normalMatrix * vTan);
     //vec3 N = normalize(normalMatrix * vNorm);
     
-    float3x3 normalMatrix = (float3x3)g_ModelInv;
+    float3x3 normalMatrix = (float3x3)g_Model;
 
     PSIn.localNormal = normalize(mul(VSIn.Norm, normalMatrix));
 

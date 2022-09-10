@@ -210,6 +210,10 @@ void Application::CreateResources() {
     m_pDevice->CreateGraphicsPipelineState(PSOCreateInfo, &m_pPSO);
 
     Init();
+
+    mPhysics = new Physics();
+
+
     InitApp();
 
 
@@ -311,8 +315,7 @@ void Application::InitEngine() {
 
 void Application::Run() {
 
-   
-
+    
     while (true) {
 
         double xp, yp;

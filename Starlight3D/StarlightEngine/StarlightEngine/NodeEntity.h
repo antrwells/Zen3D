@@ -3,12 +3,13 @@
 #include "Mesh3D.h"
 // 
 //#include "SmartMesh.h"
-//#include "PhysicsBody.h"
-//#include "PhysicsBody.h"
-//#include "PBBox.h"
-//#include "PBSphere.h"
-//#include "PBConvex.h"
-//#include "PBCapsule.h"
+#include "PhysicsBody.h"
+#include "PhysicsBody.h"
+#include "PBBox.h"
+#include "PBSphere.h"
+#include "PBConvex.h"
+#include "PBCapsule.h"
+
 
     /// <summary>
     /// A NodeEntity is a 3D node, that contains a single or multiple meshes, binded to the node, and rendered
@@ -106,7 +107,13 @@
         /// Sets the physics collision to a per tri map of the mesh. This is useful for level collisions, as the tri mesh varient can not move.
         /// </summary>
         void SetPhysicsTris();
+    
+        
+        PhysicsBody* GetBody() {
+            return mBody;
+        }
     protected:
+
 
         /// <summary>
         /// A list containing all of this NodeEntity's attached meshes.
@@ -116,8 +123,8 @@
         
        // static Kinetic::FX::Effect* FXSmartMesh;
 
-        //Kinetic::Physics::PhysicsBody* mBody;
-        //Kinetic::Physics::PhysicsBody* mTriBody;
+        PhysicsBody* mBody;
+        PhysicsBody* mTriBody;
 
     };
 

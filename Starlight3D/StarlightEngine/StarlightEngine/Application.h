@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "Physics.h"
 #include <memory>
 #include <iomanip>
 #include <iostream>
@@ -250,6 +250,8 @@ private:
     int mDeltaX, mDeltaY;
     bool mMouseFirst = true;
     
+    Physics* mPhysics;
+
 
     static void GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h);
     static void GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int);

@@ -12,7 +12,7 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 	RTColorDesc.Width = width;// pSwapChain->GetDesc().Width;
 	RTColorDesc.Height = height;// pSwapChain->GetDesc().Height;
 	RTColorDesc.MipLevels = 1;
-	RTColorDesc.Format = TEX_FORMAT_RGBA32_FLOAT;
+	RTColorDesc.Format = TEX_FORMAT_RGBA16_FLOAT;
 	RTColorDesc.BindFlags = BIND_SHADER_RESOURCE | BIND_RENDER_TARGET;
 	RTColorDesc.ClearValue.Format = RTColorDesc.Format;
 	RTColorDesc.ClearValue.Color[0] = 0.650f;

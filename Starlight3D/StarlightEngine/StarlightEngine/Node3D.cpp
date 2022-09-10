@@ -105,18 +105,24 @@
 
 			float4x4 scale_matrix = float4x4::Scale(mScale);
 			float4x4 position_matrix;
-
+			float4x4 rot_matrix;
+			float4x4 final_matrix;
 			if (mType == NodeType::Camera) {
 
 				position_matrix = float4x4::Translation(mPosition).Inverse();
+				rot_matrix = mRotation;
+				final_matrix = position_matrix * rot_matrix;// *scale_matrix;
 			}
 			else {
 				position_matrix = float4x4::Translation(mPosition);
+				rot_matrix = mRotation.Inverse();
+				final_matrix = rot_matrix*position_matrix;// *scale_matrix;
 			}
+
 
 			 
 
-			float4x4 final_matrix =  position_matrix * mRotation;// *scale_matrix;
+			
 
 
 			mValidTransform = previous_matrix * final_matrix;

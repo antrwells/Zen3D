@@ -33,14 +33,21 @@ void AppEditor::InitApp() {
 	mGraph = new SceneGraph();
 
 	auto real_node = (NodeEntity*)n1;//n1->GetChild(0);
+	real_node->SetPhysicsTris();
+
 	auto real2 = (NodeEntity*)sphere;
 
-	int a = 5;
+ 	int a = 5;
 
 	mGraph->AddNode(real_node);
 	mGraph->AddNode(real2);
 
-	real2->SetPosition(float3(0, 1.5f, 0));
+	real2->SetPosition(float3(10, 5.5f, 0));
+
+
+	real2->SetPhysicsSphere();
+	real2->SetPosition(float3(4, 9.5f, 0));
+	real2->GetBody()->ApplyForce(0, 0, 0);
 
 	mEnt1 = real_node;
 	mEnt2 = real2;
@@ -52,7 +59,7 @@ void AppEditor::InitApp() {
 
 
 
-	mGraph->AddLight(mLight2);
+	//mGraph->AddLight(mLight2);
 	mLight2->SetRange(30);
 	mLight1->SetRange(30);
 	mLight1->SetDiffuse(float3(0, 1, 1));
@@ -87,6 +94,7 @@ void AppEditor::InitApp() {
 void AppEditor::UpdateApp() {
 
 	mUI->Update();
+	mGraph->Update();
 
 }
 
@@ -149,11 +157,11 @@ void AppEditor::RenderApp() {
 			 cam->Move(float3(-spd, 0, 0));
 		 }
 
-		 //mGraph->RenderShadowMaps();
-		 //mGraph->Render();
-
 		 mGraph->RenderShadowMaps();
-		 mRenderer->RenderSceneDeferred();
+		 mGraph->Render();
+
+		 //mGraph->RenderShadowMaps();
+		 //mRenderer->RenderSceneDeferred();
 
 
 		 //mGB1->Render(mGraph);

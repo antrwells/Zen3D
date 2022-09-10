@@ -95,6 +95,12 @@ class CubeRenderer;
 		/// </summary>
 		void Render();
 
+		void RenderTextures();
+
+		void RenderNormals();
+
+		void RenderPositions();
+
 		/// <summary>
 		/// Will render anything needed post-render.
 		/// </summary>
@@ -156,10 +162,15 @@ class CubeRenderer;
 		{
 			mParticles.push_back(nb);
 		}
+		void RenderNodeNormals(NodeEntity* entity);
 
 		void RenderNodeBasic(NodeEntity* entity);
 		void RenderNodeLit(NodeEntity* entity);
 		void RenderNodeDepth(NodeEntity* entity);
+		void RenderNodePositions(NodeEntity* entity);
+
+		int LightCount();
+		NodeLight* GetLight(int i);
 
 	private:
 	

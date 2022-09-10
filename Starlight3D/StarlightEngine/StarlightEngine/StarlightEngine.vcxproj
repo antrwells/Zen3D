@@ -126,10 +126,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>GraphicsEngineD3D12_64d.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;LibPng.lib;ZLib.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\glslang\Debug\MachineIndependentd.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Primitives\Debug\Diligent-Primitives.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\glslang\Debug\GenericCodeGend.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\glslang\OSDependent\Windows\Debug\OSDependentd.lib;C:\git\de\DiligentEngine\build\Win64\DiligentFX\Debug\DiligentFX.lib;C:\git\de\DiligentEngine\build\Win64\DiligentTools\RenderStatePackager\Debug\Diligent-RenderStatePackagerLib.lib;C:\git\de\DiligentEngine\build\Win64\DiligentTools\AssetLoader\Debug\Diligent-AssetLoader.lib;C:\git\de\DiligentEngine\build\Win64\DiligentSamples\SampleBase\Debug\Diligent-SampleBase.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\Archiver\Debug\Archiver_64d.lib;C:\git\de\DiligentEngine\build\Win64\DiligentTools\RenderStateNotation\Debug\Diligent-RenderStateNotation.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Debug\DiligentCore.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\hlsl\Debug\HLSLd.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GraphicsEngineD3D12_64d.lib;GraphicsEngineD3D11_64d.lib;"C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\ShaderTools\Debug\Diligent-ShaderTools.lib";"C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineD3D11\Debug\Diligent-GraphicsEngineD3D11-static.lib";Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;LibPng.lib;ZLib.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\glslang\Debug\MachineIndependentd.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Primitives\Debug\Diligent-Primitives.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\glslang\Debug\GenericCodeGend.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\glslang\OSDependent\Windows\Debug\OSDependentd.lib;C:\git\de\DiligentEngine\build\Win64\DiligentFX\Debug\DiligentFX.lib;C:\git\de\DiligentEngine\build\Win64\DiligentTools\RenderStatePackager\Debug\Diligent-RenderStatePackagerLib.lib;C:\git\de\DiligentEngine\build\Win64\DiligentTools\AssetLoader\Debug\Diligent-AssetLoader.lib;C:\git\de\DiligentEngine\build\Win64\DiligentSamples\SampleBase\Debug\Diligent-SampleBase.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\Archiver\Debug\Archiver_64d.lib;C:\git\de\DiligentEngine\build\Win64\DiligentTools\RenderStateNotation\Debug\Diligent-RenderStateNotation.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Debug\DiligentCore.lib;C:\git\de\DiligentEngine\build\Win64\DiligentCore\ThirdParty\glslang\hlsl\Debug\HLSLd.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>C:\projects\Starlight3D\StarlightStudio\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\zlib-1.2.8\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\lpng-1.6.17\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\libtiff\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\libjpeg-9a\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\TextureLoader\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineNextGenBase\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineD3DBase\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngine\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Common\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Platforms\Win32\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsAccessories\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineD3D12\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Platforms\Basic\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineD3D11\Debug;C:\projects\Starlight3D\StarlightStudio\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\zlib-1.2.8\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\lpng-1.6.17\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\libtiff\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\ThirdParty\libjpeg-9a\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentTools\TextureLoader\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineNextGenBase\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineD3DBase\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngine\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Common\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Platforms\Win32\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsAccessories\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Graphics\GraphicsEngineD3D12\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Debug;C:\git\de\DiligentEngine\build\Win64\DiligentCore\Platforms\Basic\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,6 +162,7 @@
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GBuffer.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Importer.h" />
     <ClInclude Include="kFont.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="RenderTarget2D.h" />
     <ClInclude Include="RenderTargetCube.h" />
     <ClInclude Include="SceneGraph.h" />
+    <ClInclude Include="SceneRenderer.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="stb_truetype.h" />
     <ClInclude Include="Texture2D.h" />
@@ -206,6 +208,7 @@
     <ClCompile Include="BoneInfo.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
+    <ClCompile Include="GBuffer.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Importer.cpp" />
     <ClCompile Include="kFont.cpp" />
@@ -233,6 +236,7 @@
     <ClCompile Include="RenderTarget2D.cpp" />
     <ClCompile Include="RenderTargetCube.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="SceneRenderer.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="StarlightEngine.cpp" />
     <ClCompile Include="Texture2D.cpp" />

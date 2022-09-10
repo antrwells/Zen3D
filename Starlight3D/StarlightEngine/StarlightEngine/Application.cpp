@@ -33,6 +33,7 @@ bool Application::Initialize(HWND hWnd) {
         pFactoryD3D11->CreateDeviceAndContextsD3D11(EngineCI, &m_pDevice, &m_pImmediateContext);
         Win32NativeWindow Window{ hWnd };
         pFactoryD3D11->CreateSwapChainD3D11(m_pDevice, m_pImmediateContext, SCDesc, FullScreenModeDesc{}, Window, &m_pSwapChain);
+        m_pEngFac = pFactoryD3D11;
     }
     break;
 #endif

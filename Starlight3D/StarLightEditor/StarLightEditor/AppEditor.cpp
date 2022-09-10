@@ -50,12 +50,24 @@ void AppEditor::InitApp() {
 
 	mGraph->AddLight(mLight1);
 
+
+
 	mGraph->AddLight(mLight2);
 	mLight2->SetRange(30);
 	mLight1->SetRange(30);
+	mLight1->SetDiffuse(float3(0, 1, 1));
 	mLight1->SetPosition(float3(0, 10, 0));
 	mLight2->SetPosition(float3(2, 8, 0));
 	mLight2->SetDiffuse(float3(0.1, 1, 1));
+
+	float ax, ay;
+
+	srand(clock());
+
+	ax = -40;
+	ay = -40;
+
+
 
 	auto tex = new Texture2D("data/testNorm.jpg");
 	//real_node->GetMesh(0)->GetMaterial()->SetNormalMap(tex);
@@ -68,6 +80,8 @@ void AppEditor::InitApp() {
 	//mRT1 = new RenderTarget2D(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
 	mRTC1 = new RenderTargetCube(1024, 1024);
 	mRC = new CubeRenderer(mGraph, mRTC1);
+	mGB1 = new GBuffer(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
+	mRenderer = new SceneRenderer(mGraph);
 }
 
 void AppEditor::UpdateApp() {
@@ -135,12 +149,23 @@ void AppEditor::RenderApp() {
 			 cam->Move(float3(-spd, 0, 0));
 		 }
 
-		 
-		 
+		 //mGraph->RenderShadowMaps();
+		 //mGraph->Render();
+
 		 mGraph->RenderShadowMaps();
+		 mRenderer->RenderSceneDeferred();
 
 
-		 mGraph->Render();
+		 //mGB1->Render(mGraph);
+
+		 //mGB1->Debug(3);
+
+
+
+		 //mGraph->RenderShadowMaps();
+
+
+		 //mGraph->RenderTextures();
 
 
 		// cam->SetMaxZ(mLight1->GetRange());
@@ -148,15 +173,7 @@ void AppEditor::RenderApp() {
 
 		 //mGraph->RenderDepth();
 
-		 mEnt2->SetHidden(true);
-		 //*control
-		 mRC->Render(mEnt2->GetPosition());
-
-		 auto tc = mRC->GetTextureCube();
-
-		 mEnt2->GetMesh(0)->GetMaterial()->SetEnvMap(tc);
-
-		 mEnt2->SetHidden(false);
+		
 
 
 		 //mGraph->RenderDepth();

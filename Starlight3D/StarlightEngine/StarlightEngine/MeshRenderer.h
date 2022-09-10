@@ -49,6 +49,10 @@ public:
 	void CreateSimpleGP();
 	void CreateLitGP();
 	void CreateDepthGP();
+	void CreateNormalsGP();
+	void CreatePositionsGP();
+	void RenderPositions(NodeEntity* entity, NodeCamera* cam);
+	void RenderNormals(NodeEntity* entity,NodeCamera* cam);
 	void RenderSimple(NodeEntity* entity, NodeCamera* cam);
 	void RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* light,bool firstPass);
 	void RenderDepth(NodeEntity* entity, NodeCamera* cam);
@@ -58,12 +62,18 @@ private:
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Lit_FP;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Lit_SP;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Depth;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_Normals;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_Positions;
 	RefCntAutoPtr<IBuffer> m_LitConstants;
+	RefCntAutoPtr<IBuffer> m_NormalsConstants;
 	RefCntAutoPtr<IBuffer> m_DepthConstants;
+	RefCntAutoPtr<IBuffer> m_PositionsConstants;
 	RefCntAutoPtr<IBuffer>                m_VSConstants;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Basic;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Lit;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Depth;
+	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Normals;
+	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Positions;
 	float4x4                              m_Final;
 
 

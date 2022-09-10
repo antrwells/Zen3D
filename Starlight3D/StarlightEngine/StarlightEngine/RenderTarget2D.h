@@ -49,11 +49,13 @@ public:
 	RefCntAutoPtr<ITextureView> GetColorView() { return m_pColorRTV; }
 	RefCntAutoPtr<ITextureView> GetDepthView() { return m_pDepthDSV; }
 	RefCntAutoPtr<ITexture> GetColorTexture() { return pRTColor; }
-
+	void SetClearColor(float4 color) {
+		mClearColor = color;
+	}
 	static RenderTarget2D* BoundTarget;
 
 private:
-
+	float4 mClearColor;
 	RefCntAutoPtr<ITexture> pRTColor;
 	RefCntAutoPtr<ITexture> pRTDepth;
 	RefCntAutoPtr<ITextureView> m_pColorRTV;

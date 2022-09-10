@@ -8,6 +8,9 @@
 #include "RenderTarget2D.h"
 #include "RenderTargetCube.h"
 #include "CubeRenderer.h"
+#include "GBuffer.h"
+#include "SceneRenderer.h"
+
 class AppEditor : public Application
 {
 public:
@@ -32,5 +35,8 @@ private:
     RenderTarget2D* mRT1;
     RenderTargetCube* mRTC1;
     CubeRenderer* mRC;
+    GBuffer* mGB1;
+    SceneRenderer* mRenderer;
+
 };
 

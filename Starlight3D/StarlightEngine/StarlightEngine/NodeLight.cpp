@@ -20,7 +20,7 @@
 
 		}
 		//mShadowCube = new CubeRenderer()
-		mShadowCube = new RenderTargetCube(1024, 1024);
+		mShadowCube = new RenderTargetCube(512, 512);
 	}
 
 	int NodeLight::ShadowMapRes = 1024;

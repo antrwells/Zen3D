@@ -250,7 +250,7 @@
 		const float ClearColor[] = { 1,1,1, 0.0f };
 
 
-		if (RenderTargetCube::BoundTarget != nullptr)
+		if (RenderTargetCube::BoundTarget != nullptr || RenderTarget2D::BoundTarget != nullptr)
 		{
 
 		}
@@ -282,8 +282,42 @@
 	void SceneGraph::RenderNodeBasic(NodeEntity* entity)
 	{
 
-		int a = 5;
-		mRenderer->RenderSimple(entity, mCam);
+		//int a = 5;
+		//mRenderer->RenderSimple(entity, mCam);
+		bool first = true;
+		if (entity->GetMeshes().size() > 0) {
+
+
+			mRenderer->RenderSimple(entity, mCam);
+			first = false;
+
+		}
+
+		for (int i = 0;i < entity->ChildrenCount();i++) {
+
+			RenderNodeBasic((NodeEntity*)entity->GetChild(i));
+
+		}
+
+	}
+
+	void SceneGraph::RenderNodePositions(NodeEntity* entity) {
+
+
+		bool first = true;
+		if (entity->GetMeshes().size() > 0) {
+
+
+			mRenderer->RenderPositions(entity, mCam);
+			first = false;
+
+		}
+
+		for (int i = 0;i < entity->ChildrenCount();i++) {
+
+			RenderNodePositions((NodeEntity*)entity->GetChild(i));
+
+		}
 
 	}
 
@@ -327,6 +361,67 @@
 
 	}
 
+	void SceneGraph::RenderNodeNormals(NodeEntity* entity)
+	{
+
+		bool first = true;
+		if (entity->GetMeshes().size() > 0) {
+
+
+			mRenderer->RenderNormals(entity, mCam);
+			first = false;
+
+		}
+
+		for (int i = 0;i < entity->ChildrenCount();i++) {
+
+			RenderNodeNormals((NodeEntity*)entity->GetChild(i));
+
+		}
+
+	}
+
+	void SceneGraph::RenderNormals() {
+
+		for (int i = 0;i < mRootNode->ChildrenCount();i++)
+		{
+			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+			if (entity->IsHidden()) continue;
+
+			RenderNodeNormals((NodeEntity*)entity);
+		}
+
+	}
+
+	void SceneGraph::RenderTextures() {
+
+
+		for (int i = 0;i < mRootNode->ChildrenCount();i++)
+		{
+			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+			if (entity->IsHidden()) continue;
+
+			RenderNodeBasic((NodeEntity*)entity);
+		}
+
+
+	}
+
+	void SceneGraph::RenderPositions() {
+
+		for (int i = 0;i < mRootNode->ChildrenCount();i++)
+		{
+			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+			if (entity->IsHidden()) continue;
+
+			RenderNodePositions((NodeEntity*)entity);
+		}
+
+	}
+
 	void SceneGraph::Render() {
 	
 		for (int i = 0;i < mRootNode->ChildrenCount();i++)
@@ -338,81 +433,8 @@
 			RenderNodeLit((NodeEntity*)entity);
 		}
 
-		/*
-		Kinetic::FX::Global::EffectGlobal::CurrentCamera = mCam;
 		
-		bool first = true;
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glDisable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-		Kinetic::FX::Global::EffectGlobal::CurrentLight = mLights[0];
-
-		for (int i = 0; i < mBillboards.size(); i++) {
-			Kinetic::FX::Global::EffectGlobal::CurrentNode = mBillboards[i];
-			mBillboards[i]->Render();
-
-		}
-
-
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_ONE, GL_ZERO);
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-
-		std::vector<Kinetic::Graph::Nodes::NodeLight*> new_list;
-
-		for (int i = 0; i < mLights.size(); i++) {
-			if (mLights[i]->IsQueueRemoved()) {
-
-			}
-			else {
-
-				new_list.push_back(mLights[i]);
-
-			}
-
-		}
-
-		mLights = new_list;
-
-		for (int i = 0; i < mLights.size(); i++) {
-
-			Kinetic::FX::Global::EffectGlobal::CurrentLight = mLights[i];
-
-			mRootNode->Render();
-
-			if (first) {
-
-//				glClear(GL_DEPTH_BUFFER_BIT);
-
-				glBlendFunc(GL_ONE, GL_ONE);
-
-				first = false;
-			}
-		}
-		
-
-		glDisable(GL_CULL_FACE);
-		glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glBlendFunc(GL_ONE, GL_ONE);
-		glEnable(GL_DEPTH_TEST);
-		//glDepthFunc(GL_GEQUAL);
-		Kinetic::FX::Global::EffectGlobal::CurrentLight = mLights[0];
-		
-		for (int i = 0; i < mParticles.size(); i++) {
-
-			Kinetic::FX::Global::EffectGlobal::CurrentNode = mParticles[i];
-			mParticles[i]->Render();
-
-		}
-
-		
-
-		*/
+	
 	}
 
 	void SceneGraph::PostRender() {
@@ -440,3 +462,14 @@
 
 	}
 
+	int SceneGraph::LightCount() {
+
+		return mLights.size();
+
+	}
+
+	NodeLight* SceneGraph::GetLight(int i) {
+
+		return mLights[i];
+
+	}

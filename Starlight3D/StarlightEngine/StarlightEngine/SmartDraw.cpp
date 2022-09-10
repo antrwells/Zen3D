@@ -395,3 +395,53 @@ void SmartDraw::End() {
     
 
 }
+
+
+void SmartDraw::End(RefCntAutoPtr<IPipelineState> pso, RefCntAutoPtr<IBuffer> consts, RefCntAutoPtr<IShaderResourceBinding> srb)
+{
+    for (int i = 0;i < Draws.size();i++)
+    {
+        CreateVertexBuffer(Draws[i]);
+        CreateIndexBuffer(Draws[i]);
+        made = true;
+
+        auto dd = Draws[i];
+
+      //  m_pSRB->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(dd->Tex->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+
+
+        auto m_pImmediateContext = gApp->GetContext();
+
+        float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+
+        auto cont = gApp->GetContext();
+
+       
+        m_pImmediateContext->SetPipelineState(pso);
+
+        const Uint64 offset = 0;
+        IBuffer* pBuffs[] = { m_CubeVertexBuffer };
+
+
+
+        m_pImmediateContext->SetVertexBuffers(0, 1, pBuffs, &offset, RESOURCE_STATE_TRANSITION_MODE_TRANSITION, SET_VERTEX_BUFFERS_FLAG_RESET);
+        m_pImmediateContext->SetIndexBuffer(m_CubeIndexBuffer, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
+        // Set the pipeline state
+
+        // Commit shader resources. RESOURCE_STATE_TRANSITION_MODE_TRANSITION mode
+        // makes sure that resources are transitioned to required states.
+        m_pImmediateContext->CommitShaderResources(srb, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
+        DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
+        DrawAttrs.IndexType = VT_UINT32; // Index type
+        DrawAttrs.NumIndices = Draws[i]->Draws.size() * 6;
+        // Verify the state of vertex and index buffers
+        DrawAttrs.Flags = DRAW_FLAG_NONE;
+        m_pImmediateContext->DrawIndexed(DrawAttrs);
+        //m_pImmediateContext->Flush();
+  //      m_pImmediateContext->Flush();
+
+
+    }
+}

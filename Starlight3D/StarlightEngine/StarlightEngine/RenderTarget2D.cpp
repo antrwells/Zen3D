@@ -12,7 +12,7 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 	RTColorDesc.Width = width;// pSwapChain->GetDesc().Width;
 	RTColorDesc.Height = height;// pSwapChain->GetDesc().Height;
 	RTColorDesc.MipLevels = 1;
-	RTColorDesc.Format = TEX_FORMAT_RGBA8_UNORM;
+	RTColorDesc.Format = TEX_FORMAT_RGBA32_FLOAT;
 	RTColorDesc.BindFlags = BIND_SHADER_RESOURCE | BIND_RENDER_TARGET;
 	RTColorDesc.ClearValue.Format = RTColorDesc.Format;
 	RTColorDesc.ClearValue.Color[0] = 0.650f;
@@ -35,6 +35,8 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 	Application::GetApp()->GetDevice()->CreateTexture(RTDepthDesc, nullptr, &pRTDepth);
 	// Store the depth-stencil view
 	m_pDepthDSV = pRTDepth->GetDefaultView(TEXTURE_VIEW_DEPTH_STENCIL);
+	mClearColor = float4(0,0,0,1);
+
 
 }
 
@@ -42,7 +44,7 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 void RenderTarget2D::Bind() {
 
 	BoundTarget = this;
-	const float ClearColor[] = { 0,0,0, 1.0f };
+	const float ClearColor[] = { mClearColor.x,mClearColor.y,mClearColor.z, 1.0f };
 	Application* gApp = Application::GetApp();
 
 	auto m_pImmediateContext = gApp->GetContext();

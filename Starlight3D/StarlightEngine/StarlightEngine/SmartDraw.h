@@ -70,6 +70,7 @@ public:
 	void Begin();
 	void DrawQuad(int x, int y, int w, int h, float r, float g, float b, float a);
 	void DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a);
+	void End(RefCntAutoPtr<IPipelineState> pso, RefCntAutoPtr<IBuffer> consts, RefCntAutoPtr<IShaderResourceBinding> srb);
 	void End();
 	DrawList* GetDrawList(Texture2D* tex) {
 

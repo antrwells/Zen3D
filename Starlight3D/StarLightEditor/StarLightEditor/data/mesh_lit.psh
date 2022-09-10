@@ -139,8 +139,8 @@ void main(in  PSInput  PSIn,
     float currentDepth = distance(PSIn.fragPos,PSIn.lPos);
 
     float shadowVal = 0;
-    int samples = 18;
-  float diskRadius = 0.003f;
+    int samples = 20;
+  float diskRadius = 0.005f;
     float bias = 0.005;
     shadowVal = 0;
       currentDepth = currentDepth / PSIn.lightProp.x;

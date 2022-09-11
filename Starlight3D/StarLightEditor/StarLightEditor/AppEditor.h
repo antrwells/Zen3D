@@ -10,6 +10,7 @@
 #include "CubeRenderer.h"
 #include "GBuffer.h"
 #include "SceneRenderer.h"
+#include "SceneRayTracer.h"
 
 class AppEditor : public Application
 {
@@ -37,6 +38,7 @@ private:
     CubeRenderer* mRC;
     GBuffer* mGB1;
     SceneRenderer* mRenderer;
+    SceneRayTracer* mRTRenderer;
 
 };
 

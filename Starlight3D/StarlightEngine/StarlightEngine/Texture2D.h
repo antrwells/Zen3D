@@ -52,6 +52,7 @@ class Texture2D
 {
 public:
 	Texture2D(const char* path);
+	Texture2D(RefCntAutoPtr<ITexture> texure);
 	Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
 	Texture2D(RenderTarget2D* target);
 	Texture2D(RenderTargetCube* cube, int face);
@@ -63,6 +64,11 @@ public:
 	}
 	RefCntAutoPtr<ITextureView> GetView() {
 		return m_TextureSRV;
+	}
+	IDeviceObject* GetViewPTR() {
+
+		return Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
+
 	}
 private:
 

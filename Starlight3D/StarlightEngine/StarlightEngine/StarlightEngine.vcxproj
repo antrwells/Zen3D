@@ -194,6 +194,7 @@
     <ClInclude Include="RenderTarget2D.h" />
     <ClInclude Include="RenderTargetCube.h" />
     <ClInclude Include="SceneGraph.h" />
+    <ClInclude Include="SceneRayTracer.h" />
     <ClInclude Include="SceneRenderer.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="stb_truetype.h" />
@@ -252,6 +253,7 @@
     <ClCompile Include="RenderTarget2D.cpp" />
     <ClCompile Include="RenderTargetCube.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="SceneRayTracer.cpp" />
     <ClCompile Include="SceneRenderer.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="StarlightEngine.cpp" />
@@ -267,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="structures.fxh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

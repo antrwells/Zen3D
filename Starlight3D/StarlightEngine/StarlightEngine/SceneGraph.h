@@ -172,14 +172,30 @@ class CubeRenderer;
 		int LightCount();
 		NodeLight* GetLight(int i);
 
+		void CheckRT(Node3D* node);
+		void InitializeRT();
+		RefCntAutoPtr<ITopLevelAS> GetTLAS() {
+			return mTLAS;
+		}
+		int RTInstanceCount() {
+			return mRTMeshes.size();
+		}
+		std::vector<Texture2D*> GetRTTextureList() {
+			return mRTTextureList;
+		}
+		Mesh3D* GetRTInstance(int id) {
+			return mRTMeshes[id];
+		}
 	private:
 	
-
+		std::vector<NodeEntity*> mRTNodes;
+		std::vector<Mesh3D*> mRTMeshes;
 		//Kinetic::FX::Effect* FXDepth;
 
 		std::vector<NodeLight*> mLights;
 
 		std::vector<Node3D*> mNoRender;
+		std::vector<Texture2D*> mRTTextureList;
 
 		/// <summary>
 		/// The root node of the graph, a root node can contain child nodes, creating the graph structurally.
@@ -193,5 +209,7 @@ class CubeRenderer;
 
 		MeshRenderer* mRenderer;
 		CubeRenderer* mShadowRenderer;
-
+		RefCntAutoPtr<ITopLevelAS> mTLAS;
+		RefCntAutoPtr<IBuffer>             m_ScratchBuffer;
+		RefCntAutoPtr<IBuffer>             m_InstanceBuffer;
 	};

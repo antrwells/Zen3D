@@ -1,0 +1,1 @@
+- scene generated subset scene for just raytraced nodes.

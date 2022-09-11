@@ -47,7 +47,7 @@ bool Application::Initialize(HWND hWnd) {
         auto GetEngineFactoryD3D12 = LoadGraphicsEngineD3D12();
 #    endif
         EngineD3D12CreateInfo EngineCI;
-
+        EngineCI.Features.RayTracing = DEVICE_FEATURE_STATE_ENABLED;
         auto* pFactoryD3D12 = GetEngineFactoryD3D12();
         pFactoryD3D12->CreateDeviceAndContextsD3D12(EngineCI, &m_pDevice, &m_pImmediateContext);
         Win32NativeWindow Window{ hWnd };

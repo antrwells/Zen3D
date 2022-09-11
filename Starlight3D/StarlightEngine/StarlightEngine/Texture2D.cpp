@@ -18,6 +18,13 @@ Texture2D::Texture2D(const char* path) {
 
 }
 
+Texture2D::Texture2D(RefCntAutoPtr<ITexture> texture)
+{
+
+    Texture = texture;
+    m_TextureSRV = Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
+}
+
 Texture2D::Texture2D(Application* app,int w, int h, bool alpha,const char* buf) {
 
     TextureDesc TexDesc;

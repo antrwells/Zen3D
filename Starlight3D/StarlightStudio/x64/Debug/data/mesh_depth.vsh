@@ -46,7 +46,7 @@ void main(in  VSInput VSIn,
     float depth = PSIn.Pos.z / PSIn.Pos.w;
 
 
-    float3 fragPos = mul(VSIn.Pos.xyz, (float3x3)g_Model);
+    float3 fragPos = mul(float4(VSIn.Pos,1.0),g_Model);
     
     PSIn.vPos = viewPos.xyz;
     PSIn.fragPos = fragPos;

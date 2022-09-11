@@ -59,12 +59,12 @@ void main(in  VSInput VSIn,
     float4 viewPosition = mul(worldPosition, g_View);
     PSIn.Pos = mul(float4(VSIn.Pos, 1.0), g_MVP);
 
-    float3 fragPos = mul(VSIn.Pos.xyz, (float3x3)g_ModelInv);
+    float3 fragPos = mul(float4(VSIn.Pos,1), g_Model).xyz;
 
     //vec3 T = normalize(normalMatrix * vTan);
     //vec3 N = normalize(normalMatrix * vNorm);
     
-    float3x3 normalMatrix = (float3x3)g_ModelInv;
+    float3x3 normalMatrix = (float3x3)g_Model;
 
     PSIn.localNormal = normalize(mul(VSIn.Norm, normalMatrix));
 
@@ -88,8 +88,8 @@ void main(in  VSInput VSIn,
    // PSIn.Norm = float3(0, 0, 0);
     PSIn.Color = VSIn.Color;
     PSIn.Uv = VSIn.Uv;
-    PSIn.lPos = lPos;
-    PSIn.vPos = vPos;
+    PSIn.lPos = lPos.xyz;
+    PSIn.vPos = vPos.xyz;
     PSIn.lightProp = lProp;
     PSIn.fragPos = fragPos;
     PSIn.lDiff = lightDiff;

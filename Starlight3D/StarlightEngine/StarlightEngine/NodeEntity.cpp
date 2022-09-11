@@ -7,13 +7,15 @@
 
 	NodeEntity::NodeEntity() {
 
-		
+		mType = NodeType::Entity;
+
 
 	}
 
 	
 	void NodeEntity::AddMesh(Mesh3D* mesh) {
 
+		mesh->SetOwner(this);
 		mMeshes.push_back(mesh);
 
 	}

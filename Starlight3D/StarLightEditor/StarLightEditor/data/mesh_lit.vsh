@@ -88,8 +88,8 @@ void main(in  VSInput VSIn,
    // PSIn.Norm = float3(0, 0, 0);
     PSIn.Color = VSIn.Color;
     PSIn.Uv = VSIn.Uv;
-    PSIn.lPos = lPos;
-    PSIn.vPos = vPos;
+    PSIn.lPos = lPos.xyz;
+    PSIn.vPos = vPos.xyz;
     PSIn.lightProp = lProp;
     PSIn.fragPos = fragPos;
     PSIn.lDiff = lightDiff;

@@ -29,6 +29,27 @@ enum NodeType {
 		/// </summary>
 		Node3D();
 
+		NodeType GetType() {
+
+			return mType;
+
+		}
+
+		float3x3 GetRotation() {
+
+			auto r1 = mRotation[0];
+			auto r2 = mRotation[1];
+			auto r3 = mRotation[2];
+
+			float3 row1(r1[0], r1[1], r1[2]);
+			float3 row2(r2[0], r2[1], r2[2]);
+			float3 row3(r3[0], r3[1], r3[2]);
+
+
+			return float3x3(row1,row2,row3);
+			
+		}
+
 		/// <summary>
 		/// Updates a node and all it's children. Custom implentations of nodes may rely on this to function correctly.
 		/// </summary>

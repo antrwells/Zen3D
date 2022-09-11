@@ -2,6 +2,7 @@
 #include "UITheme_Neon.h"
 #include "ButtonControl.h"
 #include "Maths.h"
+
 AppEditor::AppEditor() {
 
 
@@ -39,15 +40,15 @@ void AppEditor::InitApp() {
 
  	int a = 5;
 
-	mGraph->AddNode(real_node);
+	//mGraph->AddNode(real_node);
 	mGraph->AddNode(real2);
 
-	real2->SetPosition(float3(10, 5.5f, 0));
+	real2->SetPosition(float3(4, 5.5f, 0));
 
 
-	real2->SetPhysicsSphere();
-	real2->SetPosition(float3(4, 9.5f, 0));
-	real2->GetBody()->ApplyForce(0, 0, 0);
+	//real2->SetPhysicsConvex();
+	real2->SetPosition(float3(0, 2.5f, 0));
+//	real2->GetBody()->ApplyForce(0, 0, 0);
 
 	mEnt1 = real_node;
 	mEnt2 = real2;
@@ -89,6 +90,10 @@ void AppEditor::InitApp() {
 	mRC = new CubeRenderer(mGraph, mRTC1);
 	mGB1 = new GBuffer(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
 	mRenderer = new SceneRenderer(mGraph);
+
+	mGraph->InitializeRT();
+	int c = 5;
+	mRTRenderer = new SceneRayTracer(mGraph);
 }
 
 void AppEditor::UpdateApp() {
@@ -159,6 +164,11 @@ void AppEditor::RenderApp() {
 
 		 mGraph->RenderShadowMaps();
 		 mGraph->Render();
+
+
+	//	 mRTRenderer->Render();
+//		 int a = 5;
+
 
 		 //mGraph->RenderShadowMaps();
 		 //mRenderer->RenderSceneDeferred();

@@ -1,3 +1,5 @@
+#define dx 1.0
+
 Texture2D    g_Texture;
 SamplerState g_Texture_sampler;
 Texture2D g_TextureNorm;
@@ -30,6 +32,14 @@ struct PSInput
 struct PSOutput
 {
     float4 Color : SV_TARGET;
+};
+
+static const float3 sampleOffsetDirections[20] = {
+   float3( dx,  dx,  dx), float3( dx, -dx,  dx), float3(-dx, -dx,  dx), float3(-dx,  dx,  dx), 
+   float3( dx,  dx, -dx), float3( dx, -dx, -dx), float3(-dx, -dx, -dx), float3(-dx,  dx, -dx),
+   float3( dx,  dx,  0), float3( dx, -dx,  0), float3(-dx, -dx,  0), float3(-dx,  dx,  0),
+   float3( dx,  0,  dx), float3(-dx,  0,  dx), float3( dx,  0, -dx), float3(-dx,  0, -dx),
+   float3( 0,  dx,  dx), float3( 0, -dx,  dx), float3( 0, -dx, -dx), float3( 0,  dx, -dx)
 };
 
 // Note that if separate shader objects are not supported (this is only the case for old GLES3.0 devices), vertex
@@ -118,7 +128,7 @@ void main(in  PSInput  PSIn,
         //FR.y = FR.y;
 
 
-        //env_col = g_Env.Sample(g_Env_sampler, R);
+        env_col = g_Env.Sample(g_Env_sampler, R);
 
         env_col.a = 0;
     }
@@ -126,27 +136,35 @@ void main(in  PSInput  PSIn,
 
     float3 fragToLight = PSIn.fragPos - PSIn.lPos;
 
-    float currentDepth = distance(PSIn.fragPos,PSIn.lPos);
-    
+    float currentDepth = abs(distance(PSIn.fragPos,PSIn.lPos));
 
     float shadowVal = 0;
-
+    int samples = 20;
+  float diskRadius = 0.005f;
     float bias = 0.005;
+    shadowVal = 0;
+      currentDepth = currentDepth / PSIn.lightProp.x;
+    for(int i=0;i<samples;i++){
 
-    float closestDepth = g_Shadow.Sample(g_Shadow_sampler,normalize(fragToLight)).r;
+    float closestDepth = g_Shadow.Sample(g_Shadow_sampler,normalize(fragToLight)+sampleOffsetDirections[i] * diskRadius).r;
     
-    shadowVal = 1;
+    
 
-    currentDepth = currentDepth / PSIn.lightProp.x;
+  
 
     if( (currentDepth-0.015)>closestDepth)
     {
 
-        shadowVal = 0;
+        shadowVal +=1.0f;
         
 
     }
+    }
 
+    shadowVal = shadowVal / (float)samples;
+    shadowVal = 1.0 - shadowVal;
+
+    
 
     PSOut.Color = ((g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * float4(PSIn.lDiff.x * dis, PSIn.lDiff.y * dis, PSIn.lDiff.z * dis, 1.0)) + env_col)*shadowVal;
 

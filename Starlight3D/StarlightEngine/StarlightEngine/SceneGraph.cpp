@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "SceneGraph.h"
 #include "CubeRenderer.h"
-
+#include "VString.h"
+#define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
 		mRootNode = new Node3D();
@@ -471,5 +472,136 @@
 	NodeLight* SceneGraph::GetLight(int i) {
 
 		return mLights[i];
+
+	}
+
+	void SceneGraph::CheckRT(Node3D* node) {
+
+		if (node->GetType() == NodeType::Entity)
+		{
+			//printf("Found Entity Node.\n");
+			NodeEntity* entity = (NodeEntity*)node;
+			
+//			for (int i = 0;i < entity->GetMeshes().size();i++) {
+
+				mRTNodes.push_back(entity);
+
+				for (int i = 0;i < entity->GetMeshes().size();i++) {
+
+					mRTMeshes.push_back(entity->GetMesh(i));
+
+				}
+
+			
+
+		}
+
+		for(int i = 0;i < node->ChildrenCount();i++) {
+
+			CheckRT(node->GetChild(i));
+
+		}
+
+	}
+
+	void SceneGraph::InitializeRT() {
+
+		mRTNodes.resize(0);
+		mRTMeshes.resize(0);
+		CheckRT(mRootNode);
+		printf("Initialized RT structures. Total Entities:%d Total Meshes:%d\n", (int)mRTNodes.size(), (int)mRTMeshes.size());
+		TopLevelASDesc TLASDesc;
+		TLASDesc.Name = "TLAS";
+		TLASDesc.MaxInstanceCount = mRTMeshes.size();
+		TLASDesc.Flags = RAYTRACING_BUILD_AS_ALLOW_UPDATE | RAYTRACING_BUILD_AS_PREFER_FAST_TRACE;
+
+		Application::GetApp()->GetDevice()->CreateTLAS(TLASDesc, &mTLAS);
+
+
+		// Create scratch buffer
+		if (!m_ScratchBuffer)
+		{
+			BufferDesc BuffDesc;
+			BuffDesc.Name = "TLAS Scratch Buffer";
+			BuffDesc.Usage = USAGE_DEFAULT;
+			BuffDesc.BindFlags = BIND_RAY_TRACING;
+			BuffDesc.Size = std::max(mTLAS->GetScratchBufferSizes().Build, mTLAS->GetScratchBufferSizes().Update);
+
+			Application::GetApp()->GetDevice()->CreateBuffer(BuffDesc, nullptr, &m_ScratchBuffer);
+			VERIFY_EXPR(m_ScratchBuffer != nullptr);
+		}
+
+		//m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "g_TLAS")->Set(m_pTLAS);
+		//m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_TLAS")->Set(m_pTLAS);
+		if (!m_InstanceBuffer)
+		{
+			BufferDesc BuffDesc;
+			BuffDesc.Name = "TLAS Instance Buffer";
+			BuffDesc.Usage = USAGE_DEFAULT;
+			BuffDesc.BindFlags = BIND_RAY_TRACING;
+			BuffDesc.Size = TLAS_INSTANCE_DATA_SIZE * mRTMeshes.size();
+
+			Application::GetApp()->GetDevice()->CreateBuffer(BuffDesc, nullptr, &m_InstanceBuffer);
+			VERIFY_EXPR(m_InstanceBuffer != nullptr);
+		}
+
+
+		std::vector<TLASBuildInstanceData> Instances;
+
+		for (int i = 0;i < mRTMeshes.size();i++) {
+
+			TLASBuildInstanceData inst;
+
+			VString name = VString("Instance ");
+
+			name.Add(VString(i));
+
+
+			inst.InstanceName = name.GetConst();
+			inst.CustomId = i;
+			inst.pBLAS = mRTMeshes[i]->GetBlas();
+			inst.Mask = 1;
+	
+
+			float3 pos = mRTMeshes[i]->GetOwner()->GetPosition();
+			float3x3 rot = mRTMeshes[i]->GetOwner()->GetRotation();
+
+			mRTTextureList.push_back(mRTMeshes[i]->GetMaterial()->GetColorMap());
+
+			inst.Transform.SetTranslation(pos.x, pos.y, pos.z);
+			inst.Transform.SetRotation(rot.Data());
+
+			Instances.push_back(inst);
+
+		}
+
+		BuildTLASAttribs Attribs;
+		Attribs.pTLAS = mTLAS;
+		Attribs.Update = false;
+		Attribs.pScratchBuffer = m_ScratchBuffer;
+
+		Attribs.pInstanceBuffer = m_InstanceBuffer;
+
+		Attribs.pInstances = Instances.data();
+		Attribs.InstanceCount = Instances.size();
+
+		Attribs.BindingMode = HIT_GROUP_BINDING_MODE_PER_INSTANCE;
+		Attribs.HitGroupStride = HIT_GROUP_STRIDE;
+
+		Attribs.TLASTransitionMode = RESOURCE_STATE_TRANSITION_MODE_TRANSITION;
+		Attribs.BLASTransitionMode = RESOURCE_STATE_TRANSITION_MODE_TRANSITION;
+		Attribs.InstanceBufferTransitionMode = RESOURCE_STATE_TRANSITION_MODE_TRANSITION;
+		Attribs.ScratchBufferTransitionMode = RESOURCE_STATE_TRANSITION_MODE_TRANSITION;
+
+		Application::GetApp()->GetContext()->BuildTLAS(Attribs);
+
+		int done = 1;
+
+		//TLASBuildInstanceData Instances[mRTNodes.size()] = {};
+
+
+
+		int aa = 5;
+		
 
 	}

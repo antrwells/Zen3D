@@ -20,6 +20,8 @@
 //#include "glad/glad.h"
 #include "Material.h"
 
+
+class Node3D;
 	/// <summary>
 	/// A mesh3D is used to define a three dimensional mesh, often used by NodeEntity's to create the overall 3D scene.
 	/// </summary>
@@ -31,6 +33,18 @@
 		/// Creates an empty mesh. Meshes are used as part of a scenegraph/nodes to achieve a real time 3D scene, with lighting and shadows.
 		/// </summary>
 		Mesh3D();
+
+
+		void SetOwner(Node3D* owner) {
+
+			mOwner = owner;
+
+		}
+
+		Node3D* GetOwner()
+		{
+			return mOwner;
+		}
 
 		void MakeDoubleSided() {
 
@@ -90,7 +104,7 @@
 			new_mesh->SetTris(tris);
 			new_mesh->SetMaterial(mMaterial);
 			new_mesh->GenerateNormals();
-			new_mesh->CreateVBO();
+			new_mesh->CreateBuffers();
 			return new_mesh;
 
 
@@ -131,7 +145,8 @@
 		}
 
 		//VertexBuffer
-		void CreateVBO();
+		void CreateBuffers();
+		void CreateRTBuffers();
 		void BindVBO();
 		void ReleaseVBO();
 		void DrawVBO();
@@ -202,6 +217,12 @@
 
 		}
 
+		RefCntAutoPtr<IBottomLevelAS> GetBlas()
+		{
+
+			return mBLAS;
+		}
+
 	private:
 		
 		/// <summary>
@@ -209,12 +230,14 @@
 		/// </summary>
 		std::vector<Vertex> mVertices;
 		std::vector<Tri> mTris;
-
+		Node3D* mOwner;
 
 		//Material
 		Material* mMaterial;
 		RefCntAutoPtr<IBuffer>                m_VertexBuffer;
 		RefCntAutoPtr<IBuffer>                m_IndexBuffer;
+		RefCntAutoPtr<IBottomLevelAS> mBLAS;
+		const char* mGeoName;
 		//OpenGL
 		//GLuint VertexArray = -1;
 		//GLuint VertexBuffer = -1;

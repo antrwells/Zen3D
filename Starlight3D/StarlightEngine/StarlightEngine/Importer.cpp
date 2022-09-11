@@ -399,7 +399,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 			}
 			//new_mesh->GenerateNormals();
 			new_mesh->MakeDoubleSided();
-			new_mesh->CreateVBO();
+			new_mesh->CreateBuffers();
 
 
 		}

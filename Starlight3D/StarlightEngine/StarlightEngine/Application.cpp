@@ -19,6 +19,8 @@ Application::Application() {
 
 bool Application::Initialize(HWND hWnd) {
 
+    curWin = hWnd;
+
     SwapChainDesc SCDesc;
     SCDesc.ColorBufferFormat = TEX_FORMAT_RGBA8_UNORM;
     SCDesc.DepthBufferFormat = TEX_FORMAT_D16_UNORM;
@@ -229,9 +231,71 @@ void Application::Present() {
     m_pSwapChain->Present();
 
 }
-
+bool mouse1_in = false;
+bool mouse2_in = false;
+bool mouse3_in = false;
 void Application::Render() {
     auto SC = m_pSwapChain->GetDesc();
+
+    UINT message = 0;
+    WPARAM wParam = 0;
+    LPARAM lParam = 0;
+
+    //if(this->mInput)
+
+    if (Application::GetApp()->GetInput()->IsMouseDown(0))
+    {
+        if (mouse1_in == false) {
+
+            message = WM_LBUTTONDOWN;
+            mouse1_in = true;
+
+        }
+    }
+    else {
+        if (mouse1_in) {
+
+            mouse1_in = false;
+            message = WM_LBUTTONUP;
+
+
+        }
+    }
+
+    
+    if (Application::GetApp()->GetInput()->IsMouseDown(1))
+    {
+        if (mouse2_in == false) {
+
+            message = WM_RBUTTONDOWN;
+            mouse2_in = true;
+
+        }
+    }
+    else {
+        if (mouse2_in) {
+
+            mouse2_in = false;
+            message = WM_RBUTTONUP;
+
+
+        }
+
+    }
+  
+    int m1 = 0;
+    int m2 = 0;
+
+    if (mouse1_in)
+    {
+        m1 = 1;
+    }
+    if (mouse2_in) {
+        m2 = 1;
+    }
+    printf("M1:%d M2:%d\n", m1, m2);
+    auto Handled = static_cast<ImGuiImplWin32*>(m_pImGui.get())->Win32_ProcHandler(curWin, message, wParam, lParam);
+
     m_pImGui->NewFrame(SC.Width, SC.Height, SC.PreTransform);
     UpdateApp();
 
@@ -478,9 +542,11 @@ void Application::GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int stat
     {
         if (state == GLFW_PRESS) {
             UI::SetMouseBut(0, true);
+            Application::GetApp()->GetInput()->SetMouseDown(0, true);
         }
         else {
             UI::SetMouseBut(0, false);
+            Application::GetApp()->GetInput()->SetMouseDown(0, false);
         }
 
 
@@ -488,9 +554,11 @@ void Application::GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int stat
     if (button == GLFW_MOUSE_BUTTON_RIGHT) {
         if (state == GLFW_PRESS) {
             UI::SetMouseBut(1, true);
+            Application::GetApp()->GetInput()->SetMouseDown(1, true);
         }
         else {
             UI::SetMouseBut(1, false);
+            Application::GetApp()->GetInput()->SetMouseDown(1, false);
         }
     }
     // auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));

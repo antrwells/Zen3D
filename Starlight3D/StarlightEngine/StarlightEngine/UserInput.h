@@ -13,6 +13,9 @@ public:
 		for (int i = 0;i < 512;i++) {
 			KeyIn[i] = false;
 		}
+		for (int i = 0;i < 16;i++) {
+			mMouseDown[i] = false;
+		}
 	}
 	void SetMouse(int mx, int my, int dx, int dy) {
 		mMouseX = mx;
@@ -44,9 +47,18 @@ public:
 		return KeyIn[(int)id];
 	}
 
+	bool IsMouseDown(int id) {
+		return mMouseDown[id];
+	}
+
+	void SetMouseDown(int id, bool state) {
+		mMouseDown[id] = state;
+	}
+
 private:
 	int mMouseX, mMouseY;
 	int mDeltaX, mDeltaY;
 	bool KeyIn[512];
+	bool mMouseDown[64];
 };
 

@@ -261,7 +261,7 @@ private:
     bool mMouseFirst = true;
     
     Physics* mPhysics;
-
+    HWND curWin;
     std::unique_ptr<ImGuiImplWin32> m_pImGui = nullptr;
     static void GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h);
     static void GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int);

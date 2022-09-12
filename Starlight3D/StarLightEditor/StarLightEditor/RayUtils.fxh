@@ -108,7 +108,7 @@ void LightingPass(inout float3 Color, float3 Pos, float3 Norm, uint Recursion)
 
             col += Color * g_ConstantsCB.LightColor[i].rgb * NdotL * shading;
         }
-        col += Color * 0.125;
+        //col += Color * 0.125;
     }
     Color = col * (1.0 / float(NUM_LIGHTS)) + g_ConstantsCB.AmbientColor.rgb;
 }

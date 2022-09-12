@@ -32,6 +32,7 @@ struct DrawInfo {
 	float x[4];
 	float y[4];
 	float z;
+	bool flip_uv = false;
 	Texture2D* Tex;
 	//Kinetic::Textures::Texture2D* Norm;
 	float r, g, b, a;
@@ -69,7 +70,7 @@ public:
 
 	void Begin();
 	void DrawQuad(int x, int y, int w, int h, float r, float g, float b, float a);
-	void DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a);
+	void DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a,bool flip_uv = false);
 	void End(RefCntAutoPtr<IPipelineState> pso, RefCntAutoPtr<IBuffer> consts, RefCntAutoPtr<IShaderResourceBinding> srb);
 	void End();
 	DrawList* GetDrawList(Texture2D* tex) {

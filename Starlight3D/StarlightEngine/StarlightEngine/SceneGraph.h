@@ -8,6 +8,7 @@
 //#include "Physics.h"
 #include "NodeBillboard.h"
 #include "MeshRenderer.h"
+#include "BigBuffer.h"
 
 
 class CubeRenderer;
@@ -186,6 +187,24 @@ class CubeRenderer;
 		Mesh3D* GetRTInstance(int id) {
 			return mRTMeshes[id];
 		}
+
+		BigBuffer* GetRTBigBuffer() {
+
+			BigBuffer* bb = new BigBuffer;
+
+			for (int i = 0;i < mRTMeshes.size();i++) {
+
+				bb->AddData(mRTMeshes[i]->GetVertices(), mRTMeshes[i]->GetTris());
+
+			}
+
+			bb->CreateBuffers();
+
+			return bb;
+
+			
+		}
+
 	private:
 	
 		std::vector<NodeEntity*> mRTNodes;

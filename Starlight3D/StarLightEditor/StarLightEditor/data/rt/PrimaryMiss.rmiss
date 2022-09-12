@@ -21,7 +21,7 @@ void main(inout PrimaryRayPayload payload)
           factor -= float(idx);
     float3 color  = lerp(Palette[idx], Palette[idx+1], factor);
 
-    payload.Color = color;
+    payload.Color = float3(0,0,0);
     //payload.Depth = RayTCurrent(); // bug in DXC for SPIRV
     payload.Depth = g_ConstantsCB.ClipPlanes.y;
 }

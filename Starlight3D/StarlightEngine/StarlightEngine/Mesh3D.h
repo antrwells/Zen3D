@@ -223,6 +223,12 @@ class Node3D;
 			return mBLAS;
 		}
 
+		RefCntAutoPtr<IBufferView> GetVertexBufferView() {
+
+			return m_VertexBufferView;
+
+		}
+
 	private:
 		
 		/// <summary>
@@ -235,7 +241,9 @@ class Node3D;
 		//Material
 		Material* mMaterial;
 		RefCntAutoPtr<IBuffer>                m_VertexBuffer;
+		RefCntAutoPtr<IBufferView> m_VertexBufferView;
 		RefCntAutoPtr<IBuffer>                m_IndexBuffer;
+		RefCntAutoPtr<IBufferView> m_IndexBufferView;
 		RefCntAutoPtr<IBottomLevelAS> mBLAS;
 		const char* mGeoName;
 		//OpenGL

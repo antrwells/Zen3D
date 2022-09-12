@@ -40,8 +40,13 @@ void AppEditor::InitApp() {
 
  	int a = 5;
 
-	//mGraph->AddNode(real_node);
+	auto norm1 = new Texture2D("data/3d/norm1.png");
+	auto norm2 = new Texture2D("data/3d/norm2.png");
+	auto norm3 = new Texture2D("data/3d/norm3.png");
+
+	mGraph->AddNode(real_node);
 	mGraph->AddNode(real2);
+
 
 	real2->SetPosition(float3(4, 5.5f, 0));
 
@@ -113,61 +118,67 @@ float la = 0;
 int dx = 0;
 void AppEditor::RenderApp() {
 
-		  std::cout << "Rendering App.\n";
-		
-		 anY++;
-		 anX++;
+	std::cout << "Rendering App.\n";
 
-		 //control
+	anY++;
+	anX++;
 
-		 auto cam = mGraph->GetCamera();
-		 //cam->SetPosition(float3(0, -5, 10));
-		// mEnt1->SetRotation(anX, anY, 0);
-		 la = la + 0.7f;
-		 lx = cos(Maths::Deg2Rad(la)) * 8;
-		 lz = sin(Maths::Deg2Rad(la)) * 8;
-		 int dx, dy;
-		 // mEnt1->SetRotation(0, la, 0);
-		 dx = Application::GetInput()->GetMouseDX();
-		 dy = Application::GetInput()->GetMouseDY();
-		 // mLight1->SetPosition(float3(lx, 8, lz));
-		 cX -= dy;
-		 cY -= dx;
-		 // mUI->Render();
-		 cam->SetRotation(cX, cY, 0);
-		 if (Application::GetInput()->IsKeyDown(KeyID::Space))
-		 {
-			 float3 cp = cam->GetPosition();
+	//control
 
-			 mLight1->SetPosition(cp);
-		 }
+	auto cam = mGraph->GetCamera();
+	//cam->SetPosition(float3(0, -5, 10));
+   // mEnt1->SetRotation(anX, anY, 0);
+	la = la + 0.7f;
+	lx = cos(Maths::Deg2Rad(la)) * 8;
+	lz = sin(Maths::Deg2Rad(la)) * 8;
+	int dx, dy;
+	// mEnt1->SetRotation(0, la, 0);
+	dx = Application::GetInput()->GetMouseDX();
+	dy = Application::GetInput()->GetMouseDY();
+	// mLight1->SetPosition(float3(lx, 8, lz));
+	cX -= dy;
+	cY -= dx;
+	// mUI->Render();
+	cam->SetRotation(cX, cY, 0);
+	if (Application::GetInput()->IsKeyDown(KeyID::Space))
+	{
+		float3 cp = cam->GetPosition();
 
-		 float spd = -0.05f;
+		mLight1->SetPosition(cp);
+	}
 
-		 if (Application::GetInput()->IsKeyDown(KeyID::W))
-		 {
+	float spd = -0.05f;
 
-			 cam->Move(float3(0, 0, -spd));
+	if (Application::GetInput()->IsKeyDown(KeyID::W))
+	{
 
-		 }
-		 if (Application::GetInput()->IsKeyDown(KeyID::S)) {
-			 cam->Move(float3(0, 0, spd));
-		 }
-		 if (Application::GetInput()->IsKeyDown(KeyID::A))
-		 {
-			 cam->Move(float3(spd, 0, 0));
-		 }
-		 if (Application::GetInput()->IsKeyDown(KeyID::D))
-		 {
-			 cam->Move(float3(-spd, 0, 0));
-		 }
+		cam->Move(float3(0, 0, -spd));
 
-		 mGraph->RenderShadowMaps();
-		 mGraph->Render();
+	}
+	if (Application::GetInput()->IsKeyDown(KeyID::S)) {
+		cam->Move(float3(0, 0, spd));
+	}
+	if (Application::GetInput()->IsKeyDown(KeyID::A))
+	{
+		cam->Move(float3(spd, 0, 0));
+	}
+	if (Application::GetInput()->IsKeyDown(KeyID::D))
+	{
+		cam->Move(float3(-spd, 0, 0));
+	}
 
 
-	//	 mRTRenderer->Render();
-//		 int a = 5;
+
+	if (Application::GetInput()->IsKeyDown(KeyID::E))
+	{
+	
+	mGraph->RenderShadowMaps();
+	mGraph->Render();
+}
+	else {
+		mRTRenderer->Render();
+		//		 int a = 5;
+	}
 
 
 		 //mGraph->RenderShadowMaps();

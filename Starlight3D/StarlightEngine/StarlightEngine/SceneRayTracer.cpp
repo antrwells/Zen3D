@@ -20,6 +20,9 @@ SceneRayTracer::SceneRayTracer(SceneGraph* graph) {
     RTDesc.ClearValue.Format = m_ColorBufferFormat;
     RTDesc.Format = m_ColorBufferFormat;
     mGraph = graph;
+
+    mBigBuffer = graph->GetRTBigBuffer();
+
     Application::GetApp()->GetDevice()->CreateTexture(RTDesc, nullptr, &m_pColorRT);
 
     mColorTex = new Texture2D(m_pColorRT);
@@ -216,6 +219,8 @@ void SceneRayTracer::CreatePSO() {
     m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_GEN, "g_ConstantsCB")->Set(m_ConstantsCB);
     m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_MISS, "g_ConstantsCB")->Set(m_ConstantsCB);
     m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_ConstantsCB")->Set(m_ConstantsCB);
+   
+   
 
     m_pRayTracingPSO->CreateShaderResourceBinding(&m_pRayTracingSRB, true);
     VERIFY_EXPR(m_pRayTracingSRB != nullptr);
@@ -257,8 +262,20 @@ void SceneRayTracer::CreateBindingTables() {
 
         VString name = VString("Instance ");
 
+
+       // ID3D12Resource res;
+
+
+       // auto vmesh = mGraph->GetRTInstance(i);
+        //auto vbuf = vmesh->GetVertexBuffer()->GetDesc().
+
+
+
         name.Add(VString(i));
         m_pSBT->BindHitGroupForInstance(m_pTLAS,name.GetConst(), PRIMARY_RAY_INDEX, "CubePrimaryHit");
+      //  m_pSBT->BindHitGroupForGeometry(m_pTLAS,name.GetConst(),null,PRIMARY_RAY_INDEX,"CubePrimaryHit",)
+       
+        
     }
 
     //m_pSBT->BindHitGroupForInstance(m_pTLAS, "Cube Instance 2", PRIMARY_RAY_INDEX, "CubePrimaryHit");
@@ -294,29 +311,48 @@ void SceneRayTracer::UpdateAttribs() {
 
     auto def_mesh = mInstanceGeos[0];
 
-    std::vector<Vertex> vertices = def_mesh->GetVertices();
+    int v_id = 0;
+    int t_id = 0;
 
-    for (int i = 0;i <vertices.size();i++) {
+    for (int m = 0;m < mInstanceGeos.size();m++) {
 
-        Vertex cur_vert = vertices[i];
+        auto mesh = mInstanceGeos[m];
 
-        Attribs.UVs[i].x = cur_vert.texture_coord.x;
-        Attribs.UVs[i].y = cur_vert.texture_coord.y;
-        Attribs.UVs[i].z = cur_vert.texture_coord.z;
+        std::vector<Vertex> vertices = mesh->GetVertices();
 
-        Attribs.Normals[i].x = cur_vert.normal.x;
-        Attribs.Normals[i].y = cur_vert.normal.y;
-        Attribs.Normals[i].z = cur_vert.normal.z;
 
-    }
 
-    for (int i = 0;i < def_mesh->NumTris();i++) {
+        Attribs.Props[m].x = v_id;
+        Attribs.Props[m].y = t_id;
 
-        auto cur_tri = def_mesh->GetTri(i);
 
-        Attribs.Primitives[i].x = cur_tri.v0;
-        Attribs.Primitives[i].y = cur_tri.v1;
-        Attribs.Primitives[i].z = cur_tri.v2;
+        for (int i = 0;i < vertices.size();i++) {
+
+            Vertex cur_vert = vertices[i];
+
+            //Attribs.UVs[v_id+i].x = cur_vert.texture_coord.x;
+            //Attribs.UVs[v_id+i].y = cur_vert.texture_coord.y;
+            //Attribs.UVs[v_id+i].z = cur_vert.texture_coord.z;
+
+            //Attribs.Normals[v_id+i].x = cur_vert.normal.x;
+           // Attribs.Normals[v_id+i].y = cur_vert.normal.y;
+         //   Attribs.Normals[v_id+i].z = cur_vert.normal.z;
+
+        }
+
+        v_id += vertices.size();
+
+        for (int i = 0;i < mesh->NumTris();i++) {
+
+            auto cur_tri = mesh->GetTri(i);
+
+            //Attribs.Primitives[t_id+i].x = cur_tri.v0;
+            //Attribs.Primitives[t_id+i].y = cur_tri.v1;
+            //Attribs.Primitives[t_id+i].z = cur_tri.v2;
+
+        }
+
+        t_id += mesh->NumTris();
 
     }
 
@@ -333,10 +369,10 @@ void SceneRayTracer::Render() {
     auto cam = mGraph->GetCamera();
 
     float3 CameraWorldPos = cam->GetPosition();//  float3::MakeVector(m_Camera.GetWorldMatrix()[3]);
-    auto   CameraViewProj = cam->GetWorldMatrix() * cam->GetProjectionMatrix();
+    auto   CameraViewProj = cam->GetWorldMatrix().Inverse() * cam->GetProjectionMatrix();
 
     m_Constants.CameraPos = float4{ CameraWorldPos, 1.0f };
-    m_Constants.InvViewProj = CameraViewProj.Inverse().Transpose();
+    m_Constants.InvViewProj =  CameraViewProj.Inverse().Transpose();
 
     auto context = Application::GetApp()->GetContext();
 
@@ -344,15 +380,23 @@ void SceneRayTracer::Render() {
     
     if (mUpdateAttribs) {
 
-        UpdateAttribs();
+        //UpdateAttribs();
 
     }
-    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_CubeAttribsCB")->Set(m_CubeAttribsCB);
+    //m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_CubeAttribsCB")->Set(m_CubeAttribsCB);
 
     m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "g_ColorBuffer")->Set(m_pColorRT->GetDefaultView(TEXTURE_VIEW_UNORDERED_ACCESS));
 
     m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "g_TLAS")->Set(mGraph->GetTLAS());
     m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_TLAS")->Set(mGraph->GetTLAS());
+    
+    
+    if (mSetBB == false) {
+        m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "bVertex")->Set(mBigBuffer->GetVertexBufferView());
+        m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "bTri")->Set(mBigBuffer->GetIndexBufferView());
+        m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "bGeo")->Set(mBigBuffer->GetGeoIndexBufferView());
+        mSetBB = true;
+    }
 
     context->SetPipelineState(m_pRayTracingPSO);
     context->CommitShaderResources(m_pRayTracingSRB, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -368,7 +412,7 @@ void SceneRayTracer::Render() {
 
     mDraw->Begin();
 
-    mDraw->DrawTexture(0, 0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), mColorTex, 1, 1, 1, 1);
+    mDraw->DrawTexture(0, 0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), mColorTex, 1, 1, 1, 1,true);
 
     mDraw->End();
 
@@ -407,8 +451,10 @@ void SceneRayTracer::MapTextures()
 
 void SceneRayTracer::UpdateConstants() {
 
+    auto light1 = mGraph->GetLight(0);
+    auto cam = mGraph->GetCamera();
     {
-        m_Constants.ClipPlanes = float2{ 0.1f, 100.0f };
+        m_Constants.ClipPlanes = float2{ cam->GetMinZ(), cam->GetMaxZ()};
         m_Constants.ShadowPCF = 1;
         m_Constants.MaxRecursion = std::min(Uint32{ 6 }, m_MaxRecursionDepth);
 
@@ -442,13 +488,15 @@ void SceneRayTracer::UpdateConstants() {
         m_Constants.DispersionSamples[15] = { 0.218000f, 0.000000f, 0.000000f, 0.99f };
         m_Constants.DispersionSampleCount = 4;
 
-        m_Constants.AmbientColor = float4(1.f, 1.f, 1.f, 0.f) * 0.015f;
-        m_Constants.LightPos[0] = { 8.00f, +8.0f, +0.00f, 0.f };
-        m_Constants.LightColor[0] = { 1.00f, +0.8f, +0.80f, 0.f };
-        m_Constants.LightPos[1] = { 0.00f, +4.0f, -5.00f, 0.f };
-        m_Constants.LightColor[1] = { 0.85f, +1.0f, +0.85f, 0.f };
+        auto lpos = light1->GetPosition();
 
-        // Random points on disc.
+        m_Constants.AmbientColor = float4(0,0,0, 0.f) * 0.015f;
+        m_Constants.LightPos[0] = { lpos.x,lpos.y,lpos.z, 0.f };
+        m_Constants.LightColor[0] = { 1,1,1, 0.f };
+     //   m_Constants.LightPos[1] = { 0.00f, +4.0f, -5.00f, 0.f };
+       // m_Constants.LightColor[1] = { 0,0,0, 0.f };
+
+        // Random points on disc.                                                                                  e
         m_Constants.DiscPoints[0] = { +0.0f, +0.0f, +0.9f, -0.9f };
         m_Constants.DiscPoints[1] = { -0.8f, +1.0f, -1.1f, -0.8f };
         m_Constants.DiscPoints[2] = { +1.5f, +1.2f, -2.1f, +0.7f };

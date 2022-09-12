@@ -164,19 +164,44 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
 
         vertices[vi].pos = float3(dr->x[0], dr->y[0], dr->z);
         vertices[vi].color = col;
-        vertices[vi].uv = float2(0, 0);
+        if (dr->flip_uv) {
+
+            vertices[vi].uv = float2(0, 1);
+        }else
+        {
+            vertices[vi].uv = float2(0, 0);
+        }
         vi++;
         vertices[vi].pos = float3(dr->x[1], dr->y[1], dr->z);
         vertices[vi].color = col;
-        vertices[vi].uv = float2(1, 0);
+        if (dr->flip_uv) {
+
+            vertices[vi].uv = float2(1, 1);
+        }else
+        {
+            vertices[vi].uv = float2(1, 0);
+        }
         vi++;
         vertices[vi].pos = float3(dr->x[2], dr->y[2], dr->z);
         vertices[vi].color = col;
-        vertices[vi].uv = float2(1, 1);
+        if (dr->flip_uv) {
+
+            vertices[vi].uv = float2(1, 0);
+        }else
+        {
+            vertices[vi].uv = float2(1, 1);
+        }
+
         vi++;
         vertices[vi].pos = float3(dr->x[3], dr->y[3], dr->z);
         vertices[vi].color = col;
-        vertices[vi].uv = float2(0, 1);
+        if (dr->flip_uv) {
+
+            vertices[vi].uv = float2(0, 0);
+        }else
+        {
+            vertices[vi].uv = float2(0, 1);
+        }//vertices[vi].uv = float2(0, 1);
         vi++;
     }
 
@@ -279,8 +304,10 @@ void SmartDraw::Begin() {
 
 }
 
-void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a) {
+void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a,bool flip_uv) {
 
+
+   // flip_uv = true;
     DrawList* list = GetDrawList(tex);
 
     DrawInfo* info = new DrawInfo();
@@ -302,6 +329,7 @@ void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r,
 		info->g = g;
 		info->b = b;
 		info->a = a;
+        info->flip_uv = flip_uv;
 
         drawZ -= 0.0001f;
 

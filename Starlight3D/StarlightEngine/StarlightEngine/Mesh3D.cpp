@@ -311,6 +311,14 @@
 		VBData.DataSize = ds;
 		
 		Application::GetApp()->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_VertexBuffer);
+	
+		BufferViewDesc ViewDesc;
+		ViewDesc.ViewType = BUFFER_VIEW_SHADER_RESOURCE;
+		ViewDesc.ByteOffset = 0;
+		ViewDesc.ByteWidth = sizeof(Vertex) * mVertices.size();
+		m_VertexBuffer->CreateView(ViewDesc, &m_VertexBufferView);
+		//ASSERT_NE(pVertexBufferView, nullptr);
+
 
 		int b = 5;
 
@@ -328,6 +336,8 @@
 		IBData.pData = mTris.data();
 		IBData.DataSize = ds;
 		Application::GetApp()->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_IndexBuffer);
+
+
 
 		b = 5;
 

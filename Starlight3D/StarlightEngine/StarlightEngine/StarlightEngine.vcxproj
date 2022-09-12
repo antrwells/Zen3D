@@ -112,7 +112,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\git\PhysX-4.1\physx\source\foundation\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\physx\include;C:\git\de\DiligentEngine\DiligentTools;C:\git\de\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\PhysX-4.1\physx\source\foundation\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\physx\include;C:\git\de\DiligentEngine\DiligentTools;C:\git\de\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -156,6 +156,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="BigBuffer.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneInfo.h" />
     <ClInclude Include="ButtonControl.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="BigBuffer.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneInfo.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
@@ -268,8 +270,8 @@
     <ClCompile Include="VString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\StarLightEditor\StarLightEditor\structures.fxh" />
     <None Include="packages.config" />
-    <None Include="structures.fxh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

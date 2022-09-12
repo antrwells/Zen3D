@@ -180,6 +180,9 @@
     <ClInclude Include="SceneRayTracer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BigBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -338,11 +341,12 @@
     <ClCompile Include="SceneRayTracer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BigBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="structures.fxh">
-      <Filter>Header Files</Filter>
-    </None>
+    <None Include="..\..\StarLightEditor\StarLightEditor\structures.fxh" />
   </ItemGroup>
 </Project>

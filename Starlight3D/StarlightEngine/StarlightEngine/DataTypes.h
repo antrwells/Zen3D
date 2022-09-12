@@ -92,9 +92,14 @@ struct Vertex {
 	/// </summary>
 	struct Tri {
 
-		int v0;
-		int v1;
-		int v2;
+		uint v0;
+		uint v1;
+		uint v2;
 
 	};
 
+	struct GeoIndex {
+
+		uint start_tri;
+
+	};

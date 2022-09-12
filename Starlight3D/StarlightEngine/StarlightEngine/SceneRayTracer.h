@@ -45,7 +45,7 @@ namespace HLSL
 #include "structures.fxh"
 }
 
-
+class BigBuffer;
 class SceneGraph;
 class Mesh3D;
 class SmartDraw;
@@ -84,6 +84,9 @@ private:
 	std::vector<Mesh3D*> mInstanceGeos;
 	Texture2D* mColorTex;
 	SmartDraw* mDraw;
+	BigBuffer* mBigBuffer;
+	bool mSetBB = false;
 };
+
 
 

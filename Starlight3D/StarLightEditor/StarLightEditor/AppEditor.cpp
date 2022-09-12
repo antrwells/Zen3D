@@ -40,13 +40,17 @@ void AppEditor::InitApp() {
 
  	int a = 5;
 
-	auto norm1 = new Texture2D("data/3d/norm1.png");
-	auto norm2 = new Texture2D("data/3d/norm2.png");
+	auto norm1 = new Texture2D("data/3d/norm3.png");
+	auto norm2 = new Texture2D("data/3d/norm1.png");
 	auto norm3 = new Texture2D("data/3d/norm3.png");
 
 	mGraph->AddNode(real_node);
 	mGraph->AddNode(real2);
 
+	real_node->GetMesh(0)->GetMaterial()->SetNormalMap(norm1);
+	real_node->GetMesh(1)->GetMaterial()->SetNormalMap(norm2);
+
+	
 
 	real2->SetPosition(float3(4, 5.5f, 0));
 

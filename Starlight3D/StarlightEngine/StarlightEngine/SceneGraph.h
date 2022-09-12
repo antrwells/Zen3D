@@ -11,6 +11,14 @@
 #include "BigBuffer.h"
 
 
+struct TexItem {
+
+	Texture2D* color;
+	Texture2D* normal;
+	Texture2D* specular;
+
+};
+
 class CubeRenderer;
 
 /// <summary>
@@ -181,7 +189,7 @@ class CubeRenderer;
 		int RTInstanceCount() {
 			return mRTMeshes.size();
 		}
-		std::vector<Texture2D*> GetRTTextureList() {
+		std::vector<TexItem> GetRTTextureList() {
 			return mRTTextureList;
 		}
 		Mesh3D* GetRTInstance(int id) {
@@ -194,7 +202,7 @@ class CubeRenderer;
 
 			for (int i = 0;i < mRTMeshes.size();i++) {
 
-				bb->AddData(mRTMeshes[i]->GetVertices(), mRTMeshes[i]->GetTris());
+				bb->AddData(mRTMeshes[i]->GetVertices(), mRTMeshes[i]->GetTris(),mRTMeshes[i]->GetOwner());
 
 			}
 
@@ -214,7 +222,7 @@ class CubeRenderer;
 		std::vector<NodeLight*> mLights;
 
 		std::vector<Node3D*> mNoRender;
-		std::vector<Texture2D*> mRTTextureList;
+		std::vector<TexItem> mRTTextureList;
 
 		/// <summary>
 		/// The root node of the graph, a root node can contain child nodes, creating the graph structurally.

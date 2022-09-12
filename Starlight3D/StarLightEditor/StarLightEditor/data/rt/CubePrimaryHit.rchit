@@ -1,65 +1,6 @@
+#include "data/rt/sl_funcs.fxh"
 
-#include "structures.fxh"
-#include "RayUtils.fxh"
-
-ConstantBuffer<CubeAttribs>  g_CubeAttribsCB;
-
-
-struct sVertex {
-	float3 position;
-
-
-
-	/// <summary>
-	/// The color of the vertex.
-	/// </summary>
-	float4 color;
-
-	/// <summary>
-/// The texture coord used.
-/// </summary>
-	float3 texture_coord;
-
-	/// <summary>
-	/// the 3D normal of the vertex.
-	/// </summary>
-	float3 normal;
-
-	/// <summary>
-	/// the Bi-Normal of the vertex.
-	/// </summary>
-	float3 bi_normal;
-
-	/// <summary>
-	/// The tangent of the vertex.
-	/// </summary>
-	float3 tangent;
-
-	};
-
-struct sTri {
-
-		uint v0;
-		uint v1;
-		uint v2;
-
-	};
-
-    
-struct sGeoIndex {
-
-	uint start_tri;
-
-};
-
-
-StructuredBuffer<sVertex> bVertex       : register(t1);
-StructuredBuffer<sTri> bTri     : register(t2);
-StructuredBuffer<sGeoIndex> bGeo : register(t3);
-
-
-
-Texture2D    g_CubeTextures[NUM_TEXTURES];
+Texture2D    g_Textures[NUM_TEXTURES];
 SamplerState g_SamLinearWrap;
 
 [shader("closesthit")]
@@ -85,7 +26,15 @@ void main(inout PrimaryRayPayload payload, in BuiltInTriangleIntersectionAttribu
     primitive.y = bTri[start_tri+PrimitiveIndex()].v1;
     primitive.z = bTri[start_tri+PrimitiveIndex()].v2;
 
+    float3 vert_pos = bVertex[primitive.x].position * barycentrics.x +
+                      bVertex[primitive.y].position * barycentrics.y +
+                      bVertex[primitive.z].position * barycentrics.z;
+      float3 t_pos        = normalize(mul((float3x3) ObjectToWorld3x4(),vert_pos));
 
+
+    //float3 t_pos = mul(bGeo[InstanceID()].g_Model,vert_pos).xyz;
+
+  float3x3 normalMatrix = (float3x3)bGeo[InstanceID()].g_Model;
 
     // Calculate texture coordinates.
     float2 uv = bVertex[primitive.x].texture_coord.xy * barycentrics.x +
@@ -96,13 +45,42 @@ void main(inout PrimaryRayPayload payload, in BuiltInTriangleIntersectionAttribu
     float3 normal = bVertex[primitive.x].normal * barycentrics.x +
                     bVertex[primitive.y].normal * barycentrics.y +
                     bVertex[primitive.z].normal * barycentrics.z;
-    normal        = normalize(mul((float3x3) ObjectToWorld3x4(), normal));
+    normal        = normalize(mul((float3x3) normalMatrix, normal));
+
+    //Tang;
+    float3 tang = bVertex[primitive.x].tangent * barycentrics.x +
+                    bVertex[primitive.y].tangent * barycentrics.y +
+                    bVertex[primitive.z].tangent * barycentrics.z;
+
+     tang         = normalize(mul((float3x3) normalMatrix, tang));
+
 
     // Sample texturing. Ray tracing shaders don't support LOD calculation, so we must specify LOD and apply filtering.
-    payload.Color = g_CubeTextures[NonUniformResourceIndex(InstanceID())].SampleLevel(g_SamLinearWrap, uv, 0).rgb;
+    payload.Color = g_Textures[NonUniformResourceIndex(InstanceID())].SampleLevel(g_SamLinearWrap, uv, 0).rgb;
     payload.Depth = RayTCurrent();
+
+
+   
+
+    float3 T = normalize(mul(tang, normalMatrix));
+    float3 N = normalize(mul(normal, normalMatrix));
+
+    T = normalize(T - dot(T, N) * N);
+
+    float3 B = cross(N, T);
+
+    float3x3 TBN = transpose(float3x3(T, B, N));
+
+    //float3 TLP = mul(lPos.xyz, TBN);
+    //float3 TVP = mul(vPos.xyz, TBN);
+    //float3 TFP = mul(fragPos, TBN);
+
+
+  
 
     // Apply lighting.
     float3 rayOrigin = WorldRayOrigin() + WorldRayDirection() * RayTCurrent();
+    
+    
     LightingPass(payload.Color, rayOrigin, normal, payload.Recursion + 1);
 }

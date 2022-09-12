@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "BigBuffer.h"
 #include "Application.h"
-
-void BigBuffer::AddData(std::vector<Vertex> vertices, std::vector<Tri> tris)
+#include "Node3D.h"
+void BigBuffer::AddData(std::vector<Vertex> vertices, std::vector<Tri> tris,Node3D* owner)
 {
 	int pid = mVertices.size();
 
@@ -15,6 +15,8 @@ void BigBuffer::AddData(std::vector<Vertex> vertices, std::vector<Tri> tris)
 	GeoIndex gindex;
 
 	gindex.start_tri = mTris.size();
+	gindex.g_Model = owner->GetWorldMatrix();
+
 
 	mGeos.push_back(gindex);
 

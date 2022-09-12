@@ -8,6 +8,7 @@
 #include "SmartDraw.h"
 
 
+
 SceneRayTracer::SceneRayTracer(SceneGraph* graph) {
 
 
@@ -32,7 +33,9 @@ SceneRayTracer::SceneRayTracer(SceneGraph* graph) {
     Initialize();
 
     mNumTextures = mGraph->GetRTTextureList().size();
-        
+    
+    UpdateSceneInfo();
+
 	CreatePSO();
  
     MapTextures();
@@ -87,7 +90,7 @@ void SceneRayTracer::CreatePSO() {
 
     // Shader model 6.3 is required for DXR 1.0, shader model 6.5 is required for DXR 1.1 and enables additional features.
     // Use 6.3 for compatibility with DXR 1.0 and VK_NV_ray_tracing.
-    ShaderCI.HLSLVersion = { 6, 3 };
+    ShaderCI.HLSLVersion = { 6, 5 };
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // Create a shader source stream factory to load shaders from files.
@@ -133,6 +136,7 @@ void SceneRayTracer::CreatePSO() {
         Application::GetApp()->GetDevice()->CreateShader(ShaderCI, &pCubePrimaryHit);
         VERIFY_EXPR(pCubePrimaryHit != nullptr);
 
+        /*
         ShaderCI.Desc.Name = "Ground primary ray closest hit shader";
         ShaderCI.FilePath = "data/rt/Ground.rchit";
         ShaderCI.EntryPoint = "main";
@@ -150,8 +154,10 @@ void SceneRayTracer::CreatePSO() {
         ShaderCI.EntryPoint = "main";
         Application::GetApp()->GetDevice()->CreateShader(ShaderCI, &pSpherePrimaryHit);
         VERIFY_EXPR(pSpherePrimaryHit != nullptr);
+        */
     }
 
+    /*
     // Create intersection shader for a procedural sphere.
     RefCntAutoPtr<IShader> pSphereIntersection;
     {
@@ -162,6 +168,7 @@ void SceneRayTracer::CreatePSO() {
         Application::GetApp()->GetDevice()->CreateShader(ShaderCI, &pSphereIntersection);
         VERIFY_EXPR(pSphereIntersection != nullptr);
     }
+    */
 
     // Setup shader groups
 
@@ -207,18 +214,16 @@ void SceneRayTracer::CreatePSO() {
     PipelineResourceLayoutDescX ResourceLayout;
     ResourceLayout.DefaultVariableType = SHADER_RESOURCE_VARIABLE_TYPE_MUTABLE;
     ResourceLayout.AddImmutableSampler(SHADER_TYPE_RAY_CLOSEST_HIT, "g_SamLinearWrap", SamLinearWrapDesc);
-    ResourceLayout
-        .AddVariable(SHADER_TYPE_RAY_GEN | SHADER_TYPE_RAY_MISS | SHADER_TYPE_RAY_CLOSEST_HIT, "g_ConstantsCB", SHADER_RESOURCE_VARIABLE_TYPE_STATIC)
-        .AddVariable(SHADER_TYPE_RAY_GEN, "g_ColorBuffer", SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC);
+    ResourceLayout.AddVariable(SHADER_TYPE_RAY_GEN, "g_ColorBuffer", SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC);
 
     PSOCreateInfo.PSODesc.ResourceLayout = ResourceLayout;
 
     Application::GetApp()->GetDevice()->CreateRayTracingPipelineState(PSOCreateInfo, &m_pRayTracingPSO);
     VERIFY_EXPR(m_pRayTracingPSO != nullptr);
 
-    m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_GEN, "g_ConstantsCB")->Set(m_ConstantsCB);
-    m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_MISS, "g_ConstantsCB")->Set(m_ConstantsCB);
-    m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_ConstantsCB")->Set(m_ConstantsCB);
+  //  m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_GEN, "bScene")->Set(mSceneInfoBuffer);
+   // m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_MISS, "bScene")->Set(mSceneInfoBuffer);
+    //m_pRayTracingPSO->GetStaticVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_ConstantsCB")->Set(m_ConstantsCB);
    
    
 
@@ -376,7 +381,7 @@ void SceneRayTracer::Render() {
 
     auto context = Application::GetApp()->GetContext();
 
-    context->UpdateBuffer(m_ConstantsCB, 0, sizeof(m_Constants), &m_Constants, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+   // context->UpdateBuffer(m_ConstantsCB, 0, sizeof(m_Constants), &m_Constants, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     
     if (mUpdateAttribs) {
 
@@ -397,6 +402,11 @@ void SceneRayTracer::Render() {
         m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "bGeo")->Set(mBigBuffer->GetGeoIndexBufferView());
         mSetBB = true;
     }
+
+    UpdateSceneInfo();
+    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "bScene")->Set(mSceneInfoBufferView, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "bScene")->Set(mSceneInfoBufferView, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_MISS, "bScene")->Set(mSceneInfoBufferView, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
 
     context->SetPipelineState(m_pRayTracingPSO);
     context->CommitShaderResources(m_pRayTracingSRB, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -427,20 +437,25 @@ void SceneRayTracer::MapTextures()
     mNumTextures = tex_list.size();
 
     std::vector<IDeviceObject*> pTexSRV;
+    std::vector<IDeviceObject*> pNormSRV;
     std::vector<ITexture> pTex;
 
     for (int i = 0;i < mNumTextures;i++) {
 
         auto tex = tex_list[i];
 
-        auto* pSRV = tex->GetViewPTR();
+        auto* pSRV = tex.color->GetViewPTR();
+        auto* pSRVn = tex.normal->GetViewPTR();
 
         pTexSRV.push_back(pSRV);
+        pNormSRV.push_back(pSRVn);
 
 
     }
 
-    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_CubeTextures")->SetArray(pTexSRV.data(), 0, mNumTextures);
+    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_Textures")->SetArray(pTexSRV.data(), 0, mNumTextures);
+
+  //  m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_TexturesNorm")->SetArray(pNormSRV.data(), 0, mNumTextures);
 
 
     //IDeviceObject* pTexSRVs[mNumTextures] = {};
@@ -508,4 +523,74 @@ void SceneRayTracer::UpdateConstants() {
     }
     static_assert(sizeof(HLSL::Constants) % 16 == 0, "must be aligned by 16 bytes");
 
+}
+
+
+void SceneRayTracer::UpdateSceneInfo() {
+
+    if (mCreatedSceneInfo) {
+
+
+    
+
+        mSceneInfoBuffer.Detach();
+            mSceneInfoBuffer.Release();
+        mSceneInfoBufferView.Detach();
+        mSceneInfoBufferView.Release();
+    }
+
+    mSceneInfo.num_lights = mGraph->LightCount();
+    for (int i = 0;i < mGraph->LightCount();i++) {
+
+        auto light = mGraph->GetLight(i);
+        mSceneInfo.lightPos[i] = light->GetPosition();
+        mSceneInfo.lightDiff[i] = light->GetDiffuse();
+        mSceneInfo.lightRange[i] = light->GetRange();
+
+    }
+
+    auto cam = mGraph->GetCamera();
+
+    mSceneInfo.camPos = cam->GetPosition();
+    mSceneInfo.camMinZ = cam->GetMinZ();
+    mSceneInfo.camMaxZ = cam->GetMaxZ();
+    mSceneInfo.maxRecursion = (uint)std::min(Uint32{ 6 }, m_MaxRecursionDepth);
+    mSceneInfo.ShadowPCF = 1;
+    mSceneInfo.DiscPoints[0] = { +0.0f, +0.0f, +0.9f, -0.9f };
+    mSceneInfo.DiscPoints[1] = { -0.8f, +1.0f, -1.1f, -0.8f };
+    mSceneInfo.DiscPoints[2] = { +1.5f, +1.2f, -2.1f, +0.7f };
+    mSceneInfo.DiscPoints[3] = { +0.1f, -2.2f, -0.2f, +2.4f };
+    mSceneInfo.DiscPoints[4] = { +2.4f, -0.3f, -3.0f, +2.8f };
+    mSceneInfo.DiscPoints[5] = { +2.0f, -2.6f, +0.7f, +3.5f };
+    mSceneInfo.DiscPoints[6] = { -3.2f, -1.6f, +3.4f, +2.2f };
+    mSceneInfo.DiscPoints[7] = { -1.8f, -3.2f, -1.1f, +3.6f };
+
+
+  
+    float3 CameraWorldPos = cam->GetPosition();//  float3::MakeVector(m_Camera.GetWorldMatrix()[3]);
+    auto   CameraViewProj = cam->GetWorldMatrix().Inverse() * cam->GetProjectionMatrix();
+
+    mSceneInfo.CameraPos = float4{ CameraWorldPos, 1.0f };
+    mSceneInfo.InvViewProj = CameraViewProj.Inverse().Transpose();
+
+    BufferDesc SceneInfoDesc;
+    SceneInfoDesc.Name = "RayTracer - SceneInfo";
+    SceneInfoDesc.Usage = USAGE_IMMUTABLE;
+    SceneInfoDesc.BindFlags = BIND_SHADER_RESOURCE | BIND_RAY_TRACING;
+    SceneInfoDesc.Size = sizeof(SceneInfo);;
+    SceneInfoDesc.ElementByteStride = sizeof(SceneInfo);
+    SceneInfoDesc.Mode = BUFFER_MODE_STRUCTURED;
+
+    BufferData SIData;
+    SIData.pData = &mSceneInfo;
+    SIData.DataSize = sizeof(SceneInfo);
+    Application::GetApp()->GetDevice()->CreateBuffer(SceneInfoDesc, &SIData, &mSceneInfoBuffer);
+
+    BufferViewDesc SIViewDesc;
+    SIViewDesc.ViewType = BUFFER_VIEW_SHADER_RESOURCE;
+    SIViewDesc.ByteOffset = 0;
+    SIViewDesc.ByteWidth = sizeof(SceneInfo);
+    mSceneInfoBuffer->CreateView(SIViewDesc, &mSceneInfoBufferView);
+
+    mCreatedSceneInfo = true;
 }

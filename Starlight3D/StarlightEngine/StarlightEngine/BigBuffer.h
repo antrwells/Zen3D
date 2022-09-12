@@ -42,6 +42,7 @@
 
 using namespace Diligent;
 
+class Node3D;
 
 
 class BigBuffer
@@ -49,7 +50,7 @@ class BigBuffer
 public:
 
 	BigBuffer() {};
-	void AddData(std::vector<Vertex> vertices, std::vector<Tri> tris);
+	void AddData(std::vector<Vertex> vertices, std::vector<Tri> tris, Node3D* node);
 	void CreateBuffers();
 
 	RefCntAutoPtr<IBufferView> GetVertexBufferView();

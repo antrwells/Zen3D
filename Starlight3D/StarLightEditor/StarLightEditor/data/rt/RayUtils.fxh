@@ -3,6 +3,73 @@ RaytracingAccelerationStructure g_TLAS;
 ConstantBuffer<Constants>       g_ConstantsCB;
 
 
+struct sVertex {
+	float3 position;
+
+
+
+	/// <summary>
+	/// The color of the vertex.
+	/// </summary>
+	float4 color;
+
+	/// <summary>
+/// The texture coord used.
+/// </summary>
+	float3 texture_coord;
+
+	/// <summary>
+	/// the 3D normal of the vertex.
+	/// </summary>
+	float3 normal;
+
+	/// <summary>
+	/// the Bi-Normal of the vertex.
+	/// </summary>
+	float3 bi_normal;
+
+	/// <summary>
+	/// The tangent of the vertex.
+	/// </summary>
+	float3 tangent;
+
+	};
+
+struct sTri {
+
+		uint v0;
+		uint v1;
+		uint v2;
+
+	};
+
+    
+struct sGeoIndex {
+
+	uint start_tri;
+  float4x4 g_Model;
+  float4x4 g_ModelInv;
+
+};
+
+struct sSceneInfo{
+
+  uint num_lights;
+  float3 lightPos[32];
+  float3 lightDiff[32];
+  float3 lightSpec[32];
+  float lightRange[32];
+  float3 camPos;
+  float camMinZ;
+  float camMaxZ;
+
+};
+
+StructuredBuffer<sVertex> bVertex       : register(t1);
+StructuredBuffer<sTri> bTri     : register(t2);
+StructuredBuffer<sGeoIndex> bGeo : register(t3);
+StructuredBuffer<sSceneInfo> bScene : register(t4);
+
 PrimaryRayPayload CastPrimaryRay(RayDesc ray, uint Recursion)
 {
     PrimaryRayPayload payload = {float3(0, 0, 0), 0.0, Recursion};

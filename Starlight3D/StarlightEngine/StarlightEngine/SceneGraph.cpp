@@ -566,7 +566,13 @@
 			float3 pos = mRTMeshes[i]->GetOwner()->GetPosition();
 			float3x3 rot = mRTMeshes[i]->GetOwner()->GetRotation();
 
-			mRTTextureList.push_back(mRTMeshes[i]->GetMaterial()->GetColorMap());
+			TexItem tex_item;
+
+			tex_item.color = mRTMeshes[i]->GetMaterial()->GetColorMap();
+			tex_item.normal = mRTMeshes[i]->GetMaterial()->GetNormalMap();
+			tex_item.specular = mRTMeshes[i]->GetMaterial()->GetSpecularMap();
+
+			mRTTextureList.push_back(tex_item);
 
 			inst.Transform.SetTranslation(pos.x, pos.y, pos.z);
 			inst.Transform.SetRotation(rot.Data());

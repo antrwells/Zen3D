@@ -101,5 +101,7 @@ struct Vertex {
 	struct GeoIndex {
 
 		uint start_tri;
+		float4x4 g_Model;
+		float4x4 g_ModelInv;
 
 	};

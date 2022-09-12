@@ -53,6 +53,25 @@ class Texture2D;
 
 using namespace Diligent;
 
+
+struct SceneInfo {
+
+	uint num_lights = 0;
+	float3 lightPos[32];
+	float3 lightDiff[32];
+	float3 lightSpec[32];
+	float lightRange[32];
+	float3 camPos;
+	float camMinZ;
+	float camMaxZ;
+	float4   CameraPos;
+	float4x4 InvViewProj;
+	uint maxRecursion;
+	uint ShadowPCF;
+	float4  DiscPoints[8]; // packed float2[16]
+
+};
+
 class SceneRayTracer
 {
 public:
@@ -66,6 +85,7 @@ public:
 	void MapTextures();
 	void UpdateConstants();
 	void UpdateAttribs();
+	void UpdateSceneInfo();
 
 private:
 	Uint32          m_MaxRecursionDepth = 8;
@@ -86,6 +106,11 @@ private:
 	SmartDraw* mDraw;
 	BigBuffer* mBigBuffer;
 	bool mSetBB = false;
+	bool mCreatedSceneInfo = false;
+	RefCntAutoPtr<IBuffer> mSceneInfoBuffer;
+	RefCntAutoPtr<IBufferView> mSceneInfoBufferView;
+	SceneInfo mSceneInfo;
+
 };
 
 

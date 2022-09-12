@@ -69,13 +69,13 @@ void AppEditor::InitApp() {
 
 
 
-	//mGraph->AddLight(mLight2);
+	mGraph->AddLight(mLight2);
 	mLight2->SetRange(30);
 	mLight1->SetRange(30);
-	mLight1->SetDiffuse(float3(0, 1, 1));
+	mLight1->SetDiffuse(float3(1, 1, 1));
 	mLight1->SetPosition(float3(0, 10, 0));
 	mLight2->SetPosition(float3(2, 8, 0));
-	mLight2->SetDiffuse(float3(0.1, 1, 1));
+	mLight2->SetDiffuse(float3(2, 1, 1));
 
 	float ax, ay;
 
@@ -183,6 +183,14 @@ void AppEditor::RenderApp() {
 		mRTRenderer->Render();
 		//		 int a = 5;
 	}
+
+
+	ImGui::Begin("Hello, world!");
+
+
+	ImGui::Text("This is some useful text.");
+
+	ImGui::End();
 
 
 		 //mGraph->RenderShadowMaps();

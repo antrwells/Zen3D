@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Application.h"
 #include "UI.h"
+//#include "ImGuiImplWin32.hpp"
+
+
 //RefCntAutoPtr<IRenderDevice> Application::s_pDevice
 
 Application* Application::s_pThis = nullptr;
@@ -84,7 +87,7 @@ bool Application::Initialize(HWND hWnd) {
         auto GetEngineFactoryVk = LoadGraphicsEngineVk();
 #    endif
         EngineVkCreateInfo EngineCI;
-
+        EngineCI.Features.RayTracing = DEVICE_FEATURE_STATE_ENABLED;
         auto* pFactoryVk = GetEngineFactoryVk();
         pFactoryVk->CreateDeviceAndContextsVk(EngineCI, &m_pDevice, &m_pImmediateContext);
 
@@ -93,6 +96,7 @@ bool Application::Initialize(HWND hWnd) {
             Win32NativeWindow Window{ hWnd };
             pFactoryVk->CreateSwapChainVk(m_pDevice, m_pImmediateContext, SCDesc, Window, &m_pSwapChain);
         }
+        m_pEngFac = pFactoryVk;
     }
     break;
 #endif
@@ -103,7 +107,8 @@ bool Application::Initialize(HWND hWnd) {
         return false;
         break;
     }
-
+    auto SC = m_pSwapChain->GetDesc();
+    m_pImGui.reset(new ImGuiImplWin32(hWnd, m_pDevice, SCDesc.ColorBufferFormat, SC.DepthBufferFormat));
     return true;
 
 }
@@ -226,7 +231,8 @@ void Application::Present() {
 }
 
 void Application::Render() {
-
+    auto SC = m_pSwapChain->GetDesc();
+    m_pImGui->NewFrame(SC.Width, SC.Height, SC.PreTransform);
     UpdateApp();
 
 
@@ -245,8 +251,12 @@ void Application::Render() {
     // Let the engine perform required state transitions
     m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
-
+   
+  
     RenderApp();
+    m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
+    m_pImGui->Render(m_pImmediateContext);
 
     return;
 
@@ -296,7 +306,7 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
     glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
     //glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
     glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
-    glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+  //  glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glfwSetWindowSizeLimits(m_Window, 320, 240, GLFW_DONT_CARE, GLFW_DONT_CARE);
     return;

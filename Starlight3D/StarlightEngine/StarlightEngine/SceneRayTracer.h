@@ -97,7 +97,9 @@ private:
 	SceneGraph* mGraph;	
 	RefCntAutoPtr<IShaderBindingTable> m_pSBT;
 	RefCntAutoPtr<ITexture> m_pColorRT;
-	TEXTURE_FORMAT          m_ColorBufferFormat = TEX_FORMAT_RGBA8_UNORM;
+	RefCntAutoPtr<ITextureView> m_pColorRTV;
+	RefCntAutoPtr<ITextureView> m_pColorRTVRT;
+	TEXTURE_FORMAT          m_ColorBufferFormat = TEX_FORMAT_RGBA32_FLOAT;
 	HLSL::Constants m_Constants = {};
 	bool mUpdateAttribs = true;
 	RefCntAutoPtr<IBuffer> m_CubeAttribsCB;

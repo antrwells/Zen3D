@@ -52,6 +52,7 @@ class Texture2D
 {
 public:
 	Texture2D(const char* path);
+	Texture2D(RefCntAutoPtr<ITexture> texture, RefCntAutoPtr<ITextureView> view);
 	Texture2D(RefCntAutoPtr<ITexture> texure);
 	Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
 	Texture2D(RenderTarget2D* target);

@@ -20,13 +20,26 @@ SceneRayTracer::SceneRayTracer(SceneGraph* graph) {
     RTDesc.BindFlags = BIND_UNORDERED_ACCESS | BIND_SHADER_RESOURCE;
     RTDesc.ClearValue.Format = m_ColorBufferFormat;
     RTDesc.Format = m_ColorBufferFormat;
+  
     mGraph = graph;
+
+
+    //auto tex = new RenderTarget2D(RTDesc.Width, RTDesc.Height);
 
     mBigBuffer = graph->GetRTBigBuffer();
 
+       
+
     Application::GetApp()->GetDevice()->CreateTexture(RTDesc, nullptr, &m_pColorRT);
 
-    mColorTex = new Texture2D(m_pColorRT);
+    m_pColorRTVRT = m_pColorRT->GetDefaultView(TEXTURE_VIEW_UNORDERED_ACCESS);
+    m_pColorRTV = m_pColorRT->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
+
+
+    mColorTex = new Texture2D(m_pColorRT, m_pColorRTV);
+
+
+//    mColorTex = new Texture2D(m_pColorRT);
 
     mDraw = new SmartDraw(Application::GetApp());
     
@@ -90,7 +103,7 @@ void SceneRayTracer::CreatePSO() {
 
     // Shader model 6.3 is required for DXR 1.0, shader model 6.5 is required for DXR 1.1 and enables additional features.
     // Use 6.3 for compatibility with DXR 1.0 and VK_NV_ray_tracing.
-    ShaderCI.HLSLVersion = { 6, 5 };
+    ShaderCI.HLSLVersion = { 6, 3 };
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // Create a shader source stream factory to load shaders from files.
@@ -368,7 +381,7 @@ void SceneRayTracer::UpdateAttribs() {
 }
 
 void SceneRayTracer::Render() {
-
+    
     UpdateConstants();
 
     auto cam = mGraph->GetCamera();
@@ -390,7 +403,7 @@ void SceneRayTracer::Render() {
     }
     //m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_CubeAttribsCB")->Set(m_CubeAttribsCB);
 
-    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "g_ColorBuffer")->Set(m_pColorRT->GetDefaultView(TEXTURE_VIEW_UNORDERED_ACCESS));
+    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "g_ColorBuffer")->Set(m_pColorRTVRT);
 
     m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_GEN, "g_TLAS")->Set(mGraph->GetTLAS());
     m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_TLAS")->Set(mGraph->GetTLAS());
@@ -418,8 +431,10 @@ void SceneRayTracer::Render() {
 
     context->TraceRays(Attribs);
 
-    context->Flush();
+    //context->Flush();
 
+    int aa = 5;
+   // return;
     mDraw->Begin();
 
     mDraw->DrawTexture(0, 0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), mColorTex, 1, 1, 1, 1,true);

@@ -57,10 +57,14 @@
 
 using namespace Diligent;
 
-
+#include "ImGuiImplWin32.hpp"
 #define MAX_LOADSTRING 100
 
+#include <d3d12.h>
 
+#include "imgui.h"
+
+class ImGuiImplDiligent;
 
 
 class Application
@@ -233,6 +237,12 @@ public:
         return s_pThis;
     }
 
+    ID3D12Device* GetD12Device() {
+
+      //  return 
+
+    }
+
 private:
 
     UserInput* mInput;
@@ -252,7 +262,7 @@ private:
     
     Physics* mPhysics;
 
-
+    std::unique_ptr<ImGuiImplWin32> m_pImGui = nullptr;
     static void GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h);
     static void GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int);
     static void GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int state, int);

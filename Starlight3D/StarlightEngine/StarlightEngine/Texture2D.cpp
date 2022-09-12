@@ -18,6 +18,14 @@ Texture2D::Texture2D(const char* path) {
 
 }
 
+Texture2D::Texture2D(RefCntAutoPtr<ITexture> texture, RefCntAutoPtr<ITextureView> view)
+{
+
+    Texture = texture;
+    m_TextureSRV = view;
+
+}
+
 Texture2D::Texture2D(RefCntAutoPtr<ITexture> texture)
 {
 

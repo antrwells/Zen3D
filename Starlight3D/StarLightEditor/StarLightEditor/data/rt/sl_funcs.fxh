@@ -49,7 +49,7 @@ float3 DirectionWithinCone(float3 dir, float2 offset)
 }
 
 // Calculate lighting.
-void LightingPass(inout float3 Color, float3 Pos, float3 Norm, uint Recursion)
+void LightingPass(inout float3 Color, float3 Pos,float3 tex_norm, float3 Norm,float3x3 TBN,float3 fragPos, uint Recursion)
 {
     RayDesc ray;
     float3  col = float3(0.0, 0.0, 0.0);
@@ -66,6 +66,16 @@ void LightingPass(inout float3 Color, float3 Pos, float3 Norm, uint Recursion)
         float3 rayDir = normalize(bScene[0].lightPos[i].xyz - Pos);
         float  NdotL   = max(0.0, dot(Norm, rayDir));
 
+     
+          float3 TLP = mul(bScene[0].lightPos[i].xyz, TBN);
+        float3 TVP = mul(bScene[0].CameraPos.xyz, TBN);
+          float3 TFP = mul(fragPos, TBN);
+
+         float3 lightDir = normalize(TLP - TFP);
+
+        float diff = max(dot(lightDir, tex_norm),0.0);
+
+        NdotL = diff;
         // Optimization - don't trace rays if NdotL is zero or negative
         if (NdotL > 0.0)
         {
@@ -85,5 +95,5 @@ void LightingPass(inout float3 Color, float3 Pos, float3 Norm, uint Recursion)
         }
         //col += Color * 0.125;
     }
-    Color = col * (1.0 / float(bScene[0].num_lights));//+ g_ConstantsCB.AmbientColor.rgb;
+    Color = col;// * (1.0 / float(bScene[0].num_lights));//+ g_ConstantsCB.AmbientColor.rgb;
 }

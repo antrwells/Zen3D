@@ -41,7 +41,7 @@ void AppEditor::InitApp() {
  	int a = 5;
 
 	auto norm1 = new Texture2D("data/3d/norm3.png");
-	auto norm2 = new Texture2D("data/3d/norm1.png");
+	auto norm2 = new Texture2D("data/3d/norm3.png");
 	auto norm3 = new Texture2D("data/3d/norm3.png");
 
 	mGraph->AddNode(real_node);
@@ -69,7 +69,7 @@ void AppEditor::InitApp() {
 
 
 
-	mGraph->AddLight(mLight2);
+	//mGraph->AddLight(mLight2);
 	mLight2->SetRange(30);
 	mLight1->SetRange(30);
 	mLight1->SetDiffuse(float3(1, 1, 1));
@@ -120,6 +120,7 @@ float cX=0, cY=0;
 float lx = 0, lz = 0;
 float la = 0;
 int dx = 0;
+bool mUseRT = false;
 void AppEditor::RenderApp() {
 
 	std::cout << "Rendering App.\n";
@@ -140,10 +141,14 @@ void AppEditor::RenderApp() {
 	dx = Application::GetInput()->GetMouseDX();
 	dy = Application::GetInput()->GetMouseDY();
 	// mLight1->SetPosition(float3(lx, 8, lz));
-	cX -= dy;
-	cY -= dx;
+	
 	// mUI->Render();
-	cam->SetRotation(cX, cY, 0);
+	if (Application::GetInput()->IsKeyDown(KeyID::Shift))
+	{
+		cX -= dy;
+		cY -= dx;
+		cam->SetRotation(cX, cY, 0);
+	}
 	if (Application::GetInput()->IsKeyDown(KeyID::Space))
 	{
 		float3 cp = cam->GetPosition();
@@ -173,7 +178,7 @@ void AppEditor::RenderApp() {
 
 
 
-	if (Application::GetInput()->IsKeyDown(KeyID::E))
+	if (!mUseRT)
 	{
 	
 	mGraph->RenderShadowMaps();
@@ -185,10 +190,12 @@ void AppEditor::RenderApp() {
 	}
 
 
-	ImGui::Begin("Hello, world!");
+	ImGui::Begin("Starlight3D - Test 001");
 
 
-	ImGui::Text("This is some useful text.");
+	ImGui::Text("Below are some settings");
+
+	ImGui::Checkbox("RayTracing?", &mUseRT);
 
 	ImGui::End();
 

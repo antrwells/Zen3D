@@ -469,7 +469,7 @@ void SceneRayTracer::MapTextures()
     }
 
     m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_Textures")->SetArray(pTexSRV.data(), 0, mNumTextures);
-
+    m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_TexturesNorm")->SetArray(pNormSRV.data(), 0, mNumTextures);
   //  m_pRayTracingSRB->GetVariableByName(SHADER_TYPE_RAY_CLOSEST_HIT, "g_TexturesNorm")->SetArray(pNormSRV.data(), 0, mNumTextures);
 
 

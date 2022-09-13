@@ -1,6 +1,7 @@
 #include "data/rt/sl_funcs.fxh"
 
 Texture2D    g_Textures[NUM_TEXTURES];
+Texture2D    g_TexturesNorm[NUM_TEXTURES];
 SamplerState g_SamLinearWrap;
 
 [shader("closesthit")]
@@ -29,10 +30,11 @@ void main(inout PrimaryRayPayload payload, in BuiltInTriangleIntersectionAttribu
     float3 vert_pos = bVertex[primitive.x].position * barycentrics.x +
                       bVertex[primitive.y].position * barycentrics.y +
                       bVertex[primitive.z].position * barycentrics.z;
-      float3 t_pos        = normalize(mul((float3x3) ObjectToWorld3x4(),vert_pos));
+    //float3 t_pos        = (mul((float3x3) ObjectToWorld3x4(),vert_pos));
 
 
-    //float3 t_pos = mul(bGeo[InstanceID()].g_Model,vert_pos).xyz;
+
+    float3 t_pos = mul(bGeo[InstanceID()].g_Model,vert_pos).xyz;
 
   float3x3 normalMatrix = (float3x3)bGeo[InstanceID()].g_Model;
 
@@ -56,8 +58,23 @@ void main(inout PrimaryRayPayload payload, in BuiltInTriangleIntersectionAttribu
 
 
     // Sample texturing. Ray tracing shaders don't support LOD calculation, so we must specify LOD and apply filtering.
-    payload.Color = g_Textures[NonUniformResourceIndex(InstanceID())].SampleLevel(g_SamLinearWrap, uv, 0).rgb;
-    payload.Depth = RayTCurrent();
+   
+ payload.Depth = RayTCurrent();
+ 
+    float3 tc;
+    tc = g_Textures[NonUniformResourceIndex(InstanceID())].SampleLevel(g_SamLinearWrap, uv, 0).rgb;
+    float3 tex_norm = g_TexturesNorm[NonUniformResourceIndex(InstanceID())].SampleLevel(g_SamLinearWrap,uv,0).rgb;
+
+    tex_norm = normalize(tex_norm * 2.0 - 1.0);
+    tex_norm.y = -tex_norm.y;
+
+
+
+
+
+    payload.Color = tc;  
+
+  
 
 
    
@@ -71,9 +88,11 @@ void main(inout PrimaryRayPayload payload, in BuiltInTriangleIntersectionAttribu
 
     float3x3 TBN = transpose(float3x3(T, B, N));
 
-    //float3 TLP = mul(lPos.xyz, TBN);
-    //float3 TVP = mul(vPos.xyz, TBN);
-    //float3 TFP = mul(fragPos, TBN);
+   
+ 
+  
+
+
 
 
   
@@ -82,5 +101,5 @@ void main(inout PrimaryRayPayload payload, in BuiltInTriangleIntersectionAttribu
     float3 rayOrigin = WorldRayOrigin() + WorldRayDirection() * RayTCurrent();
     
     
-    LightingPass(payload.Color, rayOrigin, normal, payload.Recursion + 1);
+    LightingPass(payload.Color, rayOrigin, tex_norm,normal,TBN,t_pos, payload.Recursion + 1);
 }

@@ -435,6 +435,12 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int
     KeyID id = KeyID::None;
 
     switch (key) {
+    case GLFW_KEY_LEFT_SHIFT:
+    case GLFW_KEY_RIGHT_SHIFT:
+
+        id = KeyID::Shift;
+        break;
+
     case GLFW_KEY_A:
         id = KeyID::A;
         break;

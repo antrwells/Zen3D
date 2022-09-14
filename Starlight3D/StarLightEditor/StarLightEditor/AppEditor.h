@@ -32,6 +32,7 @@ private:
     kFont* mFont1;
     SceneGraph* mGraph;
     NodeEntity* mEnt1,* mEnt2;
+    NodeActor* mAct1;
     NodeLight* mLight1, * mLight2;
     RenderTarget2D* mRT1;
     RenderTargetCube* mRTC1;

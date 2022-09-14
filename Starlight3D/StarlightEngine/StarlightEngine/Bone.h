@@ -64,6 +64,7 @@ public:
             float timeStamp = channel->mPositionKeys[positionIndex].mTime;
             KeyPosition data;
             data.position = GetGLMVec(aiPosition);
+           // data.position.x = -data.position.x;
             data.timeStamp = timeStamp;
             m_Positions.push_back(data);
         }
@@ -99,8 +100,13 @@ public:
         float4x4 translation = InterpolatePosition(animationTime);
         float4x4 rotation = InterpolateRotation(animationTime);
         float4x4 scale = InterpolateScaling(animationTime);
-        m_LocalTransform = translation * rotation * scale;
+        //m_LocalTransform = translation * rotation;//*scale;
+        m_LocalTransform =scale* rotation * translation;      
+
+
     }
+
+
 
     float4x4 GetLocalTransform() { return m_LocalTransform; }
     std::string GetBoneName() const { return m_Name; }
@@ -166,6 +172,11 @@ private:
         int p1Index = p0Index + 1;
         float scaleFactor = GetScaleFactor(m_Positions[p0Index].timeStamp,
             m_Positions[p1Index].timeStamp, animationTime);
+        
+        
+        float nx = m_Positions[p0Index].position.x + (m_Positions[p1Index].position.x - m_Positions[p0Index].position.x) * scaleFactor;
+        float ny = m_Positions[p0Index].position.y + (m_Positions[p1Index].position.y - m_Positions[p0Index].position.y) * scaleFactor;
+        float nz = m_Positions[p0Index].position.z + (m_Positions[p1Index].position.z - m_Positions[p0Index].position.z) * scaleFactor;
         float3 finalPosition = Diligent::lerp(m_Positions[p0Index].position,
             m_Positions[p1Index].position, scaleFactor);
         return float4x4::Translation(finalPosition);
@@ -185,11 +196,13 @@ private:
         int p1Index = p0Index + 1;
         float scaleFactor = GetScaleFactor(m_Rotations[p0Index].timeStamp,
             m_Rotations[p1Index].timeStamp, animationTime);
-        Quaternion finalRotation = Diligent::slerp(m_Rotations[p0Index].orientation,
-            m_Rotations[p1Index].orientation, scaleFactor);
+        Quaternion finalRotation =Diligent::slerp(m_Rotations[p0Index].orientation,
+            m_Rotations[p1Index].orientation, scaleFactor,true);
         finalRotation = normalize(finalRotation);
         return finalRotation.ToMatrix();
+
     }
+
 
     /*figures out which scaling keys to interpolate b/w and performs the interpolation
     and returns the scale matrix*/

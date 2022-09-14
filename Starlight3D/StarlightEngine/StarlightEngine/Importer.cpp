@@ -1,16 +1,20 @@
 #include "pch.h"
 #include "Importer.h"
-
+#include <map>
 #include <assimp/cimport.h>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <GLFW/glfw3.h>
 #include "Material.h"
 #include "VString.h"
-#include "BoneInfo.h"
+
 //#include "Animation.h"
+//#include "Animator.h"
 #include "NodeAnimator.h"
+
+
 #include "VFile.h"
+#include "MeshActor.h"
 #include "Common/interface/BasicMath.hpp"
 
 
@@ -18,6 +22,7 @@ using namespace Diligent;
 NodeEntity* cur = NULL;
 
 std::vector<Mesh3D*> meshes;
+std::vector<MeshActor*> meshes_actor;
 std::vector<Material*> materials;
 
 const char* mpath = "";
@@ -164,7 +169,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 	C_STRUCT aiMatrix4x4 m = nd->mTransformation;
 
-	float4x4 vm = aiMatrix4x4ToGlm(&m);
+	//float4x4 vm = aiMatrix4x4ToGlm(&m);
 	//float4 pos = vm
 
 
@@ -494,6 +499,248 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 		return nullptr;
 	}
 
+	
+
+	NodeActor* Importer::ImportActor(const char* path) {
+
+		meshes.resize(0);
+		materials.resize(0);
 
 
+		NodeActor* root = new NodeActor;
+		printf("Importing scene:");
+		printf(path);
+		printf("|\n");
+		scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_OptimizeGraph | aiProcess_OptimizeMeshes | aiProcess_CalcTangentSpace | aiProcess_FixInfacingNormals | aiProcess_FindDegenerates | aiProcess_FindInvalidData | aiProcess_Triangulate | aiProcess_ValidateDataStructure);
+
+		if (scene == nullptr)
+		{
+
+			printf("Failed to import\n");
+			while (true) {
+
+			}
+
+		}
+
+		for (int i = 0; i < scene->mNumMaterials; i++) {
+
+			Material* new_material = new Material;
+
+			new_material->SetType(MaterialType::AnimPBR);
+
+			auto aiMaterial = scene->mMaterials[i];
+
+			char* mat_name = (char*)aiMaterial->GetName().C_Str();
+
+			int base_tex_count = aiMaterial->GetTextureCount(aiTextureType::aiTextureType_BASE_COLOR);
+			int diff_tex_count = aiMaterial->GetTextureCount(aiTextureType::aiTextureType_DIFFUSE);
+			int norm_tex_count = aiMaterial->GetTextureCount(aiTextureType::aiTextureType_NORMALS);
+
+			aiString base_path;
+			aiString diff_path;
+			aiString norm_path;
+
+			if (base_tex_count > 0)
+			{
+				aiMaterial->GetTexture(aiTextureType_BASE_COLOR, 0, &base_path);
+			}
+			if (diff_tex_count > 0) {
+				aiMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &diff_path);
+
+				char* tex_path = (char*)GetTexturePath(path, diff_path.C_Str());
+
+				int b = 5;
+				new_material->SetColorMap(new Texture2D(tex_path));
+
+			}
+			if (norm_tex_count > 0) {
+
+				aiMaterial->GetTexture(aiTextureType_NORMALS, 0, &norm_path);
+
+				char* tex_path = (char*)GetTexturePath(path, norm_path.C_Str());
+
+				int b = 5;
+				new_material->SetNormalMap(new Texture2D(tex_path));
+
+			}
+			else {
+
+				if (diff_tex_count > 0) {
+
+
+					char* tex_path = (char*)GetNormalTexturePath(path, diff_path.C_Str());
+
+
+
+					int b = 0;
+
+					new_material->SetNormalMap(new Texture2D(tex_path));
+
+					int a = 0;
+
+				}
+
+			}
+
+			int a = 5;
+			materials.push_back(new_material);
+
+		}
+
+		printf("Imported");
+
+
+		for (int m = 0; m < scene->mNumMeshes; m++) {
+
+			const C_STRUCT aiMesh* mesh = scene->mMeshes[m];
+
+			MeshActor* new_mesh = new MeshActor;
+
+			new_mesh->SetMaterial(materials[mesh->mMaterialIndex]);
+
+
+			meshes_actor.push_back(new_mesh);
+
+			printf("Mesh Verts:%d Faces:%d\n", (int)mesh->mNumVertices, (int)mesh->mNumFaces);
+
+			for (int index = 0; index < mesh->mNumVertices; index++) {
+
+				auto vertex = mesh->mVertices[index];
+				auto normal = mesh->mNormals[index];
+				aiVector3D bi_normal;
+
+				if (mesh->mBitangents != NULL) {
+					bi_normal = mesh->mBitangents[index];
+				}
+
+				aiVector3D tangent;
+
+				if (mesh->mTangents != NULL) {
+					tangent = mesh->mTangents[index];
+				}
+
+
+
+				auto uv = mesh->mTextureCoords[0][index];
+				aiColor4D color;
+				color.r = 1;
+				color.g = 1;
+				color.b = 1;
+				color.a = 1;
+				if (mesh->HasVertexColors(0)) {
+					color = mesh->mColors[0][index];
+				}
+
+				VertexActor new_vertex;
+				new_vertex.position = float3(vertex.x, vertex.y,vertex.z);
+				new_vertex.normal = float3(normal.x, normal.y, normal.z);
+				new_vertex.bi_normal = float3(bi_normal.x, bi_normal.y, bi_normal.z);
+
+				new_vertex.tangent = float3(tangent.x, tangent.y, tangent.z);
+
+				new_vertex.texture_coord = float3(uv.x, uv.y, uv.z);									 
+
+				new_vertex.color = float4(color.r, color.g, color.b, color.a);
+
+				new_mesh->AddVertex(new_vertex, true);
+
+				//vmesh->SetVertex(v, nvert);
+
+				//printf("X:%f Y:%f Z:%f \n", vert.x, vert.y, vert.z);
+			}
+
+
+			std::map<std::string, BoneInfo> m_BoneInfoMap;
+			int m_BoneCounter = 0;
+
+			int max_verts = new_mesh->GetVertices().size();
+
+			for (int boneIndex = 0; boneIndex < mesh->mNumBones; ++boneIndex)
+			{
+
+				int boneID = -1;
+				std::string boneName = mesh->mBones[boneIndex]->mName.C_Str();
+				if (m_BoneInfoMap.find(boneName) == m_BoneInfoMap.end()) {
+
+					int v = 0;
+					BoneInfo newBoneInfo;
+					newBoneInfo.id = m_BoneCounter;
+					newBoneInfo.offset = aiMatrix4x4ToGlm(&mesh->mBones[boneIndex]->mOffsetMatrix);
+					m_BoneInfoMap[boneName] = newBoneInfo;
+					boneID = m_BoneCounter;
+					m_BoneCounter++;
+
+				}
+				else {
+					boneID = m_BoneInfoMap[boneName].id;
+				}
+				assert(boneID != -1);
+
+				auto weights = mesh->mBones[boneIndex]->mWeights;
+				int numWeights = mesh->mBones[boneIndex]->mNumWeights;
+
+				for (int weightIndex = 0; weightIndex < numWeights; ++weightIndex)
+				{
+					int vertexId = weights[weightIndex].mVertexId;
+					float weight = weights[weightIndex].mWeight;
+					assert(vertexId <= max_verts);
+
+
+					new_mesh->SetBoneData(vertexId, boneID, weight);
+				}
+
+
+			}
+
+			root->SetBoneInfoMap(m_BoneInfoMap, m_BoneCounter);
+
+
+
+			for (int tri = 0; tri < mesh->mNumFaces; tri++) {
+
+				auto face = mesh->mFaces[tri];
+
+				if (face.mNumIndices == 3) {
+
+					Tri new_tri;
+
+					new_tri.v0 = face.mIndices[0];
+					new_tri.v1 = face.mIndices[1];
+					new_tri.v2 = face.mIndices[2];
+
+					new_mesh->AddTri(new_tri);
+
+					//vmesh->SetTri(t, vtri);
+				}
+			}
+
+			new_mesh->CreateBuffers();
+			root->SetMeshActor(new_mesh);
+
+		}
+
+		NodeAnimator* node_anim = new NodeAnimator;
+
+
+		Animation* anim = new Animation((aiScene*)scene, root);
+		Animator* animer = new Animator(anim);
+
+
+
+		//node_anim->mAnimation = anim;
+		//node_anim->mAnimtor = animer;
+
+		root->SetAnimator(animer);
+
+
+
+		aiReleaseImport(scene);
+
+
+		return root;
+
+
+
+	}
 

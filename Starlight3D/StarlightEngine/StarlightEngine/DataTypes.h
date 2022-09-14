@@ -81,8 +81,9 @@ struct Vertex {
 		/// </summary>
 		//int bone_index = 0;
 
-		int m_BoneIDS[MAX_BONES];
-		float m_Weights[MAX_BONES];
+		float4 m_BoneIDS;
+
+		float4 m_Weights;
 
 
 	};

@@ -175,6 +175,8 @@ class CubeRenderer;
 
 		void RenderNodeBasic(NodeEntity* entity);
 		void RenderNodeLit(NodeEntity* entity);
+		void RenderNodeActorLit(NodeActor* actor);
+		void RenderNodeActorDepth(NodeActor* actor);
 		void RenderNodeDepth(NodeEntity* entity);
 		void RenderNodePositions(NodeEntity* entity);
 
@@ -182,7 +184,7 @@ class CubeRenderer;
 		NodeLight* GetLight(int i);
 
 		void CheckRT(Node3D* node);
-		void InitializeRT();
+		void UpdateRT();
 		RefCntAutoPtr<ITopLevelAS> GetTLAS() {
 			return mTLAS;
 		}

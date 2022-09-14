@@ -2,6 +2,7 @@
 #include "UITheme_Neon.h"
 #include "ButtonControl.h"
 #include "Maths.h"
+#include "ActorAnim.h"
 
 AppEditor::AppEditor() {
 
@@ -27,7 +28,7 @@ void AppEditor::InitApp() {
 	Importer* imp = new Importer;
 
 	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);
-	NodeEntity* sphere = imp->ImportAI("data/test2.fbx", true);
+	NodeActor* act1 = (NodeActor*)imp->ImportActor("data/test/a1.fbx");//->GetChild(0);
 
 	int b = 5;
 
@@ -36,31 +37,40 @@ void AppEditor::InitApp() {
 	auto real_node = (NodeEntity*)n1;//n1->GetChild(0);
 	real_node->SetPhysicsTris();
 
-	auto real2 = (NodeEntity*)sphere;
+	
 
  	int a = 5;
-
+																												 
 	auto norm1 = new Texture2D("data/3d/norm3.png");
 	auto norm2 = new Texture2D("data/3d/norm3.png");
 	auto norm3 = new Texture2D("data/3d/norm3.png");
 
 	mGraph->AddNode(real_node);
-	mGraph->AddNode(real2);
+	mGraph->AddNode(act1);
 
 	real_node->GetMesh(0)->GetMaterial()->SetNormalMap(norm1);
 	real_node->GetMesh(1)->GetMaterial()->SetNormalMap(norm2);
 
 	
 
-	real2->SetPosition(float3(4, 5.5f, 0));
+
+//	real2->SetPosition(float3(4, 5.5f, 0));
+	act1->SetScale(float3(0.05, 0.05, 0.05f));
+	
+	ActorAnim* walk = new ActorAnim("Walk", 0, 82, 0.1f, AnimType::Forward);
+	
+	act1->AddAnim(walk);
+	act1->PlayAnim("Walk");
+	act1->SetRotation(0, 180, 0);
+	mAct1 = act1;
 
 
 	//real2->SetPhysicsConvex();
-	real2->SetPosition(float3(0, 2.5f, 0));
-//	real2->GetBody()->ApplyForce(0, 0, 0);
+	//real2->SetPosition(float3(0, 2.5f, 0));
+	//real2->GetBody()->ApplyForce(25, 0, 0);
 
 	mEnt1 = real_node;
-	mEnt2 = real2;
+	//mEnt2 = real2;
 
 	mLight1 = new NodeLight(false);
 	mLight2 = new NodeLight(false);
@@ -100,7 +110,7 @@ void AppEditor::InitApp() {
 	mGB1 = new GBuffer(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight());
 	mRenderer = new SceneRenderer(mGraph);
 
-	mGraph->InitializeRT();
+	mGraph->UpdateRT();
 	int c = 5;
 	mRTRenderer = new SceneRayTracer(mGraph);
 }
@@ -129,8 +139,12 @@ void AppEditor::RenderApp() {
 	anX++;
 
 	//control
+	if (Application::GetInput()->IsKeyDown(KeyID::Q))
+	{
+		mAct1->UpdateAnim();
+	}
 
-	auto cam = mGraph->GetCamera();
+	auto cam = mGraph->GetCamera();																		 
 	//cam->SetPosition(float3(0, -5, 10));
    // mEnt1->SetRotation(anX, anY, 0);
 	la = la + 0.7f;
@@ -156,7 +170,7 @@ void AppEditor::RenderApp() {
 		mLight1->SetPosition(cp);
 	}
 
-	float spd = -0.05f;
+	float spd = -0.15f;
 
 	if (Application::GetInput()->IsKeyDown(KeyID::W))
 	{
@@ -183,6 +197,8 @@ void AppEditor::RenderApp() {
 	
 	mGraph->RenderShadowMaps();
 	mGraph->Render();
+
+		//mGraph->RenderDepth();
 }
 	else {
 		mRTRenderer->Render();

@@ -2,10 +2,7 @@
 #include "Animation.h"
 
 
-/// <summary>
-/// This class is used internally by NodeActor to animate skeletal meshes.
-/// </summary>
-/*
+
 class Animator
 {
 public:
@@ -17,13 +14,13 @@ public:
         m_FinalBoneMatrices.reserve(100);
 
         for (int i = 0; i < 100; i++)
-            m_FinalBoneMatrices.push_back(glm::mat4(1.0f));
+            m_FinalBoneMatrices.push_back(float4x4::Identity());
     }
 
     void SetTime(float t) {
 
         m_CurrentTime = t;
-        CalculateBoneTransform(&m_CurrentAnimation->GetRootNode(), glm::mat4(1.0f));
+        CalculateBoneTransform(&m_CurrentAnimation->GetRootNode(), float4x4::Identity());
 
     }
 
@@ -38,7 +35,7 @@ public:
 
             }
             else {
-                CalculateBoneTransform(&m_CurrentAnimation->GetRootNode(), glm::mat4(1.0f));
+                CalculateBoneTransform(&m_CurrentAnimation->GetRootNode(), float4x4::Identity());
             }
         }
     }
@@ -49,10 +46,10 @@ public:
         m_CurrentTime = 0.0f;
     }
 
-    void CalculateBoneTransform(const AssimpNodeData* node, glm::mat4 parentTransform)
+    void CalculateBoneTransform(const AssimpNodeData* node,float4x4 parentTransform)
     {
         std::string nodeName = node->name;
-        glm::mat4 nodeTransform = node->transformation;
+        float4x4 nodeTransform = node->transformation;
 
         Bone* Bone = m_CurrentAnimation->FindBone(nodeName);
 
@@ -61,30 +58,34 @@ public:
             Bone->Update(m_CurrentTime);
             nodeTransform = Bone->GetLocalTransform();
         }
+        //<<<
+        float4x4 globalTransformation = nodeTransform * parentTransform;
+        //float4x4 globalTransformation = parentTransform * nodeTransform;
 
-        glm::mat4 globalTransformation = parentTransform * nodeTransform;
 
         auto boneInfoMap = m_CurrentAnimation->GetBoneIDMap();
         if (boneInfoMap.find(nodeName) != boneInfoMap.end())
         {
             int index = boneInfoMap[nodeName].id;
-            glm::mat4 offset = boneInfoMap[nodeName].offset;
-            m_FinalBoneMatrices[index] = globalTransformation * offset;
+            float4x4 offset = boneInfoMap[nodeName].offset;
+            m_FinalBoneMatrices[index] = offset * globalTransformation;
+            //m_FinalBoneMatrices[index] = globalTransformation
+
+
         }
 
         for (int i = 0; i < node->childrenCount; i++)
             CalculateBoneTransform(&node->children[i], globalTransformation);
     }
 
-    std::vector<glm::mat4> GetFinalBoneMatrices()
+    std::vector<float4x4> GetFinalBoneMatrices()
     {
         return m_FinalBoneMatrices;
     }
 
 private:
-    std::vector<glm::mat4> m_FinalBoneMatrices;
+    std::vector<float4x4> m_FinalBoneMatrices;
     Animation* m_CurrentAnimation;
     float m_CurrentTime;
     float m_DeltaTime;
 };
-*/

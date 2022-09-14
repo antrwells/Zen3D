@@ -1,6 +1,6 @@
 #pragma once
 #include "NodeEntity.h"
-
+#include "NodeActor.h"
 
 /// <summary>
 /// The import namespace covers the engine's functionality to import 3D models. 
@@ -15,7 +15,7 @@
 	public:
 
 		NodeEntity* ImportAI(const char* path, bool optimize = true);
-		//Kinetic::Graph::Nodes::NodeActor* ImportActor(const char* path);
+		NodeActor* ImportActor(const char* path);
 
 
 	private:

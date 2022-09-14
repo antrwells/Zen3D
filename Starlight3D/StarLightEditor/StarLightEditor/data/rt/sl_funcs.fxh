@@ -75,6 +75,31 @@ void LightingPass(inout float3 Color, float3 Pos,float3 tex_norm, float3 Norm,fl
 
         float diff = max(dot(lightDir, tex_norm),0.0);
 
+        //dist
+
+         float xd = bScene[0].lightPos[i].x -fragPos.x;
+    float yd = bScene[0].lightPos[i].y - fragPos.y;
+    float zd = bScene[0].lightPos[i].z - fragPos.z;
+
+    float dis = sqrt(xd * xd + yd * yd + zd * zd);
+
+    if (dis < 0) {
+        dis = -dis;
+    }
+
+   
+
+    float dv = dis / bScene[0].lightRange[i];
+
+    if (dv > 1.0) {
+        dv = 1.0;
+    }
+    dv = 1.0 - dv;
+
+    dis = dv;
+
+
+
         NdotL = diff;
         // Optimization - don't trace rays if NdotL is zero or negative
         if (NdotL > 0.0)
@@ -91,7 +116,7 @@ void LightingPass(inout float3 Color, float3 Pos,float3 tex_norm, float3 Norm,fl
             
             shading = PCFSamples > 0 ? shading / float(PCFSamples) : 1.0;
 
-            col += Color * bScene[0].lightDiff[i].rgb * NdotL * shading;
+            col += (Color * bScene[0].lightDiff[i].rgb * NdotL * shading)*dis;
         }
         //col += Color * 0.125;
     }

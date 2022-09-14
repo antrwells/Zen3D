@@ -2,6 +2,7 @@
 #include "SceneGraph.h"
 #include "CubeRenderer.h"
 #include "VString.h"
+#include "NodeActor.h"
 #define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
@@ -265,11 +266,26 @@
 
 		for (int i = 0;i < mRootNode->ChildrenCount();i++)
 		{
-			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+			auto node = mRootNode->GetChild(i);
 
-			if (entity->IsHidden()) continue;
+			if (node->GetType() == NodeType::Entity)
+			{
 
-			RenderNodeDepth((NodeEntity*)entity);
+				auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+				if (entity->IsHidden()) continue;
+
+				RenderNodeDepth((NodeEntity*)entity);
+			}
+			if (node->GetType() == NodeType::Actor)
+			{
+
+				auto actor = (NodeActor*)mRootNode->GetChild(i);
+				if (actor->IsHidden()) continue;
+				RenderNodeActorDepth(actor);
+
+
+			}
 		}
 
 		//printf("RDTime:%d\n", (int)(et - bt));
@@ -277,6 +293,12 @@
 	}
 
 	void SceneGraph::PreRender() {
+
+	}
+
+	void SceneGraph::RenderNodeActorDepth(NodeActor* actor) {
+
+		mRenderer->RenderActorDepth(actor, mCam);
 
 	}
 
@@ -339,6 +361,28 @@
 			RenderNodeDepth((NodeEntity*)entity->GetChild(i));
 
 		}
+
+	}
+
+	void SceneGraph::RenderNodeActorLit(NodeActor* actor) {
+
+		bool first = true;
+		if (actor->GetMeshActor() != nullptr) {
+			for (int i = 0;i < mLights.size();i++)
+			{
+
+				mRenderer->RenderActor(actor, mCam, mLights[i], first);
+				first = false;
+			}
+		}
+
+		return;
+
+		//for (int i = 0;i < actor->ChildrenCount();i++) {
+
+			//RenderNodeLit((NodeEntity*)entity->GetChild(i));
+
+		//}
 
 	}
 
@@ -427,11 +471,21 @@
 	
 		for (int i = 0;i < mRootNode->ChildrenCount();i++)
 		{
-			auto entity = (NodeEntity*)mRootNode->GetChild(i);
-			
-			if (entity->IsHidden()) continue;
+			auto node = mRootNode->GetChild(i);
 
-			RenderNodeLit((NodeEntity*)entity);
+			if (node->GetType() == NodeType::Entity) {
+
+				auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+				if (entity->IsHidden()) continue;
+
+				RenderNodeLit((NodeEntity*)entity);
+			}
+			if (node->GetType() == NodeType::Actor) {
+
+				RenderNodeActorLit((NodeActor*)node);
+
+			}
 		}
 
 		
@@ -504,19 +558,23 @@
 
 	}
 
-	void SceneGraph::InitializeRT() {
+	void SceneGraph::UpdateRT() {
 
-		mRTNodes.resize(0);
-		mRTMeshes.resize(0);
-		CheckRT(mRootNode);
-		printf("Initialized RT structures. Total Entities:%d Total Meshes:%d\n", (int)mRTNodes.size(), (int)mRTMeshes.size());
-		TopLevelASDesc TLASDesc;
-		TLASDesc.Name = "TLAS";
-		TLASDesc.MaxInstanceCount = mRTMeshes.size();
-		TLASDesc.Flags = RAYTRACING_BUILD_AS_ALLOW_UPDATE | RAYTRACING_BUILD_AS_PREFER_FAST_TRACE;
+		bool NeedUpdate = true;
+		if (!mTLAS) {
+			NeedUpdate = false;
 
-		Application::GetApp()->GetDevice()->CreateTLAS(TLASDesc, &mTLAS);
+			mRTNodes.resize(0);
+			mRTMeshes.resize(0);
+			CheckRT(mRootNode);
+			printf("Initialized RT structures. Total Entities:%d Total Meshes:%d\n", (int)mRTNodes.size(), (int)mRTMeshes.size());
+			TopLevelASDesc TLASDesc;
+			TLASDesc.Name = "TLAS";
+			TLASDesc.MaxInstanceCount = mRTMeshes.size();
+			TLASDesc.Flags = RAYTRACING_BUILD_AS_ALLOW_UPDATE | RAYTRACING_BUILD_AS_PREFER_FAST_TRACE;
 
+			Application::GetApp()->GetDevice()->CreateTLAS(TLASDesc, &mTLAS);
+		}
 
 		// Create scratch buffer
 		if (!m_ScratchBuffer)
@@ -564,7 +622,11 @@
 	
 
 			float3 pos = mRTMeshes[i]->GetOwner()->GetPosition();
-			float3x3 rot = mRTMeshes[i]->GetOwner()->GetRotation();
+
+			float3 scale = mRTMeshes[i]->GetOwner()->GetScale();
+
+
+			float3x3 rot = float3x3::Scale(scale.x, scale.y, scale.z) * mRTMeshes[i]->GetOwner()->GetRotation();
 
 			TexItem tex_item;
 
@@ -575,7 +637,8 @@
 			mRTTextureList.push_back(tex_item);
 
 			inst.Transform.SetTranslation(pos.x, pos.y, pos.z);
-			inst.Transform.SetRotation(rot.Data());
+			inst.Transform.SetRotation(rot.Data(), 3U);
+
 
 			Instances.push_back(inst);
 
@@ -583,7 +646,7 @@
 
 		BuildTLASAttribs Attribs;
 		Attribs.pTLAS = mTLAS;
-		Attribs.Update = false;
+		Attribs.Update = NeedUpdate;
 		Attribs.pScratchBuffer = m_ScratchBuffer;
 
 		Attribs.pInstanceBuffer = m_InstanceBuffer;

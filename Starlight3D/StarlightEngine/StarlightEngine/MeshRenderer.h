@@ -40,17 +40,22 @@ using namespace Diligent;
 #include "NodeEntity.h"
 #include "NodeLight.h"
 #include "NodeCamera.h"
+class NodeActor;
 
 class MeshRenderer
 {
 public:
 
 	MeshRenderer();
+	void CreateActorGP();
+	void CreateActorDepthGP();
 	void CreateSimpleGP();
 	void CreateLitGP();
 	void CreateDepthGP();
 	void CreateNormalsGP();
 	void CreatePositionsGP();
+	void RenderActorDepth(NodeActor* actor, NodeCamera* cam);
+	void RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* light, bool firstPass);
 	void RenderPositions(NodeEntity* entity, NodeCamera* cam);
 	void RenderNormals(NodeEntity* entity,NodeCamera* cam);
 	void RenderSimple(NodeEntity* entity, NodeCamera* cam);
@@ -64,16 +69,23 @@ private:
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Depth;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Normals;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Positions;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_Actor_FP;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_Actor_SP;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_Actor_Depth;
 	RefCntAutoPtr<IBuffer> m_LitConstants;
 	RefCntAutoPtr<IBuffer> m_NormalsConstants;
 	RefCntAutoPtr<IBuffer> m_DepthConstants;
 	RefCntAutoPtr<IBuffer> m_PositionsConstants;
+	RefCntAutoPtr<IBuffer> m_ActorConstants;
+	RefCntAutoPtr<IBuffer> m_ActorDepthConstants;
 	RefCntAutoPtr<IBuffer>                m_VSConstants;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Basic;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Lit;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Depth;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Normals;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Positions;
+	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Actor;
+	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Actor_Depth;
 	float4x4                              m_Final;
 
 

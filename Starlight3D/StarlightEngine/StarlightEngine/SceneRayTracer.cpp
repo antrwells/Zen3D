@@ -383,6 +383,7 @@ void SceneRayTracer::UpdateAttribs() {
 void SceneRayTracer::Render() {
     
     UpdateConstants();
+    mGraph->UpdateRT();
 
     auto cam = mGraph->GetCamera();
 

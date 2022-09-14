@@ -1,15 +1,17 @@
 #pragma once
 #include "NodeEntity.h"
-//#include <map>
+#include <map>
 
 #include "BoneInfo.h"
 #include <string>
-#include "ActorAnim.h"
+//#include "ActorAnim.h"
 #include <vector>
 #include <thread>
 #include <mutex>
-class Animator;
+#include "MeshActor.h"
 
+class ActorAnim;
+class Animator;
 
     class NodeActor;
 
@@ -25,13 +27,21 @@ class Animator;
     {
     public:
 
-       
+        NodeActor() {
+            mType = NodeType::Actor;
+            mMeshActor = nullptr;
+       }
+
+
+        MeshActor* GetMeshActor() {
+            return mMeshActor;
+        }
 
         /// <summary>
         /// Internal use only.
         /// </summary>
         /// <returns></returns>
-      //  auto& GetBoneInfoMap() { return m_BoneInfoMap; }
+        auto& GetBoneInfoMap() { return m_BoneInfoMap; }
         /// <summary>
         /// Internal Use Only.
         /// </summary>
@@ -42,20 +52,20 @@ class Animator;
         /// </summary>
         /// <param name="map"></param>
         /// <param name="count"></param>
-    //    void SetBoneInfoMap(std::map<std::string, BoneInfo> map, int count) {
+        void SetBoneInfoMap(std::map<std::string, BoneInfo> map, int count) {
 
-          //  m_BoneInfoMap = map;
-         //   m_BoneCounter = count;
-//
-  //      }
+            m_BoneInfoMap = map;
+            m_BoneCounter = count;
+
+        }
+
 
         /// <summary>
         /// Internal use only.
         /// </summary>
         /// <param name="anim"></param>
-        void SetAnimator(Animator* anim) {
-            mAnimator = anim;
-        }
+        void SetAnimator(Animator* anim);
+
 
         /// <summary>
         /// Updates the animation time by "t" amount.
@@ -79,42 +89,37 @@ class Animator;
         /// </summary>
         /// <param name="anim"></param>
         void AddAnim(ActorAnim* anim) {
-            mAnimations.push_back(anim);
+           mAnimations.push_back(anim);
         }
+
 
 
         /// <summary>
         /// Begins playing the animation.
         /// </summary>
         /// <param name="name"></param>
-        void PlayAnim(std::string name) {
+        void PlayAnim(std::string name);
 
-            mCurrentAnim = nullptr;
+        void SetMeshActor(MeshActor* mesh) {
 
-            for (int i = 0; i < mAnimations.size(); i++) {
-                if (mAnimations[i]->mName == name) {
-                    mCurrentAnim = mAnimations[i];
-                    break;
-                }
-            }
-
-            if (mCurrentAnim != nullptr) {
-
-            }
-
-           
+            mMeshActor = mesh;
 
         }
 
+        Animator* GetAnimator() {
+            return mAnimator;
+        }
      
     private:
-       // std::map<std::string,BoneInfo> m_BoneInfoMap; //
+        std::map<std::string,BoneInfo> m_BoneInfoMap; //
         int m_BoneCounter = 0;
         Animator* mAnimator;
         std::vector<ActorAnim*> mAnimations;
         ActorAnim* mCurrentAnim;
+        MeshActor* mMeshActor;
 
-       // NodeAnimator* mAnimator;
+
+      //  NodeAnimator* mAnimator;
     };
 
 

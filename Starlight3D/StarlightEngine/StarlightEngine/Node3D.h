@@ -11,7 +11,7 @@
 using namespace Diligent;
 
 enum NodeType {
-	Entity,Node,Camera,Light,Other
+	Entity,Node,Camera,Light,Other,Actor
 };
 
 /// <summary>
@@ -148,6 +148,10 @@ enum NodeType {
 		/// </summary>
 		/// <returns></returns>
 		float3 GetPosition();
+
+		float3 GetScale() {
+			return mScale;
+		}
 
 		/// <summary>
 		/// Sets the 3D position of the node.

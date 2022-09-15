@@ -4,6 +4,7 @@
 #include "Maths.h"
 #include "ActorAnim.h"
 
+
 AppEditor::AppEditor() {
 
 
@@ -28,8 +29,13 @@ void AppEditor::InitApp() {
 	Importer* imp = new Importer;
 
 	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);
-	NodeActor* act1 = (NodeActor*)imp->ImportActor("data/test/a1.fbx");//->GetChild(0);
+	NodeEntity* act1 = (NodeEntity*)imp->ImportAI("data/test/b1.fbx");;//->GetChild(0
 
+	//auto fbx_importer = new FBXImporter;
+
+	
+
+//	NodeEntity* n1 = nullptr;
 	int b = 5;
 
 	mGraph = new SceneGraph();
@@ -55,14 +61,14 @@ void AppEditor::InitApp() {
 
 
 //	real2->SetPosition(float3(4, 5.5f, 0));
-	act1->SetScale(float3(0.05, 0.05, 0.05f));
+//act1->SetScale(float3(0.05, 0.05, 0.05f));
 	
 	ActorAnim* walk = new ActorAnim("Walk", 0, 82, 0.1f, AnimType::Forward);
 	
-	act1->AddAnim(walk);
-	act1->PlayAnim("Walk");
-	act1->SetRotation(0, 180, 0);
-	mAct1 = act1;
+	//act1->AddAnim(walk);
+	//act1->PlayAnim("Walk");
+	//act1->SetRotation(0, 180, 0);
+//	mAct1 = act1;
 
 
 	//real2->SetPhysicsConvex();
@@ -141,7 +147,7 @@ void AppEditor::RenderApp() {
 	//control
 	if (Application::GetInput()->IsKeyDown(KeyID::Q))
 	{
-		mAct1->UpdateAnim();
+	//	mAct1->UpdateAnim();
 	}
 
 	auto cam = mGraph->GetCamera();																		 

@@ -217,7 +217,7 @@ class CubeRenderer;
 
 	private:
 	
-		std::vector<NodeEntity*> mRTNodes;
+		std::vector<Node3D*> mRTNodes;
 		std::vector<Mesh3D*> mRTMeshes;
 		//Kinetic::FX::Effect* FXDepth;
 

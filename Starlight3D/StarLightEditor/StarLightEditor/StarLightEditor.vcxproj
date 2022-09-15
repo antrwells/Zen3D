@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\git\de\DiligentEngine\DiligentTools\Imgui\interface;C:\git\de\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\de2\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\pxshared\include;C:\git\de\DiligentEngine\DiligentTools;C:\git\de\DiligentEngine\DiligentCore;C:\git\PhysX-4.1\physx\source\foundation\include;C:\projects\Starlight3D\StarlightEngine\StarlightEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\FBX\2020.2.1\include;C:\git\de\DiligentEngine\DiligentTools\Imgui\interface;C:\git\de\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\de2\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\pxshared\include;C:\git\de\DiligentEngine\DiligentTools;C:\git\de\DiligentEngine\DiligentCore;C:\git\PhysX-4.1\physx\source\foundation\include;C:\projects\Starlight3D\StarlightEngine\StarlightEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SupportJustMyCode>true</SupportJustMyCode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -123,6 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\FBX\2020.2.1\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

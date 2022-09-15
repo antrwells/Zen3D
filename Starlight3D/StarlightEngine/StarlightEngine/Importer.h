@@ -16,6 +16,8 @@
 
 		NodeEntity* ImportAI(const char* path, bool optimize = true);
 		NodeActor* ImportActor(const char* path);
+	
+
 
 
 	private:

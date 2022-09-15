@@ -14,7 +14,7 @@
 
 
 #include "VFile.h"
-#include "MeshActor.h"
+
 #include "Common/interface/BasicMath.hpp"
 
 
@@ -22,8 +22,9 @@ using namespace Diligent;
 NodeEntity* cur = NULL;
 
 std::vector<Mesh3D*> meshes;
-std::vector<MeshActor*> meshes_actor;
+//std::vector<MeshActor*> meshes_actor;
 std::vector<Material*> materials;
+
 
 const char* mpath = "";
 
@@ -231,7 +232,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 		printf("Importing scene:");
 		printf(path);
 		printf("|\n");
-		scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_OptimizeGraph | aiProcess_OptimizeMeshes | aiProcess_CalcTangentSpace | aiProcess_FixInfacingNormals | aiProcess_FindDegenerates | aiProcess_FindInvalidData |  aiProcess_Triangulate | aiProcess_ValidateDataStructure);
+		scene = aiImportFile(path,  aiProcess_OptimizeGraph |  aiProcess_CalcTangentSpace |    aiProcess_Triangulate | aiProcess_ValidateDataStructure);
 
 		if (scene == nullptr)
 		{
@@ -400,6 +401,9 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 					new_mesh->AddTri(new_tri);
 
 					//vmesh->SetTri(t, vtri);
+				}
+				else {
+					int a = 5;
 				}
 			}
 			//new_mesh->GenerateNormals();
@@ -595,12 +599,12 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 			const C_STRUCT aiMesh* mesh = scene->mMeshes[m];
 
-			MeshActor* new_mesh = new MeshActor;
+			Mesh3D* new_mesh = new Mesh3D;
 
 			new_mesh->SetMaterial(materials[mesh->mMaterialIndex]);
 
 
-			meshes_actor.push_back(new_mesh);
+			meshes.push_back(new_mesh);
 
 			printf("Mesh Verts:%d Faces:%d\n", (int)mesh->mNumVertices, (int)mesh->mNumFaces);
 
@@ -632,7 +636,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 					color = mesh->mColors[0][index];
 				}
 
-				VertexActor new_vertex;
+				Vertex new_vertex;
 				new_vertex.position = float3(vertex.x, vertex.y,vertex.z);
 				new_vertex.normal = float3(normal.x, normal.y, normal.z);
 				new_vertex.bi_normal = float3(bi_normal.x, bi_normal.y, bi_normal.z);
@@ -716,7 +720,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 			}
 
 			new_mesh->CreateBuffers();
-			root->SetMeshActor(new_mesh);
+			root->AddMesh(new_mesh);
 
 		}
 

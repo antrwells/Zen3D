@@ -239,8 +239,8 @@
 		if (reset) {
 			for (int i = 0; i < 4; i++)
 			{
-				//vertex.m_BoneIDS[i] = -1;
-				//vertex.m_Weights[i] = 0.0f;
+				vertex.m_BoneIDS[i] = -1;
+				vertex.m_Weights[i] = 0.0f;
 			}
 		}
 		mVertices.push_back(vertex);
@@ -359,7 +359,9 @@
 
 	void Mesh3D::CreateRTBuffers() {
 
-
+		if (mTris.size() == 0) {
+			return;
+		}
 	;
 		std::vector<RTVertex> rtVertices;
 

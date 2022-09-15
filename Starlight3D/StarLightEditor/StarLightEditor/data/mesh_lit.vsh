@@ -25,6 +25,8 @@ struct VSInput
     float3 Norm : ATTRIB3;
     float3 BiNorm : ATTRIB4;
     float3 Tang : ATTRIB5;
+    float4 m_BoneIds : ATTRIB6;
+    float4 m_Weights : ATTRIB7;
 };
 
 struct PSInput

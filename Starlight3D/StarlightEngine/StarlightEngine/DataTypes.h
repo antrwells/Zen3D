@@ -37,11 +37,15 @@ struct Vertex {
 	/// </summary>
 	float3 tangent;
 
+	float4 m_BoneIDS;
+
+	float4 m_Weights;
+
 	};
 	/// <summary>
 	/// A vertex is a single point in a mesh or other vertex constructed entity.
 	/// </summary>
-	struct VertexActor
+	struct Vertex2Actor
 	{
 
 		/// <summary>

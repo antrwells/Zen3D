@@ -580,7 +580,9 @@ void MeshRenderer::CreatePositionsGP() {
         LayoutElement{2,0,3,VT_FLOAT32,False}, //tex-coord
         LayoutElement{3,0,3,VT_FLOAT32,False }, //norm
         LayoutElement{4,0,3,VT_FLOAT32,False}, //bi-norm
-        LayoutElement{5,0,3,VT_FLOAT32,False} //tangent
+        LayoutElement{5,0,3,VT_FLOAT32,False}, //tangent
+        LayoutElement{6,0,4,VT_FLOAT32,False },
+        LayoutElement{7, 0, 4, VT_FLOAT32, False}
     };
     // clang-format on
     PSOCreateInfo.GraphicsPipeline.InputLayout.LayoutElements = LayoutElems;
@@ -819,7 +821,9 @@ void MeshRenderer::CreateNormalsGP() {
         LayoutElement{2,0,3,VT_FLOAT32,False}, //tex-coord
         LayoutElement{3,0,3,VT_FLOAT32,False }, //norm
         LayoutElement{4,0,3,VT_FLOAT32,False}, //bi-norm
-        LayoutElement{5,0,3,VT_FLOAT32,False} //tangent
+        LayoutElement{5,0,3,VT_FLOAT32,False}, //tangent
+        LayoutElement{6,0,4,VT_FLOAT32,False },
+        LayoutElement{7, 0, 4, VT_FLOAT32, False}
     };
     // clang-format on
     PSOCreateInfo.GraphicsPipeline.InputLayout.LayoutElements = LayoutElems;
@@ -1055,7 +1059,9 @@ void MeshRenderer::CreateSimpleGP() {
         LayoutElement{2,0,3,VT_FLOAT32,False}, //tex-coord
         LayoutElement{3,0,3,VT_FLOAT32,False }, //norm
         LayoutElement{4,0,3,VT_FLOAT32,False}, //bi-norm
-        LayoutElement{5,0,3,VT_FLOAT32,False} //tangent
+        LayoutElement{5,0,3,VT_FLOAT32,False}, //tangent
+        LayoutElement{6,0,4,VT_FLOAT32,False },
+        LayoutElement{7, 0, 4, VT_FLOAT32, False}
     };
     // clang-format on
     PSOCreateInfo.GraphicsPipeline.InputLayout.LayoutElements = LayoutElems;
@@ -1194,7 +1200,9 @@ void MeshRenderer::CreateDepthGP() {
         LayoutElement{2,0,3,VT_FLOAT32,False}, //tex-coord
         LayoutElement{3,0,3,VT_FLOAT32,False }, //norm
         LayoutElement{4,0,3,VT_FLOAT32,False}, //bi-norm
-        LayoutElement{5,0,3,VT_FLOAT32,False} //tangent
+        LayoutElement{5,0,3,VT_FLOAT32,False}, //tangent
+        LayoutElement{6,0,4,VT_FLOAT32,False },
+        LayoutElement{7, 0, 4, VT_FLOAT32, False}
     };
     // clang-format on
     PSOCreateInfo.GraphicsPipeline.InputLayout.LayoutElements = LayoutElems;
@@ -1260,6 +1268,10 @@ void MeshRenderer::RenderDepth(NodeEntity* entity, NodeCamera* cam) {
         {
             auto mesh = entity->GetMesh(i);
 
+            if (mesh->GetTris().size() == 0)
+            {
+                continue;
+            }
 
 
           //  auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
@@ -1444,7 +1456,9 @@ void MeshRenderer::CreateLitGP() {
         LayoutElement{2,0,3,VT_FLOAT32,False}, //tex-coord
         LayoutElement{3,0,3,VT_FLOAT32,False }, //norm
         LayoutElement{4,0,3,VT_FLOAT32,False}, //bi-norm
-        LayoutElement{5,0,3,VT_FLOAT32,False} //tangent
+        LayoutElement{5,0,3,VT_FLOAT32,False}, //tangent
+        LayoutElement{6,0,4,VT_FLOAT32,False },
+        LayoutElement{7, 0, 4, VT_FLOAT32, False}
     };
     // clang-format on
     PSOCreateInfo.GraphicsPipeline.InputLayout.LayoutElements = LayoutElems;
@@ -1614,6 +1628,10 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
         {
             auto mesh = entity->GetMesh(i);
 
+            if (mesh->GetTris().size() == 0)
+            {
+                return;
+            }
            
 
             auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
@@ -1911,7 +1929,7 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
     if (firstpass) {
 
       
-        auto mesh = actor->GetMeshActor();
+        auto mesh = actor->GetMesh(0);
 
 
 
@@ -2019,7 +2037,7 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
     else {
 
        
-            auto mesh = actor->GetMeshActor();
+    auto mesh = actor->GetMesh(0);
 
             Application* gApp = Application::GetApp();
 
@@ -2138,7 +2156,7 @@ void MeshRenderer::RenderActorDepth(NodeActor* actor, NodeCamera* cam) {
     auto matrices = actor->GetAnimator()->GetFinalBoneMatrices();
 
 
-        auto mesh = actor->GetMeshActor();
+    auto mesh = actor->GetMesh(0);
 
 
 

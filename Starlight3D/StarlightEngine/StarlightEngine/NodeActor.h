@@ -8,7 +8,8 @@
 #include <vector>
 #include <thread>
 #include <mutex>
-#include "MeshActor.h"
+//#include "MeshActor.h"
+
 
 class ActorAnim;
 class Animator;
@@ -29,13 +30,10 @@ class Animator;
 
         NodeActor() {
             mType = NodeType::Actor;
-            mMeshActor = nullptr;
+          
        }
 
 
-        MeshActor* GetMeshActor() {
-            return mMeshActor;
-        }
 
         /// <summary>
         /// Internal use only.
@@ -100,11 +98,7 @@ class Animator;
         /// <param name="name"></param>
         void PlayAnim(std::string name);
 
-        void SetMeshActor(MeshActor* mesh) {
-
-            mMeshActor = mesh;
-
-        }
+        
 
         Animator* GetAnimator() {
             return mAnimator;
@@ -116,7 +110,7 @@ class Animator;
         Animator* mAnimator;
         std::vector<ActorAnim*> mAnimations;
         ActorAnim* mCurrentAnim;
-        MeshActor* mMeshActor;
+        //MeshActor* mMeshActor;
 
 
       //  NodeAnimator* mAnimator;

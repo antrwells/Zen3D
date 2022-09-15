@@ -1,14 +1,12 @@
 ﻿  AppEditor.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(211,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshActor.h(56,27): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshActor.h(77,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshActor.h(81,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -20,11 +18,6 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(41,31): warning 
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(42,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(61,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(71,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarLightEditor\StarLightEditor\AppEditor.cpp(58,42): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
 StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
 StarlightEngine.lib(imgui_widgets.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_widgets.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
 StarlightEngine.lib(imgui_draw.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_draw.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info

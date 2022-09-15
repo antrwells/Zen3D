@@ -133,10 +133,10 @@ class Node3D;
 			Vertex vertex = mVertices[index];
 			for (int i = 0; i < MAX_BONE_WEIGHTS; ++i)
 			{
-				//if (vertex.m_BoneIDS[i] < 0)
+				if (vertex.m_BoneIDS[i] < 0)
 				{
-					//vertex.m_Weights[i] = weight;
-					//vertex.m_BoneIDS[i] = boneID;
+					vertex.m_Weights[i] = weight;
+					vertex.m_BoneIDS[i] = boneID;
 					break;
 				}
 			}
@@ -215,6 +215,12 @@ class Node3D;
 		//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Kinetic::DataTypes::Tri) * mTris.size(), mTris.data(), GL_STATIC_DRAW);
 
 
+		}
+
+		void SetBlas(RefCntAutoPtr<IBottomLevelAS> blas)
+		{
+
+			mBLAS = blas;
 		}
 
 		RefCntAutoPtr<IBottomLevelAS> GetBlas()

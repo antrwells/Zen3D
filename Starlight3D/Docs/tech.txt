@@ -1,1 +1,3 @@
 -research nSight integration.
+
+-Converge multiple lights into a single render call via constant buffers.

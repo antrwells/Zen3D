@@ -367,14 +367,14 @@
 	void SceneGraph::RenderNodeActorLit(NodeActor* actor) {
 
 		bool first = true;
-		if (actor->GetMeshActor() != nullptr) {
+//	{
 			for (int i = 0;i < mLights.size();i++)
 			{
 
 				mRenderer->RenderActor(actor, mCam, mLights[i], first);
 				first = false;
 			}
-		}
+	//	}
 
 		return;
 
@@ -547,6 +547,23 @@
 				}
 
 			
+
+		}
+
+		if (node->GetType() == NodeType::Actor) {
+
+			NodeActor* actor = (NodeActor*)node;
+			mRTNodes.push_back(actor);
+
+
+			auto mesh_actor = actor->GetMesh(0);
+
+			mRTMeshes.push_back(mesh_actor);
+			//for (int i = 0;i < entity->GetMeshes().size();i++) {
+
+				//mRTMeshes.push_back(mesh_actor);
+
+			//}
 
 		}
 

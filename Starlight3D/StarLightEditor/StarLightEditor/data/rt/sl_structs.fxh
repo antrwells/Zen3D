@@ -42,6 +42,10 @@ struct sVertex {
 	/// </summary>
 	float3 tangent;
 
+    float4 m_BoneIds;
+
+    float4 m_Weights;
+
 	};
 
 struct sTri {

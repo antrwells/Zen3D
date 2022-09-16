@@ -1,4 +1,6 @@
-﻿GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GraphicsEngineD3D12_64d.lib(GraphicsEngineD3D12_64d.dll); second definition ignored
+﻿  PPBloom.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\PPBloom.cpp(25,141): warning C4305: 'argument': truncation from 'double' to 'float'
+GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GraphicsEngineD3D12_64d.lib(GraphicsEngineD3D12_64d.dll); second definition ignored
 Diligent-GraphicsEngineD3D11-static.lib(EngineFactoryD3D11.obj) : warning LNK4006: "struct Diligent::IEngineFactoryD3D11 * __cdecl Diligent::GetEngineFactoryD3D11(void)" (?GetEngineFactoryD3D11@Diligent@@YAPEAUIEngineFactoryD3D11@1@XZ) already defined in GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
@@ -2815,100 +2817,6 @@ Diligent-Imgui.lib(imgui_impl_win32.obj) : warning LNK4006: "void __cdecl ImGui_
 Diligent-Imgui.lib(imgui_impl_win32.obj) : warning LNK4006: "float __cdecl ImGui_ImplWin32_GetDpiScaleForHwnd(void *)" (?ImGui_ImplWin32_GetDpiScaleForHwnd@@YAMPEAX@Z) already defined in DiligentTools.lib(imgui_impl_win32.obj); second definition ignored
 Diligent-Imgui.lib(imgui_impl_win32.obj) : warning LNK4006: "float __cdecl ImGui_ImplWin32_GetDpiScaleForMonitor(void *)" (?ImGui_ImplWin32_GetDpiScaleForMonitor@@YAMPEAX@Z) already defined in DiligentTools.lib(imgui_impl_win32.obj); second definition ignored
 Diligent-Imgui.lib(imgui_impl_win32.obj) : warning LNK4006: "__int64 __cdecl ImGui_ImplWin32_WndProcHandler(struct HWND__ *,unsigned int,unsigned __int64,__int64)" (?ImGui_ImplWin32_WndProcHandler@@YA_JPEAUHWND__@@I_K_J@Z) already defined in DiligentTools.lib(imgui_impl_win32.obj); second definition ignored
-zlib-md.lib(adler32.obj) : warning LNK4006: adler32 already defined in DiligentTools.lib(adler32.obj); second definition ignored
-zlib-md.lib(adler32.obj) : warning LNK4006: adler32_combine already defined in DiligentTools.lib(adler32.obj); second definition ignored
-zlib-md.lib(adler32.obj) : warning LNK4006: adler32_combine64 already defined in DiligentTools.lib(adler32.obj); second definition ignored
-zlib-md.lib(compress.obj) : warning LNK4006: compress already defined in DiligentTools.lib(compress.obj); second definition ignored
-zlib-md.lib(compress.obj) : warning LNK4006: compress2 already defined in DiligentTools.lib(compress.obj); second definition ignored
-zlib-md.lib(compress.obj) : warning LNK4006: compressBound already defined in DiligentTools.lib(compress.obj); second definition ignored
-zlib-md.lib(crc32.obj) : warning LNK4006: crc32 already defined in DiligentTools.lib(crc32.obj); second definition ignored
-zlib-md.lib(crc32.obj) : warning LNK4006: crc32_combine already defined in DiligentTools.lib(crc32.obj); second definition ignored
-zlib-md.lib(crc32.obj) : warning LNK4006: get_crc_table already defined in DiligentTools.lib(crc32.obj); second definition ignored
-zlib-md.lib(crc32.obj) : warning LNK4006: crc32_combine64 already defined in DiligentTools.lib(crc32.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflate_copyright already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflate already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateEnd already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateSetDictionary already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateCopy already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateReset already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateParams already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateTune already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateBound already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflatePending already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflatePrime already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateSetHeader already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateInit_ already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateInit2_ already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(deflate.obj) : warning LNK4006: deflateResetKeep already defined in DiligentTools.lib(deflate.obj); second definition ignored
-zlib-md.lib(gzclose.obj) : warning LNK4006: gzclose already defined in DiligentTools.lib(gzclose.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzdopen already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzbuffer already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzrewind already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzeof already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzerror already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzclearerr already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzopen already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzseek already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gztell already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzoffset already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzopen_w already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzopen64 already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzseek64 already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gztell64 already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gzoffset64 already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzlib.obj) : warning LNK4006: gz_error already defined in DiligentTools.lib(gzlib.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzread already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzgets already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzgetc already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzungetc already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzdirect already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzclose_r already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzread.obj) : warning LNK4006: gzgetc_ already defined in DiligentTools.lib(gzread.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzsetparams already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzwrite already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzprintf already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzputs already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzputc already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzflush already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzclose_w already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(gzwrite.obj) : warning LNK4006: gzvprintf already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflate already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateEnd already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateSetDictionary already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateGetDictionary already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateSync already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateCopy already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateReset already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateReset2 already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflatePrime already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateMark already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateGetHeader already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateInit_ already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateInit2_ already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateSyncPoint already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateUndermine already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(inflate.obj) : warning LNK4006: inflateResetKeep already defined in DiligentTools.lib(inflate.obj); second definition ignored
-zlib-md.lib(infback.obj) : warning LNK4006: inflateBack already defined in DiligentTools.lib(infback.obj); second definition ignored
-zlib-md.lib(infback.obj) : warning LNK4006: inflateBackEnd already defined in DiligentTools.lib(infback.obj); second definition ignored
-zlib-md.lib(infback.obj) : warning LNK4006: inflateBackInit_ already defined in DiligentTools.lib(infback.obj); second definition ignored
-zlib-md.lib(inftrees.obj) : warning LNK4006: inflate_copyright already defined in DiligentTools.lib(inftrees.obj); second definition ignored
-zlib-md.lib(inftrees.obj) : warning LNK4006: inflate_table already defined in DiligentTools.lib(inftrees.obj); second definition ignored
-zlib-md.lib(inffast.obj) : warning LNK4006: inflate_fast already defined in DiligentTools.lib(inffast.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _length_code already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _dist_code already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _tr_init already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _tr_tally already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _tr_flush_block already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _tr_flush_bits already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _tr_align already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(trees.obj) : warning LNK4006: _tr_stored_block already defined in DiligentTools.lib(trees.obj); second definition ignored
-zlib-md.lib(uncompr.obj) : warning LNK4006: uncompress already defined in DiligentTools.lib(uncompr.obj); second definition ignored
-zlib-md.lib(zutil.obj) : warning LNK4006: z_errmsg already defined in DiligentTools.lib(zutil.obj); second definition ignored
-zlib-md.lib(zutil.obj) : warning LNK4006: zlibVersion already defined in DiligentTools.lib(zutil.obj); second definition ignored
-zlib-md.lib(zutil.obj) : warning LNK4006: zlibCompileFlags already defined in DiligentTools.lib(zutil.obj); second definition ignored
-zlib-md.lib(zutil.obj) : warning LNK4006: zError already defined in DiligentTools.lib(zutil.obj); second definition ignored
-zlib-md.lib(zutil.obj) : warning LNK4006: zcalloc already defined in DiligentTools.lib(zutil.obj); second definition ignored
-zlib-md.lib(zutil.obj) : warning LNK4006: zcfree already defined in DiligentTools.lib(zutil.obj); second definition ignored
 Importer.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
 Importer.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
   StarlightEngine.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\StarlightEngine.lib

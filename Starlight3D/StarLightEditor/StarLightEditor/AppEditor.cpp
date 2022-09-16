@@ -3,6 +3,8 @@
 #include "ButtonControl.h"
 #include "Maths.h"
 #include "ActorAnim.h"
+#include "PostProcessing.h"
+#include "PPBloom.h"
 
 
 AppEditor::AppEditor() {
@@ -29,7 +31,8 @@ void AppEditor::InitApp() {
 	Importer* imp = new Importer;
 
 	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);
-	NodeEntity* act1 = (NodeEntity*)imp->ImportAI("data/test/b1.fbx");;//->GetChild(0
+	NodeActor* act1 = (NodeActor*)imp->ImportActor("data/test/b1.fbx");;//->GetChild(0
+
 
 	//auto fbx_importer = new FBXImporter;
 
@@ -61,18 +64,18 @@ void AppEditor::InitApp() {
 
 
 //	real2->SetPosition(float3(4, 5.5f, 0));
-//act1->SetScale(float3(0.05, 0.05, 0.05f));
+ //act1->SetScale(float3(0.05, 0.05, 0.05f));
 	
-	ActorAnim* walk = new ActorAnim("Walk", 0, 82, 0.1f, AnimType::Forward);
+	ActorAnim* walk = new ActorAnim("Walk", 0, 78, 0.4f, AnimType::Forward);
 	
-	//act1->AddAnim(walk);
-	//act1->PlayAnim("Walk");
+	act1->AddAnim(walk);
+	act1->PlayAnim("Walk");
 	//act1->SetRotation(0, 180, 0);
-//	mAct1 = act1;
+	mAct1 = act1;
 
 
 	//real2->SetPhysicsConvex();
-	//real2->SetPosition(float3(0, 2.5f, 0));
+	//real2->SetPosition(float3(0, 2.5f, 0));d
 	//real2->GetBody()->ApplyForce(25, 0, 0);
 
 	mEnt1 = real_node;
@@ -119,6 +122,11 @@ void AppEditor::InitApp() {
 	mGraph->UpdateRT();
 	int c = 5;
 	mRTRenderer = new SceneRayTracer(mGraph);
+	mPP = new PostProcessing(mGraph);
+
+	auto pp_bloom = new PPBloom();
+	mPP->AddPostProcess(pp_bloom);
+
 }
 
 void AppEditor::UpdateApp() {
@@ -137,6 +145,7 @@ float lx = 0, lz = 0;
 float la = 0;
 int dx = 0;
 bool mUseRT = false;
+bool mUsePP = false;
 void AppEditor::RenderApp() {
 
 	std::cout << "Rendering App.\n";
@@ -147,7 +156,7 @@ void AppEditor::RenderApp() {
 	//control
 	if (Application::GetInput()->IsKeyDown(KeyID::Q))
 	{
-	//	mAct1->UpdateAnim();
+		mAct1->UpdateAnim();
 	}
 
 	auto cam = mGraph->GetCamera();																		 
@@ -197,20 +206,18 @@ void AppEditor::RenderApp() {
 	}
 
 
+	if (mUsePP) {
 
-	if (!mUseRT)
-	{
-	
-	mGraph->RenderShadowMaps();
-	mGraph->Render();
+		mGraph->RenderShadowMaps();
+		mPP->Render();
 
-		//mGraph->RenderDepth();
-}
-	else {
-		mRTRenderer->Render();
-		//		 int a = 5;
 	}
+	else {
 
+		mGraph->RenderShadowMaps();
+		mGraph->Render();
+
+	}
 
 	ImGui::Begin("Starlight3D - Test 001");
 
@@ -218,6 +225,7 @@ void AppEditor::RenderApp() {
 	ImGui::Text("Below are some settings");
 
 	ImGui::Checkbox("RayTracing?", &mUseRT);
+	ImGui::Checkbox("Post Processing?", &mUsePP);
 
 	ImGui::End();
 

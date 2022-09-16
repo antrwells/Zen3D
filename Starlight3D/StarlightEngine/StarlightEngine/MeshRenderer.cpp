@@ -2003,6 +2003,12 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
                 lc.bones[i] = matrices[i].Transpose();
             }
 
+            //------------------------
+
+
+
+            //------------------------
+
             MapHelper<ActorConstants> CBConstants(cont, m_ActorConstants, MAP_WRITE, MAP_FLAG_DISCARD);
             *CBConstants = lc;
             m_pImmediateContext->SetPipelineState(m_PSO_Actor_FP);

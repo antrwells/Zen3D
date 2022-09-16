@@ -39,6 +39,8 @@
 
 using namespace Diligent;
 
+class Texture2D;
+
 class RenderTarget2D
 {
 public:
@@ -53,13 +55,17 @@ public:
 		mClearColor = color;
 	}
 	static RenderTarget2D* BoundTarget;
-
+	int GetWidth() { return mWidth; }
+	int GetHeight() { return mHeight; }
+	Texture2D* ToTexture2D();
 private:
 	float4 mClearColor;
 	RefCntAutoPtr<ITexture> pRTColor;
 	RefCntAutoPtr<ITexture> pRTDepth;
 	RefCntAutoPtr<ITextureView> m_pColorRTV;
 	RefCntAutoPtr<ITextureView> m_pDepthDSV;
+	Texture2D* mTex2D = nullptr;
+	int mWidth, mHeight;
 
 };
 

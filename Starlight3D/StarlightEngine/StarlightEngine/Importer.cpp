@@ -515,7 +515,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 		printf("Importing scene:");
 		printf(path);
 		printf("|\n");
-		scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_OptimizeGraph | aiProcess_OptimizeMeshes | aiProcess_CalcTangentSpace | aiProcess_FixInfacingNormals | aiProcess_FindDegenerates | aiProcess_FindInvalidData | aiProcess_Triangulate | aiProcess_ValidateDataStructure);
+		scene = aiImportFile(path, aiProcess_OptimizeGraph | aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_ValidateDataStructure);
 
 		if (scene == nullptr)
 		{
@@ -737,7 +737,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 		root->SetAnimator(animer);
 
-
+	//	root->SetRotation(-90, 0, 0);
 
 		aiReleaseImport(scene);
 

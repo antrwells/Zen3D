@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{016e5142-55c8-472d-aeca-48a5c935b48a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PP">
+      <UniqueIdentifier>{17195dcf-ab67-412e-8778-b467c62e93a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PP\PostProcesses">
+      <UniqueIdentifier>{88a326b6-c2c6-4dff-bdb9-283ef092fbba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PP\FrameTypes">
+      <UniqueIdentifier>{662b5df4-b6e1-4edf-91a8-8bc5b4a6ac04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -183,6 +195,24 @@
     <ClInclude Include="BigBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PostProcessing.h">
+      <Filter>PP</Filter>
+    </ClInclude>
+    <ClInclude Include="PPFrameType.h">
+      <Filter>PP</Filter>
+    </ClInclude>
+    <ClInclude Include="PostProcess.h">
+      <Filter>PP</Filter>
+    </ClInclude>
+    <ClInclude Include="PPBloom.h">
+      <Filter>PP\PostProcesses</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameTypeColor.h">
+      <Filter>PP\FrameTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PPRenderer.h">
+      <Filter>PP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -343,6 +373,24 @@
     </ClCompile>
     <ClCompile Include="BigBuffer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PostProcessing.cpp">
+      <Filter>PP</Filter>
+    </ClCompile>
+    <ClCompile Include="PPFrameType.cpp">
+      <Filter>PP</Filter>
+    </ClCompile>
+    <ClCompile Include="PostProcess.cpp">
+      <Filter>PP</Filter>
+    </ClCompile>
+    <ClCompile Include="PPBloom.cpp">
+      <Filter>PP\PostProcesses</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameTypeColor.cpp">
+      <Filter>PP\FrameTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PPRenderer.cpp">
+      <Filter>PP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

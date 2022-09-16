@@ -11,6 +11,7 @@
 #include "GBuffer.h"
 #include "SceneRenderer.h"
 #include "SceneRayTracer.h"
+#include "PostProcessing.h"
 
 class AppEditor : public Application
 {
@@ -40,6 +41,7 @@ private:
     GBuffer* mGB1;
     SceneRenderer* mRenderer;
     SceneRayTracer* mRTRenderer;
+    PostProcessing* mPP;
 
 };
 

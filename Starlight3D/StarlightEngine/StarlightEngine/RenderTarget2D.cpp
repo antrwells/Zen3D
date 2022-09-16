@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "RenderTarget2D.h"
 #include "Application.h"
+#include "Texture2D.h"
 
 RenderTarget2D::RenderTarget2D(int width, int height) {
 
@@ -36,7 +37,8 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 	// Store the depth-stencil view
 	m_pDepthDSV = pRTDepth->GetDefaultView(TEXTURE_VIEW_DEPTH_STENCIL);
 	mClearColor = float4(0,0,0,1);
-
+	mWidth = width;
+	mHeight = height;
 
 }
 
@@ -66,6 +68,18 @@ void RenderTarget2D::Release() {
 	m_pImmediateContext->SetRenderTargets(1, &pRTV, gApp->GetSwap()->GetDepthBufferDSV(), RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 	//m_pImmediateContext->ClearRenderTarget(pRTV, Zero, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
+
+}
+
+Texture2D* RenderTarget2D::ToTexture2D() {
+
+	if (mTex2D == nullptr) {
+
+		mTex2D = new Texture2D(this);
+
+	}
+
+	return mTex2D;
 
 }
 

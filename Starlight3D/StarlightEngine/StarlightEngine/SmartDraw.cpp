@@ -437,6 +437,8 @@ void SmartDraw::End(RefCntAutoPtr<IPipelineState> pso, RefCntAutoPtr<IBuffer> co
 
       //  m_pSRB->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(dd->Tex->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
 
+        srb->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(dd->Tex->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+
 
         auto m_pImmediateContext = gApp->GetContext();
 

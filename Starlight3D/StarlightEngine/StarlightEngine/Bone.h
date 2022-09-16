@@ -101,7 +101,7 @@ public:
         float4x4 rotation = InterpolateRotation(animationTime);
         float4x4 scale = InterpolateScaling(animationTime);
         //m_LocalTransform = translation * rotation;//*scale;
-        m_LocalTransform =scale* rotation * translation;      
+        m_LocalTransform = rotation * translation;      
 
 
     }

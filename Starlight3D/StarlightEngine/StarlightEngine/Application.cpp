@@ -109,8 +109,14 @@ bool Application::Initialize(HWND hWnd) {
         return false;
         break;
     }
+   
     auto SC = m_pSwapChain->GetDesc();
     m_pImGui.reset(new ImGuiImplWin32(hWnd, m_pDevice, SCDesc.ColorBufferFormat, SC.DepthBufferFormat));
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     return true;
 
 }

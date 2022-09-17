@@ -1,18 +1,4 @@
-﻿  AppZen.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(211,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
+﻿StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
 StarlightEngine.lib(imgui_widgets.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_widgets.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
 StarlightEngine.lib(imgui_draw.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_draw.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
 StarlightEngine.lib(imgui_tables.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_tables.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info

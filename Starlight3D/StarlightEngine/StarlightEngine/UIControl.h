@@ -5,6 +5,7 @@
 //#include "DragObject.h"
 #include "Helper.h"
 #include<string>
+#include "DockUsage.h"
 class UIControl
 {
 public:
@@ -37,10 +38,10 @@ public:
 	int GetInternalY();
 	int LocalX()
 	{
-		return X;
+		return Position.x;
 	}
 	int LocalY() {
-		return Y;
+		return Position.y;
 	}
 	const char* GetText();
 	virtual bool InBounds(int x, int y);
@@ -60,8 +61,10 @@ public:
 	}
 	void SetSize(int w, int h)
 	{
-		W = w;
-		H = h;
+		Size = float2(w, h);
+		int bb = 5;
+		//W = w;
+		//H = h;
 		Resized();
 	}
 	void SetActionOne(std::function<void()> one) {
@@ -80,12 +83,14 @@ public:
 	}
 
 
+
 	void SetX(int x) {
-		X = x;
+		Position.x = x;
+		//X = x;
 	};
 
 	void SetY(int y) {
-		Y = y;
+		Position.y = y;
 	}
 	void SetOffset(int x, int y) {
 		OffX = x;
@@ -172,6 +177,24 @@ public:
 	void SetHighlight(bool h) {
 		Highlight = h;
 	}
+	float2 RenderPosition() {
+
+		auto parent = float2(0, 0);
+		
+		if (Root != nullptr) {
+			parent = Root->RenderPosition();
+		}
+		return parent + Position;
+
+	}
+	void DrawButton(float2 pos, float2 size, float4 col);
+	void DrawFrame(float2 pos, float2 size, float4 col);
+	void DrawWindowTitle(float2 pos, float2 size, float4 col);
+	void DrawFrameRounded(float2 pos, float2 size, float4 col);
+	float4 GetDragZone() {
+		return mDragZone;
+	}
+
 protected:
 	void (*actionPtr)();
 	std::function<void()> act = NULL;
@@ -179,7 +202,7 @@ protected:
 	UIControl* Root = NULL;
 	std::vector<UIControl*> Controls;
 	const char* Text;
-	int X, Y, W, H;
+	//int X, Y, W, H;
 	int OverX=-1, OverY=-1;
 	int OffX, OffY;
 	bool Active = false;
@@ -199,7 +222,12 @@ protected:
 	bool Highlight = false;
 	Texture2D* BGTex = nullptr;
 	std::string StdText;
-	float3 Color;
+	float4 Color;
+	float2 Position;
+	float2 Size;
+	float4 mDragZone;
+	DockUsage* mDockUsage;
+
 };
 
 

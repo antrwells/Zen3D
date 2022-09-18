@@ -21,9 +21,15 @@
     <ClCompile Include="AppZen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ZenUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppZen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZenUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

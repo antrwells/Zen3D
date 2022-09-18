@@ -181,6 +181,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 	//vm[3] = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
 	NodeEntity* new_entity = new NodeEntity;
+	new_entity->SetName(VString(nd->mName.C_Str()).GetConst());
 
 	//vent->SetRotation(vm);
 	//vent->SetPosition(Vect3(pos.x, pos.y, pos.z));
@@ -730,7 +731,10 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 		Animation* anim = new Animation((aiScene*)scene, root);
 		Animator* animer = new Animator(anim);
 
+		auto nn = VString(scene->mRootNode->mName.C_Str());
 
+
+		root->SetName(nn.GetConst());
 
 		//node_anim->mAnimation = anim;
 		//node_anim->mAnimtor = animer;

@@ -166,6 +166,7 @@
     <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="DockUsage.h" />
     <ClInclude Include="FrameTypeColor.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GBuffer.h" />
@@ -218,6 +219,8 @@
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="VFile.h" />
     <ClInclude Include="VString.h" />
+    <ClInclude Include="WindowContent.h" />
+    <ClInclude Include="WindowControl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActorAnim.cpp" />
@@ -229,6 +232,7 @@
     <ClCompile Include="BoneInfo.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
+    <ClCompile Include="DockUsage.cpp" />
     <ClCompile Include="FrameTypeColor.cpp" />
     <ClCompile Include="GBuffer.cpp" />
     <ClCompile Include="Helper.cpp" />
@@ -284,6 +288,8 @@
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="VFile.cpp" />
     <ClCompile Include="VString.cpp" />
+    <ClCompile Include="WindowContent.cpp" />
+    <ClCompile Include="WindowControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\StarLightEditor\StarLightEditor\structures.fxh" />

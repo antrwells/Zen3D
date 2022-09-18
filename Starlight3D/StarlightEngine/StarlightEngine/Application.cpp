@@ -299,11 +299,10 @@ void Application::Render() {
     if (mouse2_in) {
         m2 = 1;
     }
-    printf("M1:%d M2:%d\n", m1, m2);
-    auto Handled = static_cast<ImGuiImplWin32*>(m_pImGui.get())->Win32_ProcHandler(curWin, message, wParam, lParam);
-
-    m_pImGui->NewFrame(SC.Width, SC.Height, SC.PreTransform);
-    UpdateApp();
+   // printf("M1:%d M2:%d\n", m1, m2);
+ 
+    
+   // UpdateApp();
 
 
     //RenderApp();
@@ -322,12 +321,21 @@ void Application::Render() {
     m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
    
-  
-    RenderApp();
+ // RenderApp();
+
     m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
-    m_pImGui->Render(m_pImmediateContext);
+    
+    auto Handled = static_cast<ImGuiImplWin32*>(m_pImGui.get())->Win32_ProcHandler(curWin, message, wParam, lParam);
 
+   
+
+ 
+    m_pImGui->NewFrame(SC.Width, SC.Height, SC.PreTransform);
+    RenderApp();
+   
+    m_pImGui->EndFrame();
+    m_pImGui->Render(m_pImmediateContext);
     return;
 
     // Set the pipeline state in the immediate context
@@ -376,7 +384,7 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
     glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
     //glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
     glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
-  //  glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    //glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glfwSetWindowSizeLimits(m_Window, 320, 240, GLFW_DONT_CARE, GLFW_DONT_CARE);
     return;
@@ -431,8 +439,11 @@ void Application::Run() {
 void Application::GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h)
 {
     //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
+    Application::GetApp()->WindowResize(w, h);
+
     //if (pSelf->m_pSwapChain != nullptr)
-      //  pSelf->m_pSwapChain->Resize(static_cast<Uint32>(w), static_cast<Uint32>(h));
+      //  pSelf->m_pSwapChain->Resize(static_cast<Uint32>(w), static_cast<Uint32>(h))
+
 }
 
 void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int)
@@ -448,82 +459,82 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int
         break;
 
     case GLFW_KEY_A:
-        id = KeyID::A;
+        id = KeyID::KeyA;
         break;
     case GLFW_KEY_B:
-        id = KeyID::B;
+        id = KeyID::KeyB;
         break;
     case GLFW_KEY_C:
-        id = KeyID::C;
+        id = KeyID::KeyC;
         break;
     case GLFW_KEY_D:
-        id = KeyID::D;
+        id = KeyID::KeyD;
         break;
     case GLFW_KEY_E:
-        id = KeyID::E;
+        id = KeyID::KeyE;
         break;
     case GLFW_KEY_F:
-        id = KeyID::F;
+        id = KeyID::KeyF;
         break;
     case GLFW_KEY_G:
-        id = KeyID::G;
+        id = KeyID::KeyG;
         break;
     case GLFW_KEY_H:
-        id = KeyID::H;
+        id = KeyID::KeyH;
         break;
     case GLFW_KEY_I:
-        id = KeyID::I;
+        id = KeyID::KeyI;
         break;
     case GLFW_KEY_J:
-        id = KeyID::J;
+        id = KeyID::KeyJ;
         break;
     case GLFW_KEY_K:
-        id = KeyID::K;
+        id = KeyID::KeyK;
         break;
     case GLFW_KEY_L:
-        id = KeyID::L;
+        id = KeyID::KeyL;
         break;
     case GLFW_KEY_M:
-        id = KeyID::M;
+        id = KeyID::KeyM;
         break;
     case GLFW_KEY_N:
-        id = KeyID::N;
+        id = KeyID::KeyN;
         break;
      case GLFW_KEY_O:
-        id = KeyID::O;
+        id = KeyID::KeyO;
         break;
      case GLFW_KEY_P:
-         id = KeyID::P;
+         id = KeyID::KeyP;
          break;
      case GLFW_KEY_Q:
-         id = KeyID::Q;
+         id = KeyID::KeyQ;
          break;
      case GLFW_KEY_R:
-         id = KeyID::R;
+         id = KeyID::KeyR;
          break;
      case GLFW_KEY_S:
-         id = KeyID::S;
+         id = KeyID::KeyS;
          break;
      case GLFW_KEY_T:
-         id = KeyID::T;
+         id = KeyID::KeyT;
          break;
      case GLFW_KEY_U:
-         id = KeyID::U;
+         id = KeyID::KeyU;
          break;
      case GLFW_KEY_V:
-         id = KeyID::V;
+         id = KeyID::KeyV;
          break;
      case GLFW_KEY_W:
-         id = KeyID::W;
+         id = KeyID::KeyW;
          break;
      case GLFW_KEY_X:
-         id = KeyID::X;
+         id = KeyID::KeyX;
          break;
      case GLFW_KEY_Y:
-         id = KeyID::Y;
+         id = KeyID::KeyY;
          break;
      case GLFW_KEY_Z:
-         id = KeyID::Z;
+         id = KeyID::KeyZ;
          break;
      case GLFW_KEY_SPACE:
          id = KeyID::Space;

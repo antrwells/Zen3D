@@ -34,7 +34,7 @@ UI::UI(int w,int h) {
 	UW = w;
 	UH = h;
 
-	UIFont = new kFont("data/fonts/air.pf");
+	UIFont = new kFont("data/fonts/f1.pf");
 	Main = this;
 	//Control = new ControlInput();
 
@@ -164,7 +164,18 @@ void UI::Update() {
 
 			int xd = UI::MouseX - UI::LastX;
 			int yd = UI::MouseY - UI::LastY;
-			UIPressed[i]->Dragged(xd, yd);
+
+			int mx = UI::MouseX - UIOver->GetX();
+			int my = UI::MouseY - UIOver->GetY();
+
+			if (mx >= UIPressed[i]->GetDragZone().x && mx <= UIPressed[i]->GetDragZone().x + UIPressed[i]->GetDragZone().z)
+			{
+				if (my >= UIPressed[i]->GetDragZone().y && my <= UIPressed[i]->GetDragZone().y + UIPressed[i]->GetDragZone().w)
+				{
+					UIPressed[i]->Dragged(xd, yd);
+
+				}
+			}
 
 		}
 
@@ -202,8 +213,12 @@ void UI::Update() {
 			int mx = UI::MouseX - UIOver->GetX();
 			int my = UI::MouseY - UIOver->GetY();
 
-			UIOver->MouseMove(mx, my, UI::MouseX - UI::LastX, UI::MouseY - UI::LastY);
-			
+			int dx = UI::MouseX - UI::LastX;
+			int dy = UI::MouseY - UI::LastY;
+
+			if (dx != 0 || dy != 0) {
+				UIOver->MouseMove(mx, my,dx,dy);
+			}
 		}
 
 	}
@@ -760,5 +775,6 @@ int UI::TextHeight(const char* text) {
 	return UIFont->getHeight();
 
 };
+
 
 bool UI::ShiftOn = false;

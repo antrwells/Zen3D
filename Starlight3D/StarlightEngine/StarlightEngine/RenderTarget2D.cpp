@@ -22,6 +22,7 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 	RTColorDesc.ClearValue.Color[3] = 1.f;
 	Application::GetApp()->GetDevice()->CreateTexture(RTColorDesc, nullptr, &pRTColor);
 	m_pColorRTV = pRTColor->GetDefaultView(TEXTURE_VIEW_RENDER_TARGET);
+	m_pColorRTVUI = pRTColor->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
 
 	//depth
 	TextureDesc RTDepthDesc = RTColorDesc;

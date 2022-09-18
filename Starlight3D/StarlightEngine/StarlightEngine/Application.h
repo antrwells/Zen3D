@@ -171,6 +171,8 @@ public:
             m_pSwapChain->Resize(width, height);
         winWidth = width;
         winHeight = height;
+        auto SC = m_pSwapChain->GetDesc();
+        //m_pImGui.reset(new ImGuiImplWin32(curWin, m_pDevice, SC.ColorBufferFormat, SC.DepthBufferFormat));
     
     }
 

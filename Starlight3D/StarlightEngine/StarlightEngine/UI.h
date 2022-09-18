@@ -43,6 +43,7 @@ public:
 		Top = control;
 
 	};
+	
 	static void DrawTexture(Texture2D* tex, int x, int y, int w, int h, float r, float g, float b, float a,SmartDraw* draw);
 	static void DrawTexture(Texture2D* tex, int x, int y, int w, int h, float r, float g, float b, float a);
 	static SmartDraw* Drawer;

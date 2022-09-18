@@ -10,6 +10,7 @@
 		mCam = new NodeCamera;
 		mRenderer = new MeshRenderer;
 		mShadowRenderer = new CubeRenderer(this, nullptr);
+		mRootNode->SetName("Scene Root");
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
 

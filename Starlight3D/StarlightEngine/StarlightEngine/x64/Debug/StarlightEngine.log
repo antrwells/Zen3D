@@ -1,12 +1,31 @@
-﻿  Application.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(405,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(406,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(410,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(411,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(413,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(414,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(584,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(584,26): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  Importer.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(211,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(195,20): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(211,20): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(248,21): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(330,21): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(343,30): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(390,26): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(531,21): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(599,21): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(612,30): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(662,50): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(664,38): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(705,26): warning C4018: '<': signed/unsigned mismatch
 GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GraphicsEngineD3D12_64d.lib(GraphicsEngineD3D12_64d.dll); second definition ignored
 Diligent-GraphicsEngineD3D11-static.lib(EngineFactoryD3D11.obj) : warning LNK4006: "struct Diligent::IEngineFactoryD3D11 * __cdecl Diligent::GetEngineFactoryD3D11(void)" (?GetEngineFactoryD3D11@Diligent@@YAPEAUIEngineFactoryD3D11@1@XZ) already defined in GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

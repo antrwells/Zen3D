@@ -154,7 +154,7 @@ void AppEditor::RenderApp() {
 	anX++;
 
 	//control
-	if (Application::GetInput()->IsKeyDown(KeyID::Q))
+	if (Application::GetInput()->IsKeyDown(KeyID::KeyQ))
 	{
 		mAct1->UpdateAnim();
 	}
@@ -187,20 +187,20 @@ void AppEditor::RenderApp() {
 
 	float spd = -0.15f;
 
-	if (Application::GetInput()->IsKeyDown(KeyID::W))
+	if (Application::GetInput()->IsKeyDown(KeyID::KeyW))
 	{
 
 		cam->Move(float3(0, 0, -spd));
 
 	}
-	if (Application::GetInput()->IsKeyDown(KeyID::S)) {
+	if (Application::GetInput()->IsKeyDown(KeyID::KeyS)) {
 		cam->Move(float3(0, 0, spd));
 	}
-	if (Application::GetInput()->IsKeyDown(KeyID::A))
+	if (Application::GetInput()->IsKeyDown(KeyID::KeyA))
 	{
 		cam->Move(float3(spd, 0, 0));
 	}
-	if (Application::GetInput()->IsKeyDown(KeyID::D))
+	if (Application::GetInput()->IsKeyDown(KeyID::KeyD))
 	{
 		cam->Move(float3(-spd, 0, 0));
 	}
@@ -208,14 +208,14 @@ void AppEditor::RenderApp() {
 
 	if (mUsePP) {
 
-		mGraph->RenderShadowMaps();
-		mPP->Render();
+		//mGraph->RenderShadowMaps();
+	//	mPP->Render();
 
 	}
 	else {
 
-		mGraph->RenderShadowMaps();
-		mGraph->Render();
+	//	mGraph->RenderShadowMaps();
+	//	mGraph->Render();
 
 	}
 

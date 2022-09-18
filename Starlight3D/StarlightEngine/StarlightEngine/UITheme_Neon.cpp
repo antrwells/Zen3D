@@ -5,7 +5,13 @@
 UITheme_Neon::UITheme_Neon() {
 
 
-	But = new Texture2D("data/ui/theme/darktheme/button1.png");
+	But = new Texture2D("data/ui/theme/neon/button1.png");
+	Dragger = new Texture2D("data/ui/theme/neon/dragger1.png");
+	Frame = new Texture2D("data/ui/theme/neon/frame1.png");
+	FrameRounded = new Texture2D("data/ui/theme/neon/FrameRounded.png");
+	Line = new Texture2D("data/ui/theme/neon/line.png");
+	WindowTitle = new Texture2D("data/ui/theme/neon/WindowTitle1.png");
+
 
 	//ButDown = new Texture2D("UI/Neon/ButDown.png");
 	//ButLeft = new Texture2D("UI/Neon/ButLeft.png");
@@ -64,7 +70,7 @@ void UITheme_Neon::DrawButton(int x, int y, int w, int h, const char* text,float
 
 void UITheme_Neon::DrawFrame(int x, int y, int w, int h,float r,float g,float b,float a) {
 
-	UI::DrawTexture(FrameBG, x, y, w, h, r, g, b, a);
+	UI::DrawTexture(Frame, x, y, w, h, r, g, b, a);
 
 
 }

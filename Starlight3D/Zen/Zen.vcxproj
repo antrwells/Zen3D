@@ -132,9 +132,11 @@
   <ItemGroup>
     <ClCompile Include="AppZen.cpp" />
     <ClCompile Include="Zen.cpp" />
+    <ClCompile Include="ZenUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppZen.h" />
+    <ClInclude Include="ZenUI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -14,11 +14,41 @@ public:
 		UI::DrawTexture(tex, x, y, w, h, r, g, b, a);
 	}
 
+	Texture2D* GetButton() {
+		return But;
+	}
+
+	Texture2D* GetDragger() {
+		return Dragger;
+	}
+
+	Texture2D* GetFrame() {
+		return Frame;
+	}
+
+	Texture2D* GetFrameRounded() {
+		return FrameRounded;
+	}
+
+	Texture2D* GetLine() {
+
+		return Line;
+
+	}
+
+	Texture2D* GetWindowTitle() {
+		return WindowTitle;
+	}
+
 	//void DrawDyanmicBox(int x, int y, int w, int h, Texture2D* t, Texture2D* d, Texture2D* l,Texture2D* r, Texture2D* lt,Texture2D* ld, Texture2D* rt, Texture2D* rd,Texture2D* mid,float cr,float cg,float cb,float ca);
 
 	Texture2D* But;
+	Texture2D* Dragger;
+	Texture2D* Frame;
+	Texture2D* FrameRounded;
+	Texture2D* Line;
+	Texture2D* WindowTitle;
 
-	Texture2D* FrameBG;
 
 };
 

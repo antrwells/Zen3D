@@ -20,13 +20,14 @@ void AppZen::InitApp() {
 	Importer* imp = new Importer;
 
 	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);
-	NodeActor* act1 = (NodeActor*)imp->ImportActor("data/test/b1.fbx");;//->GetChild(0
+	NodeEntity* act1 = (NodeActor*)imp->ImportAI("data/test/b1.fbx");;//->GetChild(0
+
 
 
 	auto real_node = (NodeEntity*)n1;//n1->GetChild(0);
 	real_node->SetPhysicsTris();
 
-
+	act1->SetPosition(float3(4, 3, 0));
 
 	int a = 5;
 
@@ -42,11 +43,12 @@ void AppZen::InitApp() {
 
 	ActorAnim* walk = new ActorAnim("Walk", 0, 78, 0.4f, AnimType::Forward);
 
+	/*
 	act1->AddAnim(walk);
 	act1->PlayAnim("Walk");
 	//act1->SetRotation(0, 180, 0);
 	mAct1 = act1;
-
+	*/
 
 	mEnt1 = real_node;
 	//mEnt2 = real2;
@@ -115,7 +117,7 @@ void AppZen::RenderApp() {
 	{
 		cX -= dy;
 		cY -= dx;
-		cam->SetRotation(cX, cY, 0);
+		//cam->SetRotation(cX, cY, 0);
 	}
 	if (Application::GetInput()->IsKeyDown(KeyID::Space))
 	{

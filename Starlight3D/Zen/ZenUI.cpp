@@ -1,18 +1,38 @@
 #include "ZenUI.h"
 #include "UITheme_Neon.h"
-
+#include "Importer.h"
+#include "RayPicker.h"
 ZenUI::ZenUI(SceneGraph* graph) {
 
+
+	auto importer = new Importer;
+
 	mGraph = graph;
+
+	mMainCamera = graph->GetCamera();
 
 	//Scene Graph
 	mSceneGraphPos = ImVec2(0, 22);
 	mSceneGraphSize = ImVec2(240, Application::GetApp()->GetHeight()-22-200);
 
-	//Scene Viewport
+	//Scene Viewport Resources
 	mSceneViewPos = ImVec2(240, 22);
 	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22-200);
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
+	cam_rotation = ImVec2(0, 0);
+	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
+
+	auto red_tex = new Texture2D("edit/gizmo/red.png");
+	auto blue_tex = new Texture2D("edit/gizmo/blue.png");
+	auto green_tex = new Texture2D("edit/gizmo/green.png");
+
+	mTranslateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(blue_tex);
+	mTranslateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(red_tex);
+	mTranslateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(green_tex);
+
+	//mGraph->AddNode(mTranslateGizmo);
+	mTranslateGizmo->SetPosition(float3(0, 1, 0));
+
 
 	//Content Browser
 	mContentBrowserPos = ImVec2(0, Application::GetApp()->GetHeight() - 200);
@@ -23,11 +43,16 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() -990, Application::GetApp()->GetHeight() - 22 - 200);
 
 
+	//Other Resources
+
+	mRayPick = new RayPicker(mGraph);
+
 
 }
 
 void ZenUI::MainWindow() {
 
+	MainBGWindow();
 
 	MainMenu();
 
@@ -179,28 +204,124 @@ void ZenUI::MainViewPort() {
 		ImGui::SetNextWindowPos(mSceneViewPos);
 		ImGui::SetNextWindowSize(mSceneViewSize);
 		mSVF = true;
-	}
 
-	int flags = ImGuiWindowFlags_MenuBar;
+	}
+	
+	auto io = ImGui::GetIO();
+	io.WantCaptureMouse = true;
+	//ImVec2 mp = io.MousePos;
+
+	ImVec2 mp = ImGui::GetMousePos();
+
+
+	//printf("MX:%d MY:%d\n", (int)mp.x, (int)mp.y);
+	int flags = 0;
+
+
+
 
 	if (ImGui::Begin("Scene Viewer", &mSceneViewOpen, flags)) {
+
+		ImVec2 win_pos = ImGui::GetWindowPos();
+		ImVec2 win_size = ImGui::GetWindowSize();
+
+		if ((int)(win_size.x) != mRenderTarget->GetWidth() || (int)(win_size.y) != mRenderTarget->GetHeight()) {
+
+			mRenderTarget = new RenderTarget2D((int)win_size.x, (int)win_size.y);
+			printf("============================================================>\n");
+			auto cam = mGraph->GetCamera();
+			cam->SetViewport(0, 0, win_size.x, win_size.y);
+
+
+		}
+
+		ImVec2 real_pos;
+		real_pos.x = mp.x - win_pos.x;
+		real_pos.y = mp.y - win_pos.y;
+		//real_pos.x = real_pos.x - 4;
+		real_pos.y = real_pos.y - 20;
+
+		printf("Ox:%d Oy:%d\n", (int)real_pos.x, (int)real_pos.y);
+
+		//ImVec2 delta;
+
+
+		mouse_delta.x = real_pos.x - prev_mouse.x;
+		mouse_delta.y = real_pos.y - prev_mouse.y;
+
+		prev_mouse = real_pos;
+
+		if (real_pos.x > 0 && real_pos.y > 0 && real_pos.x<win_size.x && real_pos.y<win_size.y)
+		{
+
+			if (Application::GetApp()->GetInput()->IsMouseDown(1))
+			{
+				cam_interact = true;
+			}
+			else {
+				cam_interact = false;
+			}
+				
+			if (Application::GetApp()->GetInput()->IsMouseDown(0)) {
+
+				auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y-28,mMainCamera);
+					
+				if (result.hit) {
+					int bb = 5;
+					if (result.hit_entity != mTranslateGizmo) {
+
+						mTranslateGizmo->SetPosition(result.hit_node->GetPosition());
+
+					}
+					mTranslateGizmo->SetPosition(result.hit_point);
+					//printf("=========================================<<<<<<<<<<<<<<<<<<<<<<");
+				}
+			
+			}
+				//exit(1);
+
+			
+
+		}
+		else {
+			cam_interact = false;
+		}
 
 		mGraph->RenderShadowMaps();
 		mRenderTarget->Bind();
 		mGraph->Render();
+		mRenderTarget->ClearDepth();
+		mGraph->RenderNodeBasic(mTranslateGizmo);
 		mRenderTarget->Release();
 
-		ImGui::BeginChild("GameRender");
+		ImGui::BeginChild("GameRender", ImVec2(0, 0), false, ImGuiWindowFlags_NoMove);
 		// Get the size of the child (i.e. the whole draw size of the windows).
 		ImVec2 wsize = ImGui::GetWindowSize();
-		// Because I use the texture from OpenGL, I need to invert the V from the UV.
-		ImGui::Image((ImTextureID)mRenderTarget->GetViewUI(), wsize, ImVec2(0, 0), ImVec2(1, 1));
-		ImGui::EndChild();
 
+		
+		// Because I use the texture from OpenGL, I need to invert the V from the UV.
+		//ImGui::ColorButton("None", ImVec4(0, 0, 0, 1));
+		ImGui::Image((ImTextureID)mRenderTarget->GetViewUI(), wsize, ImVec2(0, 0), ImVec2(1, 1));
+			
+		ImVec2 rsize = ImGui::GetItemRectSize();
+
+		ImGui::EndChild();
+		
 	}
 
 
 	ImGui::End();
+
+	if (cam_interact) {
+
+		int dx = Application::GetApp()->GetInput()->GetMouseDX();
+		int dy = Application::GetApp()->GetInput()->GetMouseDY();
+
+		cam_rotation.x -= dy;
+		cam_rotation.y -= dx;
+
+		mMainCamera->SetRotation(cam_rotation.x, cam_rotation.y, 0);
+	}
 
 }
 
@@ -251,6 +372,30 @@ void ZenUI::MainNodeEditor() {
 
 }
 
+
+/// Main BG Window
+
+void ZenUI::MainBGWindow()
+{
+
+	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+
+	return;
+	int flags = ImGuiWindowFlags_NoCollapse;
+	flags |= ImGuiWindowFlags_NoTitleBar;
+	flags |= ImGuiWindowFlags_NoCollapse;
+	//flags |= ImGuiWindowFlags_NoDecoration;
+	flags |= ImGuiWindowFlags_NoMove;
+	flags |= ImGuiWindowFlags_NoResize;
+	//flags != ImGuiWindowFlags_NoTitleBar;
+
+	ImGui::SetNextWindowPos(ImVec2(0, 23));
+	ImGui::SetNextWindowSize(ImVec2(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight()));
+	bool open = true;
+	ImGui::Begin("Zen", &open, flags);
+
+	ImGui::End();
+}
 
 //////////
 void ZenUI::UpdateUI() {

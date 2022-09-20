@@ -43,6 +43,16 @@ RenderTarget2D::RenderTarget2D(int width, int height) {
 
 }
 
+RenderTarget2D::~RenderTarget2D()
+{
+
+	pRTColor->Release();
+	pRTDepth->Release();
+	m_pColorRTV->Release();
+	m_pColorRTVUI->Release();
+	m_pDepthDSV->Release();
+
+}
 
 void RenderTarget2D::Bind() {
 
@@ -81,6 +91,15 @@ Texture2D* RenderTarget2D::ToTexture2D() {
 	}
 
 	return mTex2D;
+
+}
+
+void RenderTarget2D::ClearDepth() {
+	Application* gApp = Application::GetApp();
+
+	auto m_pImmediateContext = gApp->GetContext();
+	m_pImmediateContext->ClearDepthStencil(RenderTarget2D::BoundTarget->GetDepthView(), CLEAR_DEPTH_FLAG, 1.0f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
 
 }
 

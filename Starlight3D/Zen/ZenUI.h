@@ -4,6 +4,8 @@
 #include "WindowControl.h"
 #include "SceneGraph.h"
 
+class RayPicker;
+
 class ZenUI
 {
 public:
@@ -12,6 +14,7 @@ public:
 
 
 	//Main UI
+	void MainBGWindow();
 	void MainWindow();
 	void MainToolBar();
 	void MainMenu();
@@ -50,6 +53,7 @@ private:
 	//Raw Data
 	SceneGraph* mGraph;
 
+
 	//Positions & Size
 	//SceneGraph
 	ImVec2 mSceneGraphPos;
@@ -62,6 +66,18 @@ private:
 	ImVec2 mSceneViewSize;
 	RenderTarget2D* mRenderTarget;
 	bool mSVF = false;
+	NodeCamera* mMainCamera;
+	ImVec2 prev_mouse;
+	ImVec2 cam_rotation;
+	ImVec2 mouse_delta;
+	bool cam_interact = false;
+
+	//Main Viewport Resources
+	NodeEntity* mTranslateGizmo;
+	NodeEntity* mRotateGizmo;
+	NodeEntity* mScaleGizmo;
+
+
 
 	//Content Browser
 	ImVec2 mContentBrowserPos;
@@ -74,7 +90,8 @@ private:
 	bool mNEF = false;
 
 
-
+	// Ray Picking
+	RayPicker* mRayPick = nullptr;
 
 
 	

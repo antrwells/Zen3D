@@ -42,21 +42,16 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(10,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(14,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(15,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(15,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(18,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(19,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(23,105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(23,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(imgui_widgets.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_widgets.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(ImGuiImplDiligent.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(ImGuiImplDiligent.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(ImGuiImplWin32.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(ImGuiImplWin32.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(imgui_draw.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_draw.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(imgui_tables.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_tables.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(ImGuiDiligentRenderer.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(ImGuiDiligentRenderer.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(imgui_impl_win32.obj) : warning LNK4099: PDB 'Diligent-Imgui.pdb' was not found with 'StarlightEngine.lib(imgui_impl_win32.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-Imgui.pdb'; linking object as if no debug info
-StarlightEngine.lib(GraphicsUtilities.obj) : warning LNK4099: PDB 'Diligent-GraphicsTools.pdb' was not found with 'StarlightEngine.lib(GraphicsUtilities.obj)' or at 'C:\projects\Starlight3D\StarlightStudio\x64\Debug\Diligent-GraphicsTools.pdb'; linking object as if no debug info
+C:\projects\Starlight3D\Zen\ZenUI.cpp(16,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(20,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(21,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(21,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(38,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(39,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(43,105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(43,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(233,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(233,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(393,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(393,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Zen.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Zen.exe

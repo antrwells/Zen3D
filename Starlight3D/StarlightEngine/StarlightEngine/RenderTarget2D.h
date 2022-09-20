@@ -46,6 +46,7 @@ class RenderTarget2D
 public:
 
 	RenderTarget2D(int width, int height);
+	~RenderTarget2D();
 	void Bind();
 	void Release();
 	RefCntAutoPtr<ITextureView> GetColorView() { return m_pColorRTV; }
@@ -63,6 +64,8 @@ public:
 
 
 	}
+
+	void ClearDepth();
 
 	RefCntAutoPtr<ITextureView> GetViewUI() {
 		return m_pColorRTVUI;

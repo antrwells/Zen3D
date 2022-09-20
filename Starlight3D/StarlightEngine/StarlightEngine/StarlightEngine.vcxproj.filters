@@ -228,6 +228,9 @@
     <ClInclude Include="WindowContent.h">
       <Filter>UI\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="RayPicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -415,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="WindowContent.cpp">
       <Filter>UI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="RayPicker.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

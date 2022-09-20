@@ -203,6 +203,7 @@
     <ClInclude Include="PPBloom.h" />
     <ClInclude Include="PPFrameType.h" />
     <ClInclude Include="PPRenderer.h" />
+    <ClInclude Include="RayPicker.h" />
     <ClInclude Include="RenderTarget2D.h" />
     <ClInclude Include="RenderTargetCube.h" />
     <ClInclude Include="SceneGraph.h" />
@@ -272,6 +273,7 @@
     <ClCompile Include="PPBloom.cpp" />
     <ClCompile Include="PPFrameType.cpp" />
     <ClCompile Include="PPRenderer.cpp" />
+    <ClCompile Include="RayPicker.cpp" />
     <ClCompile Include="RenderTarget2D.cpp" />
     <ClCompile Include="RenderTargetCube.cpp" />
     <ClCompile Include="SceneGraph.cpp" />

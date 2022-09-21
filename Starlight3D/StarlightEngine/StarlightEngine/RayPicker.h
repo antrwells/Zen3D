@@ -10,6 +10,7 @@ struct PickResult {
 	Node3D* hit_node;
 	NodeEntity* hit_entity;
 	NodeActor* hit_actor;
+	Mesh3D* hit_mesh;
 	bool hit = false;
 
 };
@@ -35,7 +36,7 @@ public:
 	PickResult RayPick(rpRay ray);
 	PickResult MousePick(int x, int y, int w, int h, NodeCamera* cam);
 	PickResult RayToTri(rpRay ray, float3 v0, float3 v1, float3 v2);
-
+	PickResult MousePickNode(int x, int y, int w, int h, NodeEntity* entity, NodeCamera* cam);
 
 
 private:

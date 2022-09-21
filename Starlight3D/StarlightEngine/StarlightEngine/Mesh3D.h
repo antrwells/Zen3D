@@ -234,6 +234,17 @@ class Node3D;
 			return m_VertexBufferView;
 
 		}
+		void SetName(const char* name) {
+
+			mName = name;
+			
+		}
+
+		const char* GetName() {
+
+			return mName;
+
+		}
 
 	private:
 		
@@ -243,6 +254,8 @@ class Node3D;
 		std::vector<Vertex> mVertices;
 		std::vector<Tri> mTris;
 		Node3D* mOwner;
+
+		const char* mName;
 
 		//Material
 		Material* mMaterial;

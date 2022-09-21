@@ -2,6 +2,8 @@
 #include "UITheme_Neon.h"
 #include "Importer.h"
 #include "RayPicker.h"
+#include "VString.h"
+
 ZenUI::ZenUI(SceneGraph* graph) {
 
 
@@ -21,7 +23,9 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
-
+	mTranslateGizmo->GetMesh(0)->SetName("Z");
+	mTranslateGizmo->GetMesh(1)->SetName("X");
+	mTranslateGizmo->GetMesh(2)->SetName("Y");
 	auto red_tex = new Texture2D("edit/gizmo/red.png");
 	auto blue_tex = new Texture2D("edit/gizmo/blue.png");
 	auto green_tex = new Texture2D("edit/gizmo/green.png");
@@ -29,6 +33,10 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mTranslateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(blue_tex);
 	mTranslateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(red_tex);
 	mTranslateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(green_tex);
+
+	//Scene Viewport Globals
+	gLock_x = gLock_y = gLock_z = false;
+	mGizmoMode = GizmoMode::GizmoTranslate;
 
 	//mGraph->AddNode(mTranslateGizmo);
 	mTranslateGizmo->SetPosition(float3(0, 1, 0));
@@ -178,7 +186,7 @@ void ZenUI::SceneGraphWindow() {
 		
 		printf("Selected Node:");
 		printf(mSelectedNode->GetName());
-		printf("\n");
+printf("\n");
 	}
 
 
@@ -206,7 +214,7 @@ void ZenUI::MainViewPort() {
 		mSVF = true;
 
 	}
-	
+
 	auto io = ImGui::GetIO();
 	io.WantCaptureMouse = true;
 	//ImVec2 mp = io.MousePos;
@@ -251,7 +259,7 @@ void ZenUI::MainViewPort() {
 
 		prev_mouse = real_pos;
 
-		if (real_pos.x > 0 && real_pos.y > 0 && real_pos.x<win_size.x && real_pos.y<win_size.y)
+		if (real_pos.x > 0 && real_pos.y > 0 && real_pos.x < win_size.x && real_pos.y < win_size.y)
 		{
 
 			if (Application::GetApp()->GetInput()->IsMouseDown(1))
@@ -261,25 +269,109 @@ void ZenUI::MainViewPort() {
 			else {
 				cam_interact = false;
 			}
-				
+
 			if (Application::GetApp()->GetInput()->IsMouseDown(0)) {
 
-				auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y-28,mMainCamera);
-					
-				if (result.hit) {
-					int bb = 5;
-					if (result.hit_entity != mTranslateGizmo) {
+				if (gLock) {
 
-						mTranslateGizmo->SetPosition(result.hit_node->GetPosition());
+					if (mSelectedNode != nullptr) {
+						
+						float3 new_pos = mSelectedNode->GetPosition();
+
+						if (gLock_x)
+						{
+
+							new_pos.x += ((float)Application::GetApp()->GetInput()->GetMouseDX()) * mTranslateRatio;
+							mSelectedNode->SetPosition(new_pos);
+						}
+						if (gLock_y) {
+
+							new_pos.y += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
+							mSelectedNode->SetPosition(new_pos);
+
+						}
+						if (gLock_z) {
+
+							new_pos.z += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
+							mSelectedNode->SetPosition(new_pos);
+
+						}
 
 					}
-					mTranslateGizmo->SetPosition(result.hit_point);
-					//printf("=========================================<<<<<<<<<<<<<<<<<<<<<<");
-				}
-			
-			}
-				//exit(1);
 
+				}
+				else {
+					bool check_rest = true;
+					if (mSelectedNode != nullptr) {
+						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 28, mCurrentGizmo, mMainCamera);
+
+						if (giz_result.hit) {
+							VString giz_name = VString(giz_result.hit_mesh->GetName());
+
+							if (giz_name.Contains(VString("X")))
+							{
+								gLock_x = true;
+								gLock_y = false;
+								gLock_z = false;
+								gLock = true;
+							}
+							if (giz_name.Contains(VString("Y")))
+							{
+								gLock_x = false;
+								gLock_y = true;
+								gLock_z = false;
+								gLock = true;
+							}
+							if (giz_name.Contains("Z")) {
+								gLock_x = false;
+								gLock_y = false;
+								gLock_z = true;
+								gLock = true;
+							}
+						}
+						if (giz_result.hit) {
+
+							int bb = 5;
+
+							switch (mGizmoMode) {
+
+							case GizmoMode::GizmoTranslate:
+
+
+
+								break;
+
+							}
+
+							check_rest = false;
+						}
+
+					}
+
+					if (check_rest) {
+						auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 28, mMainCamera);
+
+						if (result.hit) {
+							int bb = 5;
+							if (result.hit_entity != mTranslateGizmo) {
+
+								mSelectedNode = result.hit_entity;
+								//mTranslateGizmo->SetPosition(result.hit_node->GetPosition());
+
+							}
+							//mTranslateGizmo->SetPosition(result.hit_point);
+							//printf("=========================================<<<<<<<<<<<<<<<<<<<<<<");
+						}
+					}
+				}
+				//exit(1);
+			}
+			else {
+				gLock = false;
+				gLock_x = false;
+				gLock_y = false;
+				gLock_z = false;
+			}
 			
 
 		}
@@ -291,8 +383,11 @@ void ZenUI::MainViewPort() {
 		mRenderTarget->Bind();
 		mGraph->Render();
 		mRenderTarget->ClearDepth();
-		mGraph->RenderNodeBasic(mTranslateGizmo);
+		if (mCurrentGizmo != nullptr) {
+			mGraph->RenderNodeBasic(mCurrentGizmo);
+		}
 		mRenderTarget->Release();
+
 
 		ImGui::BeginChild("GameRender", ImVec2(0, 0), false, ImGuiWindowFlags_NoMove);
 		// Get the size of the child (i.e. the whole draw size of the windows).
@@ -323,6 +418,32 @@ void ZenUI::MainViewPort() {
 		mMainCamera->SetRotation(cam_rotation.x, cam_rotation.y, 0);
 	}
 
+
+	//update gizmos
+
+	switch (mGizmoMode) {
+
+	case GizmoMode::GizmoTranslate:
+
+		mCurrentGizmo = mTranslateGizmo;
+
+		break;
+	case GizmoMode::GizmoRotate:
+
+		break;
+	case GizmoMode::GizmoScale:
+
+		break;
+
+	}
+
+	if (mSelectedNode != nullptr) {
+
+		mCurrentGizmo->SetPosition(mSelectedNode->GetPosition());
+
+	}
+
+	
 }
 
 // Content Browser

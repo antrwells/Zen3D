@@ -6,6 +6,12 @@
 
 class RayPicker;
 
+enum GizmoMode {
+
+	GizmoTranslate, GizmoScale, GizmoRotate
+
+};
+
 class ZenUI
 {
 public:
@@ -76,7 +82,15 @@ private:
 	NodeEntity* mTranslateGizmo;
 	NodeEntity* mRotateGizmo;
 	NodeEntity* mScaleGizmo;
+	NodeEntity* mCurrentGizmo;
 
+	//Main Viewport Globals
+	bool gLock_x, gLock_y, gLock_z;
+	bool gLock = false;
+	GizmoMode mGizmoMode;
+
+	//Main viewport vars
+	float mTranslateRatio = 0.02f;
 
 
 	//Content Browser

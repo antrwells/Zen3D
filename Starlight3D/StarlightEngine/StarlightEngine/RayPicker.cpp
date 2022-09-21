@@ -7,6 +7,35 @@ RayPicker::RayPicker(SceneGraph* graph) {
 
 }
 
+PickResult RayPicker::MousePickNode(int x, int y, int w, int h, NodeEntity* entity, NodeCamera* cam) {
+
+	float mx = -1 + (float)(x) / (float)(w) * 2;
+	float my = 1 - (float)(y) / (float)(h) * 2;
+
+	float3 origin = float3(mx, my, 0);
+	float3 dest = float3(mx, my, 1);
+
+	float4x4 viewProj = cam->GetWorldMatrix().Inverse() * cam->GetProjectionMatrix();
+
+	float4x4 inverseProj = viewProj.Inverse();
+
+	float3 rayorigin = origin * inverseProj;
+	float3 rayend = dest * inverseProj;
+
+	float3 rayDir = normalize(rayend - rayorigin);
+
+
+	rpRay ray;
+
+	ray.pos = cam->GetPosition();
+	ray.dir = rayDir;
+
+	auto result = RayPickNode(ray, entity);
+
+	return result;
+
+}
+
 PickResult RayPicker::MousePick(int x, int y, int w, int h, NodeCamera* cam) {
 
 	float mx = -1 + (float)(x) / (float)(w) * 2;
@@ -145,7 +174,7 @@ PickResult RayPicker::RayPickMesh(rpRay ray, Mesh3D* mesh) {
 				close_result.hit_point = result.hit_point;
 				close_result.hit_node = mesh->GetOwner();
 				close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
-				
+				close_result.hit_mesh = mesh;
 
 	
 				close_result.hit_distance = dist;
@@ -163,6 +192,7 @@ PickResult RayPicker::RayPickMesh(rpRay ray, Mesh3D* mesh) {
 					close_result.hit_distance = dist;
 					close_result.hit_point = result.hit_point;
 					close_result.hit_node = mesh->GetOwner();
+					close_result.hit_mesh = mesh;
 					close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
 				}
 
@@ -205,6 +235,7 @@ PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
 					close_result.hit_point = result.hit_point;
 					close_result.hit_node = node;
 					close_result.hit_entity = (NodeEntity*)node;
+					close_result.hit_mesh = entity->GetMesh(i);
 
 
 
@@ -224,6 +255,7 @@ PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
 						close_result.hit_point = result.hit_point;
 						close_result.hit_node = node;
 						close_result.hit_entity = (NodeEntity*)node;
+						close_result.hit_mesh = entity->GetMesh(i);
 					}
 
 					//float dist1 =  
@@ -257,6 +289,7 @@ PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
 				close_result.hit_point = result.hit_point;
 				close_result.hit_node = node->GetChild(i);
 				close_result.hit_entity = (NodeEntity*)node->GetChild(i);
+				close_result.hit_mesh = result.hit_mesh;
 
 
 
@@ -276,6 +309,7 @@ PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
 					close_result.hit_point = result.hit_point;
 					close_result.hit_node = node->GetChild(i);
 					close_result.hit_entity = (NodeEntity*)node->GetChild(i);
+					close_result.hit_mesh = result.hit_mesh;
 
 				}
 

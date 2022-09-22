@@ -12,6 +12,10 @@ enum GizmoMode {
 
 };
 
+enum GizmoSpace {
+	Local,Global,Smart
+};
+
 class ZenUI
 {
 public:
@@ -91,7 +95,9 @@ private:
 
 	//Main viewport vars
 	float mTranslateRatio = 0.02f;
-
+	float mRotateRatio = 0.03f;
+	bool first_render = true;
+	GizmoSpace mGizmoSpace;
 
 	//Content Browser
 	ImVec2 mContentBrowserPos;

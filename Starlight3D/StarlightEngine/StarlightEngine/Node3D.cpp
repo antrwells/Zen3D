@@ -243,6 +243,49 @@
 
 	}
 
+	void Node3D::RotateLocal(float pitch, float yaw, float roll) {
+
+		pitch = Maths::Deg2Rad(pitch);
+		yaw = Maths::Deg2Rad(yaw);
+		roll = Maths::Deg2Rad(roll);
+
+		float4x4 pitch_matrix = float4x4::RotationX(pitch);
+		float4x4 yaw_matrix = float4x4::RotationY(yaw);
+		float4x4 roll_matrix = float4x4::RotationZ(roll);
+
+
+		mRotation = (yaw_matrix * pitch_matrix * roll_matrix) * mRotation;
+
+		InvalidateTransform();
+
+	}
+
+
+	void Node3D::RotateGlobal(float pitch, float yaw, float roll) {
+
+		pitch = Maths::Deg2Rad(pitch);
+		yaw = Maths::Deg2Rad(yaw);
+		roll = Maths::Deg2Rad(roll);
+
+		float4x4 pitch_matrix = float4x4::RotationX(pitch);
+		float4x4 yaw_matrix = float4x4::RotationY(yaw);
+		float4x4 roll_matrix = float4x4::RotationZ(roll);
+
+
+		mRotation = mRotation *(yaw_matrix * pitch_matrix * roll_matrix);
+
+
+		InvalidateTransform();
+
+	}
+
+	void Node3D::SetRotation4x4(float4x4 rotation) {
+
+		mRotation = rotation;
+		InvalidateTransform();
+
+	}
+
 	//Kinetic::FX::Effect* Node3D::FXDepth = nullptr;
 	//Kinetic::FX::Effect* Node3D::FXDepthAnim = nullptr;
 

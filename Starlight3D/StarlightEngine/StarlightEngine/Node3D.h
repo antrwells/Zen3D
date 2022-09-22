@@ -50,6 +50,12 @@ enum NodeType {
 			
 		}
 
+		float4x4 GetRotation4x4() {
+
+			return mRotation;
+
+		}
+
 		/// <summary>
 		/// Updates a node and all it's children. Custom implentations of nodes may rely on this to function correctly.
 		/// </summary>
@@ -166,6 +172,16 @@ enum NodeType {
 		/// <param name="yaw"></param>
 		/// <param name="roll"></param>
 		virtual void SetRotation(float pitch, float yaw, float roll);
+		void SetRotation4x4(float4x4 rotation);
+		void SetRotation(float4x4 mat) {
+
+			mRotation = mat;
+			InvalidateTransform();
+
+		}
+
+		virtual void RotateLocal(float pitch, float yaw, float roll);
+		virtual void RotateGlobal(float pitch, float yaw, float roll);
 
 		/// <summary>
 		/// Sets the scale of the node. Default is 1,1,1
@@ -193,12 +209,7 @@ enum NodeType {
 			InvalidateTransform();
 		}
 
-		void SetRotation(float4x4 mat) {
-
-			mRotation = mat;
-			InvalidateTransform();
-
-		}
+		
 
 	//	static Kinetic::FX::Effect* FXDepth;
 	//	static Kinetic::FX::Effect* FXDepthAnim;

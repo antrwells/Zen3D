@@ -23,9 +23,13 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
+	mRotateGizmo = importer->ImportAI("edit/gizmo/rotate1.fbx");
 	mTranslateGizmo->GetMesh(0)->SetName("Z");
 	mTranslateGizmo->GetMesh(1)->SetName("X");
 	mTranslateGizmo->GetMesh(2)->SetName("Y");
+	mRotateGizmo->GetMesh(2)->SetName("X");
+	mRotateGizmo->GetMesh(0)->SetName("Y");
+	mRotateGizmo->GetMesh(1)->SetName("Z");
 	auto red_tex = new Texture2D("edit/gizmo/red.png");
 	auto blue_tex = new Texture2D("edit/gizmo/blue.png");
 	auto green_tex = new Texture2D("edit/gizmo/green.png");
@@ -34,12 +38,20 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mTranslateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(red_tex);
 	mTranslateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(green_tex);
 
+	mRotateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(green_tex);
+	mRotateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(blue_tex);
+	mRotateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(red_tex);
+
+
+
 	//Scene Viewport Globals
 	gLock_x = gLock_y = gLock_z = false;
-	mGizmoMode = GizmoMode::GizmoTranslate;
+	mGizmoMode = GizmoMode::GizmoRotate;
+	mGizmoSpace = GizmoSpace::Local;
 
 	//mGraph->AddNode(mTranslateGizmo);
 	mTranslateGizmo->SetPosition(float3(0, 1, 0));
+	mRotateGizmo->SetPosition(float3(0, 1, 0));
 
 
 	//Content Browser
@@ -233,13 +245,13 @@ void ZenUI::MainViewPort() {
 		ImVec2 win_pos = ImGui::GetWindowPos();
 		ImVec2 win_size = ImGui::GetWindowSize();
 
-		if ((int)(win_size.x) != mRenderTarget->GetWidth() || (int)(win_size.y) != mRenderTarget->GetHeight()) {
+		if ((int)(win_size.x) != mRenderTarget->GetWidth() || (int)(win_size.y) != mRenderTarget->GetHeight() || first_render) {
 
 			mRenderTarget = new RenderTarget2D((int)win_size.x, (int)win_size.y);
 			printf("============================================================>\n");
 			auto cam = mGraph->GetCamera();
 			cam->SetViewport(0, 0, win_size.x, win_size.y);
-
+			first_render = false;
 
 		}
 
@@ -278,24 +290,63 @@ void ZenUI::MainViewPort() {
 						
 						float3 new_pos = mSelectedNode->GetPosition();
 
-						if (gLock_x)
-						{
+						switch (mGizmoMode) {
 
-							new_pos.x += ((float)Application::GetApp()->GetInput()->GetMouseDX()) * mTranslateRatio;
-							mSelectedNode->SetPosition(new_pos);
+						case GizmoMode::GizmoTranslate:
+						
+
+							if (gLock_x)
+							{
+
+								if (mGizmoSpace == GizmoSpace::Global) {
+									new_pos.x += ((float)Application::GetApp()->GetInput()->GetMouseDX()) * mTranslateRatio;
+									mSelectedNode->SetPosition(new_pos);
+								}
+							}
+							if (gLock_y) {
+
+								if (mGizmoSpace == GizmoSpace::Global) {
+									new_pos.y += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
+									mSelectedNode->SetPosition(new_pos);
+								}
+
+							}
+							if (gLock_z) {
+
+								if (mGizmoSpace == GizmoSpace::Global) {
+									new_pos.z += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
+									mSelectedNode->SetPosition(new_pos);
+								}
+
+							}
+							break;
+						case GizmoMode::GizmoRotate:
+
+							if (gLock_x) {
+
+								if (mGizmoSpace == GizmoSpace::Local) {
+									mSelectedNode->RotateLocal(((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio), 0, 0);
+								}
+							}
+
+							if (gLock_y) {
+
+								if (mGizmoSpace == GizmoSpace::Local) {
+									mSelectedNode->RotateLocal(0, ((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio), 0);
+								}
+							}
+
+							if (gLock_z) {
+
+								if (mGizmoSpace == GizmoSpace::Local) {
+									mSelectedNode->RotateLocal(0, 0, -((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio));
+								}
+
+							}
+
+							break;
 						}
-						if (gLock_y) {
 
-							new_pos.y += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
-							mSelectedNode->SetPosition(new_pos);
-
-						}
-						if (gLock_z) {
-
-							new_pos.z += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
-							mSelectedNode->SetPosition(new_pos);
-
-						}
 
 					}
 
@@ -304,6 +355,8 @@ void ZenUI::MainViewPort() {
 					bool check_rest = true;
 					if (mSelectedNode != nullptr) {
 						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 28, mCurrentGizmo, mMainCamera);
+
+						int bbb = 5;
 
 						if (giz_result.hit) {
 							VString giz_name = VString(giz_result.hit_mesh->GetName());
@@ -430,6 +483,8 @@ void ZenUI::MainViewPort() {
 		break;
 	case GizmoMode::GizmoRotate:
 
+		mCurrentGizmo = mRotateGizmo;
+
 		break;
 	case GizmoMode::GizmoScale:
 
@@ -440,7 +495,11 @@ void ZenUI::MainViewPort() {
 	if (mSelectedNode != nullptr) {
 
 		mCurrentGizmo->SetPosition(mSelectedNode->GetPosition());
+		if (mGizmoSpace == GizmoSpace::Local) {
 
+			mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());
+
+		}
 	}
 
 	

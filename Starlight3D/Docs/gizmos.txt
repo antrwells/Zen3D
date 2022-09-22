@@ -1,0 +1,3 @@
+Gizmos - 
+
+Rotation - give each axis gizmo some depth, to be usable from all angles.

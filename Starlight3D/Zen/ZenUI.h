@@ -96,6 +96,7 @@ private:
 	//Main viewport vars
 	float mTranslateRatio = 0.02f;
 	float mRotateRatio = 0.03f;
+	float mScaleRatio = 0.02f;
 	bool first_render = true;
 	GizmoSpace mGizmoSpace;
 

@@ -24,12 +24,16 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
 	mRotateGizmo = importer->ImportAI("edit/gizmo/rotate1.fbx");
+	mScaleGizmo = importer->ImportAI("edit/gizmo/scale1.fbx");
 	mTranslateGizmo->GetMesh(0)->SetName("Z");
 	mTranslateGizmo->GetMesh(1)->SetName("X");
 	mTranslateGizmo->GetMesh(2)->SetName("Y");
 	mRotateGizmo->GetMesh(2)->SetName("X");
 	mRotateGizmo->GetMesh(0)->SetName("Y");
 	mRotateGizmo->GetMesh(1)->SetName("Z");
+	mScaleGizmo->GetMesh(0)->SetName("X");
+	mScaleGizmo->GetMesh(1)->SetName("Y");
+	mScaleGizmo->GetMesh(2)->SetName("Z");
 	auto red_tex = new Texture2D("edit/gizmo/red.png");
 	auto blue_tex = new Texture2D("edit/gizmo/blue.png");
 	auto green_tex = new Texture2D("edit/gizmo/green.png");
@@ -42,16 +46,21 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mRotateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(blue_tex);
 	mRotateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(red_tex);
 
+	mScaleGizmo->GetMesh(0)->GetMaterial()->SetColorMap(red_tex);
+	mScaleGizmo->GetMesh(1)->GetMaterial()->SetColorMap(green_tex);
+	mScaleGizmo->GetMesh(2)->GetMaterial()->SetColorMap(blue_tex);
+
 
 
 	//Scene Viewport Globals
 	gLock_x = gLock_y = gLock_z = false;
-	mGizmoMode = GizmoMode::GizmoRotate;
+	mGizmoMode = GizmoMode::GizmoScale;
 	mGizmoSpace = GizmoSpace::Local;
 
 	//mGraph->AddNode(mTranslateGizmo);
 	mTranslateGizmo->SetPosition(float3(0, 1, 0));
 	mRotateGizmo->SetPosition(float3(0, 1, 0));
+	mScaleGizmo->SetPosition(float3(0, 1, 0));
 
 
 	//Content Browser
@@ -289,6 +298,7 @@ void ZenUI::MainViewPort() {
 					if (mSelectedNode != nullptr) {
 						
 						float3 new_pos = mSelectedNode->GetPosition();
+						float3 new_scale = mSelectedNode->GetScale();
 
 						switch (mGizmoMode) {
 
@@ -345,6 +355,34 @@ void ZenUI::MainViewPort() {
 							}
 
 							break;
+						case GizmoMode::GizmoScale:
+
+
+								if (gLock_x)
+								{
+
+									
+										new_scale.x += ((float)Application::GetApp()->GetInput()->GetMouseDX()) * mScaleRatio;
+										mSelectedNode->SetScale(new_scale);
+									
+								}
+								if (gLock_y) {
+
+							
+										new_scale.y += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mScaleRatio;
+										mSelectedNode->SetScale(new_scale);
+									
+
+								}
+								if (gLock_z) {
+
+									
+										new_scale.z += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mScaleRatio;
+										mSelectedNode->SetScale(new_scale);
+									
+								}
+
+								break;
 						}
 
 
@@ -487,6 +525,8 @@ void ZenUI::MainViewPort() {
 
 		break;
 	case GizmoMode::GizmoScale:
+
+		mCurrentGizmo = mScaleGizmo;
 
 		break;
 

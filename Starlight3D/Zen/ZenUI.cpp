@@ -13,13 +13,24 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 	mMainCamera = graph->GetCamera();
 
+
+	//Toolbar
+	mToolbarPos = ImVec2(0, 22);
+	mToolbarSize = ImVec2(Application::GetApp()->GetWidth(), 54);
+
+	//Icons
+
+	mIconTranslate = new Texture2D("edit/icon/MoveIcon2.png");
+	mIconRotate = new Texture2D("edit/icon/rotateIcon.png");
+	mIconScale = new Texture2D("edit/icon/scaleicon.png");
+
 	//Scene Graph
-	mSceneGraphPos = ImVec2(0, 22);
-	mSceneGraphSize = ImVec2(240, Application::GetApp()->GetHeight()-22-200);
+	mSceneGraphPos = ImVec2(0, mToolbarSize.y+12);
+	mSceneGraphSize = ImVec2(240, Application::GetApp()->GetHeight()-22-200-mToolbarSize.y);
 
 	//Scene Viewport Resources
-	mSceneViewPos = ImVec2(240, 22);
-	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22-200);
+	mSceneViewPos = ImVec2(240, mToolbarSize.y+12);
+	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22-200-mToolbarSize.y);
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
@@ -55,7 +66,8 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	//Scene Viewport Globals
 	gLock_x = gLock_y = gLock_z = false;
 	mGizmoMode = GizmoMode::GizmoScale;
-	mGizmoSpace = GizmoSpace::Local;
+	mGizmoSpace = GizmoSpace::Global;
+
 
 	//mGraph->AddNode(mTranslateGizmo);
 	mTranslateGizmo->SetPosition(float3(0, 1, 0));
@@ -64,17 +76,19 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 
 	//Content Browser
-	mContentBrowserPos = ImVec2(0, Application::GetApp()->GetHeight() - 200);
-	mContentBrowserSize = ImVec2(Application::GetApp()->GetWidth(), 222);
+	mContentBrowserPos = ImVec2(0, 12+Application::GetApp()->GetHeight() - 200-22);
+	mContentBrowserSize = ImVec2(Application::GetApp()->GetWidth(), 222-12);// mToolbarSize.y);
 
 	//Node Editor
-	mNodeEditPos = ImVec2(990, 22);
-	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() -990, Application::GetApp()->GetHeight() - 22 - 200);
+	mNodeEditPos = ImVec2(990,mToolbarSize.y+12);
+	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() -990, Application::GetApp()->GetHeight() - 22 - 200-mToolbarSize.y);
 
 
 	//Other Resources
 
 	mRayPick = new RayPicker(mGraph);
+
+	mToolbarSize.y = mToolbarSize.y - 8;
 
 
 }
@@ -138,9 +152,9 @@ void ZenUI::SceneTree(Node3D* node)
 	if (node == mSelectedNode) {
 
 		//flags = ImGuiTreeNodeFlags_Selected;
-		printf("S>>>");
-		printf(node->GetName());
-		printf("\n");
+	//	printf("S>>>");
+	//	printf(node->GetName());
+		//printf("\n");
 
 	}
 
@@ -189,7 +203,7 @@ void ZenUI::SceneTree(Node3D* node)
 
 void ZenUI::SceneGraphWindow() {
 
-	
+
 	if (!mSGF) {
 
 
@@ -200,14 +214,14 @@ void ZenUI::SceneGraphWindow() {
 
 	ImGui::Begin("Scene Graph", &mSceneGraphOpen, ImGuiWindowFlags_MenuBar);
 	ImGui::BeginChild("SceneTree");
-	
+
 	node_id = 0;
 	SceneTree(mGraph->GetRoot());
 	if (mSelectedNode != nullptr) {
-		
+
 		printf("Selected Node:");
 		printf(mSelectedNode->GetName());
-printf("\n");
+		printf("\n");
 	}
 
 
@@ -220,6 +234,105 @@ printf("\n");
 
 void ZenUI::MainToolBar() {
 
+	ImVec2 tbpos;
+	ImVec2 tbsize;
+
+
+	ImGuiViewport* viewport = ImGui::GetMainViewport();
+
+	tbpos.x = viewport->Pos.x;
+	tbpos.y = viewport->Pos.y + mToolbarSize.y;
+
+	tbsize.x = viewport->Size.x;
+	tbsize.y = viewport->Size.y - mToolbarSize.y;
+
+	ImGui::SetNextWindowPos(tbpos);
+	ImGui::SetNextWindowSize(tbsize);
+	ImGui::SetNextWindowViewport(viewport->ID);
+	ImGuiWindowFlags window_flags = 0
+		| ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking
+		| ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse
+		| ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove
+		| ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+	ImGui::Begin("Master DockSpace", NULL, window_flags);
+	ImGuiID dockMain = ImGui::GetID("MyDockspace");
+
+	// Save off menu bar height for later.
+	menuBarHeight = 22;
+
+	ImGui::DockSpace(dockMain);
+	ImGui::End();
+	ImGui::PopStyleVar(3);
+
+	viewport = ImGui::GetMainViewport();
+	ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + menuBarHeight));
+	ImGui::SetNextWindowSize(ImVec2(viewport->Size.x, mToolbarSize.y));
+	ImGui::SetNextWindowViewport(viewport->ID);
+
+	window_flags = 0
+		| ImGuiWindowFlags_NoDocking
+		| ImGuiWindowFlags_NoTitleBar
+		| ImGuiWindowFlags_NoResize
+		| ImGuiWindowFlags_NoMove
+		| ImGuiWindowFlags_NoScrollbar
+		| ImGuiWindowFlags_NoSavedSettings
+		;
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
+	ImGui::Begin("TOOLBAR", NULL, window_flags);
+	ImGui::PopStyleVar();
+
+	if (ImGui::ImageButton(mIconTranslate->GetView() , ImVec2(26,26)))
+	{
+		mGizmoMode = GizmoMode::GizmoTranslate;
+	}
+
+	ImGui::SameLine();
+	if (ImGui::ImageButton(mIconRotate->GetView(), ImVec2(26, 26))) {
+
+		mGizmoMode = GizmoMode::GizmoRotate;
+
+	}
+
+	ImGui::SameLine();
+	if(ImGui::ImageButton(mIconScale->GetView(), ImVec2(26, 26))) {
+
+		mGizmoMode = GizmoMode::GizmoScale;
+
+	}
+
+	ImGui::SameLine();
+	//ImGui::SetNextWindowSize(ImVec2(64, 28));
+	ImGui::PushItemWidth(128);
+	//if (ImGui::BeginCombo("Transform Space","Transform Space")) {
+		//ImGui::Combo("Local Space",&mSpaceItem,"Local Space 0 Global Space",32);
+	const char* items[] = { "Local Space", "World Space" };
+		ImGui::Combo("Transform Space",&mSpaceItem,items,2);
+		//ImGui::Combo("Global Space",&mSpaceItem,"");
+	//	ImGui::EndCombo();
+	//}
+		switch (mSpaceItem) {
+		case 0:
+
+			mGizmoSpace = GizmoSpace::Local;
+		
+			break;
+		case 1:
+
+			mGizmoSpace = GizmoSpace::Global;
+
+			break;
+		}
+
+	ImGui::PopItemWidth();
+
+	ImGui::SameLine();
+	ImGui::Button("Check");
+
+	ImGui::End();
 
 }
 
@@ -254,6 +367,10 @@ void ZenUI::MainViewPort() {
 		ImVec2 win_pos = ImGui::GetWindowPos();
 		ImVec2 win_size = ImGui::GetWindowSize();
 
+		win_size.y = win_size.y - 32;
+		win_size.x -= 15;
+		win_size.y -= 6;
+
 		if ((int)(win_size.x) != mRenderTarget->GetWidth() || (int)(win_size.y) != mRenderTarget->GetHeight() || first_render) {
 
 			mRenderTarget = new RenderTarget2D((int)win_size.x, (int)win_size.y);
@@ -268,9 +385,13 @@ void ZenUI::MainViewPort() {
 		real_pos.x = mp.x - win_pos.x;
 		real_pos.y = mp.y - win_pos.y;
 		//real_pos.x = real_pos.x - 4;
-		real_pos.y = real_pos.y - 20;
+		real_pos.y = real_pos.y - 29;
+		real_pos.x = real_pos.x - 7;
 
-		printf("Ox:%d Oy:%d\n", (int)real_pos.x, (int)real_pos.y);
+
+		printf("Mouse x:%d Mouse y:%d\n", (int)real_pos.x, (int)real_pos.y);
+		printf("Win SizeX:%d Win Size Y:%d\n", (int)win_size.x, (int)win_size.y);
+
 
 		//ImVec2 delta;
 
@@ -312,12 +433,18 @@ void ZenUI::MainViewPort() {
 									new_pos.x += ((float)Application::GetApp()->GetInput()->GetMouseDX()) * mTranslateRatio;
 									mSelectedNode->SetPosition(new_pos);
 								}
+								else {
+
+								}
 							}
 							if (gLock_y) {
 
 								if (mGizmoSpace == GizmoSpace::Global) {
 									new_pos.y += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
 									mSelectedNode->SetPosition(new_pos);
+								}
+								else {
+
 								}
 
 							}
@@ -326,6 +453,9 @@ void ZenUI::MainViewPort() {
 								if (mGizmoSpace == GizmoSpace::Global) {
 									new_pos.z += ((float)-Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio;
 									mSelectedNode->SetPosition(new_pos);
+								}
+								else {
+
 								}
 
 							}
@@ -337,6 +467,9 @@ void ZenUI::MainViewPort() {
 								if (mGizmoSpace == GizmoSpace::Local) {
 									mSelectedNode->RotateLocal(((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio), 0, 0);
 								}
+								else {
+									mSelectedNode->RotateGlobal(((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio), 0, 0);
+								}
 							}
 
 							if (gLock_y) {
@@ -344,12 +477,18 @@ void ZenUI::MainViewPort() {
 								if (mGizmoSpace == GizmoSpace::Local) {
 									mSelectedNode->RotateLocal(0, ((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio), 0);
 								}
+								else {
+									mSelectedNode->RotateGlobal(0, ((float)Application::GetApp()->GetInput()->GetMouseDX()* mRotateRatio), 0);
+								}
 							}
 
 							if (gLock_z) {
 
 								if (mGizmoSpace == GizmoSpace::Local) {
 									mSelectedNode->RotateLocal(0, 0, -((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio));
+								}
+								else {
+									mSelectedNode->RotateGlobal(0, 0, -((float)Application::GetApp()->GetInput()->GetMouseDX() * mRotateRatio));
 								}
 
 							}
@@ -392,7 +531,7 @@ void ZenUI::MainViewPort() {
 				else {
 					bool check_rest = true;
 					if (mSelectedNode != nullptr) {
-						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 28, mCurrentGizmo, mMainCamera);
+						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y, mCurrentGizmo, mMainCamera);
 
 						int bbb = 5;
 
@@ -440,7 +579,7 @@ void ZenUI::MainViewPort() {
 					}
 
 					if (check_rest) {
-						auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 28, mMainCamera);
+						auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y-5, mMainCamera);
 
 						if (result.hit) {
 							int bb = 5;
@@ -625,7 +764,8 @@ void ZenUI::UpdateUI() {
 }
 
 void ZenUI::RenderUI() {
-
+	 
+	MainToolBar();
 	MainWindow();
 
 }

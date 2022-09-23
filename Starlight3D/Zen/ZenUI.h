@@ -65,6 +65,17 @@ private:
 
 
 	//Positions & Size
+	
+	
+	//ToolBar
+	ImVec2 mToolbarPos;
+	ImVec2 mToolbarSize;
+	int menuBarHeight;
+	int mSpaceItem = 0;
+
+	//Images
+	Texture2D* mIconTranslate, * mIconRotate, * mIconScale;
+
 	//SceneGraph
 	ImVec2 mSceneGraphPos;
 	ImVec2 mSceneGraphSize;
@@ -95,7 +106,7 @@ private:
 
 	//Main viewport vars
 	float mTranslateRatio = 0.02f;
-	float mRotateRatio = 0.03f;
+	float mRotateRatio = 0.09f;
 	float mScaleRatio = 0.02f;
 	bool first_render = true;
 	GizmoSpace mGizmoSpace;

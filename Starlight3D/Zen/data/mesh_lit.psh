@@ -128,7 +128,7 @@ void main(in  PSInput  PSIn,
         //FR.y = FR.y;
 
 
-        env_col = g_Env.Sample(g_Env_sampler, R);
+       /// env_col = g_Env.Sample(g_Env_sampler, R);
 
         env_col.a = 0;
     }

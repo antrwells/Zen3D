@@ -42,16 +42,14 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(18,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(22,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(23,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(23,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(67,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(68,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(72,105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(72,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(262,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(262,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(613,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(613,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(19,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(34,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(34,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(79,76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(80,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(84,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(379,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(379,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(752,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(752,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Zen.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Zen.exe

@@ -166,6 +166,7 @@
     <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="DirCollection.h" />
     <ClInclude Include="DockUsage.h" />
     <ClInclude Include="FrameTypeColor.h" />
     <ClInclude Include="framework.h" />
@@ -213,6 +214,7 @@
     <ClInclude Include="stb_truetype.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureCube.h" />
+    <ClInclude Include="tinydir.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UIControl.h" />
     <ClInclude Include="UITheme.h" />
@@ -233,6 +235,7 @@
     <ClCompile Include="BoneInfo.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
+    <ClCompile Include="DirCollection.cpp" />
     <ClCompile Include="DockUsage.cpp" />
     <ClCompile Include="FrameTypeColor.cpp" />
     <ClCompile Include="GBuffer.cpp" />

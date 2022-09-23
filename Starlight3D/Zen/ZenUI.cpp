@@ -3,6 +3,7 @@
 #include "Importer.h"
 #include "RayPicker.h"
 #include "VString.h"
+#include "DirCollection.h"
 
 ZenUI::ZenUI(SceneGraph* graph) {
 
@@ -79,6 +80,11 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mContentBrowserPos = ImVec2(0, 12+Application::GetApp()->GetHeight() - 200-22);
 	mContentBrowserSize = ImVec2(Application::GetApp()->GetWidth(), 222-12);// mToolbarSize.y);
 
+	//Icons
+
+	mIconFolder = new Texture2D("edit/browser/foldericon.png");
+	mIconFile = new Texture2D("edit/browser/fileicon.png");
+
 	//Node Editor
 	mNodeEditPos = ImVec2(990,mToolbarSize.y+12);
 	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() -990, Application::GetApp()->GetHeight() - 22 - 200-mToolbarSize.y);
@@ -90,6 +96,8 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 	mToolbarSize.y = mToolbarSize.y - 8;
 
+
+	ScanContent("c:/ZenContent/");
 
 }
 
@@ -698,8 +706,60 @@ void ZenUI::MainContentBrowser() {
 
 	int flags = ImGuiWindowFlags_MenuBar;
 
+	int cx, cy;
+	cx = 2;
+	cy = 2;
+
 	if (ImGui::Begin("Content Browser", &mContentBrowserOpen, flags))
 	{
+		int id = 0;
+		ImGui::BeginChild("Content");
+		for (int i = 0; i < mDir->enteries.size(); i++) {
+
+			auto entry = mDir->enteries[i];
+			if (entry.folder)
+			{
+				ImGui::SetCursorPos(ImVec2(cx, cy));
+			
+				ImGui::PushID(id);
+				if (ImGui::ImageButton(mIconFolder->GetView(), ImVec2(58, 58))) {
+
+					int aa = 5;
+
+					ScanContent(entry.full);
+
+					if (ImGui::IsMouseDoubleClicked(ImGuiButtonFlags_MouseButtonLeft)) {
+						int b = 5;
+					}
+
+				}
+				ImGui::SetCursorPos(ImVec2(cx + 5, cy + 62));
+				ImGui::Text(entry.name.c_str());
+				cx = cx + 90;
+				ImGui::PopID();
+				id++;
+			}
+		}
+		
+		for (int i = 0; i < mDir->enteries.size(); i++) {
+
+			auto entry = mDir->enteries[i];
+			if (!entry.folder)
+			{
+				ImGui::SetCursorPos(ImVec2(cx, cy));
+				ImGui::ImageButton(mIconFile->GetView(), ImVec2(58, 58));
+				ImGui::SetCursorPos(ImVec2(cx + 5, cy + 62));
+				ImGui::Text(entry.name.c_str());
+				cx = cx + 90;
+
+			}
+		}
+		ImGui::EndChild();
+
+		//ImGui::SetCursorPos(ImVec2(128, 128));
+		//ImGui::Button("Folder");
+		//ImGui::SetCursorPos(ImVec2(5, 64));
+		//ImGui::Text("Contents");
 
 
 
@@ -754,6 +814,14 @@ void ZenUI::MainBGWindow()
 	ImGui::Begin("Zen", &open, flags);
 
 	ImGui::End();
+}
+
+
+void ZenUI::ScanContent(std::string path) {
+
+	mDir = new DirCollection(path);
+	int bb = 5;
+
 }
 
 //////////

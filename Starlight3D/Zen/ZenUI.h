@@ -5,6 +5,7 @@
 #include "SceneGraph.h"
 
 class RayPicker;
+class DirCollection;
 
 enum GizmoMode {
 
@@ -35,6 +36,9 @@ public:
 	//SceneGraph related - 
 	void SceneGraphWindow();
 	void SceneTree(Node3D* node);
+
+	//Content Browser Related
+	void ScanContent(std::string path);
 
 	int GetWidth() {
 		
@@ -115,6 +119,10 @@ private:
 	ImVec2 mContentBrowserPos;
 	ImVec2 mContentBrowserSize;
 	bool mCBF = false;
+
+	Texture2D* mIconFile, * mIconFolder;
+	DirCollection* mDir;
+	std::vector<DirCollection*> mDirStack;
 
 	//Node Editor
 	ImVec2 mNodeEditPos;

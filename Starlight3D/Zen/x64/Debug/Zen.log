@@ -42,14 +42,51 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(19,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(34,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(34,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(79,76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(80,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(84,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(379,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(379,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(752,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZenUI.cpp(752,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(20,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(35,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(35,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(80,76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(81,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(90,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(387,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(387,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(722,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(722,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(736,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(736,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(749,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(749,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(751,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(751,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(812,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\Zen\ZenUI.cpp(812,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
   Zen.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Zen.exe

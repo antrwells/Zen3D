@@ -231,6 +231,12 @@
     <ClInclude Include="RayPicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DirCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinydir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -420,6 +426,9 @@
       <Filter>UI\Controls</Filter>
     </ClCompile>
     <ClCompile Include="RayPicker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirCollection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

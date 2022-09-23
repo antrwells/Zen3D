@@ -66,7 +66,7 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 	//Scene Viewport Globals
 	gLock_x = gLock_y = gLock_z = false;
-	mGizmoMode = GizmoMode::GizmoScale;
+	mGizmoMode = GizmoMode::GizmoTranslate;
 	mGizmoSpace = GizmoSpace::Global;
 
 
@@ -735,9 +735,21 @@ void ZenUI::MainContentBrowser() {
 				}
 				ImGui::SetCursorPos(ImVec2(cx + 5, cy + 62));
 				ImGui::Text(entry.name.c_str());
-				cx = cx + 90;
+				cx = cx + 120;
+				VString item_name = VString(entry.name.c_str());
+				if (item_name.Len() > 8)
+				{
+					item_name = item_name.SubString(0, 8);
+				}
+				ImGui::Text(item_name.GetConst());
 				ImGui::PopID();
 				id++;
+				if (cx > ImGui::GetWindowSize().x - 80)
+				{
+					cx = 2;
+					cy = cy + 80;
+				}
+
 			}
 		}
 		
@@ -747,10 +759,34 @@ void ZenUI::MainContentBrowser() {
 			if (!entry.folder)
 			{
 				ImGui::SetCursorPos(ImVec2(cx, cy));
-				ImGui::ImageButton(mIconFile->GetView(), ImVec2(58, 58));
+				ImGui::PushID(id);
+				if (ImGui::ImageButton(mIconFile->GetView(), ImVec2(58, 58)))
+				{
+					//int ab = 5;
+					int ab = 5;
+
+					if (entry.ext == "fbx" || entry.ext =="dae")
+					{
+						ImportNode(entry.full.c_str());
+					}
+				}
+			
+				;
 				ImGui::SetCursorPos(ImVec2(cx + 5, cy + 62));
-				ImGui::Text(entry.name.c_str());
-				cx = cx + 90;
+				VString item_name = VString(entry.name.c_str());
+				if (item_name.Len() > 8)
+				{
+					item_name = item_name.SubString(0, 8);
+				}
+				ImGui::Text(item_name.GetConst());
+				ImGui::PopID();
+				id++;
+				cx = cx + 120;
+				if (cx > ImGui::GetWindowSize().x - 80)
+				{
+					cx = 2;
+					cy = cy + 80;
+				}
 
 			}
 		}
@@ -821,6 +857,16 @@ void ZenUI::ScanContent(std::string path) {
 
 	mDir = new DirCollection(path);
 	int bb = 5;
+
+}
+
+///Othr functionality
+
+void ZenUI::ImportNode(const char* path) {
+
+	Importer* importer = new Importer;
+	auto node = importer->ImportAI(path);
+	mGraph->AddNode(node);
 
 }
 

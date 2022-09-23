@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Application.h"
 #include "UI.h"
+#include "ZSource.h"
+#include "ZTokenizer.h"
 //#include "ImGuiImplWin32.hpp"
 
 
@@ -14,6 +16,11 @@ Application::Application() {
 
     s_pThis = this;
     mInput = new UserInput();
+
+    ZSource* source = new ZSource("script/test.zs");
+    ZTokenizer* toker = new ZTokenizer(source);
+    toker->Tokenize();
+    int aaa = 5;
      
 }
 

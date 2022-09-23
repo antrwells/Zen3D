@@ -40,6 +40,7 @@ public:
 	//Content Browser Related
 	void ScanContent(std::string path);
 
+
 	int GetWidth() {
 		
 		return Application::GetApp()->GetWidth();
@@ -53,6 +54,10 @@ public:
 
 	void UpdateUI();
 	void RenderUI();
+
+	//Other functionality.
+	void ImportNode(const char* path);
+
 
 private:
 

@@ -2,7 +2,7 @@ class testClass
 
     method testMethod(int a,int b)
 
-        printf("Testing!")
+        printf(255.45)
 
     end
 

@@ -1,3 +1,6 @@
 Gizmos - 
 
 Rotation - give each axis gizmo some depth, to be usable from all angles.
+
+
+- Bone Gizmos, for moving/rotating matrices in actors.

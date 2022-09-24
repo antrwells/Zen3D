@@ -33,6 +33,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 	std::vector<char> is_text;
 	std::vector<char> is_op;
+	std::vector<char> is_num;
 
 	is_text.push_back("a"[0]);
 	is_text.push_back("b"[0]);
@@ -93,6 +94,17 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_op.push_back(")"[0]);
 	is_op.push_back(","[0]);
 
+	is_num.push_back("0"[0]);
+	is_num.push_back("1"[0]);
+	is_num.push_back("2"[0]);
+	is_num.push_back("3"[0]);
+	is_num.push_back("4"[0]);
+	is_num.push_back("5"[0]);
+	is_num.push_back("6"[0]);
+	is_num.push_back("7"[0]);
+	is_num.push_back("8"[0]);
+	is_num.push_back("9"[0]);
+
 	std::vector<Token> tokens;
 
 
@@ -107,6 +119,42 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		for (int c = 0; c < line.size(); c++) {
 
 			auto ch = line[c];
+
+			if (is_number) {
+
+				if (vec_contains(is_num, ch)) {
+					cur_token = cur_token + ch;
+					continue;
+				}
+				else if (ch == "."[0])
+				{
+					cur_token = cur_token + ch;
+					continue;
+				}
+				else {
+					tokens.push_back(Token(TokenType::TokenNumber, cur_token));
+					cur_token = "";
+					is_number = false;
+				}
+
+			}
+
+			if (is_string) {
+
+				if (ch == "\""[0])
+				{
+					is_string = false;
+					tokens.push_back(Token(TokenType::TokenString, cur_token));
+					cur_token = "";
+					continue;
+				}
+				else {
+					cur_token = cur_token + ch;
+					continue;
+				}
+
+
+			}
 
 			if (vec_contains(is_text, ch))
 			{
@@ -127,6 +175,16 @@ ZTokenStream* ZTokenizer::Tokenize() {
 					op = op + ch;
 					tokens.push_back(Token(TokenType::TokenOperator,op));
 
+				}
+				else if (ch == "\""[0])
+				{
+					is_string = true;
+
+				}
+				else if (vec_contains(is_num, ch)) {
+					is_number = true;
+					cur_token = ch;
+					continue;
 				}
 
 			}

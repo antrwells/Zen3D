@@ -1,6 +1,6 @@
 class testClass
 
-    method testMethod(int a,int b)
+    method int testMethod(int a,int b)
 
         printf(255.45)
 
@@ -10,7 +10,7 @@ class testClass
 end 
 
 
-function main()
+function int main()
 
     printf("Testing main!")
 

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ParseNodes">
+      <UniqueIdentifier>{8789f45f-115a-446c-9ecd-bc93e556c0e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptNodes">
+      <UniqueIdentifier>{1b0e0cd7-3a17-4214-9caf-bf4d65ba5fd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -30,6 +36,57 @@
     <ClInclude Include="ZTokenStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ZParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseScript.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZScriptNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZProgramNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseClass.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZClassNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseMethod.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZMethodNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseSignature.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseValue.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseSigParam.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZSignatureNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZSigParamNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseCodeBody.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZCodeBodyNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -46,6 +103,54 @@
     </ClCompile>
     <ClCompile Include="ZTokenStream.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseScript.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZScriptNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZProgramNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseClass.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZClassNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseMethod.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZMethodNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseSignature.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseValue.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseSigParam.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZSignatureNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZSigParamNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseCodeBody.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZCodeBodyNode.cpp">
+      <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

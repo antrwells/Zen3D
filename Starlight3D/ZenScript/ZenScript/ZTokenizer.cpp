@@ -1,4 +1,5 @@
 #include "ZTokenizer.h"
+#include <map>
 
 ZTokenizer::ZTokenizer(ZSource* source)
 {
@@ -192,7 +193,23 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 		}
 
+		if (cur_token.size() > 0) {
+
+			if (is_string) {
+				tokens.push_back(Token(TokenType::TokenString, cur_token));
+			}
+			else if (is_number) {
+				tokens.push_back(Token(TokenType::TokenNumber, cur_token));
+			}
+			else {
+				tokens.push_back(Token(TokenType::TokenIdent, cur_token));
+			}
+
+		}
+
 	}
+
+
 
 	std::cout << "Token Stream output." << std::endl;
 
@@ -201,8 +218,46 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 		std::cout << "Token:" << TokenToString(tokens[i].mType) << "  Text:" << tokens[i].mText << std::endl;
 
+	    
+
 	}
 
-	return nullptr;
+	std::map<std::string, TokenType> token_map;
+
+	token_map.insert(std::make_pair("class", TokenType::TokenClass));
+	token_map.insert(std::make_pair("method", TokenType::TokenMethod));
+	token_map.insert(std::make_pair("int", TokenType::TokenInt));
+	token_map.insert(std::make_pair("float", TokenType::TokenFloat));
+	token_map.insert(std::make_pair("string", TokenType::TokenString));
+	token_map.insert(std::make_pair("function", TokenType::TokenFunction));
+	token_map.insert(std::make_pair("end", TokenType::TokenEnd));
+	token_map.insert(std::make_pair(".", TokenType::TokenPeriod));
+	token_map.insert(std::make_pair(",", TokenType::TokenComma));
+	token_map.insert(std::make_pair("(", TokenType::TokenLeftPara));
+	token_map.insert(std::make_pair(")", TokenType::TokenRightPara));
+
+	std::vector<Token> new_tokens;
+
+	for (int i = 0; i < tokens.size(); i++) {
+
+		auto old_token = tokens[i];
+
+		Token new_token = Token(old_token.mType, old_token.mText);
+
+		if (token_map.find(old_token.mText) != token_map.end()) {
+			new_token.mType = token_map[old_token.mText];
+		}
+		else {
+			
+		}
+
+		new_tokens.push_back(new_token);
+
+	}
+
+	auto tok_stream = new ZTokenStream();
+	tok_stream->SetTokens(new_tokens);
+
+	return tok_stream;
 
 }

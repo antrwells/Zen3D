@@ -143,7 +143,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="DataTypes.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ZClassNode.h" />
+    <ClInclude Include="ZCodeBodyNode.h" />
+    <ClInclude Include="ZMethodNode.h" />
+    <ClInclude Include="ZParseClass.h" />
+    <ClInclude Include="ZParseCodeBody.h" />
+    <ClInclude Include="ZParseMethod.h" />
+    <ClInclude Include="ZParseNode.h" />
+    <ClInclude Include="ZParser.h" />
+    <ClInclude Include="ZParseScript.h" />
+    <ClInclude Include="ZParseSignature.h" />
+    <ClInclude Include="ZParseSigParam.h" />
+    <ClInclude Include="ZParseValue.h" />
+    <ClInclude Include="ZProgramNode.h" />
+    <ClInclude Include="ZScriptNode.h" />
+    <ClInclude Include="ZSignatureNode.h" />
+    <ClInclude Include="ZSigParamNode.h" />
     <ClInclude Include="ZSource.h" />
     <ClInclude Include="ZTokenizer.h" />
     <ClInclude Include="ZTokenStream.h" />
@@ -155,7 +172,23 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ZClassNode.cpp" />
+    <ClCompile Include="ZCodeBodyNode.cpp" />
     <ClCompile Include="ZenScript.cpp" />
+    <ClCompile Include="ZMethodNode.cpp" />
+    <ClCompile Include="ZParseClass.cpp" />
+    <ClCompile Include="ZParseCodeBody.cpp" />
+    <ClCompile Include="ZParseMethod.cpp" />
+    <ClCompile Include="ZParseNode.cpp" />
+    <ClCompile Include="ZParser.cpp" />
+    <ClCompile Include="ZParseScript.cpp" />
+    <ClCompile Include="ZParseSignature.cpp" />
+    <ClCompile Include="ZParseSigParam.cpp" />
+    <ClCompile Include="ZParseValue.cpp" />
+    <ClCompile Include="ZProgramNode.cpp" />
+    <ClCompile Include="ZScriptNode.cpp" />
+    <ClCompile Include="ZSignatureNode.cpp" />
+    <ClCompile Include="ZSigParamNode.cpp" />
     <ClCompile Include="ZSource.cpp" />
     <ClCompile Include="ZTokenizer.cpp" />
     <ClCompile Include="ZTokenStream.cpp" />

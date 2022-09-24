@@ -49,3 +49,27 @@ Token ZTokenStream::PeekToken(int increment) {
 	return mTokens[mTokenIndex + increment];
 
 }
+
+void ZTokenStream::SetTokens(std::vector<Token> tokens)
+{
+	mTokens = tokens;
+}
+
+void ZTokenStream::Back() {
+
+	mTokenIndex--;
+	if (mTokenIndex < 0)
+	{
+		mTokenIndex = 0;
+	}
+
+}
+
+bool ZTokenStream::EOS() {
+
+	if (mTokenIndex >= mTokens.size()) {
+		return true;
+	}
+	return false;
+
+}

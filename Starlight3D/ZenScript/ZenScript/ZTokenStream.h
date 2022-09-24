@@ -5,7 +5,7 @@
 
 enum TokenType {
 	TokenIdent,TokenNumber,TokenString,TokenClass,TokenEnd,TokenLeftPara,TokenRightPara,TokenNot,TokenAnd,TokenElse,TokenIf,
-	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator
+	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma
 };
 
 std::string TokenToString(enum TokenType type);
@@ -32,8 +32,11 @@ public:
 
 	ZTokenStream();
 	void AddToken(Token token);
+	void Back();
 	Token NextToken();
 	Token PeekToken(int increment);
+	bool EOS();
+	void SetTokens(std::vector<Token> tokens);
 
 private:
 	std::vector<Token> mTokens;

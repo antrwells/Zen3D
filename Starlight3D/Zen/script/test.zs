@@ -2,7 +2,7 @@ class testClass
 
     method int testMethod(int a,int b)
 
-        printf(255.45)
+        printf(333)
 
     end
 

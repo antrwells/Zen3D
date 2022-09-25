@@ -1,2 +1,6 @@
-﻿  ZParseStatement.cpp
+﻿  ZParametersNode.cpp
+  ZParseExpression.cpp
+  ZParseParameters.cpp
+  ZParseStatement.cpp
+  Generating Code...
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

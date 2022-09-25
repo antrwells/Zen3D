@@ -11,6 +11,10 @@ std::string TokenToString(enum TokenType type) {
 		return "TokenOperator";
 	case TokenType::TokenString:
 		return "TokenString";
+	case TokenType::TokenInt:
+		return "TokenInt";
+	case TokenType::TokenFloat:
+		return "TokenFloat";
 	}
 	return "Unknown";
 }

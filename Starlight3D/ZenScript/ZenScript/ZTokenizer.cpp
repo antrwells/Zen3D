@@ -116,6 +116,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		std::string cur_token = "";
 		bool is_string = false;
 		bool is_number = false;
+		bool is_float = false;
 
 		for (int c = 0; c < line.size(); c++) {
 
@@ -130,12 +131,19 @@ ZTokenStream* ZTokenizer::Tokenize() {
 				else if (ch == "."[0])
 				{
 					cur_token = cur_token + ch;
+					is_float = true;
 					continue;
 				}
 				else {
-					tokens.push_back(Token(TokenType::TokenNumber, cur_token));
+					if (is_float) {
+						tokens.push_back(Token(TokenType::TokenFloat, cur_token));
+					}
+					else {
+						tokens.push_back(Token(TokenType::TokenInt, cur_token));
+					}
 					cur_token = "";
 					is_number = false;
+					is_float = false;
 				}
 
 			}

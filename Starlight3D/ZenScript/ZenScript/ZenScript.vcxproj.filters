@@ -87,6 +87,12 @@
     <ClInclude Include="ZCodeBodyNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
+    <ClInclude Include="ZParseStatement.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZStatementNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -150,6 +156,12 @@
       <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZCodeBodyNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseStatement.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZStatementNode.cpp">
       <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>

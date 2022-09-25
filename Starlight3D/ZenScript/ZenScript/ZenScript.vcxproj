@@ -156,12 +156,14 @@
     <ClInclude Include="ZParseScript.h" />
     <ClInclude Include="ZParseSignature.h" />
     <ClInclude Include="ZParseSigParam.h" />
+    <ClInclude Include="ZParseStatement.h" />
     <ClInclude Include="ZParseValue.h" />
     <ClInclude Include="ZProgramNode.h" />
     <ClInclude Include="ZScriptNode.h" />
     <ClInclude Include="ZSignatureNode.h" />
     <ClInclude Include="ZSigParamNode.h" />
     <ClInclude Include="ZSource.h" />
+    <ClInclude Include="ZStatementNode.h" />
     <ClInclude Include="ZTokenizer.h" />
     <ClInclude Include="ZTokenStream.h" />
   </ItemGroup>
@@ -184,12 +186,14 @@
     <ClCompile Include="ZParseScript.cpp" />
     <ClCompile Include="ZParseSignature.cpp" />
     <ClCompile Include="ZParseSigParam.cpp" />
+    <ClCompile Include="ZParseStatement.cpp" />
     <ClCompile Include="ZParseValue.cpp" />
     <ClCompile Include="ZProgramNode.cpp" />
     <ClCompile Include="ZScriptNode.cpp" />
     <ClCompile Include="ZSignatureNode.cpp" />
     <ClCompile Include="ZSigParamNode.cpp" />
     <ClCompile Include="ZSource.cpp" />
+    <ClCompile Include="ZStatementNode.cpp" />
     <ClCompile Include="ZTokenizer.cpp" />
     <ClCompile Include="ZTokenStream.cpp" />
   </ItemGroup>

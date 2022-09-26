@@ -1,5 +1,6 @@
 #include "ZParser.h"
 #include "ZParseScript.h"
+#include "ZProgramNode.h"
 
 ZParser::ZParser(ZTokenStream* stream) {
 
@@ -7,11 +8,12 @@ ZParser::ZParser(ZTokenStream* stream) {
 
 }
 
-void ZParser::Parse()
+ZMainNode* ZParser::Parse()
 {
 
 	ZParseScript* parseScript = new ZParseScript(mStream);
 
-	parseScript->Parse();
+	return (ZMainNode*)parseScript->Parse();
+
 
 }

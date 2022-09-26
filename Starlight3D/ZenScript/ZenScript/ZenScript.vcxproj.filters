@@ -19,6 +19,9 @@
     <Filter Include="ScriptNodes">
       <UniqueIdentifier>{1b0e0cd7-3a17-4214-9caf-bf4d65ba5fd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Context">
+      <UniqueIdentifier>{2c5d0e94-f616-40de-bf91-99dcdde43c29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -44,9 +47,6 @@
     </ClInclude>
     <ClInclude Include="ZParseScript.h">
       <Filter>ParseNodes</Filter>
-    </ClInclude>
-    <ClInclude Include="ZScriptNode.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZProgramNode.h">
       <Filter>ScriptNodes</Filter>
@@ -103,6 +103,24 @@
       <Filter>ParseNodes</Filter>
     </ClInclude>
     <ClInclude Include="ZExpressionNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZScriptContext.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="ZContextVar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZContextScope.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseVars.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZScriptNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVarsNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -186,6 +204,21 @@
       <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZExpressionNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZScriptContext.cpp">
+      <Filter>Context</Filter>
+    </ClCompile>
+    <ClCompile Include="ZContextVar.cpp">
+      <Filter>Context</Filter>
+    </ClCompile>
+    <ClCompile Include="ZContextScope.cpp">
+      <Filter>Context</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseVars.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVarsNode.cpp">
       <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>

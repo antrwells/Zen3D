@@ -147,6 +147,8 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="ZClassNode.h" />
     <ClInclude Include="ZCodeBodyNode.h" />
+    <ClInclude Include="ZContextScope.h" />
+    <ClInclude Include="ZContextVar.h" />
     <ClInclude Include="ZExpressionNode.h" />
     <ClInclude Include="ZMethodNode.h" />
     <ClInclude Include="ZParametersNode.h" />
@@ -162,7 +164,9 @@
     <ClInclude Include="ZParseSigParam.h" />
     <ClInclude Include="ZParseStatement.h" />
     <ClInclude Include="ZParseValue.h" />
+    <ClInclude Include="ZParseVars.h" />
     <ClInclude Include="ZProgramNode.h" />
+    <ClInclude Include="ZScriptContext.h" />
     <ClInclude Include="ZScriptNode.h" />
     <ClInclude Include="ZSignatureNode.h" />
     <ClInclude Include="ZSigParamNode.h" />
@@ -170,6 +174,7 @@
     <ClInclude Include="ZStatementNode.h" />
     <ClInclude Include="ZTokenizer.h" />
     <ClInclude Include="ZTokenStream.h" />
+    <ClInclude Include="ZVarsNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -180,6 +185,8 @@
     </ClCompile>
     <ClCompile Include="ZClassNode.cpp" />
     <ClCompile Include="ZCodeBodyNode.cpp" />
+    <ClCompile Include="ZContextScope.cpp" />
+    <ClCompile Include="ZContextVar.cpp" />
     <ClCompile Include="ZenScript.cpp" />
     <ClCompile Include="ZExpressionNode.cpp" />
     <ClCompile Include="ZMethodNode.cpp" />
@@ -196,7 +203,9 @@
     <ClCompile Include="ZParseSigParam.cpp" />
     <ClCompile Include="ZParseStatement.cpp" />
     <ClCompile Include="ZParseValue.cpp" />
+    <ClCompile Include="ZParseVars.cpp" />
     <ClCompile Include="ZProgramNode.cpp" />
+    <ClCompile Include="ZScriptContext.cpp" />
     <ClCompile Include="ZScriptNode.cpp" />
     <ClCompile Include="ZSignatureNode.cpp" />
     <ClCompile Include="ZSigParamNode.cpp" />
@@ -204,6 +213,7 @@
     <ClCompile Include="ZStatementNode.cpp" />
     <ClCompile Include="ZTokenizer.cpp" />
     <ClCompile Include="ZTokenStream.cpp" />
+    <ClCompile Include="ZVarsNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,5 @@
 #include "ZTokenStream.h"
+#include <assert.h>
 
 std::string TokenToString(enum TokenType type) {
 
@@ -15,6 +16,16 @@ std::string TokenToString(enum TokenType type) {
 		return "TokenInt";
 	case TokenType::TokenFloat:
 		return "TokenFloat";
+	case TokenType::TokenPlus:
+		return "TokenPlus";
+	case TokenType::TokenMinus:
+		return "TokenMinus";
+	case TokenType::TokenMultiply:
+		return "TokenMultiply";
+	case TokenType::TokenDivide:
+		return "TokenDivide";
+	case TokenType::TokenEndOfLine:
+		return "TokenEndOfLine";
 	}
 	return "Unknown";
 }
@@ -36,11 +47,22 @@ Token ZTokenStream::NextToken() {
 	if (mTokens.size() == 0) {
 		return Token(TokenType::EndOfFile);
 	}
-	if (mTokenIndex == mTokens.size() - 1)
+	if (mTokenIndex >= mTokens.size())
 	{
 		return Token(TokenType::EndOfFile);
 	}
 	return mTokens[mTokenIndex++];
+
+}
+
+Token ZTokenStream::AssertNextToken(TokenType token_type) {
+
+	auto token = NextToken();
+
+	assert(token.mType == token_type);
+
+	return token;
+
 
 }
 

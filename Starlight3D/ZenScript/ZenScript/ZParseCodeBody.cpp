@@ -25,6 +25,11 @@ CodeType ZParseCodeBody::PredictType() {
 			return CodeType::CodeStatement;
 
 			break;
+		case TokenType::TokenEnd:
+
+			return CodeType::CodeEnd;
+
+			break;
 		}
 
 		peek_val++;
@@ -51,6 +56,13 @@ ZScriptNode* ZParseCodeBody::Parse() {
 		ZStatementNode* statement_node = nullptr;
 
 		switch (code_type) {
+		case CodeType::CodeEnd:
+
+			mStream->NextToken();
+			mStream->AssertNextToken(TokenType::TokenEndOfLine);
+			return codebody;
+
+			break;
 		case CodeType::CodeStatement:
 
 			parse_statement = new ZParseStatement(mStream);
@@ -58,6 +70,8 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			statement_node = (ZStatementNode*)parse_statement->Parse();
 
 			codebody->AddNode(statement_node);
+
+			auto next_tok = mStream->AssertNextToken(TokenType::TokenEndOfLine);
 
 			break;
 		}

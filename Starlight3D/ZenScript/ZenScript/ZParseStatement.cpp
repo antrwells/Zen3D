@@ -2,6 +2,7 @@
 #include "ZStatementNode.h"
 #include "ZParseParameters.h"
 #include "ZParametersNode.h"
+#include <assert.h>
 
 ZParseStatement::ZParseStatement(ZTokenStream* stream) : ZParseNode(stream) {
 
@@ -21,6 +22,11 @@ ZScriptNode* ZParseStatement::Parse() {
 
 		switch (token.mType) {
 
+		case TokenType::TokenRightPara:
+
+			return state_node;
+
+			break;
 		case TokenType::TokenIdent:
 
 			state_node->AddCallName(token.mText);
@@ -37,6 +43,8 @@ ZScriptNode* ZParseStatement::Parse() {
 
 			state_node->SetPars(pars_node);
 
+			mStream->Back();
+
 			int aa = 5;
 
 			break;
@@ -50,6 +58,6 @@ ZScriptNode* ZParseStatement::Parse() {
 
 	//int aa = 5;
 
-
+	assert(false);
 	return state_node;
 }

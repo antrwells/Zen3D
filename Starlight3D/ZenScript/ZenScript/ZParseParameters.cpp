@@ -32,9 +32,12 @@ ZScriptNode* ZParseParameters::Parse() {
 
 		switch (token.mType)
 		{
+		case TokenType::TokenComma:
+			continue;
+			break;
 		case TokenType::TokenRightPara:
 
-
+			return par_node;
 
 			break;
 		default:
@@ -54,6 +57,6 @@ ZScriptNode* ZParseParameters::Parse() {
 	}
 
 	//int aa = 5;
-
+	assert(false);
 	return nullptr;
 }

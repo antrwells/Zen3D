@@ -23,10 +23,38 @@ ZScriptNode* ZParseExpression::Parse() {
 		float fVal;
 
 		switch (token.mType) {
+		case TokenType::TokenMultiply:
+
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpMultiply;
+			expr.mElements.push_back(ele);
+
+			break;
+		case TokenType::TokenDivide:
+
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpDivide;
+			expr.mElements.push_back(ele);
+
+			break;
+		case TokenType::TokenMinus:
+
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpMinus;
+			expr.mElements.push_back(ele);
+
+			break;
+
+
+		case TokenType::TokenPlus:
+
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpPlus;
+			expr.mElements.push_back(ele);
+
+			break;
 		case TokenType::TokenFloat:
-
-			
-
+		
 			ele.mType = ExprElementType::EFloat;
 			ele.mValInt = 0;
 			fVal = std::stof(std::string(token.mText));
@@ -46,6 +74,7 @@ ZScriptNode* ZParseExpression::Parse() {
 		case TokenType::TokenString:
 			break;
 		case TokenType::TokenRightPara:
+		case TokenType::TokenComma:
 			mStream->Back();
 			exp_node->SetExpression(expr);
 			return exp_node;

@@ -5,7 +5,7 @@
 
 enum ExprOperatorType {
 
-    OpPlus,OpMinus,OpTimes,OpDivide
+    OpPlus,OpMinus,OpMultiply,OpDivide
 
 };
 

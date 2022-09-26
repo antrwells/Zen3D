@@ -4,6 +4,7 @@
 #include "ZSource.h"
 #include "ZTokenizer.h"
 #include "ZParser.h"
+#include "ZScriptContext.h"
 //#include "ImGuiImplWin32.hpp"
 
 
@@ -22,7 +23,15 @@ Application::Application() {
     ZTokenizer* toker = new ZTokenizer(source);
     auto stream = toker->Tokenize();
     ZParser* parser = new ZParser(stream);
-    parser->Parse();
+    ZMainNode* main1 = parser->Parse();
+
+    ZScriptContext* context1 = new ZScriptContext;
+
+    context1->AddNode(main1);
+
+    
+
+
     int aaa = 5;
      
 }

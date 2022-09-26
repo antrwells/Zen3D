@@ -3,12 +3,13 @@
 
 class ZClassNode;
 
-class ZProgramNode : ZScriptNode
+class ZMainNode : ZScriptNode
 {
 public:
 
 
 	void AddClass(ZClassNode* node);
+	std::vector<ZClassNode*> GetClasses();
 
 private:
 

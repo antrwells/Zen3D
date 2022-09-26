@@ -40,7 +40,8 @@ ZScriptNode* ZParseMethod::Parse()
 	
 	meth_node->SetSignature(sig_node);
 
-	//auto next_tok = mStream->NextToken();
+	auto next_tok = mStream->AssertNextToken(TokenType::TokenEndOfLine);
+
 
 	auto code_parse = new ZParseCodeBody(mStream);
 

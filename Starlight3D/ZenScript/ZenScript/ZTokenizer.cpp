@@ -94,6 +94,13 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_op.push_back("("[0]);
 	is_op.push_back(")"[0]);
 	is_op.push_back(","[0]);
+	is_op.push_back("+"[0]);
+	is_op.push_back("-"[0]);
+	is_op.push_back("*"[0]);
+	is_op.push_back("/"[0]);
+
+
+
 
 	is_num.push_back("0"[0]);
 	is_num.push_back("1"[0]);
@@ -173,6 +180,11 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 				if (cur_token.size() > 0)
 				{
+
+					if (vec_contains(is_num, ch)) {
+						cur_token = cur_token + ch;
+						continue;
+					}
 					tokens.push_back(Token(TokenType::TokenIdent, cur_token));
 					cur_token = "";
 				}
@@ -215,6 +227,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 		}
 
+		tokens.push_back(Token(TokenType::TokenEndOfLine, ";"));
+
 	}
 
 
@@ -243,6 +257,10 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair(",", TokenType::TokenComma));
 	token_map.insert(std::make_pair("(", TokenType::TokenLeftPara));
 	token_map.insert(std::make_pair(")", TokenType::TokenRightPara));
+	token_map.insert(std::make_pair("+", TokenType::TokenPlus));;
+	token_map.insert(std::make_pair("-", TokenType::TokenMinus));;
+	token_map.insert(std::make_pair("/", TokenType::TokenDivide));;
+	token_map.insert(std::make_pair("*", TokenType::TokenMultiply));;
 
 	std::vector<Token> new_tokens;
 

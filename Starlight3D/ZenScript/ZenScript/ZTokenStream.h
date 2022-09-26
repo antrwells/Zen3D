@@ -5,7 +5,8 @@
 
 enum TokenType {
 	TokenIdent,TokenNumber,TokenString,TokenClass,TokenEnd,TokenLeftPara,TokenRightPara,TokenNot,TokenAnd,TokenElse,TokenIf,
-	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma
+	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma,
+	TokenPlus,TokenMinus,TokenDivide,TokenMultiply,TokenEndOfLine
 };
 
 std::string TokenToString(enum TokenType type);
@@ -34,6 +35,7 @@ public:
 	void AddToken(Token token);
 	void Back();
 	Token NextToken();
+	Token AssertNextToken(enum TokenType token_type);
 	Token PeekToken(int increment);
 	bool EOS();
 	void SetTokens(std::vector<Token> tokens);

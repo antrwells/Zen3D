@@ -13,7 +13,7 @@ ZParseScript::ZParseScript(ZTokenStream* stream) : ZParseNode(stream) {
 ZScriptNode* ZParseScript::Parse()
 {
 
-	ZProgramNode* main_node = new ZProgramNode;
+	ZMainNode* main_node = new ZMainNode;
 
 	while (!mStream->EOS())
 	{
@@ -21,6 +21,11 @@ ZScriptNode* ZParseScript::Parse()
 		auto token = mStream->NextToken();
 
 		switch (token.mType) {
+		case TokenType::EndOfFile:
+
+			return (ZScriptNode*)main_node;
+
+			break;
 		case TokenType::TokenClass:
 
 
@@ -31,8 +36,7 @@ ZScriptNode* ZParseScript::Parse()
 			main_node->AddClass(class_node);
 			
 			int aa = 5;
-
-
+			
 			break;
 
 		}

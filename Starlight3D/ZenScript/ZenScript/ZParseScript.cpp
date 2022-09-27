@@ -46,6 +46,6 @@ ZScriptNode* ZParseScript::Parse()
 
 	}
 
-	return nullptr;
+	return (ZScriptNode*)main_node;
 
 }

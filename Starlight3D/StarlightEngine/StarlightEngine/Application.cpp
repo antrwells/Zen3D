@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "Application.h"
 #include "UI.h"
-#include "ZSource.h"
-#include "ZTokenizer.h"
-#include "ZParser.h"
-#include "ZScriptContext.h"
+
+
+
+//#include "ZContextVar.h"
+
 //#include "ImGuiImplWin32.hpp"
 
 
@@ -19,21 +20,27 @@ Application::Application() {
     s_pThis = this;
     mInput = new UserInput();
 
-    ZSource* source = new ZSource("script/test.zs");
-    ZTokenizer* toker = new ZTokenizer(source);
-    auto stream = toker->Tokenize();
-    ZParser* parser = new ZParser(stream);
-    ZMainNode* main1 = parser->Parse();
+    //ZSource* source = new ZSource("script/test.zs");
+    //ZTokenizer* toker = new ZTokenizer(source);
+    //auto stream = toker->Tokenize();
+    //ZParser* parser = new ZParser(stream);
+    //ZMainNode* main1 = parser->Parse();
 
-    ZScriptContext* context1 = new ZScriptContext;
+    //ZScriptContext* context1 = new ZScriptContext;
 
-    context1->AddNode(main1);
+    //context1->AddNode(main1);
 
-    
+    //auto cls_inst = context1->CreateInstance("testClass", "test");
 
+    //auto par_a = new ZContextVar("a", VarType::VarInt);
+    //auto par_b = new ZContextVar("b", VarType::VarInt);
+    //par_a->SetInt(5);
+    //par_b->SetInt(10);
+
+   // cls_inst->CallMethod("testMethod", { par_a,par_b });
 
     int aaa = 5;
-     
+
 }
 
 bool Application::Initialize(HWND hWnd) {

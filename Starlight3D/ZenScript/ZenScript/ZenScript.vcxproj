@@ -115,6 +115,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <EnableModules>false</EnableModules>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -143,7 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="VarTypes.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ZClassNode.h" />
     <ClInclude Include="ZCodeBodyNode.h" />

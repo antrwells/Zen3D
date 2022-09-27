@@ -12,3 +12,11 @@ void ZStatementNode::SetPars(ZParametersNode* pars) {
 	mPars = pars;
 
 }
+
+ZContextVar* ZStatementNode::Exec(std::initializer_list<ZContextVar*> args)
+{
+
+
+
+	return nullptr;
+}

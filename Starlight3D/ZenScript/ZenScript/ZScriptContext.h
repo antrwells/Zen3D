@@ -1,6 +1,9 @@
 #pragma once
 #include "ZProgramNode.h"
 #include <string>
+//#include "DataTypes.h"
+
+#include "ZContextVar.h"
 class ZContextScope;
 
 class ZScriptContext

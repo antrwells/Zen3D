@@ -75,7 +75,7 @@
     <ClInclude Include="ZSignatureNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
-    <ClInclude Include="DataTypes.h">
+    <ClInclude Include="VarTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZSigParamNode.h">
@@ -108,9 +108,6 @@
     <ClInclude Include="ZScriptContext.h">
       <Filter>Context</Filter>
     </ClInclude>
-    <ClInclude Include="ZContextVar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZContextScope.h">
       <Filter>Context</Filter>
     </ClInclude>
@@ -122,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="ZVarsNode.h">
       <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZContextVar.h">
+      <Filter>Context</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +148,6 @@
     </ClCompile>
     <ClCompile Include="ZParseScript.cpp">
       <Filter>ParseNodes</Filter>
-    </ClCompile>
-    <ClCompile Include="ZScriptNode.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZProgramNode.cpp">
       <Filter>ScriptNodes</Filter>
@@ -219,6 +216,9 @@
       <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZVarsNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZScriptNode.cpp">
       <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>

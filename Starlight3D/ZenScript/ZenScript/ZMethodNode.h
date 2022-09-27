@@ -1,10 +1,11 @@
 #pragma once
 #include "ZScriptNode.h"
 #include <string>
-#include "DataTypes.h"
+#include "VarTypes.h"
 
 class ZCodeBodyNode;
 class ZSignatureNode;
+class ZContextVar;
 
 class ZMethodNode : public ZScriptNode
 {
@@ -14,6 +15,10 @@ public:
 	void SetSignature(ZSignatureNode* node);
 	void SetReturnType(VarType type);
 	void SetCode(ZCodeBodyNode* code);
+	std::string GetName();
+
+	//Exec
+	ZContextVar* Exec(std::initializer_list<ZContextVar*> args);
 
 private:
 	std::string mMethodName;

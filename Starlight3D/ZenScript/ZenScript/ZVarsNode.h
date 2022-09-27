@@ -2,7 +2,7 @@
 #include "ZScriptNode.h"
 #include <vector>
 #include <string>
-#include "DataTypes.h"
+#include "VarTypes.h"
 
 class ZVarsNode :
     public ZScriptNode
@@ -11,6 +11,8 @@ public:
 
     void SetType(VarType type);
     void AddVar(std::string name);
+    std::vector<std::string> GetNames();
+    VarType GetType();
 
 private:
 

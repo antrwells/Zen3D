@@ -1,7 +1,7 @@
 #pragma once
 #include "ZScriptNode.h"
 #include <string>
-#include "DataTypes.h"
+#include "VarTypes.h"
 class ZSigParamNode :
     public ZScriptNode
 {

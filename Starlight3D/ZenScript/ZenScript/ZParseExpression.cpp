@@ -12,7 +12,14 @@ ZScriptNode* ZParseExpression::Parse() {
 
 	auto exp_node = new ZExpressionNode;
 
+	auto lb = ExpressionElement();
+	lb.mOp = ExprOperatorType::OpLeftBrace;
+	lb.mType = ExprElementType::EOp;
+
+
 	Expression expr;
+	expr.mElements.push_back(lb);
+	
 
 	while (!mStream->EOS()) {
 
@@ -75,6 +82,9 @@ ZScriptNode* ZParseExpression::Parse() {
 			break;
 		case TokenType::TokenRightPara:
 		case TokenType::TokenComma:
+
+			lb.mOp = ExprOperatorType::OpRightBrace;
+			expr.mElements.push_back(lb);
 			mStream->Back();
 			exp_node->SetExpression(expr);
 			return exp_node;

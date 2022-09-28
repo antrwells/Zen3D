@@ -36,8 +36,8 @@ std::string ZMethodNode::GetName() {
 
 }
 
-ZContextVar* ZMethodNode::Exec(std::initializer_list<ZContextVar*> args)
+ZContextVar* ZMethodNode::Exec(const std::vector<ZContextVar*>& params)
 {
-	return mCode->Exec(args);
+	return mCode->Exec(params);
 	//return nullptr;
 }

@@ -18,7 +18,7 @@ public:
 	std::string GetName();
 
 	//Exec
-	ZContextVar* Exec(std::initializer_list<ZContextVar*> args);
+	ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 
 private:
 	std::string mMethodName;

@@ -173,6 +173,8 @@
     <ClInclude Include="ZSigParamNode.h" />
     <ClInclude Include="ZSource.h" />
     <ClInclude Include="ZStatementNode.h" />
+    <ClInclude Include="ZSystemFunction.h" />
+    <ClInclude Include="ZSystemFunctions.h" />
     <ClInclude Include="ZTokenizer.h" />
     <ClInclude Include="ZTokenStream.h" />
     <ClInclude Include="ZVarsNode.h" />
@@ -212,6 +214,8 @@
     <ClCompile Include="ZSigParamNode.cpp" />
     <ClCompile Include="ZSource.cpp" />
     <ClCompile Include="ZStatementNode.cpp" />
+    <ClCompile Include="ZSystemFunction.cpp" />
+    <ClCompile Include="ZSystemFunctions.cpp" />
     <ClCompile Include="ZTokenizer.cpp" />
     <ClCompile Include="ZTokenStream.cpp" />
     <ClCompile Include="ZVarsNode.cpp" />

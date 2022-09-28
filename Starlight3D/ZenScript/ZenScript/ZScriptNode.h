@@ -8,7 +8,7 @@ class ZScriptNode
 {
 public:
 
-	virtual ZContextVar* Exec(std::initializer_list<ZContextVar*> args);
+	virtual ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 
 public:
 	

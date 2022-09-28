@@ -11,6 +11,7 @@ class ZScriptContext
 public:
 
 	ZScriptContext();
+	void SetupSystem();
 	void AddNode(ZMainNode* node);
 	ZClassNode* CreateInstance(std::string name,std::string instance_name);
 

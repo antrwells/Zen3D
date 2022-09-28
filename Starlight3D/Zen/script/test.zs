@@ -5,7 +5,7 @@ class testClass
 
     method int testMethod(int a,int b)
 
-        printf(333+255*10,50,50+50)
+        printf(333+255*10,1*1.5,50+50)
 
     end
 

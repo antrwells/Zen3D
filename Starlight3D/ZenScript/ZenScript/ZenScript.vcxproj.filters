@@ -123,6 +123,12 @@
     <ClInclude Include="ZContextVar.h">
       <Filter>Context</Filter>
     </ClInclude>
+    <ClInclude Include="ZSystemFunctions.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="ZSystemFunction.h">
+      <Filter>Context</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -220,6 +226,12 @@
     </ClCompile>
     <ClCompile Include="ZScriptNode.cpp">
       <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZSystemFunctions.cpp">
+      <Filter>Context</Filter>
+    </ClCompile>
+    <ClCompile Include="ZSystemFunction.cpp">
+      <Filter>Context</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ public:
 
     void AddCallName(std::string name);
     void SetPars(ZParametersNode* pars);
-    ZContextVar* Exec(std::initializer_list<ZContextVar*> args);
+    ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 
 private:
 

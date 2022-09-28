@@ -9,6 +9,8 @@ class ZParametersNode :
 public:
 
     void AddExpression(ZExpressionNode* expr);
+    ZExpressionNode* GetParameter(int index);
+    std::vector<ZExpressionNode*> GetParameters();
 
 private:
 

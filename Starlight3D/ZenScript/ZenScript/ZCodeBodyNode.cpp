@@ -11,7 +11,7 @@ void ZCodeBodyNode::AddNode(ZScriptNode* node) {
 
 }
 
-ZContextVar* ZCodeBodyNode::Exec(std::initializer_list<ZContextVar*> args)
+ZContextVar* ZCodeBodyNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
 	for (int i = 0; i < mNodes.size(); i++) {

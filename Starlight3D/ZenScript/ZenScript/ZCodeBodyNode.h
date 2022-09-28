@@ -11,7 +11,7 @@ public:
 
     ZCodeBodyNode();
     void AddNode(ZScriptNode* node);
-    ZContextVar* Exec(std::initializer_list<ZContextVar*> args);
+    ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 
 private:
     std::vector<ZScriptNode*> mNodes;

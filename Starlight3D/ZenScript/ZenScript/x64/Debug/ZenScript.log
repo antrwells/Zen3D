@@ -1,8 +1,4 @@
 ﻿  ZExpressionNode.cpp
-  ZParseExpression.cpp
-  ZParseParameters.cpp
-  ZStatementNode.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(36): warning C4715: 'applyOpInt': not all control paths return a value
 C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(44): warning C4715: 'applyOpFloat': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.h(82): warning C4715: 'Expression::Evaluate': not all control paths return a value
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

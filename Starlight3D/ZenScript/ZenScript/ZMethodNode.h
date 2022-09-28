@@ -2,6 +2,7 @@
 #include "ZScriptNode.h"
 #include <string>
 #include "VarTypes.h"
+#include "ZContextScope.h"
 
 class ZCodeBodyNode;
 class ZSignatureNode;
@@ -16,7 +17,8 @@ public:
 	void SetReturnType(VarType type);
 	void SetCode(ZCodeBodyNode* code);
 	std::string GetName();
-
+	void SetScope(ZContextScope* scope);
+	ZContextScope* GetScope();
 	//Exec
 	ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 
@@ -25,6 +27,7 @@ private:
 	ZSignatureNode* mSignature;
 	VarType mReturnType;
 	ZCodeBodyNode* mCode;
+	ZContextScope* mScope;
 
 };
 

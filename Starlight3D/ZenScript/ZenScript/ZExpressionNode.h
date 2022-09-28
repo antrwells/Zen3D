@@ -14,7 +14,7 @@ enum ExprOperatorType {
 
 enum ExprElementType {
 
-    EInt,EFloat,EString,EOp,SubExpression
+    EInt,EFloat,EString,EOp,SubExpression,EVar
 
 };
 
@@ -57,7 +57,14 @@ public:
     ZContextVar* Evaluate()
     {
 
-        if (mElements[1].mType == EFloat)
+        bool is_int = true;
+        for (int i = 0; i < mElements.size(); i++) {
+            if (mElements[i].mType == EFloat)
+            {
+                is_int = false;
+            }
+        }
+        if (!is_int)
         {
             ZContextVar* result = new ZContextVar("expr result", VarType::VarFloat);
 
@@ -68,7 +75,7 @@ public:
 
             return result;
         }
-        else if (mElements[1].mType == EInt)
+        else
         {
             ZContextVar* result = new ZContextVar("expr result", VarType::VarInt);
 

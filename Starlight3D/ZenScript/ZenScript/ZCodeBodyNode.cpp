@@ -25,3 +25,15 @@ ZContextVar* ZCodeBodyNode::Exec(const std::vector<ZContextVar*>& params)
 	return nullptr;
 
 }
+
+void ZCodeBodyNode::SetOwner(ZMethodNode* node) {
+
+	mOwner = node;
+
+}
+
+ZMethodNode* ZCodeBodyNode::GetOwner() {
+
+	return mOwner;
+
+}

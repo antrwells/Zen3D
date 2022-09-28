@@ -1,5 +1,7 @@
 #include "ZParseVars.h"
 #include "ZVarsNode.h"
+#include "ZExpressionNode.h"
+#include "ZParseExpression.h"
 
 ZParseVars::ZParseVars(ZTokenStream* stream) : ZParseNode(stream) {
 
@@ -28,6 +30,8 @@ ZScriptNode* ZParseVars::Parse() {
 
 		auto tok = mStream->NextToken();
 
+		auto def = new ZExpressionNode;
+
 		if (tok.mType == TokenType::TokenEndOfLine)
 		{
 			return vars_node;
@@ -36,8 +40,23 @@ ZScriptNode* ZParseVars::Parse() {
 		{
 			continue;
 		}
-		vars_node->AddVar(tok.mText);
+		if (tok.mType == TokenType::TokenEquals)
+		{
 
+			
+
+		}
+		else {
+
+			if (mStream->PeekToken(0).mType == TokenType::TokenEquals) {
+				int cc = 1;
+				auto exp_parse = new ZParseExpression(mStream);
+				def = (ZExpressionNode*)exp_parse->Parse();
+				int b = 5;
+			}
+
+			vars_node->AddVar(tok.mText,def);
+		}
 		int aa = 5;
 
 	}

@@ -98,6 +98,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_op.push_back("-"[0]);
 	is_op.push_back("*"[0]);
 	is_op.push_back("/"[0]);
+	is_op.push_back("="[0]);
 
 
 
@@ -219,8 +220,13 @@ ZTokenStream* ZTokenizer::Tokenize() {
 				tokens.push_back(Token(TokenType::TokenString, cur_token));
 			}
 			else if (is_number) {
-				tokens.push_back(Token(TokenType::TokenNumber, cur_token));
-			}
+				if (is_float) {
+					tokens.push_back(Token(TokenType::TokenFloat, cur_token));
+				}
+				else {
+					tokens.push_back(Token(TokenType::TokenInt, cur_token));
+				}
+				}
 			else {
 				tokens.push_back(Token(TokenType::TokenIdent, cur_token));
 			}
@@ -261,7 +267,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("-", TokenType::TokenMinus));;
 	token_map.insert(std::make_pair("/", TokenType::TokenDivide));;
 	token_map.insert(std::make_pair("*", TokenType::TokenMultiply));;
-
+	token_map.insert(std::make_pair("=", TokenType::TokenEquals));;
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {

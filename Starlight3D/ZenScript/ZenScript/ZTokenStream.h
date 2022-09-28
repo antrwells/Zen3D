@@ -6,7 +6,7 @@
 enum TokenType {
 	TokenIdent,TokenNumber,TokenString,TokenClass,TokenEnd,TokenLeftPara,TokenRightPara,TokenNot,TokenAnd,TokenElse,TokenIf,
 	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma,
-	TokenPlus,TokenMinus,TokenDivide,TokenMultiply,TokenEndOfLine
+	TokenPlus,TokenMinus,TokenDivide,TokenMultiply,TokenEndOfLine,TokenEquals
 };
 
 std::string TokenToString(enum TokenType type);

@@ -15,6 +15,7 @@ public:
 	void AddNode(ZMainNode* node);
 	ZClassNode* CreateInstance(std::string name,std::string instance_name);
 
+	static ZContextScope* CurrentScope;
 
 private:
 

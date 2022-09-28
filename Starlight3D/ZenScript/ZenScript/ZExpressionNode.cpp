@@ -1,6 +1,6 @@
 #include "ZExpressionNode.h"
-
-
+#include "ZScriptContext.h"
+#include "ZContextScope.h"
 void ZExpressionNode::SetExpression(Expression expr) {
 
 	//mElements.push_back(element);
@@ -58,14 +58,19 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
             ops.push(tok.mOp);
 
         }
-        else if (tok.mType == EInt || tok.mType == EFloat)
+        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar)
         {
             //int val = 0;
             if (tok.mType == EInt) {
                 values.push(tok.mValInt);
             }
-            else {
+            else if(tok.mType==EFloat) {
                 values.push((int)tok.mValFloat);
+            }
+            else if (tok.mType == EVar)
+            {
+                auto evar = ZScriptContext::CurrentScope->FindVar(tok.mValName);
+                values.push(evar->GetIntVal());
             }
         }
         else if (tok.mOp == OpRightBrace)

@@ -3,6 +3,7 @@
 #include "ZParseSignature.h"
 #include "ZSignatureNode.h"
 #include "ZParseCodeBody.h"
+#include "ZCodeBodyNode.h"
 
 ZParseMethod::ZParseMethod(ZTokenStream* stream) : ZParseNode(stream)
 {
@@ -46,6 +47,8 @@ ZScriptNode* ZParseMethod::Parse()
 	auto code_parse = new ZParseCodeBody(mStream);
 
 	auto code_node = (ZCodeBodyNode*)code_parse->Parse();
+
+	code_node->SetOwner(meth_node);
 
 	meth_node->SetCode(code_node);
 

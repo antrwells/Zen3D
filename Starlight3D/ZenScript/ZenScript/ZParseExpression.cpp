@@ -80,8 +80,17 @@ ZScriptNode* ZParseExpression::Parse() {
 			break;
 		case TokenType::TokenString:
 			break;
+		case TokenType::TokenIdent:
+
+			ele.mType = ExprElementType::EVar;
+			ele.mValName = token.mText;
+			expr.mElements.push_back(ele);
+
+
+			break;
 		case TokenType::TokenRightPara:
 		case TokenType::TokenComma:
+		case TokenType::TokenEndOfLine:
 
 			lb.mOp = ExprOperatorType::OpRightBrace;
 			expr.mElements.push_back(lb);

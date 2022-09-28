@@ -26,6 +26,8 @@ std::string TokenToString(enum TokenType type) {
 		return "TokenDivide";
 	case TokenType::TokenEndOfLine:
 		return "TokenEndOfLine";
+	case TokenType::TokenEquals:
+		return "TokenEquals";
 	}
 	return "Unknown";
 }

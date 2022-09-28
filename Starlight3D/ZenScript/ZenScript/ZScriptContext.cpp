@@ -79,3 +79,5 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 	return nullptr;
 
 }
+
+ZContextScope* ZScriptContext::CurrentScope = nullptr;

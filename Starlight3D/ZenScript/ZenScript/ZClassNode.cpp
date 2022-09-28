@@ -3,7 +3,8 @@
 #include "ZContextScope.h"
 #include "ZVarsNode.h"
 #include <assert.h>
-
+#include "ZExpressionNode.h"
+#include "ZScriptContext.h"
 void ZClassNode::SetName(std::string name) {
 
 	mClassName = name;
@@ -54,13 +55,16 @@ void ZClassNode::PopulateScope() {
 
 		auto vars = mVars[i];
 
-		auto names = vars->GetNames();
+		auto names = vars->GetVars();
 		auto type = vars->GetType();
 
 		for (int j = 0; j < names.size(); j++)
 		{
 
-			ZContextVar* new_var = new ZContextVar(names[j], type);
+			ZContextVar* new_var = new ZContextVar(names[j]->name, type);
+
+			new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
+			//TODO
 
 			mInstanceScope->RegisterVar(new_var);
 
@@ -110,6 +114,9 @@ ZMethodNode* ZClassNode::FindMethod(std::string name) {
 ZContextVar* ZClassNode::CallMethod(std::string name, std::initializer_list<ZContextVar*> args)
 {
 	auto method = FindMethod(name);
+	method->SetScope(mInstanceScope->Clone());
+	ZScriptContext::CurrentScope = method->GetScope();
+
 
 	return method->Exec({});
 }

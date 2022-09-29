@@ -1,1 +1,3 @@
 - Threaded expressions. If needed, any in flight variable will wait for the result, potentially speeding up the app.
+
+- Expression result caching.

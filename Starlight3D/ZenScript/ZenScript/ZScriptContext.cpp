@@ -35,6 +35,8 @@ ZContextVar* sysfunc_printf(const std::vector<ZContextVar*>& args)
 ZScriptContext::ZScriptContext() {
 
 	SetupSystem();
+	CurrentContext = this;
+	
 
 }
 
@@ -80,4 +82,25 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 
 }
 
+void ZScriptContext::PushClass(ZClassNode* node)
+{
+
+	mClassStack.push(node);
+
+}
+
+void ZScriptContext::PopClass() {
+
+	mClassStack.pop();
+
+}
+
+ZClassNode* ZScriptContext::GetClass() {
+
+	return mClassStack.top();
+
+}
+
+
+ZScriptContext* ZScriptContext::CurrentContext = nullptr;
 ZContextScope* ZScriptContext::CurrentScope = nullptr;

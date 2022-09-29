@@ -19,6 +19,9 @@ public:
 	std::string GetName();
 	void SetScope(ZContextScope* scope);
 	ZContextScope* GetScope();
+	ZSignatureNode* GetSignature() {
+		return mSignature;
+	}
 	//Exec
 	ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 

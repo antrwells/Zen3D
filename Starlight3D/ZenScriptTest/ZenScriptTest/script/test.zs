@@ -4,10 +4,19 @@ class testClass
 
         int a = 5
 
-        printf(10+a)
-
+        check1(20*10,30)
+        
     end
 
+    method int check1(int a,int b)
+
+       printf(a)
+
+      
+
+    end 
+
+ 
 
 end 
 

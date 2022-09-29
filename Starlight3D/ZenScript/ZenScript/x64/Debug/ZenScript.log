@@ -1,4 +1,12 @@
-﻿  ZExpressionNode.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(36): warning C4715: 'applyOpInt': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(44): warning C4715: 'applyOpFloat': not all control paths return a value
+﻿  ZClassNode.cpp
+  ZMethodNode.cpp
+  ZParseClass.cpp
+  ZParseMethod.cpp
+  ZParseSigParam.cpp
+  ZParseSignature.cpp
+  ZSigParamNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseClass.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  ZSignatureNode.cpp
+  ZStatementNode.cpp
+  ZVarsNode.cpp
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

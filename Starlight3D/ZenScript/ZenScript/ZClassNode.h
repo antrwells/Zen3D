@@ -26,7 +26,7 @@ public:
 	void PopulateScope();
 	void SetVars(std::vector<ZVarsNode*> vars);
 	ZMethodNode* FindMethod(std::string name);
-	ZContextVar* CallMethod(std::string name, std::initializer_list<ZContextVar*> args);
+	ZContextVar* CallMethod(std::string name, const std::vector<ZContextVar*>& params);
 	void SetBaseName(std::string name);
 private:
 	

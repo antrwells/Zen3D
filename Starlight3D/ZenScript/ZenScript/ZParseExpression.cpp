@@ -79,6 +79,11 @@ ZScriptNode* ZParseExpression::Parse() {
 
 			break;
 		case TokenType::TokenString:
+
+			ele.mType = ExprElementType::EString;
+			ele.mValString = std::string(token.mText);
+			expr.mElements.push_back(ele);
+
 			break;
 		case TokenType::TokenIdent:
 
@@ -89,6 +94,21 @@ ZScriptNode* ZParseExpression::Parse() {
 
 			break;
 		case TokenType::TokenRightPara:
+
+			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
+			{
+				lb.mOp = ExprOperatorType::OpRightBrace;
+				expr.mElements.push_back(lb);
+				mStream->Back();
+				exp_node->SetExpression(expr);
+				return exp_node;
+			}
+			else {
+				lb.mOp = ExprOperatorType::OpRightBrace;
+				expr.mElements.push_back(lb);
+			}
+
+			break;
 		case TokenType::TokenComma:
 		case TokenType::TokenEndOfLine:
 

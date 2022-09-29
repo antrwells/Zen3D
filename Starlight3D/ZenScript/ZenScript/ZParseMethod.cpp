@@ -52,6 +52,8 @@ ZScriptNode* ZParseMethod::Parse()
 
 	meth_node->SetCode(code_node);
 
+	
+
 	int aa = 5;
 
 	return meth_node;

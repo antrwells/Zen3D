@@ -27,6 +27,7 @@ public:
     int mValInt = 0;
     float mValFloat = 0;
     std::string mValName;
+    std::string mValString;
     void* mSubExpression;
     ExprOperatorType mOp; 
     ExprElementType mType;
@@ -57,13 +58,40 @@ public:
     ZContextVar* Evaluate()
     {
 
+
+
         bool is_int = true;
+        bool is_string = false;
         for (int i = 0; i < mElements.size(); i++) {
             if (mElements[i].mType == EFloat)
             {
                 is_int = false;
             }
+            if (mElements[i].mType == EString)
+            {
+                is_string = true;
+            }
         }
+
+        if (is_string) {
+
+
+            std::string str_val = "";
+            for (int i = 0; i < mElements.size(); i++)
+            {
+                if (mElements[i].mType == ExprElementType::EString)
+                {
+                    str_val = str_val + mElements[i].mValString;
+                }
+            }
+
+
+            ZContextVar* result = new ZContextVar("expr result", VarType::VarString);
+            result->SetString(str_val);
+            return result;
+
+        }
+
         if (!is_int)
         {
             ZContextVar* result = new ZContextVar("expr result", VarType::VarFloat);

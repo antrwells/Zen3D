@@ -9,6 +9,12 @@ public:
 
     void SetName(std::string);
     void SetType(VarType type);
+    std::string GetName() {
+        return mParName;
+    }
+    VarType GetType() {
+        return mParType;
+    }
 
 private:
     std::string mParName;

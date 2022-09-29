@@ -9,7 +9,9 @@ class ZSignatureNode :
 {
 public:
     void AddParameter(ZSigParamNode* node);
-
+    std::vector<ZSigParamNode*> GetParams() {
+        return mParams;
+    }
 private:
     std::vector<ZSigParamNode*> mParams;
 };

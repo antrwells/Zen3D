@@ -5,6 +5,8 @@
 #include <assert.h>
 #include "ZExpressionNode.h"
 #include "ZScriptContext.h"
+#include "ZSignatureNode.h"
+#include "ZSigParamNode.h"
 void ZClassNode::SetName(std::string name) {
 
 	mClassName = name;
@@ -105,17 +107,43 @@ ZMethodNode* ZClassNode::FindMethod(std::string name) {
 		}
 
 	}
-
+	return nullptr;
 	assert(false);
 	return nullptr;
 
 }
 
-ZContextVar* ZClassNode::CallMethod(std::string name, std::initializer_list<ZContextVar*> args)
+ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContextVar*>& params)
 {
 	auto method = FindMethod(name);
-	method->SetScope(mInstanceScope->Clone());
+	
+	auto new_scope = mInstanceScope->Clone();
+
+	auto sig = method->GetSignature();
+
+	auto pars = sig->GetParams();
+
+	for (int i = 0; i < pars.size(); i++) {
+
+		auto pa = pars[i];
+		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType());
+		switch (pa->GetType())
+		{
+		case VarInt:
+			v1->SetInt(params[i]->GetIntVal());
+			break;
+		case VarFloat:
+			v1->SetFloat(params[i]->GetFloatVal());
+			break;
+		}
+		new_scope->RegisterVar(v1);
+
+	}
+
+	method->SetScope(new_scope);
 	ZScriptContext::CurrentScope = method->GetScope();
+
+
 
 
 	return method->Exec({});

@@ -32,7 +32,11 @@ int main()
    par_a->SetInt(5);
    par_b->SetInt(10);
 
+   context1->PushClass(cls_inst);
+
    ZContextVar* res = cls_inst->CallMethod("testMethod", { par_a,par_b });
+
+   context1->PopClass();
 
    int aa = 5;
 

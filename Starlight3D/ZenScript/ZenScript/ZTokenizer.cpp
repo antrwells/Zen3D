@@ -116,6 +116,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 	std::vector<Token> tokens;
 
+	int ctoks = 0;
 
 	for (int i = 0; i < mCode.size(); i++) {
 
@@ -125,6 +126,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		bool is_string = false;
 		bool is_number = false;
 		bool is_float = false;
+
+		int s_tok = 0;
 
 		for (int c = 0; c < line.size(); c++) {
 
@@ -145,9 +148,11 @@ ZTokenStream* ZTokenizer::Tokenize() {
 				else {
 					if (is_float) {
 						tokens.push_back(Token(TokenType::TokenFloat, cur_token));
+						s_tok++;
 					}
 					else {
 						tokens.push_back(Token(TokenType::TokenInt, cur_token));
+						s_tok++;
 					}
 					cur_token = "";
 					is_number = false;
@@ -163,6 +168,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 					is_string = false;
 					tokens.push_back(Token(TokenType::TokenString, cur_token));
 					cur_token = "";
+					s_tok++;
 					continue;
 				}
 				else {
@@ -187,6 +193,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 						continue;
 					}
 					tokens.push_back(Token(TokenType::TokenIdent, cur_token));
+					s_tok++;
 					cur_token = "";
 				}
 
@@ -196,6 +203,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 					std::string op = "";
 					op = op + ch;
 					tokens.push_back(Token(TokenType::TokenOperator,op));
+					s_tok++;
 
 				}
 				else if (ch == "\""[0])
@@ -218,23 +226,28 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 			if (is_string) {
 				tokens.push_back(Token(TokenType::TokenString, cur_token));
+				s_tok++;
 			}
 			else if (is_number) {
 				if (is_float) {
 					tokens.push_back(Token(TokenType::TokenFloat, cur_token));
+					s_tok++;
 				}
 				else {
 					tokens.push_back(Token(TokenType::TokenInt, cur_token));
+					s_tok++;
 				}
 				}
 			else {
 				tokens.push_back(Token(TokenType::TokenIdent, cur_token));
+				s_tok++;
 			}
 
 		}
 
-		tokens.push_back(Token(TokenType::TokenEndOfLine, ";"));
-
+		if (s_tok > 0) {
+			tokens.push_back(Token(TokenType::TokenEndOfLine, ";"));
+		}
 	}
 
 

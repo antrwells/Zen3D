@@ -629,3 +629,10 @@ void Application::GLFW_CursorPosCallback(GLFWwindow* wnd, double xpos, double yp
 void Application::GLFW_MouseWheelCallback(GLFWwindow* wnd, double dx, double dy)
 {
 }
+
+
+void Application::TextToScript(const char* text) {
+
+    chai.eval(text);
+
+}

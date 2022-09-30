@@ -19,6 +19,9 @@ void AppZen::InitApp() {
 
 	Importer* imp = new Importer;
 
+	Application::GetApp()->TextToScript("puts(\"Hey everyone!\")");
+
+	int a = 5;
 //	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);
 //	NodeEntity* act1 = (NodeActor*)imp->ImportAI("data/test/b1.fbx");;//->GetChild(0
 
@@ -30,7 +33,7 @@ void AppZen::InitApp() {
 	//act1->SetPosition(float3(4, 3, 0));
 	
 
-	int a = 5;
+	//int a = 5;
 
 	//auto norm1 = new Texture2D("data/3d/norm3.png");
 	//auto norm2 = new Texture2D("data/3d/norm3.png");

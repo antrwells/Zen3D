@@ -108,17 +108,18 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;/bigobj;bigobj;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\projects\Starlight3D\ZenScript\ZenScript;C:\FBX\2020.2.1\include;C:\git\de2\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\de2\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\de2\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\de2\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\PhysX-4.1\physx\source\foundation\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\physx\include;C:\git\de2\DiligentEngine\DiligentTools;C:\git\de2\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\projects\Starlight3D\chai\include;C:\projects\Starlight3D\ZenScript\ZenScript;C:\FBX\2020.2.1\include;C:\git\de2\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\de2\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\de2\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\de2\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\PhysX-4.1\physx\source\foundation\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\physx\include;C:\git\de2\DiligentEngine\DiligentTools;C:\git\de2\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnableModules>true</EnableModules>
       <SupportJustMyCode>true</SupportJustMyCode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>

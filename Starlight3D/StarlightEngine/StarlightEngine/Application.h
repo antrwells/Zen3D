@@ -66,6 +66,7 @@ using namespace Diligent;
 
 class ImGuiImplDiligent;
 
+#include <chaiscript/chaiscript.hpp>
 
 class Application
 {
@@ -245,10 +246,12 @@ public:
 
     }
 
+    void TextToScript(const char* text);
+
 private:
 
     UserInput* mInput;
-
+    chaiscript::ChaiScript chai;
     RefCntAutoPtr<IRenderDevice>  m_pDevice;
     RefCntAutoPtr<IDeviceContext> m_pImmediateContext;
     RefCntAutoPtr<ISwapChain>     m_pSwapChain;

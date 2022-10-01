@@ -6,11 +6,11 @@
   BigBuffer.cpp
   Bone.cpp
   BoneInfo.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animator.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animation.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Bone.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Bone.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Bone.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animator.cpp)
   ButtonControl.cpp
   CubeRenderer.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
@@ -18,11 +18,13 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): war
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file BigBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(7,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(17,33): warning C4267: '=': conversion from 'size_t' to 'Diligent::uint', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(40,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(65,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ] (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animation.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
@@ -53,6 +55,13 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(93,16): warn
           [
               T=float
           ] (compiling source file Application.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file Animation.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(439,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(440,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(444,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
@@ -61,6 +70,11 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(447,19):
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(448,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(621,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(621,26): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file BigBuffer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(7,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(17,33): warning C4267: '=': conversion from 'size_t' to 'Diligent::uint', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(40,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\BigBuffer.cpp(65,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -68,27 +82,13 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
           ] (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animator.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Animation.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animator.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file Animator.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file Animation.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file Animation.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
@@ -134,40 +134,6 @@ C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\
           with
           [
               _Elem=char
-          ] (compiling source file BigBuffer.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
-          with
-          [
-              _Iter=const wchar_t *
-          ] (compiling source file BigBuffer.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
-          with
-          [
-              _Iter=const wchar_t *
-          ] (compiling source file BigBuffer.cpp)
-C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (compiling source file BigBuffer.cpp)
-C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (compiling source file BigBuffer.cpp)
-C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
-          with
-          [
-              T=std::wstring
-          ] (compiling source file BigBuffer.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
-          with
-          [
-              _Elem=char
           ] (compiling source file Application.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
@@ -202,36 +168,36 @@ C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\
           with
           [
               _Elem=char
-          ] (compiling source file Animator.cpp)
+          ] (compiling source file BigBuffer.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file Animator.cpp)
+          ] (compiling source file BigBuffer.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file Animator.cpp)
+          ] (compiling source file BigBuffer.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file Animator.cpp)
+          ] (compiling source file BigBuffer.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file Animator.cpp)
+          ] (compiling source file BigBuffer.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file Animator.cpp)
+          ] (compiling source file BigBuffer.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -266,6 +232,40 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
           [
               T=std::wstring
           ] (compiling source file Animation.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ] (compiling source file Animator.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=const wchar_t *
+          ] (compiling source file Animator.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=const wchar_t *
+          ] (compiling source file Animator.cpp)
+C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file Animator.cpp)
+C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file Animator.cpp)
+C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
+          with
+          [
+              T=std::wstring
+          ] (compiling source file Animator.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -370,13 +370,13 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\DirCollection.h(43): mes
           ] (compiling source file DirCollection.cpp)
   Importer.cpp
   kFont.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Importer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
   Material.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Importer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
@@ -398,20 +398,6 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
           ] (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file Importer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
@@ -442,21 +428,35 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(93,16): warn
           [
               T=float
           ] (compiling source file kFont.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file Importer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(195,20): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ] (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Importer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(120,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(211,20): warning C4018: '<': signed/unsigned mismatch
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(127,41): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(136,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,105): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(248,21): warning C4018: '<': signed/unsigned mismatch
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(176,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(191,116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(330,21): warning C4018: '<': signed/unsigned mismatch
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(191,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(191,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(195,20): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(211,20): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(248,21): warning C4018: '<': signed/unsigned mismatch
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(330,21): warning C4018: '<': signed/unsigned mismatch
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(343,30): warning C4018: '<': signed/unsigned mismatch
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(390,26): warning C4018: '<': signed/unsigned mismatch
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(531,21): warning C4018: '<': signed/unsigned mismatch
@@ -522,70 +522,70 @@ C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\
           with
           [
               _Elem=char
-          ] (compiling source file GBuffer.cpp)
+          ] (compiling source file kFont.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file GBuffer.cpp)
+          ] (compiling source file kFont.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file GBuffer.cpp)
+          ] (compiling source file kFont.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file GBuffer.cpp)
+          ] (compiling source file kFont.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file GBuffer.cpp)
+          ] (compiling source file kFont.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file GBuffer.cpp)
+          ] (compiling source file kFont.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
               _Elem=char
-          ] (compiling source file kFont.cpp)
+          ] (compiling source file GBuffer.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file kFont.cpp)
+          ] (compiling source file GBuffer.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file kFont.cpp)
+          ] (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file kFont.cpp)
+          ] (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file kFont.cpp)
+          ] (compiling source file GBuffer.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file kFont.cpp)
+          ] (compiling source file GBuffer.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -691,6 +691,7 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
   MeshRenderer.cpp
   Node3D.cpp
   NodeActor.cpp
+  NodeAnimator.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file Node3D.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(17,1): warning C4305: 'return': truncation from 'double' to 'float' (compiling source file Node3D.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(34,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data (compiling source file Node3D.cpp)
@@ -698,12 +699,11 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(41,31): warning 
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(42,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file Node3D.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(61,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Node3D.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(71,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file Node3D.cpp)
-  NodeAnimator.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
   NodeBillboard.cpp
-  NodeCamera.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeActor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeAnimator.cpp)
+  NodeCamera.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeBillboard.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
@@ -841,7 +841,6 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2190,67
               T=float
           ]
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2263,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeEntity.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -856,6 +855,7 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warn
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file NodeActor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file NodeActor.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file NodeActor.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeEntity.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -958,36 +958,36 @@ C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\
           with
           [
               _Elem=char
-          ] (compiling source file NodeCamera.cpp)
+          ] (compiling source file NodeAnimator.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file NodeCamera.cpp)
+          ] (compiling source file NodeAnimator.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file NodeCamera.cpp)
+          ] (compiling source file NodeAnimator.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file NodeCamera.cpp)
+          ] (compiling source file NodeAnimator.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file NodeCamera.cpp)
+          ] (compiling source file NodeAnimator.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file NodeCamera.cpp)
+          ] (compiling source file NodeAnimator.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1026,36 +1026,36 @@ C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\
           with
           [
               _Elem=char
-          ] (compiling source file NodeAnimator.cpp)
+          ] (compiling source file NodeCamera.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file NodeAnimator.cpp)
+          ] (compiling source file NodeCamera.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file NodeAnimator.cpp)
+          ] (compiling source file NodeCamera.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file NodeAnimator.cpp)
+          ] (compiling source file NodeCamera.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file NodeAnimator.cpp)
+          ] (compiling source file NodeCamera.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file NodeAnimator.cpp)
+          ] (compiling source file NodeCamera.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1091,19 +1091,19 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
               T=std::wstring
           ] (compiling source file NodeEntity.cpp)
   NodeLight.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(150): warning C4715: 'Bone::GetScaleIndex': not all control paths return a value
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(138): warning C4715: 'Bone::GetRotationIndex': not all control paths return a value
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(126): warning C4715: 'Bone::GetPositionIndex': not all control paths return a value
+  NodeParticleBillboard.cpp
+  NodeProperty.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
+  NodeTerrain.cpp
+  NoRenderList.cpp
+  PBBox.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-  NodeParticleBillboard.cpp
-  NodeProperty.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(138): warning C4715: 'Bone::GetRotationIndex': not all control paths return a value
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(126): warning C4715: 'Bone::GetPositionIndex': not all control paths return a value
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(150): warning C4715: 'Bone::GetScaleIndex': not all control paths return a value
-  NodeTerrain.cpp
-  NoRenderList.cpp
-  PBBox.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeParticleBillboard.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeTerrain.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NoRenderList.cpp)
@@ -1116,13 +1116,13 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
           ] (compiling source file NodeLight.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
+  PBSphere.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeLight.cpp(10,35): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-  PBSphere.cpp
   PBTerrain.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
@@ -1131,7 +1131,6 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
           ] (compiling source file NodeParticleBillboard.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeParticleBillboard.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeParticleBillboard.cpp)
-  PBTriangles.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -1139,7 +1138,17 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
           ] (compiling source file NodeTerrain.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeTerrain.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeTerrain.cpp)
+  PBTriangles.cpp
   Physics.cpp
+  PhysicsBody.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ] (compiling source file PBConvex.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file PBConvex.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file PBConvex.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file PBConvex.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1174,15 +1183,6 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
           [
               T=std::wstring
           ] (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file PBConvex.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file PBConvex.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file PBConvex.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file PBConvex.cpp)
-  PhysicsBody.cpp
   PostProcess.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
@@ -1332,7 +1332,6 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
   PPBloom.cpp
   PPFrameType.cpp
   PPRenderer.cpp
-  RayPicker.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1367,13 +1366,13 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
           [
               T=std::wstring
           ] (compiling source file PostProcess.cpp)
+  RayPicker.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file RayPicker.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\PPBloom.cpp(25,141): warning C4305: 'argument': truncation from 'double' to 'float'
-  RenderTarget2D.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\PPRenderer.cpp(459,116): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -1404,6 +1403,7 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\PPRenderer.cpp(516,80): 
           [
               T=float
           ]
+  RenderTarget2D.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -1419,70 +1419,70 @@ C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\
           with
           [
               _Elem=char
-          ] (compiling source file PPBloom.cpp)
+          ] (compiling source file PPFrameType.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file PPBloom.cpp)
+          ] (compiling source file PPFrameType.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file PPBloom.cpp)
+          ] (compiling source file PPFrameType.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file PPBloom.cpp)
+          ] (compiling source file PPFrameType.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file PPBloom.cpp)
+          ] (compiling source file PPFrameType.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file PPBloom.cpp)
+          ] (compiling source file PPFrameType.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
               _Elem=char
-          ] (compiling source file PPFrameType.cpp)
+          ] (compiling source file PPBloom.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file PPFrameType.cpp)
+          ] (compiling source file PPBloom.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
           with
           [
               _Iter=const wchar_t *
-          ] (compiling source file PPFrameType.cpp)
+          ] (compiling source file PPBloom.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file PPFrameType.cpp)
+          ] (compiling source file PPBloom.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
-          ] (compiling source file PPFrameType.cpp)
+          ] (compiling source file PPBloom.cpp)
 C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
           with
           [
               T=std::wstring
-          ] (compiling source file PPFrameType.cpp)
+          ] (compiling source file PPBloom.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1641,10 +1641,10 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warnin
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-  StarlightEngine.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(523,24): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(591,48): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(673,43): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+  StarlightEngine.cpp
   Texture2D.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(222,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
@@ -1823,6 +1823,7 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
           [
               T=std::wstring
           ] (compiling source file SceneRayTracer.cpp)
+  UI.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1857,7 +1858,6 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
           [
               T=std::wstring
           ] (compiling source file SmartDraw.cpp)
-  UI.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1929,7 +1929,6 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UI.cpp(79,13): warning C
   UITheme_Neon.cpp
   UserInput.cpp
   VFile.cpp
-  VString.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -1964,8 +1963,7 @@ C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(
           [
               T=std::wstring
           ] (compiling source file UI.cpp)
-  WindowContent.cpp
-  WindowControl.cpp
+  VString.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
@@ -2107,6 +2105,8 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.cpp(235,37): w
           [
               T=float
           ]
+  WindowContent.cpp
+  WindowControl.cpp
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
@@ -2167,6 +2167,40 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(93,16): warn
           [
               T=float
           ] (compiling source file UITheme_Neon.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ] (compiling source file UIControl.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=const wchar_t *
+          ] (compiling source file UIControl.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=const wchar_t *
+          ] (compiling source file UIControl.cpp)
+C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file UIControl.cpp)
+C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file UIControl.cpp)
+C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
+          with
+          [
+              T=std::wstring
+          ] (compiling source file UIControl.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
@@ -2247,40 +2281,6 @@ C:\projects\Starlight3D\StarlightEngine\StarlightEngine\WindowControl.cpp(106,31
           [
               T=float
           ]
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
-          with
-          [
-              _Elem=char
-          ] (compiling source file UIControl.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
-          with
-          [
-              _Iter=const wchar_t *
-          ] (compiling source file UIControl.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*>(_Iter,const _Iter)' being compiled
-          with
-          [
-              _Iter=const wchar_t *
-          ] (compiling source file UIControl.cpp)
-C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(29): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (compiling source file UIControl.cpp)
-C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(30): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (compiling source file UIControl.cpp)
-C:\projects\Starlight3D\chai\include\chaiscript\language\chaiscript_windows.hpp(68): message : see reference to function template instantiation 'std::string chaiscript::detail::Loadable_Module::to_string<std::wstring>(const T &)' being compiled
-          with
-          [
-              T=std::wstring
-          ] (compiling source file UIControl.cpp)
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [

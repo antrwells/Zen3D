@@ -247,6 +247,7 @@ public:
     }
 
     void TextToScript(const char* text);
+    void FileToScript(const char* path);
 
 private:
 

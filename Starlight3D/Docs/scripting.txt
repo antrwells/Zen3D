@@ -1,0 +1,1 @@
+- options script. rather than an ini file, options will be a dynamic script, allowing more flexibility.

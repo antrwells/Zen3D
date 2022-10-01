@@ -20,6 +20,7 @@ void AppZen::InitApp() {
 	Importer* imp = new Importer;
 
 	Application::GetApp()->TextToScript("puts(\"Hey everyone!\")");
+	Application::GetApp()->FileToScript("script/application_init.ch");
 
 	int a = 5;
 //	NodeEntity* n1 = imp->ImportAI("data/3d/map1.fbx", true);

@@ -636,3 +636,9 @@ void Application::TextToScript(const char* text) {
     chai.eval(text);
 
 }
+
+void Application::FileToScript(const char* file) {
+
+    chai.eval_file(std::string(file));
+
+}

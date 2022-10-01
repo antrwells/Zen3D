@@ -31,159 +31,63 @@
     <Filter Include="UI\Controls">
       <UniqueIdentifier>{3d91c323-b93f-4773-a6b0-c94b5f78a064}</UniqueIdentifier>
     </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{6366c4e9-9b97-4198-8349-cf3d67978708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{8d3dd1ae-5c1e-4c03-b672-07d9c76f7177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{65b5e7b8-c2f3-432f-a981-495a9699d520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Anim">
+      <UniqueIdentifier>{ddb331fc-a49f-4bf2-839f-8db860216da9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RTX">
+      <UniqueIdentifier>{8673d2eb-e5e2-4970-a907-7ce98f03239c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{91797a47-4404-4c6f-bf5a-773777f7317d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{54abbce1-3ee6-41f4-8bcc-c914916b252f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{33a51f9b-ba1f-4f8e-a192-a585c3d3a521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{f1ce3b1a-2313-4462-a223-706c8160ee2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderTarget">
+      <UniqueIdentifier>{007ba87f-7809-45a1-ada0-0c065d235707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Picking">
+      <UniqueIdentifier>{1b913d1a-9e57-4e31-939a-465eb9305359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{13f71937-4590-40d5-9a4e-08a7085cc4ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Draw">
+      <UniqueIdentifier>{03ff8941-ad28-4678-97be-1d1905e767b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Import">
+      <UniqueIdentifier>{39b59755-098d-46ce-b058-c0a6bc8f7510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{dec0b767-2000-43cd-b9d7-b1d9b91a2774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{2c9440d4-51e1-4211-a944-3e47d63ea804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{e068dbaa-a6de-48a7-b3be-29a698e5dc91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SmartDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_truetype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kFont.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeActor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeAnimator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeBillboard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeParticleBillboard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeTerrain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoRenderList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorAnim.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BoneInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Importer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Maths.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderTarget2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderTargetCube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureCube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PBBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PBCapsule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PBConvex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PBSphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PBTerrain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PBTriangles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsBody.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneRayTracer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BigBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PostProcessing.h">
@@ -228,14 +132,161 @@
     <ClInclude Include="WindowContent.h">
       <Filter>UI\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="RayPicker.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Application.h">
+      <Filter>App</Filter>
     </ClInclude>
-    <ClInclude Include="DirCollection.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NoRenderList.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeTerrain.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeProperty.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeParticleBillboard.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeLight.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeComponent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeCamera.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeBillboard.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeAnimator.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Node3D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeActor.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3D.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorAnim.h">
+      <Filter>Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneInfo.h">
+      <Filter>Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="BigBuffer.h">
+      <Filter>RTX</Filter>
+    </ClInclude>
+    <ClInclude Include="PBTriangles.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsBody.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PBTerrain.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PBSphere.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PBConvex.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PBCapsule.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PBBox.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="GBuffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCube.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget2D.h">
+      <Filter>RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTargetCube.h">
+      <Filter>RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGraph.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="RayPicker.h">
+      <Filter>Picking</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneRayTracer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartDraw.h">
+      <Filter>Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="Importer.h">
+      <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="VString.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="VFile.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_truetype.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="kFont.h">
+      <Filter>Font</Filter>
     </ClInclude>
     <ClInclude Include="tinydir.h">
-      <Filter>Header Files</Filter>
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCollection.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTypes.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Maths.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -245,142 +296,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SmartDraw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UserInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kFont.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Helper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGraph.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Node3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeActor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeAnimator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeBillboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeParticleBillboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeProperty.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeTerrain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NoRenderList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ActorAnim.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BoneInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Importer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderTarget2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderTargetCube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureCube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PBBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PBCapsule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PBConvex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PBSphere.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PBTerrain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PBTriangles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Physics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsBody.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneRayTracer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BigBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PostProcessing.cpp">
@@ -425,11 +341,146 @@
     <ClCompile Include="WindowContent.cpp">
       <Filter>UI\Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeTerrain.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeProperty.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeParticleBillboard.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeLight.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeComponent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeCamera.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeAnimator.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeBillboard.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeActor.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Node3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3D.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorAnim.cpp">
+      <Filter>Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneInfo.cpp">
+      <Filter>Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="BigBuffer.cpp">
+      <Filter>RTX</Filter>
+    </ClCompile>
+    <ClCompile Include="PBBox.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PBCapsule.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PBConvex.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PBSphere.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PBTerrain.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PBTriangles.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsBody.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRenderer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GBuffer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureCube.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTarget2D.cpp">
+      <Filter>RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTargetCube.cpp">
+      <Filter>RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGraph.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
     <ClCompile Include="RayPicker.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Picking</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneRayTracer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneRenderer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SmartDraw.cpp">
+      <Filter>Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Importer.cpp">
+      <Filter>Import</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="VString.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="VFile.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="kFont.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="DirCollection.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

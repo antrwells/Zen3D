@@ -1,8 +1,10 @@
+
 struct CubeAttribs
 {
     float4 UVs[1048];
     float4 Normals[1048];
     uint4  Primitives[1048];
+    uint4 Props[124];
 };
 
 

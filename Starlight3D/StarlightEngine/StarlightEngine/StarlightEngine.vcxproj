@@ -211,6 +211,8 @@
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SceneRayTracer.h" />
     <ClInclude Include="SceneRenderer.h" />
+    <ClInclude Include="ScriptHost.h" />
+    <ClInclude Include="ScriptObject.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="stb_truetype.h" />
     <ClInclude Include="Texture2D.h" />
@@ -283,6 +285,8 @@
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneRayTracer.cpp" />
     <ClCompile Include="SceneRenderer.cpp" />
+    <ClCompile Include="ScriptHost.cpp" />
+    <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="StarlightEngine.cpp" />
     <ClCompile Include="Texture2D.cpp" />

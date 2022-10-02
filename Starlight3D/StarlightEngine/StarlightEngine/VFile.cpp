@@ -236,3 +236,21 @@ void VFile::WriteLong(long v) {
 	ostream.write((char*)&v, sizeof(long));
 
 }
+
+void VFile::WriteLine(const char* line) {
+
+	
+	int len = 0;
+	for (int i = 0; i < 2048; i++)
+	{
+		if (line[i] == "\n"[0])
+		{
+			break;
+		}
+		len++;
+	}
+	len++;
+
+	ostream.write(line, len);
+
+}

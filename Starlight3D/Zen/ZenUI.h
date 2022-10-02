@@ -3,9 +3,11 @@
 #include "UI.h"
 #include "WindowControl.h"
 #include "SceneGraph.h"
-
+#include "VString.h"
+#include "VFile.h"
+#include "DirCollection.h"
 class RayPicker;
-class DirCollection;
+//class DirCollection;
 
 enum GizmoMode {
 
@@ -57,6 +59,10 @@ public:
 
 	//Other functionality.
 	void ImportNode(const char* path);
+
+	// Other Temporary UI
+
+	void GetScriptName();
 
 
 private:
@@ -124,8 +130,10 @@ private:
 	ImVec2 mContentBrowserPos;
 	ImVec2 mContentBrowserSize;
 	bool mCBF = false;
+	bool mGetScriptName = false;
+	char* mScriptNameBuf;
 
-	Texture2D* mIconFile, * mIconFolder;
+	Texture2D* mIconFile, * mIconFolder, * mIconScript;
 	DirCollection* mDir;
 	std::vector<DirCollection*> mDirStack;
 
@@ -134,11 +142,15 @@ private:
 	ImVec2 mNodeEditSize;
 	bool mNEF = false;
 
+	bool Dragging = false;
+	DirEntry* mDragEntry = nullptr;
+	DirEntry mDragEntryRef;
 
 	// Ray Picking
 	RayPicker* mRayPick = nullptr;
 
-
+	//Paths and such.
+	VString* mContentPath;
 	
 
 };

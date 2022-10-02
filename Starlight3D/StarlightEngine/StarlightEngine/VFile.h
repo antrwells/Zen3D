@@ -30,6 +30,8 @@ public:
 	float3 ReadVec3();
 	//void WriteVec3(Vec3 v);
 	void WriteLong(long v);
+	void WriteLine(const char* str);
+
 
 //	Vec3 ReadVec3();
 

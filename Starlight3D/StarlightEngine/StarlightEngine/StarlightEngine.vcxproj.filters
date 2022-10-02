@@ -288,6 +288,12 @@
     <ClInclude Include="Maths.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="ScriptHost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -481,6 +487,12 @@
     </ClCompile>
     <ClCompile Include="DirCollection.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptHost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -139,10 +139,32 @@ bool Application::Initialize(HWND hWnd) {
     auto SC = m_pSwapChain->GetDesc();
     m_pImGui.reset(new ImGuiImplWin32(hWnd, m_pDevice, SCDesc.ColorBufferFormat, SC.DepthBufferFormat));
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+    
+
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+  
+    io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
+
+    io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
+    io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
+    io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
+    io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
+    io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
+    io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
+    io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
+    io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
+    io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
+    io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
+    io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
+    io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
+    io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
+    io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
+    io.KeyMap[ImGuiKey_KeyPadEnter] = GLFW_KEY_KP_ENTER;
+   
+    io.WantCaptureKeyboard = true;
     return true;
 
 }
@@ -354,7 +376,12 @@ void Application::Render() {
     
     auto Handled = static_cast<ImGuiImplWin32*>(m_pImGui.get())->Win32_ProcHandler(curWin, message, wParam, lParam);
 
-   
+    message = WM_KEYDOWN;
+    wParam = 0x41;
+    lParam = 0x41;
+
+    //auto Handled2 = static_cast<ImGuiImplWin32*>(m_pImGui.get())->Win32_ProcHandler(curWin, message, wParam, lParam);
+
 
  
     m_pImGui->NewFrame(SC.Width, SC.Height, SC.PreTransform);
@@ -413,6 +440,7 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
     //glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glfwSetWindowSizeLimits(m_Window, 320, 240, GLFW_DONT_CARE, GLFW_DONT_CARE);
+   
     return;
 
 }
@@ -472,7 +500,7 @@ void Application::GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h)
 
 }
 
-void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int)
+void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int scancode, int state, int mod)
 {
 
     KeyID id = KeyID::None;
@@ -570,16 +598,36 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int
          break;
     }
 
-    if (id == KeyID::None)
-    {
-        return;
-    }
+
     if (state == GLFW_PRESS) {
         Application::GetApp()->GetInput()->SetKey(id, true);
     }
     else if(state == GLFW_RELEASE){
        Application::GetApp()->GetInput()->SetKey(id, false);
     }
+    
+   
+
+    if (key >= 'A' && key <= 'Z' && !(mod & GLFW_MOD_SHIFT)) {
+        key += 'a' - 'A';
+    }
+    int action = state;
+    ImGuiIO& io = ImGui::GetIO();
+    if (action == GLFW_PRESS || action == GLFW_REPEAT)
+    {
+        io.KeysDown[key] = true;
+        if (key != GLFW_KEY_LEFT_SHIFT && key != GLFW_KEY_RIGHT_SHIFT && key != GLFW_KEY_BACKSPACE && key != GLFW_KEY_DELETE && key!= GLFW_KEY_ENTER)
+        {
+
+            io.AddInputCharacter(key);
+        }
+
+    }
+    if (action == GLFW_RELEASE)
+        io.KeysDown[key] = false;
+
+   
+   // printf("KEy down!!!!!!!!!!!!!!!\n");
 
     //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));
     //pSelf->OnKeyEvent(static_cast<Key>(key), static_cast<KeyState>(state));

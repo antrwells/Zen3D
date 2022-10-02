@@ -131,6 +131,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppZen.cpp" />
+    <ClCompile Include="ContentBrowser.cpp" />
+    <ClCompile Include="NodeEditor.cpp" />
+    <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="Viewport.cpp" />
     <ClCompile Include="Zen.cpp" />
     <ClCompile Include="ZenUI.cpp" />
   </ItemGroup>

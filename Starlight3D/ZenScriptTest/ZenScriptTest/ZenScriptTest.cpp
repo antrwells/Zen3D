@@ -11,6 +11,8 @@
 int main()
 {
     std::cout << "Hello World!\n";
+    ZScriptContext* context1 = new ZScriptContext;
+    context1->LoadLib("math");
 
     ZSource* source = new ZSource("script/test.zs");
    ZTokenizer* toker = new ZTokenizer(source);
@@ -18,7 +20,7 @@ int main()
    ZParser* parser = new ZParser(stream);
    ZMainNode* main1 = parser->Parse();
 
-   ZScriptContext* context1 = new ZScriptContext;
+  
 
    context1->AddNode(main1);
 
@@ -31,10 +33,15 @@ int main()
    par_a->SetInt(67);
    par_b->SetInt(10);
 
+  
+
    for (int i = 0; i < 10; i++) {                                                                                                              
        cls_inst->CallMethod("check", { par_a});
    }
    int b = 5;
+
+   //context1->RunLine("printf(\"Hey it's working!\",20+30+5)");
+
  //  context1->CallMethod("test", "testMethod",{par_a,par_b});
    
 

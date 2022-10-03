@@ -39,7 +39,7 @@ public:
 	Token PeekToken(int increment);
 	bool EOS();
 	void SetTokens(std::vector<Token> tokens);
-	bool FindInLine(TokenType type);
+	bool FindInLine(TokenType type, int peek = 0);
 private:
 	std::vector<Token> mTokens;
 	int mTokenIndex = 0;

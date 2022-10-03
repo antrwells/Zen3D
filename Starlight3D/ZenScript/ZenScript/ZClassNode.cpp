@@ -7,6 +7,7 @@
 #include "ZScriptContext.h"
 #include "ZSignatureNode.h"
 #include "ZSigParamNode.h"
+#include "ZNewNode.h"
 void ZClassNode::SetName(std::string name) {
 
 	mClassName = name;
@@ -64,19 +65,24 @@ void ZClassNode::PopulateScope() {
 		{
 
 			ZContextVar* new_var = new ZContextVar(names[j]->name, type);
-			auto def = names[j]->def;
-			auto def_exp = def->GetExpression();
 
-			if (def_exp.mElements.size() > 0)
-			{
-
-
-				new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
-				//TODO
+			if (names[j]->new_node != nullptr) {
+				new_var->SetClass(names[j]->new_node->Exec(std::vector<ZContextVar*>())->GetClassVal());
 			}
+			else {
+				auto def = names[j]->def;
+				auto def_exp = def->GetExpression();
 
+				if (def_exp.mElements.size() > 0)
+				{
+
+
+					new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
+					//TODO
+				}
+			}
 			mInstanceScope->RegisterVar(new_var);
-
+		
 		}
 
 	}
@@ -98,7 +104,10 @@ ZClassNode* ZClassNode::CreateInstance(std::string name) {
 	new_cls->CreateScope();
 	new_cls->PopulateScope();
 	new_cls->SetBaseName(this->mClassName);
-
+	if (new_cls->FindMethod(this->mClassName) != nullptr)
+	{
+//		new_cls->CallMethod(this->mClassName, std::vector<ZContextVar* > ());
+	}
 
 	return new_cls;
 

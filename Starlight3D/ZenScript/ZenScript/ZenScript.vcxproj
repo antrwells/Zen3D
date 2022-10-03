@@ -143,7 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DirCollection.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="tinydir.h" />
     <ClInclude Include="VarTypes.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ZAssignNode.h" />
@@ -153,6 +155,7 @@
     <ClInclude Include="ZContextScope.h" />
     <ClInclude Include="ZContextVar.h" />
     <ClInclude Include="ZExpressionNode.h" />
+    <ClInclude Include="ZIfnode.h" />
     <ClInclude Include="ZMethodNode.h" />
     <ClInclude Include="ZNewNode.h" />
     <ClInclude Include="ZParametersNode.h" />
@@ -161,6 +164,7 @@
     <ClInclude Include="ZParseClassStatement.h" />
     <ClInclude Include="ZParseCodeBody.h" />
     <ClInclude Include="ZParseExpression.h" />
+    <ClInclude Include="ZParseIf.h" />
     <ClInclude Include="ZParseMethod.h" />
     <ClInclude Include="ZParseNew.h" />
     <ClInclude Include="ZParseNode.h" />
@@ -186,6 +190,7 @@
     <ClInclude Include="ZVarsNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DirCollection.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -200,6 +205,7 @@
     <ClCompile Include="ZContextVar.cpp" />
     <ClCompile Include="ZenScript.cpp" />
     <ClCompile Include="ZExpressionNode.cpp" />
+    <ClCompile Include="ZIfnode.cpp" />
     <ClCompile Include="ZMethodNode.cpp" />
     <ClCompile Include="ZNewNode.cpp" />
     <ClCompile Include="ZParametersNode.cpp" />
@@ -208,6 +214,7 @@
     <ClCompile Include="ZParseClassStatement.cpp" />
     <ClCompile Include="ZParseCodeBody.cpp" />
     <ClCompile Include="ZParseExpression.cpp" />
+    <ClCompile Include="ZParseIf.cpp" />
     <ClCompile Include="ZParseMethod.cpp" />
     <ClCompile Include="ZParseNew.cpp" />
     <ClCompile Include="ZParseNode.cpp" />

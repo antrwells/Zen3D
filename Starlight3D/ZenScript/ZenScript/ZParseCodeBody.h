@@ -5,7 +5,7 @@
 enum CodeType {
 
     CodeStatement, CodeAssign, CodeDeclareVars, CodeReturn, CodeFor, CodeSwitch, CodeWhile, CodeGoto, CodeLabel,CodeUnknown,
-    CodeEnd,ClassStatement
+    CodeEnd,ClassStatement,CodeIf,CodeElseIf,CodeElse
 
 };
 

@@ -1,35 +1,17 @@
 class testClass
 
-  int ant = 39
+  Vec3 Position = new Vec3()
 
 
   method void check()
 
-    otherClass test = new otherClass()
 
-    int abc = test.wells
+    printf(Position.x,Position.y,Position.z)
 
-    printf("Checked!",abc)
-
-  end 
-
-end 
-
-class otherClass
-
-  int wells = 205
-
-  method void otherClass()
+  end    
 
 
 
-  end 
-
-  method void tmp()
-
-    printf("TMP!")
-
-  end 
+ 
 
 end 
-

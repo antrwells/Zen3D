@@ -105,6 +105,11 @@ public:
         }
         else
         {
+
+            //determine type
+
+
+            //--
             ZContextVar* result = new ZContextVar("expr result", VarType::VarInt);
 
             result->SetInt(evaluateInt(mElements));

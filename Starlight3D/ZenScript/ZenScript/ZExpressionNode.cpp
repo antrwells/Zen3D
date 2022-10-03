@@ -83,8 +83,14 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                 {
                     auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
                     auto av = cls->GetClassVal()->FindVar(tok.mValName[1]);
-                    values.push(av->GetIntVal());
-                                            //values.push(333);
+                    if (av->GetType() == VarType::VarInt)
+                    {
+
+                        values.push(av->GetIntVal());
+                    }
+                    else {
+                        values.push(av->GetFloatVal());
+                    }                    //values.push(333);
                 }
                 else {
                     auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);

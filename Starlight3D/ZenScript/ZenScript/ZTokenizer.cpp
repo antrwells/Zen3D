@@ -284,6 +284,9 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("/", TokenType::TokenDivide));;
 	token_map.insert(std::make_pair("*", TokenType::TokenMultiply));;
 	token_map.insert(std::make_pair("=", TokenType::TokenEquals));;
+	token_map.insert(std::make_pair("if", TokenType::TokenIf));
+	token_map.insert(std::make_pair("else", TokenType::TokenElse));
+	token_map.insert(std::make_pair("elseif", TokenType::TokenElseIf));
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {

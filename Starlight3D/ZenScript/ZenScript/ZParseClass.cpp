@@ -33,6 +33,19 @@ ZScriptNode* ZParseClass::Parse()
 		//
 
 		switch (token.mType) {
+		case TokenType::TokenIdent:
+
+			mStream->Back();
+			parse_vars = new ZParseVars(mStream);
+			vars_node = (ZVarsNode*)parse_vars->Parse();
+
+			//codebody->AddNode(vars_node);
+			class_node->AddVars(vars_node);
+
+			//tk = mStream->NextToken();
+			//vars_node->SetCodeOwner(codebody);
+
+			break;
 		case TokenType::TokenInt:
 		case TokenType::TokenFloat:
 		case TokenType::TokenString:

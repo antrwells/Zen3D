@@ -8,6 +8,9 @@ class ZSource
 {
 public:
 
+	ZSource();
+	void AddLine(std::string line);
+
 	ZSource(std::string path);
 	std::vector<std::string> GetCode();
 	void Clean();

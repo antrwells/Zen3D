@@ -102,9 +102,10 @@ bool ZTokenStream::EOS() {
 
 }
 
-bool ZTokenStream::FindInLine(TokenType type)
+bool ZTokenStream::FindInLine(TokenType type,int peek)
 {
 	int pa = 0;
+	pa = pa + peek;
 	
 	while (true) {
 

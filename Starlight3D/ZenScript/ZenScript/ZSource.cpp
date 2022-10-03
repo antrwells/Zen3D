@@ -1,6 +1,19 @@
 
 #include "ZSource.h"
 
+ZSource::ZSource() {
+
+	mPath = "";
+	
+
+}
+
+void ZSource::AddLine(std::string line)
+{
+	code.push_back(line);
+	Clean();
+}
+
 ZSource::ZSource(std::string path) {
 
 	mPath = path;

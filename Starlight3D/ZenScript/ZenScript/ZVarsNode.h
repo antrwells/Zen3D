@@ -10,7 +10,7 @@ class ZNewNode;
 struct VarPair {
     std::string name;
     ZExpressionNode* def = nullptr;
-    ZNewNode* new_node;
+    ZNewNode* new_node = nullptr;
 };
 
 

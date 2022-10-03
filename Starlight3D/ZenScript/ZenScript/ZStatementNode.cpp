@@ -51,11 +51,13 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 	//auto meth = top_class->FindMethod(this->mCallNames[0]);
 
-	if (top_class->FindMethod(mCallNames[0])!=nullptr)
-	{
+	if (top_class != nullptr) {
+		if (top_class->FindMethod(mCallNames[0]) != nullptr)
+		{
 
-		return top_class->CallMethod(mCallNames[0], vpars);
-		
+			return top_class->CallMethod(mCallNames[0], vpars);
+
+		}
 	}
 	//if (meth != nullptr) {
 

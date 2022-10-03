@@ -6,7 +6,11 @@
 #include "ZSystemFunctions.h"
 #include "ZSystemFunction.h"
 #include "VarTypes.h"
-
+#include "ZTokenizer.h"
+#include "ZParseCodeBody.h"
+#include "ZCodeBodyNode.h"
+#include "DirCollection.h"
+#include "ZParser.h"
 ZContextVar* sysfunc_printf(const std::vector<ZContextVar*>& args)
 {
 
@@ -137,4 +141,47 @@ ZContextVar* ZScriptContext::CallMethod(std::string name, std::string meth, cons
 	int aa = 5;
 
 	return nullptr;
+}
+
+ZContextVar* ZScriptContext::RunLine(std::string name) {
+
+	auto src = new ZSource;
+	src->AddLine(name);
+	
+	auto toker = new ZTokenizer(src);
+	auto stream = toker->Tokenize();
+	
+	auto parse_Code = new ZParseCodeBody(stream);
+	auto code_node = (ZCodeBodyNode*)parse_Code->Parse();
+	
+	return code_node->Exec(std::vector<ZContextVar*>());
+
+	
+
+}
+
+void ZScriptContext::LoadLib(std::string name)
+{
+
+	DirCollection* dir = new DirCollection("script/lib/" + name + "/");
+
+	for (int i = 0; i < dir->enteries.size(); i++)
+	{
+
+		if (!dir->enteries[i].folder) {
+			auto entry = dir->enteries[i].full;
+			
+			ZSource* source = new ZSource(entry);
+			ZTokenizer* toker = new ZTokenizer(source);
+			auto stream = toker->Tokenize();
+			ZParser* parser = new ZParser(stream);
+			ZMainNode* main1 = parser->Parse();
+
+			this->AddNode(main1);
+
+		}
+
+	}
+
+
 }

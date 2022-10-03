@@ -7,7 +7,10 @@
 #include "ZParseClassStatement.h"
 #include "ZClassStatementNode.h"
 #include "ZParseAssign.h"
+#include "ZParseIf.h"
+#include "ZIfnode.h"
 ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
+
 
 
 }
@@ -26,9 +29,13 @@ CodeType ZParseCodeBody::PredictType() {
 		auto token = mStream->PeekToken(peek_val);
 		int ee = 1;
 		switch (token.mType) {
+		case TokenType::TokenIf:
+
+			return CodeType::CodeIf;
+
 		case TokenType::TokenPeriod:
 
-			if (mStream->FindInLine(TokenType::TokenLeftPara))
+			if (mStream->FindInLine(TokenType::TokenLeftPara,peek_val))
 			{
 				return CodeType::ClassStatement;
 			}
@@ -37,15 +44,15 @@ CodeType ZParseCodeBody::PredictType() {
 
 
 
-			if (mStream->FindInLine(TokenType::TokenPeriod))
+			if (mStream->FindInLine(TokenType::TokenPeriod,peek_val))
 			{
 				peek_val++;
 				continue;
 			}
 
-			if (mStream->FindInLine(TokenType::TokenEquals))
+			if (mStream->FindInLine(TokenType::TokenEquals,peek_val))
 			{
-				if (mStream->FindInLine(TokenType::TokenNew))
+				if (mStream->FindInLine(TokenType::TokenNew,peek_val))
 				{
 
 					return CodeType::CodeDeclareVars;
@@ -69,8 +76,15 @@ CodeType ZParseCodeBody::PredictType() {
 
 			break;
 		case TokenType::TokenEnd:
+		case TokenType::TokenElse:
+		case TokenType::TokenElseIf:
 
 			return CodeType::CodeEnd;
+
+			break;
+		case TokenType::TokenEquals:
+
+			return CodeType::CodeAssign;
 
 			break;
 		}
@@ -96,7 +110,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 	while (!mStream->EOS()) {
 
 		auto code_type = PredictType();
-
+		auto vv = mStream->PeekToken(0);
 		ZParseStatement* parse_statement = nullptr;
 		ZStatementNode* statement_node = nullptr;
 		ZParseVars* parse_vars = nullptr;
@@ -106,6 +120,16 @@ ZScriptNode* ZParseCodeBody::Parse() {
 		Token ct(TokenType::TokenVoid, "");
 		int e = 0;
 		switch (code_type) {
+		case CodeType::CodeIf:
+		{
+
+			auto parse_if = new ZParseIf(mStream);
+			auto if_node = parse_if->Parse();
+			codebody->AddNode(if_node);
+
+		}
+
+			break;
 		case CodeType::CodeAssign:
 		{
 			auto tok = mStream->NextToken();
@@ -179,7 +203,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 
 	int aa = 5;
 
-
+	return codebody;
 	return nullptr;
 
 }

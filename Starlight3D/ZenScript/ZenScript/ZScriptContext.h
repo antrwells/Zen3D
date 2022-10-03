@@ -33,6 +33,9 @@ public:
 	{
 		return mScope.top();
 	}
+	ZContextVar* RunLine(std::string code);
+
+	void LoadLib(std::string name);
 
 private:
 

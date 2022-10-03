@@ -147,6 +147,18 @@
     <ClInclude Include="ZAssignNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
+    <ClInclude Include="ZParseIf.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZIfnode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinydir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -268,6 +280,15 @@
     </ClCompile>
     <ClCompile Include="ZAssignNode.cpp">
       <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseIf.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIfnode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="DirCollection.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

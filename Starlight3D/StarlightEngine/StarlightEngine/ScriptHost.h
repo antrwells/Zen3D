@@ -1,6 +1,7 @@
 #pragma once
-#include <chaiscript/chaiscript.hpp>
+
 #include <string>
+#include "sol.hpp"
 
 class ScriptObject;
 
@@ -9,11 +10,13 @@ class ScriptHost
 public:
 
 	ScriptHost();
-	ScriptObject* CompileScriptText(std::string text);
-	ScriptObject* CompileScriptFile(std::string path);
-	void AddFunction(chaiscript::Proxy_Function func, std::string name);
+	void RunFile(const char* file);
+	void SetFunction(void* func, std::string name);
 
+	static ScriptHost* ScHost;
 private:
-	chaiscript::ChaiScript host;
+	static bool Inited;
+	sol::state host;
+
 };
 

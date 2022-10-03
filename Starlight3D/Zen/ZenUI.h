@@ -58,7 +58,7 @@ public:
 	void RenderUI();
 
 	//Other functionality.
-	void ImportNode(const char* path);
+	Node3D* ImportNode(const char* path);
 
 	// Other Temporary UI
 
@@ -90,6 +90,7 @@ private:
 
 	//Images
 	Texture2D* mIconTranslate, * mIconRotate, * mIconScale;
+	Texture2D* mIconPlay, * mIconStop, * mIconPause;
 
 	//SceneGraph
 	ImVec2 mSceneGraphPos;

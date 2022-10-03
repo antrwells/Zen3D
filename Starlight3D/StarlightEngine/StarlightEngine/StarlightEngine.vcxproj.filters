@@ -82,6 +82,9 @@
     <Filter Include="Font">
       <UniqueIdentifier>{e068dbaa-a6de-48a7-b3be-29a698e5dc91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripting">
+      <UniqueIdentifier>{38484448-a966-45f5-a3f2-998b91f2317f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -288,11 +291,11 @@
     <ClInclude Include="Maths.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="ScriptHost.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ScriptObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptHost.h">
+      <Filter>Scripting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -488,11 +491,11 @@
     <ClCompile Include="DirCollection.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="ScriptHost.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScriptObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptHost.cpp">
+      <Filter>Scripting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

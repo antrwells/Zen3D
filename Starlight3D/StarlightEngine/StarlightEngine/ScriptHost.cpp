@@ -3,27 +3,29 @@
 
 ScriptHost::ScriptHost() {
 
+//	if (!Inited) {
+		
+		host.open_libraries(sol::lib::base, sol::lib::package);
+
+
+
 }
 
-ScriptObject* ScriptHost::CompileScriptText(std::string code)
+void ScriptHost::RunFile(const char* path)
 {
-
-	host.eval(code);
-
-	return nullptr;
-}
-
-ScriptObject* ScriptHost::CompileScriptFile(std::string path)
-{
-
-	host.eval_file(path);
-
-	return nullptr;
+	auto file = host.load_file(std::string(path));
+	file();
 
 }
 
-void ScriptHost::AddFunction(chaiscript::Proxy_Function func, std::string name) {
+void ScriptHost::SetFunction(void* func, std::string name) {
+	
+	host[name] = func;
+	//host[name] = func;
 
-	host.add(func, name);
 
 }
+
+ScriptHost* ScriptHost::ScHost = nullptr;
+
+bool ScriptHost::Inited = false;

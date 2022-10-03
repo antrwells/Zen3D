@@ -42,7 +42,19 @@ void ZenUI::SceneTree(Node3D* node)
 		if (ImGui::IsItemClicked()) {
 			mSelectedNode = node;
 		}
+		if (ImGui::BeginDragDropTarget()) {
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Model"))
+			{
+				DirEntry* entry = (DirEntry*)payload->Data;
+				auto n_node = ImportNode(entry->full.c_str());
 
+				node->AddNode(n_node);
+
+				mDragEntry = nullptr;
+
+			}
+			ImGui::EndDragDropTarget();
+		}
 
 		if (ImGui::BeginPopupContextWindow())
 		{
@@ -109,16 +121,7 @@ void ZenUI::SceneGraphWindow() {
 		printf("\n");																										
 	}
 
-	if (ImGui::BeginDragDropTarget()) {
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Model"))
-		{
-			DirEntry* entry = (DirEntry*)payload->Data;
-			ImportNode(entry->full.c_str());
-			mDragEntry = nullptr;
-
-		}
-		ImGui::EndDragDropTarget();
-	}
+	
 
 	ImGui::EndChild();
 

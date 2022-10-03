@@ -94,7 +94,8 @@ void ZenUI::MainContentBrowser() {
 
 					if (entry.ext == "fbx" || entry.ext == "dae")
 					{
-						ImportNode(entry.full.c_str());
+						auto nn = ImportNode(entry.full.c_str());
+						mGraph->AddNode(nn);
 					}
 					if (entry.ext == "ch")
 					{
@@ -116,7 +117,7 @@ void ZenUI::MainContentBrowser() {
 						{
 							ImGui::SetDragDropPayload("Model", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
-						else if (mDragEntryRef.ext == "ch") {
+						else if (mDragEntryRef.ext == "l") {
 							ImGui::SetDragDropPayload("Script", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
 						ImGui::Button(mDragEntryRef.name.c_str(), ImVec2(64, 64));

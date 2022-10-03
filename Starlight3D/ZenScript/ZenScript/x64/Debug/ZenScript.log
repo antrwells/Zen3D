@@ -1,0 +1,16 @@
+﻿  ZClassNode.cpp
+  ZClassStatementNode.cpp
+  ZContextScope.cpp
+  ZContextVar.cpp
+  ZExpressionNode.cpp
+  ZNewNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZContextScope.cpp(26,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZClassStatementNode.cpp(9,14): warning C4101: 'top': unreferenced local variable
+  ZParseClass.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(37): warning C4715: 'applyOpInt': not all control paths return a value
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(45): warning C4715: 'applyOpFloat': not all control paths return a value
+  ZScriptContext.cpp
+  ZStatementNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZScriptContext.cpp(124): warning C4715: 'ZScriptContext::FindInstance': not all control paths return a value
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseClass.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

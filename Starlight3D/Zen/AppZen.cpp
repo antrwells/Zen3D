@@ -5,8 +5,7 @@
 #include "ActorAnim.h"
 #include "PostProcessing.h"
 #include "PPBloom.h"
-#include "ScriptHost.h"
-#include "ScriptObject.h"
+
 
 AppZen::AppZen() {
 
@@ -21,6 +20,7 @@ void AppZen::InitApp() {
 
 	Importer* imp = new Importer;
 
+	
 	//Application::GetApp()->TextToScript("puts(\"Hey everyone!\")");
 //	Application::GetApp()->FileToScript("script/application_init.ch");
 

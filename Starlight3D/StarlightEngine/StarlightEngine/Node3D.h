@@ -5,8 +5,11 @@
 #include "NodeComponent.h"
 //#include "Effect.h"
 
+
 #include "NodeProperty.h"
 #include "Common/interface/BasicMath.hpp"
+
+class ScriptObject;
 
 using namespace Diligent;
 
@@ -249,6 +252,8 @@ enum NodeType {
 		/// <returns></returns>
 		NodeProperty* GetProperty(std::string name);
 
+		std::vector<NodeProperty*> GetProperties();
+
 
 		/// <summary>
 		/// Clones a node, including any data asscoiated with it.
@@ -342,6 +347,13 @@ enum NodeType {
 			return mHidden;
 		}
 
+		void AddScript(std::string path);
+		std::vector<ScriptObject*> GetScripts() {
+			return mScriptObjs;
+		}
+
+
+
 	protected:
 
 		bool mTransformInvalidated = true;
@@ -374,6 +386,9 @@ enum NodeType {
 
 		//Properties
 		std::vector<NodeProperty*> mProperties;
+
+		std::vector<std::string> mScripts;
+		std::vector<ScriptObject*> mScriptObjs;
 
 
 	};

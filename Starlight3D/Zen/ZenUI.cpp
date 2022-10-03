@@ -28,6 +28,8 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mIconTranslate = new Texture2D("edit/icon/MoveIcon2.png");
 	mIconRotate = new Texture2D("edit/icon/rotateIcon.png");
 	mIconScale = new Texture2D("edit/icon/scaleicon.png");
+	mIconPlay = new Texture2D("edit/icon/playicon.png");
+	mIconStop = new Texture2D("edit/icon/stopicon.png");
 
 	//Scene Graph
 	mSceneGraphPos = ImVec2(0, mToolbarSize.y+12);
@@ -227,6 +229,10 @@ void ZenUI::MainToolBar() {
 
 	}
 
+//	ImGui::Separator();
+
+
+
 	ImGui::SameLine();
 	//ImGui::SetNextWindowSize(ImVec2(64, 28));
 	ImGui::PushItemWidth(128);
@@ -253,7 +259,20 @@ void ZenUI::MainToolBar() {
 	ImGui::PopItemWidth();
 
 	ImGui::SameLine();
-	ImGui::Button("Check");
+	ImGui::Separator();
+	ImGui::SameLine();
+	//ImGui::Button("Check");
+	if (ImGui::ImageButton(mIconPlay->GetView(), ImVec2(26, 26)))
+	{
+
+	}
+
+	ImGui::SameLine();
+
+	if (ImGui::ImageButton(mIconStop->GetView(), ImVec2(26, 26)))
+	{
+
+	}
 
 	ImGui::End();
 
@@ -296,12 +315,12 @@ void ZenUI::ScanContent(std::string path) {
 
 ///Othr functionality
 
-void ZenUI::ImportNode(const char* path) {
+Node3D* ZenUI::ImportNode(const char* path) {
 
 	Importer* importer = new Importer;
 	auto node = importer->ImportAI(path);
-	mGraph->AddNode(node);
-
+	//mGraph->AddNode(node);
+	return node;
 }
 
 // Get script name

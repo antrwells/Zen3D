@@ -6,6 +6,9 @@
 /// The data namespace is for using app specific data within nodes.
 /// </summary>
 
+enum PropertyType {
+	Int, Float, Double, String, Table
+};
 	/// <summary>
 	/// NodeProperty is a named piece of data for a node/component.
 	/// </summary>
@@ -22,7 +25,15 @@
 		/// Sets the arbitary date of the node.
 		/// </summary>
 		/// <param name="data"></param>
-		void SetData(void* data);
+		//void SetData(void* data);
+		void SetInt(int v);
+		void SetFloat(float v);
+		void SetString(std::string v);
+		int GetInt();
+		float GetFloat();
+		std::string GetString();
+		PropertyType GetType();
+		void SetType(PropertyType type);
 		/// <summary>
 		/// gets the data asscoiated with the property.
 		/// </summary>
@@ -37,7 +48,13 @@
 	private:
 
 		std::string mName;
-		void* mData;
+		//void* mData; 
+		PropertyType mType;
+
+		int mInt;
+		float mFloat;
+		double mDouble;
+		std::string mString;
 
 	};
 

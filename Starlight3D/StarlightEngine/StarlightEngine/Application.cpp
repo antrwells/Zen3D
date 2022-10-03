@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Application.h"
 #include "UI.h"
-
+#include "ScriptHost.h"
 
 
 //#include "ZContextVar.h"
@@ -38,7 +38,7 @@ Application::Application() {
     //par_b->SetInt(10);
 
    // cls_inst->CallMethod("testMethod", { par_a,par_b });
-
+    auto host = new ScriptHost;
     int aaa = 5;
 
 }
@@ -676,17 +676,4 @@ void Application::GLFW_CursorPosCallback(GLFWwindow* wnd, double xpos, double yp
 
 void Application::GLFW_MouseWheelCallback(GLFWwindow* wnd, double dx, double dy)
 {
-}
-
-
-void Application::TextToScript(const char* text) {
-
-    chai.eval(text);
-
-}
-
-void Application::FileToScript(const char* file) {
-
-    chai.eval_file(std::string(file));
-
 }

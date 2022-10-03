@@ -3,14 +3,55 @@
 
 #include <iostream>
 #include "AppZen.h"
+#include "sol.hpp"
+
+int appW, appH;
+
+void init_app(int w, int h) {
+
+    appW = w;
+    appH = h;
+    printf("Starting application. Resolution W:%d H:%d\n", w, h);
+
+}
+
+struct testObj {
+    int x = 5;
+};
+
+void testFunc(testObj* node) {
+
+    printf("testFunc:%d\n", node->x);
+
+}
 
 int main()
 {
+
+    testObj n;
+    n.x = 25;
+
+    sol::state state;
+    state.open_libraries(sol::lib::base, sol::lib::package);
+
+    state["init_app"] = init_app;
+
+    auto init = state.load_file("script/init.l");
+
+    init();
+
+    auto node_1 = state.load_file("script/node1.l");
+
+    state["node"] = &n;
+    state["testFunc"] = testFunc;
+
+    node_1();
+
     std::cout << "Hello Zen!\n";
 
     AppZen* zen = new AppZen;
     int APIHint = GLFW_NO_API;
-    zen->CrWindow("Zen", 1424, 868, APIHint);
+    zen->CrWindow("Zen", appW,appH, APIHint);
     zen->InitEngine();
     zen->CreateResources();
     zen->Run();

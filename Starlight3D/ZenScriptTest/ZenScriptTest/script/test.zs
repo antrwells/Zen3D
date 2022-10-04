@@ -5,8 +5,24 @@ class testClass
 
   method void check()
 
+  #testing expressions
+    int a = 20
 
-    printf(Position.x,Position.y,Position.z)
+    #test if
+    if a>15
+    
+      printf("If") 
+    
+    elseif a>5
+
+      printf("ElseIf")
+
+    else
+
+      printf("Else!")
+
+    end 
+  
 
   end    
 

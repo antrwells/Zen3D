@@ -29,8 +29,25 @@ ZContextVar* ZIfNode::Exec(const std::vector<ZContextVar*>& params)
 		mTrueCode->SetClassOwner(GetClassOwner());
 		mTrueCode->Exec(params);
 	}
+	else {
+
+		if (mElseIf != nullptr) {
+			mElseIf->Exec(params);
+		}
+		if (mElseCode != nullptr) {
+
+			mElseCode->Exec(params);
+
+		}
+
+	}
 
 	int a = 5;
 
 	return nullptr;
+}
+
+void ZIfNode::SetElseIf(ZIfNode* eif)
+{
+	mElseIf = eif;
 }

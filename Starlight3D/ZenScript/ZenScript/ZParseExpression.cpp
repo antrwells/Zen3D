@@ -35,6 +35,17 @@ ZScriptNode* ZParseExpression::Parse() {
 		}
 
 		switch (token.mType) {
+		case TokenType::TokenLess:
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpLess;
+			expr.mElements.push_back(ele);
+
+			break;
+		case TokenType::TokenGreater:
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpGreater;
+			expr.mElements.push_back(ele);
+			break;
 		case TokenType::TokenMultiply:
 
 			ele.mType = ExprElementType::EOp;

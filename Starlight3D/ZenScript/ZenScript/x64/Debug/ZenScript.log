@@ -1,5 +1,2 @@
-﻿  ZExpressionNode.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(92,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(37): warning C4715: 'applyOpInt': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(45): warning C4715: 'applyOpFloat': not all control paths return a value
+﻿  ZIfnode.cpp
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

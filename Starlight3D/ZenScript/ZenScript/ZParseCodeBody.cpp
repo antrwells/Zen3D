@@ -157,7 +157,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			break;
 		case CodeType::CodeEnd:
 
-			if (mStream->PeekToken(0).mType == TokenType::TokenEnd)
+			if (mStream->PeekToken(0).mType == TokenType::TokenEnd || TokenType::TokenElseIf)
 			{
 				mStream->NextToken();
 				return codebody;

@@ -99,6 +99,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_op.push_back("-"[0]);
 	is_op.push_back("*"[0]);
 	is_op.push_back("/"[0]);
+	is_op.push_back("<"[0]);
+	is_op.push_back(">"[0]);
 	is_op.push_back("="[0]);
 
 
@@ -133,6 +135,11 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		for (int c = 0; c < line.size(); c++) {
 
 			auto ch = line[c];
+
+			if (ch == "#"[0])
+			{
+				break;
+			}
 
 			if (is_number) {
 
@@ -287,6 +294,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("if", TokenType::TokenIf));
 	token_map.insert(std::make_pair("else", TokenType::TokenElse));
 	token_map.insert(std::make_pair("elseif", TokenType::TokenElseIf));
+	token_map.insert(std::make_pair(">", TokenType::TokenGreater));
+	token_map.insert(std::make_pair("<", TokenType::TokenLess));
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {

@@ -21,9 +21,11 @@ ZContextVar* ZExpressionNode::Exec(const std::vector<ZContextVar*>& params)
 int precedence(ExprOperatorType op) {
 
     if (op == OpPlus || op == OpMinus)
-        return 1;
+        return 3;
     if (op == OpMultiply || op == OpDivide)
-        return 2;
+        return 5;
+    if (op == OpGreater || op == OpLess)
+        return 8;
     return 0;
 }
 
@@ -33,6 +35,8 @@ int applyOpInt(int a, int b, ExprOperatorType op) {
     case OpMinus: return a - b;
     case OpMultiply: return a * b;
     case OpDivide: return a / b;
+    case OpGreater: return a > b ? 1 : 0;
+    case OpLess: return a < b ? 1 : 0;
     }
 }
 float applyOpFloat(float a, float b, ExprOperatorType op) {
@@ -41,6 +45,8 @@ float applyOpFloat(float a, float b, ExprOperatorType op) {
     case OpMinus: return a - b;
     case OpMultiply: return a * b;
     case OpDivide: return a / b;
+    case OpGreater: return a > b ? 1 : 0;
+    case OpLess: return a < b ?  1 : 0;
     }
 }
 

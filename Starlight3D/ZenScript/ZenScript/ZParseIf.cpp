@@ -13,7 +13,7 @@ ZScriptNode* ZParseIf::Parse() {
 
 	auto tok = mStream->NextToken();
 
-	if(tok.mType != TokenType::TokenIf)
+	if(tok.mType != TokenType::TokenIf && tok.mType != TokenType::TokenElseIf)
 	{
 		mStream->Back();
 		if (mStream->PeekToken(0).mType != TokenType::TokenIf) {
@@ -33,10 +33,28 @@ ZScriptNode* ZParseIf::Parse() {
 
 	if_node->SetTrueCode(true_code);
 
+	//auto cn = mStream->NextToken();
+
 	mStream->Back();
 	auto ct = mStream->NextToken();
 
+	if (ct.mType == TokenType::TokenElseIf)
+	{
+		mStream->Back();
+		auto eif_parse = new ZParseIf(mStream);
+		auto eif_node = (ZIfNode*)eif_parse->Parse();
+		if_node->SetElseIf(eif_node);
+	
+	}
+	if (ct.mType == TokenType::TokenElse)
+	{
 
+		int aa = 5;
+		auto par_code = new ZParseCodeBody(mStream);
+		auto code_node = (ZCodeBodyNode*)par_code->Parse();
+		if_node->SetElseCode(code_node);
+
+	}
 
 	return if_node;
 

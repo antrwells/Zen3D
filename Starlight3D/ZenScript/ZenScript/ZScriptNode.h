@@ -17,12 +17,18 @@ public:
 	{
 		mClass = cls;
 	}
-
-
+	virtual void Bind() {};
+	bool IsReturn() {
+		return mIsReturn;
+	}
+	void SetReturn(bool ret) {
+		mIsReturn = true;
+	}
 public:
 	
 	std::vector<ZScriptNode*> mNodes;
 	ZClassNode* mClass;
+	bool mIsReturn = false;
 
 };
 

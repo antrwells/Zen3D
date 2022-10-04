@@ -1,5 +1,9 @@
 #include "ZParseExpression.h"
 #include "ZExpressionNode.h"
+#include "ZParseStatement.h"
+#include "ZStatementNode.h"
+#include "ZParseClassStatement.h"
+#include "ZClassStatementNode.h"
 
 ZParseExpression::ZParseExpression(ZTokenStream* stream) : ZParseNode(stream) {
 
@@ -77,7 +81,7 @@ ZScriptNode* ZParseExpression::Parse() {
 
 			break;
 		case TokenType::TokenFloat:
-		
+
 			ele.mType = ExprElementType::EFloat;
 			ele.mValInt = 0;
 			fVal = std::stof(std::string(token.mText));
@@ -109,6 +113,8 @@ ZScriptNode* ZParseExpression::Parse() {
 
 			if (mStream->PeekToken(0).mType == TokenType::TokenPeriod)
 			{
+
+				/*
 				while (true) {
 					token = mStream->NextToken();
 					if (token.mType == TokenType::TokenPeriod)
@@ -122,11 +128,32 @@ ZScriptNode* ZParseExpression::Parse() {
 						break;
 					}
 				}
+				*/
+			}
+			if (mStream->PeekToken(0).mType == TokenType::TokenPeriod) {
+
+				mStream->Back();
+				auto parse_classstate = new ZParseClassStatement(mStream);
+				auto classstate_node = (ZClassStatementNode*)parse_classstate->Parse();
+				ele.mClassStatement = classstate_node;
+				ele.mType = EClassStatement;
+
+
+			}else 
+			if (mStream->PeekToken(0).mType == TokenType::TokenLeftPara)
+			{
+				mStream->Back();
+				auto parse_state = new ZParseStatement(mStream);
+				auto state_node = (ZStatementNode*)parse_state->Parse();
+				ele.mStatement = state_node;
+				ele.mType = EStatement;
+
+				int bb = 5;
 			}
 			expr.mElements.push_back(ele);
 		}
 
-			break;
+		break;
 		case TokenType::TokenRightPara:
 
 			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
@@ -146,6 +173,7 @@ ZScriptNode* ZParseExpression::Parse() {
 		case TokenType::TokenComma:
 		case TokenType::TokenEndOfLine:
 
+
 			lb.mOp = ExprOperatorType::OpRightBrace;
 			expr.mElements.push_back(lb);
 			mStream->Back();
@@ -153,6 +181,16 @@ ZScriptNode* ZParseExpression::Parse() {
 			return exp_node;
 
 			break;
+		case TokenType::TokenEquals:
+
+			break;
+		default:
+			lb.mOp = ExprOperatorType::OpRightBrace;
+			expr.mElements.push_back(lb);
+			mStream->Back();
+			exp_node->SetExpression(expr);
+			return exp_node;
+
 		}
 
 	}

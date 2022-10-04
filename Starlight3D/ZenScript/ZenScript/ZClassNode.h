@@ -29,6 +29,8 @@ public:
 	ZContextVar* FindVar(std::string name);
 	ZContextVar* CallMethod(std::string name, const std::vector<ZContextVar*>& params);
 	void SetBaseName(std::string name);
+	void Bind();
+
 	ZContextScope* GetScope()
 	{
 		return mInstanceScope;

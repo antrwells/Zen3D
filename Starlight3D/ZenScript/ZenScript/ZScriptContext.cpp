@@ -11,6 +11,21 @@
 #include "ZCodeBodyNode.h"
 #include "DirCollection.h"
 #include "ZParser.h"
+#include <time.h>
+#include <ctime>
+//#include "ZContextVar.h"
+
+
+ZContextVar* sysfunc_millisecs(const std::vector<ZContextVar*>& args)
+{
+
+	auto res = new ZContextVar("ms:", VarType::VarInt);
+	res->SetInt(clock());
+	return res;
+
+
+}
+
 ZContextVar* sysfunc_printf(const std::vector<ZContextVar*>& args)
 {
 
@@ -49,7 +64,11 @@ void ZScriptContext::SetupSystem() {
 	ZSystemFunction printf("printf", sysfunc_printf);
 
 	ZSystemFunctions* tmp = new ZSystemFunctions;
+	
+	ZSystemFunction millisecs("millisecs", sysfunc_millisecs);
 	tmp->RegisterFunction(printf);
+	tmp->RegisterFunction(millisecs);
+
 
 
 }
@@ -76,6 +95,7 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 		if (cls->GetName() == name) {
 
 			auto cl =  cls->CreateInstance(instance_name);
+			cls->Bind();
 			//mInstances.push_back(cl);
 			return cl;
 			return nullptr;
@@ -92,21 +112,20 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 void ZScriptContext::PushClass(ZClassNode* node)
 {
 
-	//mClassStack.push(node);
+	mClassStack.push(node);
 
 }
 
 void ZScriptContext::PopClass() {
 
-	//mClassStack.pop();
+	mClassStack.pop();
 
 }
 
 ZClassNode* ZScriptContext::GetClass() {
 
-	assert(0);
-	return nullptr;
-	//return mClassStack.top();
+
+	return mClassStack.top();
 
 }
 

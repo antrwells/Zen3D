@@ -9,6 +9,11 @@
 #include "ZParseAssign.h"
 #include "ZParseIf.h"
 #include "ZIfnode.h"
+#include "ZParseFor.h"
+#include "ZForNode.h"
+#include "ZParseReturn.h"
+#include "ZReturnNode.h"
+
 ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
 
 
@@ -29,6 +34,12 @@ CodeType ZParseCodeBody::PredictType() {
 		auto token = mStream->PeekToken(peek_val);
 		int ee = 1;
 		switch (token.mType) {
+		case TokenType::TokenReturn:
+			return CodeType::CodeReturn;
+		case TokenType::TokenFor:
+			return CodeType::CodeFor;
+
+			break;
 		case TokenType::TokenIf:
 
 			return CodeType::CodeIf;
@@ -120,6 +131,26 @@ ZScriptNode* ZParseCodeBody::Parse() {
 		Token ct(TokenType::TokenVoid, "");
 		int e = 0;
 		switch (code_type) {
+		case CodeType::CodeReturn:
+		{
+			auto parse_ret = new ZParseReturn(mStream);
+			auto ret_node = (ZReturnNode*)parse_ret->Parse();
+			ret_node->SetReturn(true);
+			codebody->AddNode(ret_node);
+			int z = 0;
+		}
+			break;
+		case CodeType::CodeFor:
+		{
+
+			auto parse_for = new ZParseFor(mStream);
+			auto for_node = (ZForNode*)parse_for->Parse();
+
+			codebody->AddNode(for_node);
+
+		}
+
+			break;
 		case CodeType::CodeIf:
 		{
 

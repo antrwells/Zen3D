@@ -2,7 +2,8 @@
 #include "ZClassNode.h"
 #include "ZScriptContext.h"
 #include "ZContextScope.h"
-
+#include "ZParametersNode.h"
+#include "ZExpressionNode.h"
 ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
@@ -18,7 +19,21 @@ ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 		auto cls = var->GetClassVal();
 
-		cls->CallMethod(mNames[name_id + 1], std::vector<ZContextVar*>());
+		auto pars = mPars->GetParameters();
+
+		std::vector<ZContextVar*> vpars;
+
+		for (int i = 0; i < pars.size(); i++) {
+
+			auto par = pars[i];
+			vpars.push_back(par->Exec(std::vector<ZContextVar*>()));
+
+
+		}
+
+
+
+		return cls->CallMethod(mNames[name_id + 1],vpars);
 
 		name_id++;
 		break;

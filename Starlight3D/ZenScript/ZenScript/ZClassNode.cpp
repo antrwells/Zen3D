@@ -167,7 +167,9 @@ ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContext
 
 	ZScriptContext::CurrentContext->PushScope(new_scope);
 	method->SetClassOwner(this);
+	ZScriptContext::CurrentContext->PushClass(this);
 	auto res = method->Exec({});
+	ZScriptContext::CurrentContext->PopClass();
 	ZScriptContext::CurrentContext->PopScope();
 	for (int i = 0; i < to_rem.size(); i++) {
 		new_scope->RemoveVar(to_rem[i]);
@@ -185,5 +187,19 @@ void ZClassNode::SetBaseName(std::string name) {
 ZContextVar* ZClassNode::FindVar(std::string name) {
 
 	return mInstanceScope->FindVar(name);
+
+}
+
+void ZClassNode::Bind() {
+
+	//printf("Binding class.");
+
+
+	for (int i = 0; i < mMethods.size(); i++) {
+
+		mMethods[i]->SetClassOwner(this);
+		mMethods[i]->Bind();
+
+	}
 
 }

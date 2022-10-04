@@ -10,15 +10,18 @@ ZParseIf::ZParseIf(ZTokenStream* stream) : ZParseNode(stream) {
 }
 
 ZScriptNode* ZParseIf::Parse() {
-
+	
 	auto tok = mStream->NextToken();
 
 	if(tok.mType != TokenType::TokenIf && tok.mType != TokenType::TokenElseIf)
 	{
 		mStream->Back();
 		if (mStream->PeekToken(0).mType != TokenType::TokenIf) {
-			assert(0);
+		//	assert(0);
 		}
+		mStream->NextToken();
+		auto b = mStream->NextToken();
+		int bbb = 5;
 	}
 
 	auto parse_e = new ZParseExpression(mStream);

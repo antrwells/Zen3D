@@ -47,7 +47,7 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 	v1->SetInt(2555);
 
 
-	auto top_class = GetClassOwner();
+	auto top_class = ZScriptContext::CurrentContext->GetClass();//  GetClassOwner();
 
 	//auto meth = top_class->FindMethod(this->mCallNames[0]);
 

@@ -73,6 +73,10 @@ ZScriptNode* ZParseClass::Parse()
 		
 			class_node->AddMethod(meth_node);
 
+			if (mStream->PeekToken(0).mType == TokenType::TokenEnd) {
+				mStream->NextToken();
+			}
+
 			break;
 		case TokenType::TokenFunction:
 

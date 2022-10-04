@@ -1,1 +1,11 @@
 - options script. rather than an ini file, options will be a dynamic script, allowing more flexibility.
+
+- threaded methods/classes.
+
+-global stack
+
+	stack[0] = <expression>
+
+	int a = stack[0] <;retreived as part of an expression.
+
+- Properties - more like C#, with get/set code blocks.

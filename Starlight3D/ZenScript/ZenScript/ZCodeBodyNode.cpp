@@ -19,7 +19,12 @@ ZContextVar* ZCodeBodyNode::Exec(const std::vector<ZContextVar*>& params)
 		auto node = mNodes[i];
 		node->SetClassOwner(GetClassOwner());
 		
-		node->Exec({});
+		if (node->IsReturn()) {
+			return node->Exec({});
+		}
+		else {
+			node->Exec({});
+		}
 
 	}
 

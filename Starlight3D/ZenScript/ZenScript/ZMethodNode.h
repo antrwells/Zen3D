@@ -25,7 +25,7 @@ public:
 	ZMethodNode* Clone();
 	//Exec
 	ZContextVar* Exec(const std::vector<ZContextVar*>& params);
-
+	void Bind();
 private:
 	std::string mMethodName;
 	ZSignatureNode* mSignature;

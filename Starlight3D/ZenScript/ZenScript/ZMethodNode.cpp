@@ -55,3 +55,10 @@ ZContextScope* ZMethodNode::GetScope() {
 	return mScope;
 
 }
+
+void ZMethodNode::Bind() {
+
+	mCode->SetClassOwner(GetClassOwner());
+
+
+}

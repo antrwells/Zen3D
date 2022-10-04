@@ -2,6 +2,8 @@
 #include "ZScriptContext.h"
 #include "ZContextScope.h"
 #include "ZClassNode.h"
+#include "ZStatementNode.h"
+#include "ZClassStatementNode.h"
 void ZExpressionNode::SetExpression(Expression expr) {
 
 	//mElements.push_back(element);
@@ -65,7 +67,7 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
             ops.push(tok.mOp);
 
         }
-        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar)
+        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar || tok.mType == EStatement || tok.mType == EClassStatement)
         {
             //int val = 0;
             if (tok.mType == EInt) {
@@ -73,6 +75,37 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
             }
             else if(tok.mType==EFloat) {
                 values.push((int)tok.mValFloat);
+            }
+            else if (tok.mType == EClassStatement)
+            {
+                auto res = tok.mClassStatement->Exec({});
+
+                switch (res->GetType()) {
+                case VarType::VarInt:
+                    values.push(res->GetIntVal());
+                    break;
+                case VarType::VarFloat:
+                    values.push((int)res->GetFloatVal());
+                    break;
+                }
+                int aa = 5;
+            }
+            else if (tok.mType == EStatement)
+            {
+                auto res = tok.mStatement->Exec(std::vector<ZContextVar*>());
+                
+                switch (res->GetType()) {
+                case VarType::VarInt:
+                    values.push(res->GetIntVal());
+                    break;
+                case VarType::VarFloat:
+                    values.push((int)res->GetFloatVal());
+                    break;
+                }
+
+                //values.push(res->GetIntVal());
+
+
             }
             else if (tok.mType == EVar)
             {
@@ -191,6 +224,23 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
             }
             else if (tok.mType == EFloat) {
                 values.push(tok.mValFloat);
+            }
+            else if (tok.mType == EStatement)
+            {
+                auto res = tok.mStatement->Exec(std::vector<ZContextVar*>());
+
+                switch (res->GetType()) {
+                case VarType::VarInt:
+                    values.push((float)res->GetIntVal());
+                    break;
+                case VarType::VarFloat:
+                    values.push(res->GetFloatVal());
+                    break;
+                }
+
+                //values.push(res->GetIntVal());
+
+
             }
             else if (tok.mType == EVar)
             {

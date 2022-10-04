@@ -159,6 +159,18 @@
     <ClInclude Include="tinydir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ZParseFor.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZForNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseReturn.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZReturnNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -177,9 +189,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZParseNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZParseScript.cpp">
@@ -289,6 +298,21 @@
     </ClCompile>
     <ClCompile Include="DirCollection.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseFor.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZForNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseNode.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseReturn.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZReturnNode.cpp">
+      <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

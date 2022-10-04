@@ -40,7 +40,7 @@ public:
 private:
 
 	std::vector<ZClassNode*> mClasses;
-	//std::stack<ZClassNode*> mClassStack;
+	std::stack<ZClassNode*> mClassStack;
 	std::vector<ZClassNode*> mInstances;
 	std::stack<ZContextScope*> mScope;
 

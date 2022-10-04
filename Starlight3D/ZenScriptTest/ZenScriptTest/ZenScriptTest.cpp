@@ -12,7 +12,7 @@ int main()
 {
     std::cout << "Hello World!\n";
     ZScriptContext* context1 = new ZScriptContext;
-    context1->LoadLib("math");
+    //context1->LoadLib("math");
 
     ZSource* source = new ZSource("script/test.zs");
    ZTokenizer* toker = new ZTokenizer(source);
@@ -35,9 +35,9 @@ int main()
 
   
 
-   for (int i = 0; i < 10; i++) {                                                                                                              
+   //for (int i = 0; i < 10; i++) {                                                                                                              
        cls_inst->CallMethod("check", { par_a});
-   }
+   //}
    int b = 5;
 
    //context1->RunLine("printf(\"Hey it's working!\",20+30+5)");

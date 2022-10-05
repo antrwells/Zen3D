@@ -4,6 +4,7 @@
 #include "ZContextScope.h"
 #include "ZParametersNode.h"
 #include "ZExpressionNode.h"
+#include "ZMethodNode.h"
 ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
@@ -64,5 +65,31 @@ ZParametersNode* ZClassStatementNode::GetParameters() {
 std::vector<std::string> ZClassStatementNode::GetNames() {
 
 	return mNames;
+
+}
+
+
+VarType ZClassStatementNode::GetReturnType() {
+
+
+	auto name = mNames[0];
+
+	auto var = ZScriptContext::CurrentContext->GetScope()->FindVar(name);
+
+	auto cls = var->GetClassVal();
+
+	auto meths = cls->GetMethods();
+
+	auto m_name = mNames[1];
+
+	for (int i = 0; i < meths.size(); i++)
+	{
+	
+		auto meth = meths[i];
+		if (meth->GetName() == m_name) {
+			return meth->GetReturnType();
+		}
+
+	}
 
 }

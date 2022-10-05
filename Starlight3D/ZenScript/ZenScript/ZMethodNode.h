@@ -26,6 +26,9 @@ public:
 	//Exec
 	ZContextVar* Exec(const std::vector<ZContextVar*>& params);
 	void Bind();
+	VarType GetReturnType() {
+		return mReturnType;
+	}
 private:
 	std::string mMethodName;
 	ZSignatureNode* mSignature;

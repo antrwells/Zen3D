@@ -110,27 +110,58 @@ ZScriptNode* ZParseExpression::Parse() {
 			int nid = 0;
 			ele.mType = ExprElementType::EVar;
 			ele.mValName[nid] = token.mText;
-
+			bool skip = false;
 			if (mStream->PeekToken(0).mType == TokenType::TokenPeriod)
 			{
-
-				/*
+				skip = false;
+				int peek = 0;
 				while (true) {
-					token = mStream->NextToken();
-					if (token.mType == TokenType::TokenPeriod)
+					auto ch = mStream->PeekToken(peek);
+					if (ch.mType == TokenType::TokenLeftPara)
 					{
-						nid++;
-						ele.mValName[nid] = mStream->NextToken().mText;
-					}
-					else {
-						int cc = 5;
-						mStream->Back();
+						skip = true;
 						break;
 					}
+					bool early = false;
+					switch (ch.mType) {
+					case TokenType::TokenPlus:
+					case TokenType::TokenMinus:
+					case TokenType::TokenMultiply:
+					case TokenType::TokenDivide:
+					case TokenType::TokenGreater:
+					case TokenType::TokenLess:
+					case TokenType::TokenComma:
+						early = true;
+						break;
+					}
+
+					if (early) {
+						break;
+					}
+
+					if (ch.mType == TokenType::TokenEndOfLine)
+					{
+						break;
+					}
+					peek++;
 				}
-				*/
+				if (!skip) {
+					while (true) {
+						token = mStream->NextToken();
+						if (token.mType == TokenType::TokenPeriod)
+						{
+							nid++;
+							ele.mValName[nid] = mStream->NextToken().mText;
+						}
+						else {
+							int cc = 5;
+							mStream->Back();
+							break;
+						}
+					}
+				}
 			}
-			if (mStream->PeekToken(0).mType == TokenType::TokenPeriod) {
+			if (skip && mStream->PeekToken(0).mType == TokenType::TokenPeriod) {
 
 				mStream->Back();
 				auto parse_classstate = new ZParseClassStatement(mStream);

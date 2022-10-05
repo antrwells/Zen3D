@@ -104,7 +104,7 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 
 	}
 	//*ERROR*
-	assert(false);
+//	assert(false);
 	return nullptr;
 
 }

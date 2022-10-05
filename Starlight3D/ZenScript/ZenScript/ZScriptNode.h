@@ -24,11 +24,18 @@ public:
 	void SetReturn(bool ret) {
 		mIsReturn = true;
 	}
+	void SetDebug(bool debug) {
+		mDebug = debug;
+	}
+	bool IsDebug() {
+		return mDebug;
+	}
 public:
 	
 	std::vector<ZScriptNode*> mNodes;
 	ZClassNode* mClass;
 	bool mIsReturn = false;
+	bool mDebug = false;
 
 };
 

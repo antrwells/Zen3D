@@ -1,0 +1,4 @@
+- possible jit,
+
+c++ compiled code using a mini-compiler produces native version of zenscript scripts, and links to the engine via predefined memory space, passed to the engine .exe after compilation
+of the script.

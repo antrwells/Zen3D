@@ -171,6 +171,12 @@
     <ClInclude Include="ZReturnNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
+    <ClInclude Include="ZParseWhile.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZWhileNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -312,6 +318,12 @@
       <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZReturnNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseWhile.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZWhileNode.cpp">
       <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>

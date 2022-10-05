@@ -1,0 +1,116 @@
+﻿  pch.cpp
+  DirCollection.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  ZAssignNode.cpp
+  ZClassNode.cpp
+  ZClassStatementNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZClassStatementNode.cpp(10,14): warning C4101: 'top': unreferenced local variable
+  ZCodeBodyNode.cpp
+  ZContextScope.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZContextScope.cpp(26,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ZContextVar.cpp
+  ZenScript.cpp
+  ZExpressionNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(50,30): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(51,27): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(131,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ZForNode.cpp
+  ZIfnode.cpp
+  ZMethodNode.cpp
+  ZNewNode.cpp
+  ZParametersNode.cpp
+  ZParseAssign.cpp
+  ZParseClass.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseClass.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  ZParseClassStatement.cpp
+  ZParseCodeBody.cpp
+  ZParseExpression.cpp
+  ZParseFor.cpp
+  Compiling...
+  ZParseIf.cpp
+  ZParseMethod.cpp
+  ZParseNew.cpp
+  ZParseNode.cpp
+  ZParseParameters.cpp
+  ZParser.cpp
+  ZParseReturn.cpp
+  ZParseScript.cpp
+  ZParseSignature.cpp
+  ZParseSigParam.cpp
+  ZParseStatement.cpp
+  ZParseValue.cpp
+  ZParseVars.cpp
+  ZParseWhile.cpp
+  ZProgramNode.cpp
+  ZReturnNode.cpp
+  ZScriptContext.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2808,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.34.31823\include\xstring(2672): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  ZScriptNode.cpp
+  ZSignatureNode.cpp
+  ZSigParamNode.cpp
+  Compiling...
+  ZSource.cpp
+  ZStatementNode.cpp
+  ZSystemFunction.cpp
+  ZSystemFunctions.cpp
+  ZTokenizer.cpp
+  ZTokenStream.cpp
+  ZVarsNode.cpp
+  ZWhileNode.cpp
+  ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Release\ZenScript.lib

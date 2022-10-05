@@ -299,6 +299,9 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("for", TokenType::TokenFor));
 	token_map.insert(std::make_pair("to", TokenType::TokenTo));
 	token_map.insert(std::make_pair("return", TokenType::TokenReturn));
+	token_map.insert(std::make_pair("while", TokenType::TokenWhile));
+	token_map.insert(std::make_pair("debug", TokenType::TokenDebugStop));
+	token_map.insert(std::make_pair("parsedebug", TokenType::TokenParseStop));
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {

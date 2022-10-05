@@ -53,15 +53,38 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 		ZClassNode* cls = nullptr;
 
 		switch (mVarType) {
+		case VarType::VarString:
+
+			new_var->SetString(var->def->Exec({})->GetStringVal());
+
+			break;
 		case VarType::VarInt:
 			
-			new_var->SetInt(var->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
-			
+		{
+
+			auto rv = var->def->Exec({});
+			switch (rv->GetType()) {
+			case VarType::VarFloat:
+				new_var->SetInt((int)rv->GetFloatVal());
+				break;
+			case VarType::VarInt:
+				new_var->SetInt(rv->GetIntVal());
+			}
+		}
 			break;
 		case VarType::VarFloat:
 
-			new_var->SetFloat(var->def->Exec(std::vector<ZContextVar*>())->GetFloatVal());
-
+		{
+		
+			auto rv = var->def->Exec({});
+			switch (rv->GetType()) {
+			case VarType::VarFloat:
+				new_var->SetFloat(rv->GetFloatVal());
+				break;
+			case VarType::VarInt:
+				new_var->SetFloat(rv->GetIntVal());
+			}
+		}
 			break;
 		case VarType::VarInstance:
 

@@ -131,8 +131,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MinimalRebuild>false</MinimalRebuild>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <EnableModules>true</EnableModules>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -179,6 +187,7 @@
     <ClInclude Include="ZParseStatement.h" />
     <ClInclude Include="ZParseValue.h" />
     <ClInclude Include="ZParseVars.h" />
+    <ClInclude Include="ZParseWhile.h" />
     <ClInclude Include="ZProgramNode.h" />
     <ClInclude Include="ZReturnNode.h" />
     <ClInclude Include="ZScriptContext.h" />
@@ -192,6 +201,7 @@
     <ClInclude Include="ZTokenizer.h" />
     <ClInclude Include="ZTokenStream.h" />
     <ClInclude Include="ZVarsNode.h" />
+    <ClInclude Include="ZWhileNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirCollection.cpp" />
@@ -233,6 +243,7 @@
     <ClCompile Include="ZParseStatement.cpp" />
     <ClCompile Include="ZParseValue.cpp" />
     <ClCompile Include="ZParseVars.cpp" />
+    <ClCompile Include="ZParseWhile.cpp" />
     <ClCompile Include="ZProgramNode.cpp" />
     <ClCompile Include="ZReturnNode.cpp" />
     <ClCompile Include="ZScriptContext.cpp" />
@@ -246,6 +257,7 @@
     <ClCompile Include="ZTokenizer.cpp" />
     <ClCompile Include="ZTokenStream.cpp" />
     <ClCompile Include="ZVarsNode.cpp" />
+    <ClCompile Include="ZWhileNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

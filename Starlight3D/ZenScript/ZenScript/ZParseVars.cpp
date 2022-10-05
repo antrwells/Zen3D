@@ -12,6 +12,8 @@ ZScriptNode* ZParseVars::Parse() {
 
 	auto var_type = mStream->NextToken();
 
+
+
 	auto vars_node = new ZVarsNode;
 	bool is_class = false;
 	switch (var_type.mType)

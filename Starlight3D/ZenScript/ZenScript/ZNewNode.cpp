@@ -3,6 +3,7 @@
 #include "ZScriptContext.h"
 #include "VarTypes.h"
 #include "ZClassNode.h"
+#include <assert.h>
 #include "ZExpressionNode.h"
 void ZNewNode::SetClassName(std::string name) {
 
@@ -33,6 +34,11 @@ ZContextVar* ZNewNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
 	auto new_cls = ZScriptContext::CurrentContext->CreateInstance(mClassName, "");
+
+	if (new_cls == nullptr)
+	{
+		assert(false);
+	}
 
 	int a = 5;
 

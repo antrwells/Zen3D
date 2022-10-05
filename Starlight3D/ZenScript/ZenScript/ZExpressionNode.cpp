@@ -4,6 +4,7 @@
 #include "ZClassNode.h"
 #include "ZStatementNode.h"
 #include "ZClassStatementNode.h"
+#include "ZContextVar.h"
 void ZExpressionNode::SetExpression(Expression expr) {
 
 	//mElements.push_back(element);
@@ -133,7 +134,14 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                 }
                 else {
                     auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
-                    values.push(evar->GetIntVal());
+                    switch (evar->GetType()) {
+                    case VarType::VarFloat:
+                        values.push((int)evar->GetFloatVal());
+                        break;
+                    case VarType::VarInt:
+                        values.push(evar->GetIntVal());
+                        break;
+                    }
                 }
             }
         }
@@ -217,13 +225,28 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
             ops.push(tok.mOp);
 
         }
-        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar)
+        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar || tok.mType == EStatement || tok.mType == EClassStatement)
         {
+            //int val = 0;
             if (tok.mType == EInt) {
                 values.push((float)tok.mValInt);
             }
             else if (tok.mType == EFloat) {
                 values.push(tok.mValFloat);
+            }
+            else if (tok.mType == EClassStatement)
+            {
+                auto res = tok.mClassStatement->Exec({});
+
+                switch (res->GetType()) {
+                case VarType::VarInt:
+                    values.push((float)res->GetIntVal());
+                    break;
+                case VarType::VarFloat:
+                    values.push(res->GetFloatVal());
+                    break;
+                }
+                int aa = 5;
             }
             else if (tok.mType == EStatement)
             {
@@ -268,11 +291,11 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
                 }
                 else {
                     auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
-                    if (evar->GetType() == VarType::VarFloat) {
-                        values.push(evar->GetFloatVal());
+                    if (evar->GetType() == EInt) {
+                        values.push((float)evar->GetIntVal());
                     }
                     else {
-                        values.push((float)evar->GetIntVal());
+                        values.push(evar->GetFloatVal());
                     }
                 }
             }
@@ -355,14 +378,37 @@ ZContextVar* Expression::Evaluate() {
 
     bool is_int = true;
     bool is_string = false;
+    bool is_cs = false;
     for (int i = 0; i < mElements.size(); i++) {
         if (mElements[i].mType == EFloat)
         {
             is_int = false;
         }
+        if (mElements[i].mType == EClassStatement)
+        {
+            is_cs = true;
+        }
         if (mElements[i].mType == EString)
         {
             is_string = true;
+        }
+        if (mElements[i].mType == EInt)
+        {
+
+            //VString 
+            //str_val + 
+
+        }
+        if(mElements[i].mType == EVar)
+        {
+
+            auto gvar = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[i].mValName[0]);
+            if (gvar->GetType() == VarType::VarFloat) {
+                is_int = false;
+            }
+            // int aa = 5;
+           // is_string = true;
+
         }
     }
 
@@ -375,6 +421,12 @@ ZContextVar* Expression::Evaluate() {
             if (mElements[i].mType == ExprElementType::EString)
             {
                 str_val = str_val + mElements[i].mValString;
+            }
+            if (mElements[i].mType == EVar)
+            {
+                auto gvar = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[i].mValName[0]);
+                int aa = 5;
+                str_val = str_val + gvar->GetStringVal();
             }
         }
 
@@ -395,6 +447,14 @@ ZContextVar* Expression::Evaluate() {
 
 
         return result;
+    }
+    else if (is_cs == false) {
+
+        ZContextVar* result = new ZContextVar("expr result", VarType::VarInt);
+
+        result->SetInt(evaluateInt(mElements));
+        return result;
+
     }
     else
     {
@@ -437,16 +497,46 @@ ZContextVar* Expression::Evaluate() {
 
         }
 
+        if (is_cs) {
+            VarType rt = VarType::VarInt;
+            //class statements
+            for (int i = 0; i < mElements.size(); i++) {
 
-        //--
-        ZContextVar* result = new ZContextVar("expr result", VarType::VarInt);
+                if (mElements[i].mType == EClassStatement)
+                {
+                    auto t = mElements[i].mClassStatement->GetReturnType();
 
-        result->SetInt(evaluateInt(mElements));
+                    rt = t;
+
+                    int bb = 0;
+
+                }
+
+            }
+
+            //--
+
+
+            if (rt == VarType::VarInt)
+            {
+                ZContextVar* result = new ZContextVar("expr result", VarType::VarInt);
+
+                result->SetInt(evaluateInt(mElements));
+                return result;
+            }
+            if (rt == VarType::VarFloat) {
+                ZContextVar* result = new ZContextVar("expr result", VarType::VarFloat);
+                result->SetFloat(evaluateFloat(mElements));
+                return result;
+            }
+        }
+
+
         //        result->SetInt(101);
         int aa = 5;
 
-
-        return result;
+        return nullptr;
+        //return result;
 
     };
 

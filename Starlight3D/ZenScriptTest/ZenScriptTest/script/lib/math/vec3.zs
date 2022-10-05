@@ -5,9 +5,15 @@ class Vec3
     method void Vec3()
 
         x = 2.5
-        y = 5.5
-        z = 10.4
+  
       
+    end 
+
+
+    method float getX()
+
+        return x
+
     end 
 
 end 

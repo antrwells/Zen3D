@@ -1,3 +1,5 @@
+- Prime Directive = All optimizations and so fourth should be hidden from the script coder.
+
 - options script. rather than an ini file, options will be a dynamic script, allowing more flexibility.
 
 - threaded methods/classes.
@@ -9,3 +11,6 @@
 	int a = stack[0] <;retreived as part of an expression.
 
 - Properties - more like C#, with get/set code blocks.
+
+
+- loop unrolling - where possible. possibly [3000] for 3000 loops etc.

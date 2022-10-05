@@ -1,0 +1,8 @@
+﻿  ZenScriptTest.cpp
+  Generating code
+  Compiler switch has changed, fall back to full compilation.
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(43): warning C4715: 'applyOpInt': not all control paths return a value
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(53): warning C4715: 'applyOpFloat': not all control paths return a value
+  All 2179 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  ZenScriptTest.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Release\ZenScriptTest.exe

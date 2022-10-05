@@ -3,42 +3,21 @@ class testClass
 
   method void check()
    
-    other o1 = new other()
+      Vec3 tpos = new Vec3()
 
-    o1.test1(o1.getVal())
+      float va = 2
 
-  end    
- 
-  method int test2()
+      
+      va = tpos.getX()
 
-    return 70
+      
+      int oa = va
 
-  end 
+      
+      printf("VA",tpos.x+va)
 
+    
 
- 
-
-end 
-
-class other
-
-  int ab = 7
-
-  method void other()
-
-    printf("other constructed.")
-
-  end 
-
-  method int test1(int b)
-
-    printf("test1 called",b)
-
-  end 
-
-  method int getVal()
-
-    return 80+ab
 
   end 
 

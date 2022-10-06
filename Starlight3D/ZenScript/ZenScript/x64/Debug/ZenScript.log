@@ -1,7 +1,9 @@
 ﻿  ZExpressionNode.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(51,30): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(52,27): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(132,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(44): warning C4715: 'applyOpInt': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(54): warning C4715: 'applyOpFloat': not all control paths return a value
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(82,30): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(83,27): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(84,29): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(85,26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(181,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(74): warning C4715: 'applyOpInt': not all control paths return a value
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(103): warning C4715: 'applyOpFloat': not all control paths return a value
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

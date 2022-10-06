@@ -22,9 +22,14 @@ ZScriptNode* ZParseExpression::Parse() {
 
 
 	Expression expr;
-	expr.mElements.push_back(lb);
+//	expr.mElements.push_back(lb);
 	
 	int v_id = 0;
+
+	if (mStream->PeekToken(0).mType == TokenType::TokenEquals)
+	{
+		mStream->NextToken();
+	}
 
 	while (!mStream->EOS()) {
 
@@ -39,6 +44,30 @@ ZScriptNode* ZParseExpression::Parse() {
 		}
 
 		switch (token.mType) {
+
+		case TokenType::TokenAnd:
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpAnd;
+			expr.mElements.push_back(ele);
+			break;
+		case TokenType::TokenOr:
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpOr;
+			expr.mElements.push_back(ele);
+			break;
+			// ------ NOT
+		case TokenType::TokenNotSame:
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpNot;
+			expr.mElements.push_back(ele);
+			break;
+
+		case TokenType::TokenSame:
+
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpEquals;
+			expr.mElements.push_back(ele);
+			break;
 		case TokenType::TokenLess:
 			ele.mType = ExprElementType::EOp;
 			ele.mOp = ExprOperatorType::OpLess;
@@ -190,14 +219,14 @@ ZScriptNode* ZParseExpression::Parse() {
 			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
 			{
 				lb.mOp = ExprOperatorType::OpRightBrace;
-				expr.mElements.push_back(lb);
+				//expr.mElements.push_back(lb);
 				mStream->Back();
 				exp_node->SetExpression(expr);
 				return exp_node;
 			}
 			else {
 				lb.mOp = ExprOperatorType::OpRightBrace;
-				expr.mElements.push_back(lb);
+				//expr.mElements.push_back(lb);
 			}
 
 			break;
@@ -206,18 +235,16 @@ ZScriptNode* ZParseExpression::Parse() {
 
 
 			lb.mOp = ExprOperatorType::OpRightBrace;
-			expr.mElements.push_back(lb);
+			//expr.mElements.push_back(lb);
 			mStream->Back();
 			exp_node->SetExpression(expr);
 			return exp_node;
 
 			break;
-		case TokenType::TokenEquals:
-
-			break;
+		
 		default:
 			lb.mOp = ExprOperatorType::OpRightBrace;
-			expr.mElements.push_back(lb);
+		//	expr.mElements.push_back(lb);
 			mStream->Back();
 			exp_node->SetExpression(expr);
 			return exp_node;

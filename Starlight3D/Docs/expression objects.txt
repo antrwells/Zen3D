@@ -1,0 +1,1 @@
+ability to define dynamic expressions as objects, passable and usable like normal variables.

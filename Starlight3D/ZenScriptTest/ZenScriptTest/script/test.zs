@@ -3,19 +3,14 @@ class testClass
 
   method void check()
    
-    Vec3 t1 = new Vec3()
-
-    test(t1)
-    
-
-
-  end 
+    int tt = 5
+   
+    tt = 20 + -tt
 
 
-  method float test(Vec3 v)
-
-    printf("Test",v.x)
+    printf(tt)
 
   end 
+
 
 end 

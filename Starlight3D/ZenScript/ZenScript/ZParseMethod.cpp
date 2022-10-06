@@ -4,6 +4,8 @@
 #include "ZSignatureNode.h"
 #include "ZParseCodeBody.h"
 #include "ZCodeBodyNode.h"
+#include "ZParseExpression.h"
+#include "ZExpressionNode.h"
 
 ZParseMethod::ZParseMethod(ZTokenStream* stream) : ZParseNode(stream)
 {
@@ -43,7 +45,31 @@ ZScriptNode* ZParseMethod::Parse()
 	
 	meth_node->SetSignature(sig_node);
 
-	auto next_tok = mStream->AssertNextToken(TokenType::TokenEndOfLine);
+	mStream->Back();
+
+	auto next_tok = mStream->NextToken();
+
+	if (next_tok.mType == TokenType::TokenRightPara)
+	{
+
+		//next_tok=mStream->NextToken();
+
+	}
+
+	auto nn = mStream->PeekToken(0);
+
+	if (nn.mType == TokenType::TokenColon)
+	{
+
+		mStream->NextToken();
+		auto g_ex = new ZParseExpression(mStream);
+		auto g_n = (ZExpressionNode*)g_ex->Parse();
+
+		meth_node->SetGuard(g_n);
+	}
+
+//	next_tok = mStream->NextToken();
+	//next_tok = mStream->NextToken();
 
 
 	auto code_parse = new ZParseCodeBody(mStream);

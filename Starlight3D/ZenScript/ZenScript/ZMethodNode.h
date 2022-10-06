@@ -7,6 +7,7 @@
 class ZCodeBodyNode;
 class ZSignatureNode;
 class ZContextVar;
+class ZExpressionNode;
 
 class ZMethodNode : public ZScriptNode
 {
@@ -29,7 +30,10 @@ public:
 	VarType GetReturnType() {
 		return mReturnType;
 	}
+	void SetGuard(ZExpressionNode* g_e);
+
 private:
+	ZExpressionNode* mGuardExpr = nullptr;
 	std::string mMethodName;
 	ZSignatureNode* mSignature;
 	VarType mReturnType;

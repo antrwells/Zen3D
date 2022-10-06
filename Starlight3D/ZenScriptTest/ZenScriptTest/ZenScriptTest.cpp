@@ -12,7 +12,7 @@ int main()
 {
     std::cout << "Hello World!\n";
     ZScriptContext* context1 = new ZScriptContext;
-    context1->LoadLib("math");
+   // context1->LoadLib("math");
 
     ZSource* source = new ZSource("script/test.zs");
    ZTokenizer* toker = new ZTokenizer(source);

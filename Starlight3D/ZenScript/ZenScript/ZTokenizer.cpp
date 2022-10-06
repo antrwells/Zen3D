@@ -102,8 +102,10 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_op.push_back("<"[0]);
 	is_op.push_back(">"[0]);
 	is_op.push_back("="[0]);
-
-
+	is_op.push_back(":"[0]);
+	is_op.push_back("!"[0]);
+	is_op.push_back("|"[0]);
+	is_op.push_back("&"[0]);
 
 
 	is_num.push_back("0"[0]);
@@ -303,6 +305,11 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("while", TokenType::TokenWhile));
 	token_map.insert(std::make_pair("debug", TokenType::TokenDebugStop));
 	token_map.insert(std::make_pair("parsedebug", TokenType::TokenParseStop));
+	token_map.insert(std::make_pair("not", TokenType::TokenNot));
+	token_map.insert(std::make_pair("!", TokenType::TokenNot));
+	token_map.insert(std::make_pair(":", TokenType::TokenColon));
+	token_map.insert(std::make_pair("|", TokenType::TokenOr));
+	token_map.insert(std::make_pair("&", TokenType::TokenAnd));
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {
@@ -332,6 +339,63 @@ ZTokenStream* ZTokenizer::Tokenize() {
 			auto prev_tok = new_tokens[i];
 
 			switch (prev_tok.mType) {
+			case TokenType::TokenAnd:
+
+				if (new_tokens[i + 1].mType == TokenType::TokenAnd)
+				{
+					prev_tok.mType = TokenType::TokenAnd;
+					prev_tok.mText = "&&";
+					new_tokens2.push_back(prev_tok);
+					i++;
+				}
+				else {
+
+					new_tokens2.push_back(prev_tok);
+				}
+				break;
+			case TokenType::TokenOr:
+				if (new_tokens[i + 1].mType == TokenType::TokenOr)
+				{
+					prev_tok.mType = TokenType::TokenOr;
+					prev_tok.mText = "||";
+					new_tokens2.push_back(prev_tok);
+					i++;
+				}
+				else {
+
+					new_tokens2.push_back(prev_tok);
+				}
+
+
+				break;
+			case TokenType::TokenNot:
+
+				if (new_tokens[i + 1].mType == TokenType::TokenEquals)
+				{
+					prev_tok.mType = TokenType::TokenNotSame;
+					prev_tok.mText = "!=";
+					new_tokens2.push_back(prev_tok);
+					i++;
+				}
+				else {
+
+					new_tokens2.push_back(prev_tok);
+				}
+
+				break;
+			case TokenType::TokenEquals:
+				if (new_tokens[i + 1].mType == TokenType::TokenEquals)
+				{
+					prev_tok.mType = TokenType::TokenSame;
+					prev_tok.mText = "==";
+					new_tokens2.push_back(prev_tok);
+					i++;
+				}
+				else {
+
+					new_tokens2.push_back(prev_tok);
+				}
+				break;
 			case TokenType::TokenPlus:
 
 				if (new_tokens[i + 1].mType == TokenType::TokenPlus)
@@ -342,6 +406,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 					i++;
 				}
 				else {
+
 					new_tokens2.push_back(prev_tok);
 				}
 				break;

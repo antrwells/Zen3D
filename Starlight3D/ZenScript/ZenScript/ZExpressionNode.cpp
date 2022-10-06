@@ -8,6 +8,10 @@
 void ZExpressionNode::SetExpression(Expression expr) {
 
 	//mElements.push_back(element);
+
+
+    
+
 	mExpression = expr;
 
 }
@@ -29,6 +33,14 @@ int precedence(ExprOperatorType op) {
         return 5;
     if (op == OpGreater || op == OpLess)
         return 8;
+    if (op == OpEquals || op == OpNot)
+        return 9;
+    if (op == OpAnd)
+        return 13;
+    if (op == OpOr)
+        return 14;
+    
+
     return 0;
 }
 
@@ -40,8 +52,27 @@ int applyOpInt(int a, int b, ExprOperatorType op) {
     case OpDivide: return a / b;
     case OpGreater: return a > b ? 1 : 0;
     case OpLess: return a < b ? 1 : 0;
+    case OpEquals: return a == b ? 1 : 0;
+    case OpNot: return a != b ? 1 : 0;
+    case OpAnd:
+    {
+        bool res = ((a >= 1) && (b >= 1));
+        if (res) return 1;
+        return 0;
+        break;
     }
+    case OpOr:
+    {
+        bool res = ((a >= 1)) || (b >= 1);
+        if (res) return 1;
+        return 0;
+        break;
+    }
+
+    }
+    int bbb = 5;
 }
+
 float applyOpFloat(float a, float b, ExprOperatorType op) {
     switch (op) {
     case OpPlus: return a + b;
@@ -49,8 +80,26 @@ float applyOpFloat(float a, float b, ExprOperatorType op) {
     case OpMultiply: return a * b;
     case OpDivide: return a / b;
     case OpGreater: return a > b ? 1 : 0;
-    case OpLess: return a < b ?  1 : 0;
+    case OpLess: return a < b ? 1 : 0;
+    case OpEquals: return a == b ? 1 : 0;
+    case OpNot: return a != b ? 1 : 0;
+    case OpAnd:
+    {
+        bool res = ((a >= 1) && (b >= 1));
+        if (res) return 1;
+        return 0;
+        break;
     }
+    case OpOr:
+    {
+        bool res = ((a >= 1)) || (b >= 1);
+        if (res) return 1;
+        return 0;
+        break;
+    }
+
+    }
+    int bbb = 5;
 }
 
 
@@ -153,6 +202,10 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                 int val2 = values.top();
                 values.pop();
 
+                if (values.size() == 0) {
+                    //if()
+                }
+
                 int val1 = values.top();
                 values.pop();
 
@@ -175,9 +228,14 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                 int val2 = values.top();
                 values.pop();
 
-                int val1 = values.top();
-                values.pop();
+                int val1 = 0;
+                if (values.size() == 0) {
 
+                }
+                else {
+                    val1 = values.top();
+                    values.pop();
+                }
                 ExprOperatorType op = ops.top();
                 ops.pop();
 
@@ -196,6 +254,16 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
     while (!ops.empty()) {
         int val2 = values.top();
         values.pop();
+
+        if (values.size() == 0)
+        {
+            if (ops.top() == OpMinus) {
+                values.push(-val2);
+                ops.pop();
+                continue;
+            }
+            int aa = 5;
+        }
 
         int val1 = values.top();
         values.pop();

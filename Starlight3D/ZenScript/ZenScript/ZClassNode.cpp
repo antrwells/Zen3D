@@ -153,6 +153,9 @@ ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContext
 		case VarFloat:
 			v1->SetFloat(params[i]->GetFloatVal());
 			break;
+		case VarInstance:
+			v1->SetClass(params[i]->GetClassVal());
+			break;
 		}
 		new_scope->RegisterVar(v1);
 

@@ -15,6 +15,7 @@
 #include "ZReturnNode.h"
 #include "ZParseWhile.h"
 #include "ZWhileNode.h"
+#include "ZIncNode.h"
 
 ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
 
@@ -36,6 +37,12 @@ CodeType ZParseCodeBody::PredictType() {
 		auto token = mStream->PeekToken(peek_val);
 		int ee = 1;
 		switch (token.mType) {
+		case TokenType::TokenInc:
+			return CodeType::CodeInc;
+			break;
+		case TokenType::TokenDec:
+			return CodeType::CodeDec;
+			break;
 		case TokenType::TokenParseStop:
 			return CodeType::CodeParseStop;
 			break;
@@ -63,7 +70,14 @@ CodeType ZParseCodeBody::PredictType() {
 			break;
 		case TokenType::TokenIdent:
 
-
+			if (mStream->PeekToken(1).mType == TokenType::TokenInc)
+			{
+				return CodeType::CodeInc;
+			}
+			if (mStream->PeekToken(1).mType == TokenType::TokenDec)
+			{
+				return CodeType::CodeDec;
+			}
 
 			if (mStream->FindInLine(TokenType::TokenPeriod,peek_val))
 			{
@@ -145,9 +159,33 @@ ZScriptNode* ZParseCodeBody::Parse() {
 		int e = 0;
 
 		switch (code_type) {
+		case CodeType::CodeInc:
+
+		{
+			auto t = mStream->NextToken();
+			ZIncNode* inc_node = new ZIncNode;
+			inc_node->SetVarName(t.mText);
+			codebody->AddNode(inc_node);
+			mStream->NextToken();
+			int aa = 5;
+		}
+			break;
+		case CodeType::CodeDec:
+
+		{
+			auto t = mStream->NextToken();
+			ZIncNode* inc_node = new ZIncNode;
+			inc_node->SetVarName(t.mText);
+			codebody->AddNode(inc_node);
+			inc_node->SetNegative();
+			mStream->NextToken();
+
+		}
+			break;
 		case CodeType::CodeParseStop:
 
 		{
+			mStream->NextToken();
 			int stop_here = 1;
 		}
 
@@ -168,6 +206,10 @@ ZScriptNode* ZParseCodeBody::Parse() {
 				next_Debug = false;
 			}
 			codebody->AddNode(while_node);
+			if (mStream->PeekToken(0).mType == TokenType::TokenEnd)
+			{
+				mStream->NextToken();
+			}
 		}
 
 

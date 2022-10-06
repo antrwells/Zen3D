@@ -165,6 +165,7 @@
     <ClInclude Include="ZExpressionNode.h" />
     <ClInclude Include="ZForNode.h" />
     <ClInclude Include="ZIfnode.h" />
+    <ClInclude Include="ZIncNode.h" />
     <ClInclude Include="ZMethodNode.h" />
     <ClInclude Include="ZNewNode.h" />
     <ClInclude Include="ZParametersNode.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="ZExpressionNode.cpp" />
     <ClCompile Include="ZForNode.cpp" />
     <ClCompile Include="ZIfnode.cpp" />
+    <ClCompile Include="ZIncNode.cpp" />
     <ClCompile Include="ZMethodNode.cpp" />
     <ClCompile Include="ZNewNode.cpp" />
     <ClCompile Include="ZParametersNode.cpp" />

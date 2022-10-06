@@ -27,12 +27,20 @@ VarType ZContextVar::GetType() {
 
 int ZContextVar::GetIntVal() {
 
+	if (mType == VarType::VarFloat)
+	{
+		return (int)mFloatVal;
+	}
 	return mIntVal;
 
 }
 
 float ZContextVar::GetFloatVal() {
 
+	if (mType == VarType::VarInt)
+	{
+		return (float)mIntVal;
+	}
 	return mFloatVal;
 
 }
@@ -53,12 +61,19 @@ ZClassNode* ZContextVar::GetClassVal()
 
 void ZContextVar::SetInt(int val) {
 
+	if (mType == VarType::VarFloat) {
+		mFloatVal = (float)val;
+	}
 	mIntVal = val;
 
 }
 
 void ZContextVar::SetFloat(float val) {
 
+	if (mType == VarType::VarInt)
+	{
+		mIntVal = (int)val;
+	}
 	mFloatVal = val;
 
 }

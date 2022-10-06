@@ -1,0 +1,1 @@
+- high speed processing classes, that internally end up running on the gpu, such as thru opencl or co.

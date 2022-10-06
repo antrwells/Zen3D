@@ -3,21 +3,18 @@ class testClass
 
   method void check()
    
-      Vec3 tpos = new Vec3()
+    Vec3 t1 = new Vec3()
 
-      float va = 2
-
-      
-      va = tpos.getX()
-
-      
-      int oa = va
-
-      
-      printf("VA",tpos.x+va)
-
+    test(t1)
     
 
+
+  end 
+
+
+  method float test(Vec3 v)
+
+    printf("Test",v.x)
 
   end 
 

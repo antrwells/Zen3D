@@ -25,6 +25,9 @@ ZScriptNode* ZParseSigParam::Parse() {
 	case TokenType::TokenString:
 		var_type = VarType::VarString;
 		break;
+	case TokenType::TokenIdent:
+		var_type = VarType::VarInstance;
+		break;
 	}
 
 	auto par_name = mStream->NextToken();

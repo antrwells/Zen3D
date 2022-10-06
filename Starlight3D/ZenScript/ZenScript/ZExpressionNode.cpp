@@ -374,7 +374,30 @@ Expression ZExpressionNode::GetExpression() {
 ZContextVar* Expression::Evaluate() {
 
 
+    if (mElements.size() == 3)
+    {
 
+        if (mElements[1].mType == ExprElementType::EVar)
+        {
+
+            auto gvar = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[1].mValName[0]);
+
+            if (mElements[1].mValName[1] != "")
+            {
+                auto vv = gvar->GetClassVal();
+  //              ZScriptContext::CurrentContext->PushClass(vv);
+                auto ret_v = vv->FindVar(mElements[1].mValName[1]);
+    //            ZScriptContext::CurrentContext->PopClass();
+                return ret_v;
+            
+            }
+            else {
+                return gvar;
+            }
+            int b = 0;
+        }
+
+    }
 
     bool is_int = true;
     bool is_string = false;
@@ -403,8 +426,20 @@ ZContextVar* Expression::Evaluate() {
         {
 
             auto gvar = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[i].mValName[0]);
-            if (gvar->GetType() == VarType::VarFloat) {
-                is_int = false;
+            if (mElements[i].mValName[1] != "")
+            {
+                auto cv = gvar->GetClassVal();
+                auto nv = cv->FindVar(mElements[i].mValName[1]);
+                if (nv->GetType() == VarType::VarFloat)
+                {
+                    is_int = false;
+                }
+                int aaa = 5;
+            }
+            else {
+                if (gvar->GetType() == VarType::VarFloat) {
+                    is_int = false;
+                }
             }
             // int aa = 5;
            // is_string = true;

@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="ParseNodes">
       <UniqueIdentifier>{8789f45f-115a-446c-9ecd-bc93e556c0e3}</UniqueIdentifier>
     </Filter>
@@ -21,6 +17,10 @@
     </Filter>
     <Filter Include="Context">
       <UniqueIdentifier>{2c5d0e94-f616-40de-bf91-99dcdde43c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptNodes\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +177,9 @@
     <ClInclude Include="ZWhileNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
+    <ClInclude Include="ZIncNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -324,6 +327,9 @@
       <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZWhileNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIncNode.cpp">
       <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>

@@ -33,6 +33,17 @@ ZScriptNode* ZParseSignature::Parse() {
 
 		switch (toke.mType)
 		{
+		case TokenType::TokenIdent:
+
+		{
+			parse_par = new ZParseSigParam(mStream);
+			mStream->Back();
+			par_node = (ZSigParamNode*)parse_par->Parse();
+
+			sig_node->AddParameter(par_node);
+			int aaa = 5;
+		}
+			break;
 		case TokenType::TokenRightPara:
 			return sig_node;
 			break;
@@ -40,6 +51,7 @@ ZScriptNode* ZParseSignature::Parse() {
 			continue;
 			break;
 		case TokenType::TokenInt:
+		case TokenType::TokenFloat:
 
 			parse_par = new ZParseSigParam(mStream);
 			mStream->Back();
@@ -48,9 +60,7 @@ ZScriptNode* ZParseSignature::Parse() {
 			sig_node->AddParameter(par_node);
 
 			break;
-		case TokenType::TokenFloat:
-
-			break;
+	
 		case TokenType::TokenString:
 
 			break;

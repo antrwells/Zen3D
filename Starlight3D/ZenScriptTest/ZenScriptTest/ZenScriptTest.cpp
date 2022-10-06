@@ -26,7 +26,7 @@ int main()
 
    auto cls_inst = context1->CreateInstance("testClass","test");
 
- 
+    
    //int aa = 5;
    auto par_a = new ZContextVar("a", VarType::VarInt);
    auto par_b = new ZContextVar("b", VarType::VarInt);

@@ -207,11 +207,12 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 				if (vec_contains(is_op, ch))
 				{
-
-					std::string op = "";
-					op = op + ch;
-					tokens.push_back(Token(TokenType::TokenOperator,op));
-					s_tok++;
+					//if (is_string == false) {
+						std::string op = "";
+						op = op + ch;
+						tokens.push_back(Token(TokenType::TokenOperator, op));
+						s_tok++;
+					//}
 
 				}
 				else if (ch == "\""[0])
@@ -311,7 +312,10 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		Token new_token = Token(old_token.mType, old_token.mText);
 
 		if (token_map.find(old_token.mText) != token_map.end()) {
-			new_token.mType = token_map[old_token.mText];
+			if (new_token.mType != TokenType::TokenString)
+			{
+				new_token.mType = token_map[old_token.mText];
+			}
 		}
 		else {
 			
@@ -321,9 +325,59 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 	}
 
+	std::vector<Token> new_tokens2;
+	if (new_tokens.size() > 1) {
+		for (int i = 0; i < new_tokens.size() - 1; i++)
+		{
+			auto prev_tok = new_tokens[i];
+
+			switch (prev_tok.mType) {
+			case TokenType::TokenPlus:
+
+				if (new_tokens[i + 1].mType == TokenType::TokenPlus)
+				{
+					prev_tok.mType = TokenType::TokenInc;
+					prev_tok.mText = "++";
+					new_tokens2.push_back(prev_tok);
+					i++;
+				}
+				else {
+					new_tokens2.push_back(prev_tok);
+				}
+				break;
+			case TokenType::TokenMinus:
+				if (new_tokens[i + 1].mType == TokenType::TokenMinus)
+				{
+					prev_tok.mType = TokenType::TokenDec;
+					prev_tok.mText = "--";
+					new_tokens2.push_back(prev_tok);
+					i++;
+				}
+				else {
+					new_tokens2.push_back(prev_tok);
+				}
+				break;
+			default:
+				new_tokens2.push_back(prev_tok);
+			}
+
+		}
+		new_tokens2.push_back(new_tokens[new_tokens.size() - 1]);
+	}
+	else {
+		new_tokens2 = new_tokens;
+	}
+
 	auto tok_stream = new ZTokenStream();
-	tok_stream->SetTokens(new_tokens);
+	tok_stream->SetTokens(new_tokens2);
+
+	for (int i = 0; i < new_tokens2.size(); i++)
+	{
+		printf("Token:");
+		printf(new_tokens2[i].mText.c_str());
+		printf("\n");
+	}
 
 	return tok_stream;
 
-}
+}													

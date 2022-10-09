@@ -264,7 +264,7 @@ void ZenUI::MainToolBar() {
 	//ImGui::Button("Check");
 	if (ImGui::ImageButton(mIconPlay->GetView(), ImVec2(26, 26)))
 	{
-		mPlaying = true;
+	
 		BeginPlay();
 	}
 

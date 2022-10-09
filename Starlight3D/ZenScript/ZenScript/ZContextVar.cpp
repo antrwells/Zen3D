@@ -1,6 +1,8 @@
 #include "ZContextVar.h"
-#include "ZClassNode.h"
+//#include "ZClassNode.h"
+
 #include "VarTypes.h"
+#include "ZClassNode.h"
 
 ZContextVar::ZContextVar(std::string name, enum VarType type) {
 
@@ -102,3 +104,122 @@ void ZContextVar::SetCObj(void * obj) {
 	mCObj = obj;
 
 }
+
+void ZContextVar::Push() {
+
+	switch (mType)
+	{
+	case VarType::VarFloat:
+		mPushFloat = mFloatVal;
+		break;
+	case VarType::VarInt:
+		mPushInt = mIntVal;
+		break;
+	case VarType::VarInstance:
+
+		auto vc = mClassVal;
+		auto vars = vc->GetVars();
+		for (int i = 0; i < vars.size(); i++)
+		{
+			auto v = vars[i];
+			v->Push();
+		}
+
+		break;
+	}
+
+		
+
+}
+
+void ZContextVar::Pop() {
+
+	switch (mType) {
+	case VarType::VarFloat:
+
+		mFloatVal = mPushFloat;
+
+		break;
+	case VarType::VarInt:
+		mIntVal = mPushInt;
+		break;
+	case VarType::VarInstance:
+		auto vc = mClassVal;
+		auto vars = vc->GetVars();
+		for (int i = 0; i < vars.size(); i++)
+		{
+			auto v = vars[i];
+			v->Pop();
+		}
+		break;
+	}
+
+}
+
+
+ZContextVar* VMakeInt(int v)
+{
+	auto var = new ZContextVar("", VarType::VarInt);
+	var->SetInt(v);
+	return var;
+
+}
+ZContextVar* VMakeFloat(float v)
+{
+	auto var = new ZContextVar("", VarType::VarFloat);
+	var->SetFloat(v);
+	return var;
+
+}
+
+ZContextVar* VMakeString(std::string v)
+{
+	auto var = new ZContextVar("", VarType::VarString);
+	var->SetString(v);
+	return var;
+
+}
+
+ZContextVar* VMakeC(void* v)
+{
+	auto var = new ZContextVar("", VarType::VarCObj);
+	var->SetCObj(v);
+	return var;
+
+}
+
+ZContextVar* VMakeClass(ZClassNode* v)
+{
+
+	auto var = new ZContextVar("", VarType::VarInstance);
+	var->SetClass(v);
+	return var;
+
+}
+
+int VGetInt(ZContextVar* v)
+{
+	return v->GetIntVal();
+}
+
+float VGetFloat(ZContextVar* v)
+{
+	return v->GetFloatVal();
+}
+
+std::string VGetString(ZContextVar* v)
+{
+	return v->GetStringVal();
+}
+
+ZClassNode* VGetClass(ZContextVar* v)
+{
+	return v->GetClassVal();
+}
+
+void* VGetC(ZContextVar* v)
+{
+	return v->GetCObj();
+}
+
+

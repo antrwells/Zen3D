@@ -16,6 +16,8 @@ public:
 	void CallInit();
 	void CallUI();
 	void CallRender();
+	void PushVars();
+	void PopVars();
 	std::vector<ZContextVar*> GetVars();
 
 };

@@ -10,14 +10,16 @@ class ZAssignNode :
 public:
 
     void SetVarName(std::string name);
+    void SetMemberName(std::string name);
     void SetValue(ZExpressionNode* val);
     ZContextVar* Exec(const std::vector<ZContextVar*>& params);
     
 
 private:
 
-    std::string mVarName;
-    ZExpressionNode* mValue;
+    std::string mVarName = "";
+    std::string mMember ="";
+    ZExpressionNode* mValue = nullptr;
 
 };
 

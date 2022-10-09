@@ -33,6 +33,17 @@ ZScriptNode* ZParseSignature::Parse() {
 
 		switch (toke.mType)
 		{
+		case TokenType::TokenCObj:
+
+		{
+			parse_par = new ZParseSigParam(mStream);
+			mStream->Back();
+			par_node = (ZSigParamNode*)parse_par->Parse();
+
+			sig_node->AddParameter(par_node);
+			int a = 0;
+		}
+			break;
 		case TokenType::TokenIdent:
 
 		{

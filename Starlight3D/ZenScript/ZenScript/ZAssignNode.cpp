@@ -2,6 +2,7 @@
 #include "ZExpressionNode.h"
 #include "ZScriptContext.h"
 #include "ZContextScope.h"
+#include "ZClassNode.h"
 void ZAssignNode::SetVarName(std::string name)
 {
 
@@ -21,6 +22,13 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 
 	auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(mVarName);
 
+	if (mMember != "")
+	{
+		evar = evar->GetClassVal()->FindVar(mMember);
+		int aa = 5;
+
+	}
+
 	switch (evar->GetType()) {
 	case VarType::VarInt:
 		
@@ -37,9 +45,18 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 	case VarType::VarCObj:
 		evar->SetCObj(mValue->Exec({})->GetCObj());
 		break;
+	case VarType::VarInstance:
+		evar->SetClass(mValue->Exec({})->GetClassVal());
+		int a = 2;
 
 	}
 
 	int aa = 5;
 	return nullptr;
+}
+
+void ZAssignNode::SetMemberName(std::string name) {
+
+	mMember = name;
+
 }

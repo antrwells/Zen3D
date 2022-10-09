@@ -87,12 +87,29 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 		}
 			break;
 		case VarType::VarInstance:
+			
+			if (var->new_node != nullptr) {
+				cls = var->new_node->Exec(std::vector<ZContextVar*>())->GetClassVal();
 
 
-			cls = var->new_node->Exec(std::vector<ZContextVar*>())->GetClassVal();
+				new_var->SetClass(cls);
 
+			}
+			else {
 
-			new_var->SetClass(cls);
+				auto ge = var->def->Exec({});
+				switch (ge->GetType()) {
+				case VarType::VarCObj:
+					new_var->SetCObj(ge);
+					break;
+				case VarType::VarInstance:
+					new_var->SetClass(ge->GetClassVal());
+					break;
+				}
+			}
+
+			int bb = 7;
+
 			
 			//auto owner = mCodeOwner->GetOwner();
 			auto scope = ZScriptContext::CurrentContext->GetScope();//  owner->GetScope();

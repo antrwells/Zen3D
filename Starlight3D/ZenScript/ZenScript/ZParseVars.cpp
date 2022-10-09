@@ -72,6 +72,15 @@ ZScriptNode* ZParseVars::Parse() {
 					vars_node->AddVar(tok.mText, (ZNewNode*)parse_node);
 					continue;
 				}
+				else {
+
+					int cc = 1;
+					auto exp_parse = new ZParseExpression(mStream);
+					def = (ZExpressionNode*)exp_parse->Parse();
+					int b = 5;
+					vars_node->AddVar(tok.mText, def);
+
+				}
 				continue;
 				
 

@@ -703,6 +703,16 @@
 
 	}
 
+	void SceneGraph::EndNode(Node3D* node)
+	{
+
+		node->EndNode();
+		for (int i = 0; i < node->ChildrenCount(); i++) {
+			EndNode(node->GetChild(i));
+		}
+
+	}
+
 	void SceneGraph::BeginPlay() {
 
 		BeginNode(mRootNode);
@@ -711,5 +721,6 @@
 
 	void SceneGraph::EndPlay() {
 
+		EndNode(mRootNode);
 
 	}

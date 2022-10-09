@@ -179,7 +179,7 @@ enum NodeType {
 		void SetRotation(float4x4 mat) {
 
 			mRotation = mat;
-			InvalidateTransform();
+			//InvalidateTransform();
 
 		}
 
@@ -333,6 +333,7 @@ enum NodeType {
 		/// <returns></returns>
 		const char* GetName();
 		void InvalidateTransform() {
+			return;
 			mTransformInvalidated = true;
 			for (int i = 0; i < mChildren.size(); i++) {
 				mChildren[i]->InvalidateTransform();
@@ -354,9 +355,9 @@ enum NodeType {
 
 		void BeginNode();
 		void EndNode();
-
+		void AddSystemFunctions();
 	protected:
-
+		static bool mSysInit;
 		bool mTransformInvalidated = true;
 
 		bool mQueueForRemove = false;
@@ -391,5 +392,8 @@ enum NodeType {
 		std::vector<std::string> mScripts;
 		std::vector<ScriptObject*> mScriptObjs;
 
+		float4x4 mPushRot;
+		float3 mPushPos;
+		float3 mPushScale;
 
 	};

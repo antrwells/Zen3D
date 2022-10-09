@@ -486,7 +486,7 @@ ZContextVar* Expression::Evaluate() {
             {
                 auto vv = gvar->GetClassVal();
   //              ZScriptContext::CurrentContext->PushClass(vv);
-                auto ret_v = vv->FindVar(mElements[1].mValName[1]);
+                auto ret_v = vv->FindVar(mElements[0].mValName[1]);
     //            ZScriptContext::CurrentContext->PopClass();
                 return ret_v;
             

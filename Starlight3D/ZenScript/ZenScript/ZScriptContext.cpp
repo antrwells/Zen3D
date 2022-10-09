@@ -60,6 +60,8 @@ ZScriptContext::ZScriptContext() {
 
 }
 
+
+
 ZSystemFunctions* ZScriptContext::GetSysFuncs() {
 	
 		return mSysFuncs;
@@ -67,6 +69,8 @@ ZSystemFunctions* ZScriptContext::GetSysFuncs() {
 }
 
 void ZScriptContext::SetupSystem() {
+
+	if (mSysInit) return;
 
 	ZSystemFunction printf("printf", sysfunc_printf);
 
@@ -76,7 +80,7 @@ void ZScriptContext::SetupSystem() {
 	mSysFuncs->RegisterFunction(printf);
 	mSysFuncs->RegisterFunction(millisecs);
 
-
+	mSysInit = true;
 
 }
 
@@ -91,6 +95,18 @@ void ZScriptContext::AddNode(ZMainNode* node) {
 
 	}
 
+}
+
+ZClassNode* ZScriptContext::FindClass(std::string name) {
+
+	for (int i = 0; i < mClasses.size(); i++) {
+		if (mClasses[i]->GetName() == name)
+		{
+			return mClasses[i];
+		}
+	}
+
+	return nullptr;
 }
 
 ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance_name, const std::vector<ZContextVar*>& params) {
@@ -211,3 +227,5 @@ void ZScriptContext::LoadLib(std::string name)
 
 
 }
+
+bool ZScriptContext::mSysInit = false;

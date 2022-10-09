@@ -42,6 +42,22 @@ private:
 	std::string mStringVal;
 	ZClassNode* mClassVal;
 	void* mCObj;
+	float mPushFloat;
+	int mPushInt;
+	std::string mPushString;
+
 
 };
 
+
+ZContextVar* VMakeInt(int v);
+ZContextVar* VMakeFloat(float v);
+ZContextVar* VMakeString(std::string v);
+ZContextVar* VMakeC(void* v);
+ZContextVar* VMakeClass(ZClassNode* v);
+
+int VGetInt(ZContextVar* v);
+float VGetFloat(ZContextVar* v);
+std::string VGetString(ZContextVar* v);
+void* VGetC(ZContextVar* v);
+ZClassNode* VGetClass(ZContextVar* v);

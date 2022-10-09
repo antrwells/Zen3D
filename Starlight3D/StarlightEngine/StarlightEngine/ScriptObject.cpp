@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ScriptObject.h"
 #include <ZClassNode.h>
+#include "ZContextVar.h"
 
 void ScriptObject::CallInit()
 {
@@ -31,6 +32,43 @@ void ScriptObject::CallRender() {
 std::vector<ZContextVar*> ScriptObject::GetVars() {
 
 	return mMainClass->GetVars();
+
+
+}
+
+void ScriptObject::PushVars() {
+
+	auto vars = mMainClass->GetVars();
+
+	for (int i = 0; i < vars.size(); i++)
+	{
+
+		auto v = vars[i];
+		
+		v->Push();
+
+		
+
+	}
+
+
+
+}
+
+void ScriptObject::PopVars() {
+
+	auto vars = mMainClass->GetVars();
+
+	for (int i = 0; i < vars.size(); i++)
+	{
+
+		auto v = vars[i];
+
+		v->Pop();
+
+
+
+	}
 
 
 }

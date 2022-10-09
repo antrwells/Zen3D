@@ -15,6 +15,7 @@ public:
 	ZScriptContext();
 	void SetupSystem();
 	void AddNode(ZMainNode* node);
+	ZClassNode* FindClass(std::string name);
 	ZClassNode* CreateInstance(std::string name,std::string instance_name, const std::vector<ZContextVar*>& params);
 	void PushClass(ZClassNode* cls);
 	void PopClass();
@@ -45,6 +46,6 @@ private:
 	std::stack<ZClassNode*> mClassStack;
 	std::vector<ZClassNode*> mInstances;
 	std::stack<ZContextScope*> mScope;
-
+	static bool mSysInit;
 };
 

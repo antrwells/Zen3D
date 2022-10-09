@@ -12,6 +12,11 @@
 #include "ZTokenizer.h"
 #include "ZParser.h"
 #include "ZClassNode.h"
+#include "ZSystemFunction.h"
+#include "ZSystemFunctions.h"
+#include "ZContextVar.h"
+
+bool Node3D::mSysInit = false;
 
 	Node3D::Node3D() {
 
@@ -23,7 +28,10 @@
 		mScale = float3(1, 1, 1);
 		mComponents.resize(0);
 		mType = NodeType::Node;
-
+		if (mSysInit == false) {
+			AddSystemFunctions();
+			mSysInit = true;
+		}
 
 		
 
@@ -106,7 +114,7 @@
 
 	float4x4 Node3D::GetWorldMatrix() {
 
-		if (mTransformInvalidated) {
+
 
 			float4x4 previous_matrix = float4x4::Identity();
 			 
@@ -143,14 +151,10 @@
 
 			mTransformInvalidated = false;
 
-			return final_matrix;
+			return previous_matrix * final_matrix;
 
-		}
-		else {
-
-			return mValidTransform;
-
-		}
+		
+		
 
 	
 
@@ -186,7 +190,8 @@
 	void Node3D::SetPosition(float3 position) {
 
 		mPosition = position;
-		InvalidateTransform();
+		//InvalidateTransform();
+
 
 	}
 
@@ -205,13 +210,13 @@
 
 		mRotation = yaw_matrix * pitch_matrix * roll_matrix;
 		
-		InvalidateTransform();
+		//InvalidateTransform();
 	}
 
 	void Node3D::SetScale(float3 scale) {
 
 		mScale = scale;
-		InvalidateTransform();
+	//	InvalidateTransform();
 
 	}
 
@@ -302,8 +307,10 @@
 	void Node3D::AddScript(std::string path,std::string cls_name) {
 
 		ScriptObject* new_obj = new ScriptObject;
-		new_obj->mContext = new ZScriptContext;
-		new_obj->mContext->LoadLib("math");
+		auto con = ZScriptContext::CurrentContext;
+		
+		new_obj->mContext = con;
+
 		auto src = new ZSource(path);
 		ZTokenizer* toker = new ZTokenizer(src);
 		auto stream = toker->Tokenize();
@@ -312,7 +319,17 @@
 
 		new_obj->mContext->AddNode(node);
 
-		new_obj->mMainClass = new_obj->mContext->CreateInstance(cls_name, cls_name + "Instance");
+		auto v1 = VMakeC((void*)this);
+
+		new_obj->mMainClass = new_obj->mContext->CreateInstance(cls_name, cls_name + "Instance",{v1});
+
+		auto n_var = new_obj->mMainClass->FindVar("Node");
+	
+		n_var->SetCObj((void*)this);
+	
+	  
+
+		int vb = 5;
 
 	//	int aa = 5;
 	
@@ -336,11 +353,16 @@
 
 	void Node3D::BeginNode() {
 
+		mPushPos = mPosition;
+		mPushRot = mRotation;
+		mPushScale = mScale;
+
 		printf("Node begun.");
 		for (int i = 0; i < mScriptObjs.size(); i++)
 		{
 			auto obj = mScriptObjs[i];
 
+			obj->PushVars();
 			obj->CallInit();
 		}
 
@@ -348,4 +370,89 @@
 
 	void Node3D::EndNode() {
 
+		SetPosition(mPushPos);
+		SetScale(mPushScale);
+		SetRotation(mPushRot);
+
+	
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+
+			auto obj = mScriptObjs[i];
+			obj->PopVars();
+			
+
+		}
+
+	}
+
+	ZContextVar* node3d_turn(const std::vector<ZContextVar*>& args)
+	{
+
+		auto node = (Node3D*)args[0]->GetCObj();
+
+		node->RotateGlobal(VGetInt(args[1]), VGetInt(args[2]), VGetInt(args[3]));
+
+		int bb = 5;
+
+		return nullptr;
+	}
+
+	ZContextVar* node3d_getpos(const std::vector<ZContextVar*>& args)
+	{
+
+		auto nc = (Node3D*)args[0]->GetCObj();
+
+		
+		auto pv = ZScriptContext::CurrentContext->CreateInstance("Vec3", "v", {});
+
+		pv->FindVar("x")->SetFloat(nc->GetPosition().x);
+		pv->FindVar("y")->SetFloat(nc->GetPosition().y);
+		pv->FindVar("z")->SetFloat(nc->GetPosition().z);
+
+		int v = 0;
+
+		return VMakeClass(pv);
+	}
+
+	ZContextVar* node3d_setpos(const std::vector<ZContextVar*>& args)
+	{
+		auto nc = (Node3D*)args[0]->GetCObj();
+
+		auto pos = args[1]->GetClassVal();
+
+		auto x = pos->FindVar("x")->GetFloatVal();
+		auto y = pos->FindVar("y")->GetFloatVal();
+		auto z = pos->FindVar("z")->GetFloatVal();
+
+		nc->SetPosition(float3(x, y, z));
+
+		int a = 5;
+
+		return nullptr;
+
+	}
+
+	//----- SYSTEM FUNCTIONS -> ZSCRIPT
+
+	void Node3D::AddSystemFunctions() {
+
+		ZScriptContext* con1 = new ZScriptContext();
+
+		con1->LoadLib("math");
+		con1->LoadLib("scene");
+
+		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
+		
+		//Node Functions
+		ZSystemFunction n_turn("Node3DTurn", node3d_turn);
+		ZSystemFunction n_getpos("Node3DGetPos", node3d_getpos);
+		ZSystemFunction n_setpos("Node3DSetPos", node3d_setpos);
+
+		funcs->RegisterFunction(n_turn);
+		funcs->RegisterFunction(n_getpos);
+		funcs->RegisterFunction(n_setpos);
+		
+
+		int aa=5;
 	}

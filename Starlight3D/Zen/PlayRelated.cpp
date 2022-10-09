@@ -2,12 +2,17 @@
 
 void ZenUI::BeginPlay() {
 
-	mGraph->BeginPlay();
-
+	if (!mPlaying) {
+		mGraph->BeginPlay();
+		mPlaying = true;
+	}
 }
 
 void ZenUI::EndPlay() {
 
-	mGraph->EndPlay();
+	if (mPlaying == true) {
+		mPlaying = false;
+		mGraph->EndPlay();
+	}
 
 }

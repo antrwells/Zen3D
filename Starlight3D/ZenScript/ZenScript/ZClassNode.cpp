@@ -27,6 +27,16 @@ void ZClassNode::SetMethods(std::vector<ZMethodNode*> methods) {
 
 }
 
+void ZClassNode::AddMethods(std::vector<ZMethodNode*> methods)
+{
+
+	for (int i = 0; i < methods.size(); i++)
+	{
+		mMethods.push_back(methods[i]);
+	}
+
+}
+
 std::vector<ZMethodNode*> ZClassNode::GetMethods() {
 
 	return mMethods;
@@ -94,13 +104,37 @@ void ZClassNode::SetVars(std::vector<ZVarsNode*> vars)
 	mVars = vars;
 }
 
+void ZClassNode::AddVars(std::vector<ZVarsNode*> vars)
+{
+
+	for (int i = 0; i < vars.size(); i++) {
+		mVars.push_back(vars[i]);
+	}
+
+}
+
 ZClassNode* ZClassNode::CreateInstance(std::string name, const std::vector<ZContextVar*>& params) {
 
 	ZClassNode* new_cls = new ZClassNode;
 
+	ZClassNode* p_cls = nullptr;
 	new_cls->SetName(name);
 	new_cls->SetMethods(mMethods);
 	new_cls->SetVars(mVars);
+	if (this->mInherits != "")
+	{
+		p_cls = ZScriptContext::CurrentContext->FindClass(this->mInherits);
+		int bb = 5;
+		new_cls->AddMethods(p_cls->GetMethods());
+		new_cls->AddVars(p_cls->GetVarsVec());
+	}
+
+	
+
+
+	
+
+
 	new_cls->CreateScope();
 	new_cls->PopulateScope();
 	new_cls->SetBaseName(this->mClassName);
@@ -156,6 +190,8 @@ ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContext
 		case VarInstance:
 			v1->SetClass(params[i]->GetClassVal());
 			break;
+		case VarCObj:
+			v1->SetCObj(params[i]->GetCObj());
 		}
 		new_scope->RegisterVar(v1);
 
@@ -193,6 +229,8 @@ ZContextVar* ZClassNode::FindVar(std::string name) {
 
 }
 
+
+
 void ZClassNode::Bind() {
 
 	//printf("Binding class.");
@@ -210,5 +248,13 @@ void ZClassNode::Bind() {
 std::vector<ZContextVar*> ZClassNode::GetVars() {
 
 	return mInstanceScope->GetVars();
+
+}
+
+
+void ZClassNode::SetExtends(std::string cls)
+{
+
+	mInherits = cls;
 
 }

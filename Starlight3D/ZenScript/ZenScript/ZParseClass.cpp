@@ -16,9 +16,18 @@ ZScriptNode* ZParseClass::Parse()
 	auto class_node = new ZClassNode;
 
 	auto class_name = mStream->NextToken();
+	auto class_ext = std::string("");
 
-	mStream->AssertNextToken(TokenType::TokenEndOfLine);
-
+	if (mStream->PeekToken(0).mType == TokenType::TokenGreater)
+	{
+		mStream->NextToken();
+		auto ext = mStream->NextToken();
+		class_node->SetExtends(ext.mText);
+		int bb = 5;
+	}
+	else {
+		mStream->AssertNextToken(TokenType::TokenEndOfLine);
+	}
 	class_node->SetName(class_name.mText);
 
 	while (!mStream->EOS()) {

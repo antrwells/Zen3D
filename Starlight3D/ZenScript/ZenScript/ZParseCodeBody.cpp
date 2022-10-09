@@ -16,7 +16,7 @@
 #include "ZParseWhile.h"
 #include "ZWhileNode.h"
 #include "ZIncNode.h"
-
+#include "ZScriptContext.h"
 ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
 
 
@@ -35,7 +35,12 @@ CodeType ZParseCodeBody::PredictType() {
 	{
 
 		auto token = mStream->PeekToken(peek_val);
+		if (token.mText == "Vec3")
+		{
+			int vv = 2;
+		}
 		int ee = 1;
+
 		switch (token.mType) {
 		case TokenType::TokenInc:
 			return CodeType::CodeInc;
@@ -87,6 +92,13 @@ CodeType ZParseCodeBody::PredictType() {
 
 			if (mStream->FindInLine(TokenType::TokenEquals,peek_val))
 			{
+				auto cv = ZScriptContext::CurrentContext->FindClass(token.mText);
+				//int cvv = 2;
+				if (cv != nullptr) {
+					return CodeType::CodeDeclareVars;
+				}
+				
+
 				if (mStream->FindInLine(TokenType::TokenNew,peek_val))
 				{
 

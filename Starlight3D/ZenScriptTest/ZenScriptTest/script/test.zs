@@ -4,8 +4,11 @@ class testClass
 
     method void testClass()
 
-    node = getc()
-    test(node)
+        Vec3 pos = new Vec3()
+
+        pos.x = 200
+
+        printf("Pos:",pos.x,pos.y,pos.z)
 
     end 
 

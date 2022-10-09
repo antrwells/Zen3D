@@ -220,6 +220,7 @@ class CubeRenderer;
 			return mRootNode;
 		}
 		
+		void EndNode(Node3D* node);
 		void BeginNode(Node3D* node);
 		void BeginPlay();
 		void EndPlay();

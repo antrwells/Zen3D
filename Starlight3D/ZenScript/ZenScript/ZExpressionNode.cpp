@@ -27,8 +27,11 @@ ZContextVar* ZExpressionNode::Exec(const std::vector<ZContextVar*>& params)
 
 int precedence(ExprOperatorType op) {
 
-    if (op == OpPlus || op == OpMinus)
+    if (op == OpUMinus)
         return 3;
+    
+    if (op == OpPlus || op == OpMinus)
+        return 6;
     if (op == OpMultiply || op == OpDivide)
         return 5;
     if (op == OpGreater || op == OpLess)
@@ -46,7 +49,7 @@ int precedence(ExprOperatorType op) {
 
 int applyOpInt(int a, int b, ExprOperatorType op) {
     switch (op) {
-    case OpPlus: return a + b;
+       case OpPlus: return a + b;
     case OpMinus: return a - b;
     case OpMultiply: return a * b;
     case OpDivide: return a / b;
@@ -111,6 +114,14 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
     for (int i = 0; i < mElements.size(); i++) {
 
         auto tok = mElements[i];
+
+        if (tok.mOp == OpUMinus) {
+            values.push(-mElements[i + 1].mValInt);
+            i++;
+            continue;
+        };
+
+     
 
         if (tok.mOp == ExprOperatorType::OpLeftBrace)
         {
@@ -288,6 +299,14 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
 
         auto tok = mElements[i];
 
+
+        if (tok.mOp == OpUMinus) {
+            values.push(-mElements[i + 1].mValFloat);
+            i++;
+            continue;
+        };
+
+
         if (tok.mOp == ExprOperatorType::OpLeftBrace)
         {
             ops.push(tok.mOp);
@@ -398,8 +417,15 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
                 float val2 = values.top();
                 values.pop();
 
-                float val1 = values.top();
-                values.pop();
+                float val1 = 0;
+                if (values.size() == 0) {
+
+                }
+                else {
+                    val1 = values.top();
+                    values.pop();
+                }
+                 
 
                 ExprOperatorType op = ops.top();
                 ops.pop();
@@ -442,15 +468,21 @@ Expression ZExpressionNode::GetExpression() {
 ZContextVar* Expression::Evaluate() {
 
 
-    if (mElements.size() == 3)
+    if (mElements.size() == 1)
     {
+        if (mElements[0].mType == ExprElementType::EStatement) {
 
-        if (mElements[1].mType == ExprElementType::EVar)
+            auto vv = mElements[0].mStatement->Exec({});
+
+            return vv;
+
+        }
+        if (mElements[0].mType == ExprElementType::EVar)
         {
 
-            auto gvar = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[1].mValName[0]);
+            auto gvar = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[0].mValName[0]);
 
-            if (mElements[1].mValName[1] != "")
+            if (mElements[0].mValName[1] != "")
             {
                 auto vv = gvar->GetClassVal();
   //              ZScriptContext::CurrentContext->PushClass(vv);

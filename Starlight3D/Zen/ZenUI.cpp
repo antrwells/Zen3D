@@ -264,14 +264,15 @@ void ZenUI::MainToolBar() {
 	//ImGui::Button("Check");
 	if (ImGui::ImageButton(mIconPlay->GetView(), ImVec2(26, 26)))
 	{
-
+		mPlaying = true;
+		BeginPlay();
 	}
 
 	ImGui::SameLine();
 
 	if (ImGui::ImageButton(mIconStop->GetView(), ImVec2(26, 26)))
 	{
-
+		EndPlay();
 	}
 
 	ImGui::End();
@@ -362,7 +363,9 @@ void ZenUI::GetScriptName() {
 //////////
 void ZenUI::UpdateUI() {
 
-	
+	if (mPlaying) {
+		mGraph->Update();
+	}
 
 }
 

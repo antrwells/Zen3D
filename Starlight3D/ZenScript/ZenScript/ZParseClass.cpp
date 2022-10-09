@@ -49,6 +49,7 @@ ZScriptNode* ZParseClass::Parse()
 		case TokenType::TokenInt:
 		case TokenType::TokenFloat:
 		case TokenType::TokenString:
+		case TokenType::TokenCObj:
 
 			mStream->Back();
 
@@ -57,11 +58,14 @@ ZScriptNode* ZParseClass::Parse()
 
 
 			class_node->AddVars(vars_node);
+//		mStream->Back();
 
 			break;
 		case TokenType::TokenEnd:
 			
-			mStream->AssertNextToken(TokenType::TokenEndOfLine);
+			if (!mStream->EOS()) {
+				mStream->AssertNextToken(TokenType::TokenEndOfLine);
+			}
 			return class_node;
 
 			break;

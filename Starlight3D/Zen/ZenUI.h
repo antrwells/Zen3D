@@ -64,6 +64,9 @@ public:
 
 	void GetScriptName();
 
+	//Game Related
+	void BeginPlay();
+	void EndPlay();
 
 private:
 
@@ -153,6 +156,9 @@ private:
 	//Paths and such.
 	VString* mContentPath;
 	
+
+	//Play 
+	bool mPlaying = false;
 
 };
 

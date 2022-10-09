@@ -5,26 +5,19 @@ ScriptHost::ScriptHost() {
 
 //	if (!Inited) {
 		
-		host.open_libraries(sol::lib::base, sol::lib::package);
+		
 
 
 
 }
 
-void ScriptHost::RunFile(const char* path)
+void ScriptHost::LoadFile(const char* path)
 {
-	auto file = host.load_file(std::string(path));
-	file();
-
-}
-
-void ScriptHost::SetFunction(void* func, std::string name) {
 	
-	host[name] = func;
-	//host[name] = func;
-
-
+	//iiokoook
 }
+
+
 
 ScriptHost* ScriptHost::ScHost = nullptr;
 

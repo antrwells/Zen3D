@@ -1,15 +1,13 @@
 class testClass
 
-    int test1,test3
-    float test2
 
-    method int testMethod(int a,int b)
+  method void check()
 
-        printf(333+255*10,1*1.5,50+50)
+      printf(((2+1)*3)*2)
 
-    end
+  end 
+
+ 
 
 
 end 
-
-

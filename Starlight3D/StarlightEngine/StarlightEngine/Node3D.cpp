@@ -5,10 +5,13 @@
 //#include "glm/gtx/transform.hpp"
 #include "Maths.h"
 
-#include "sol.hpp"
 #include "ScriptObject.h"
-
-
+#include "ZScriptContext.h"
+#include "ZContextVar.h"
+#include "ZSource.h"
+#include "ZTokenizer.h"
+#include "ZParser.h"
+#include "ZClassNode.h"
 
 	Node3D::Node3D() {
 
@@ -27,6 +30,13 @@
 	}
 
 	void Node3D::Update() {
+
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+			auto obj = mScriptObjs[i];
+
+			obj->CallUpdate();
+		}
 
 		UpdateComponents();
 
@@ -289,65 +299,29 @@
 
 	}
 
-	void Node3D::AddScript(std::string path) {
+	void Node3D::AddScript(std::string path,std::string cls_name) {
 
 		ScriptObject* new_obj = new ScriptObject;
-		new_obj->state.open_libraries(sol::lib::base, sol::lib::package);
-		new_obj->s = new_obj->state.load_file(path);
-		new_obj->s();
-		new_obj->name = path;
-		mScriptObjs.push_back(new_obj);
-	//	auto globals = new_obj->state.globals();
-		sol::table  val = new_obj->state["pars"];
+		new_obj->mContext = new ZScriptContext;
+		new_obj->mContext->LoadLib("math");
+		auto src = new ZSource(path);
+		ZTokenizer* toker = new ZTokenizer(src);
+		auto stream = toker->Tokenize();
+		auto parser = new ZParser(stream);
+		ZMainNode* node = parser->Parse();
 
+		new_obj->mContext->AddNode(node);
 
-		for (const auto& key_value_pair : val) {
-			sol::object key = key_value_pair.first;
-			sol::object value = key_value_pair.second;
-			std::string k = key.as<std::string>();
-			sol::type t = value.get_type();
-			switch (t) {
-			case sol::type::string: {
+		new_obj->mMainClass = new_obj->mContext->CreateInstance(cls_name, cls_name + "Instance");
 
-				std::cout << k << "=" << value.as<std::string>() << std::endl;
-				NodeProperty* prop = new NodeProperty(k);
-				prop->SetType(PropertyType::String);
-				prop->SetString(value.as<std::string>());
-				AddProperty(prop);
-
-			}
-				break;
-			case sol::type::number: {
-
-				std::cout << k << "=" << value.as<int>() << std::endl;
-				NodeProperty* prop = new NodeProperty(k);
-				prop->SetType(PropertyType::Int);
-				prop->SetInt(value.as<int>());
-				AddProperty(prop);
-
-			}
-
-				break;
-			}
-
-			// inspect key/value, manipulate as you please
-		}
-
-		//int val = tab.
-
-	//	new_obj->state.script("test()");
-
-
-		//int val = tab["playerAge"];
-
-		//int siz = tab.size();
-
-
-		//auto p1 = pars.get(0);
-
+	//	int aa = 5;
 	
+		//new_obj->CallInit();
 
+		new_obj->name = cls_name;
+		mScriptObjs.push_back(new_obj);
 		int aa = 5;
+	
 	}
 	
 	//Kinetic::FX::Effect* Node3D::FXDepth = nullptr;
@@ -356,5 +330,22 @@
 	std::vector<NodeProperty*> Node3D::GetProperties() {
 
 		return mProperties;
+
+	}
+
+
+	void Node3D::BeginNode() {
+
+		printf("Node begun.");
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+			auto obj = mScriptObjs[i];
+
+			obj->CallInit();
+		}
+
+	}
+
+	void Node3D::EndNode() {
 
 	}

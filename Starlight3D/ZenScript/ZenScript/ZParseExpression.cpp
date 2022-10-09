@@ -45,6 +45,11 @@ ZScriptNode* ZParseExpression::Parse() {
 
 		switch (token.mType) {
 
+		case TokenType::TokenUMinus:
+			ele.mType = ExprElementType::EOp;
+			ele.mOp = ExprOperatorType::OpUMinus;
+			expr.mElements.push_back(ele);
+			break;
 		case TokenType::TokenAnd:
 			ele.mType = ExprElementType::EOp;
 			ele.mOp = ExprOperatorType::OpAnd;
@@ -214,6 +219,10 @@ ZScriptNode* ZParseExpression::Parse() {
 		}
 
 		break;
+		case TokenType::TokenLeftPara:
+			lb.mOp = ExprOperatorType::OpLeftBrace;
+			expr.mElements.push_back(lb);
+			break;
 		case TokenType::TokenRightPara:
 
 			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
@@ -226,7 +235,7 @@ ZScriptNode* ZParseExpression::Parse() {
 			}
 			else {
 				lb.mOp = ExprOperatorType::OpRightBrace;
-				//expr.mElements.push_back(lb);
+				expr.mElements.push_back(lb);
 			}
 
 			break;

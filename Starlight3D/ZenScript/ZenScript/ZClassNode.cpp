@@ -94,7 +94,7 @@ void ZClassNode::SetVars(std::vector<ZVarsNode*> vars)
 	mVars = vars;
 }
 
-ZClassNode* ZClassNode::CreateInstance(std::string name) {
+ZClassNode* ZClassNode::CreateInstance(std::string name, const std::vector<ZContextVar*>& params) {
 
 	ZClassNode* new_cls = new ZClassNode;
 
@@ -106,7 +106,7 @@ ZClassNode* ZClassNode::CreateInstance(std::string name) {
 	new_cls->SetBaseName(this->mClassName);
 	if (new_cls->FindMethod(this->mClassName) != nullptr)
 	{
-//		new_cls->CallMethod(this->mClassName, std::vector<ZContextVar* > ());
+		new_cls->CallMethod(this->mClassName,params);
 	}
 
 	return new_cls;
@@ -204,5 +204,11 @@ void ZClassNode::Bind() {
 		mMethods[i]->Bind();
 
 	}
+
+}
+
+std::vector<ZContextVar*> ZClassNode::GetVars() {
+
+	return mInstanceScope->GetVars();
 
 }

@@ -116,9 +116,7 @@ void ZenUI::SceneGraphWindow() {
 	SceneTree(mGraph->GetRoot());
 	if (mSelectedNode != nullptr) {
 
-		printf("Selected Node:");
-		printf(mSelectedNode->GetName());
-		printf("\n");																										
+																											
 	}
 
 	

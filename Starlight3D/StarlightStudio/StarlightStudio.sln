@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StarlightEngine", "..\StarlightEngine\StarlightEngine\StarlightEngine.vcxproj", "{68876DBC-F9D3-4970-82D9-30A40167DBD1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FC6ECA50-6342-4F72-9544-B0DA0C35AB52} = {FC6ECA50-6342-4F72-9544-B0DA0C35AB52}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zen", "..\Zen\Zen.vcxproj", "{B28AE003-3F10-4C75-A9F4-9843AE7B8541}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FC6ECA50-6342-4F72-9544-B0DA0C35AB52} = {FC6ECA50-6342-4F72-9544-B0DA0C35AB52}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZenScript", "..\ZenScript\ZenScript\ZenScript.vcxproj", "{FC6ECA50-6342-4F72-9544-B0DA0C35AB52}"
 EndProject

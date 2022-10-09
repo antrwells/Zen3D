@@ -1,4 +1,44 @@
-﻿  NodeProperty.cpp
+﻿  Application.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(44,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(64,20): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(64,17): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(88,16): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(93,16): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(467,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(468,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(472,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(473,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(475,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(476,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(669,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(669,26): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Replacing x64\Debug\DirCollection.obj
+  Replacing x64\Debug\pch.obj
 GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GraphicsEngineD3D12_64d.lib(GraphicsEngineD3D12_64d.dll); second definition ignored
 Diligent-GraphicsEngineD3D11-static.lib(EngineFactoryD3D11.obj) : warning LNK4006: "struct Diligent::IEngineFactoryD3D11 * __cdecl Diligent::GetEngineFactoryD3D11(void)" (?GetEngineFactoryD3D11@Diligent@@YAPEAUIEngineFactoryD3D11@1@XZ) already defined in GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

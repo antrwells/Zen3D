@@ -7,6 +7,37 @@
 #include "ZScriptContext.h"
 #include "VarTypes.h"
 #include "ZClassNode.h"
+#include "ZSystemFunctions.h"
+#include "ZSystemFunction.h"
+struct t1 {
+    int vv = 5;
+    int bb = 10;
+};
+
+
+ZContextVar* sysfunc_getc(const std::vector<ZContextVar*>& args)
+{
+
+    t1* n1 = new t1;
+    n1->bb = 22;
+    n1->vv = 44;
+
+    ZContextVar* rv = new ZContextVar("", VarType::VarCObj);
+    rv->SetCObj(n1);
+
+    return rv;
+}
+ZContextVar* sysfunc_test(const std::vector<ZContextVar*>& args)
+{
+
+    t1* obj = (t1*)args[0]->GetCObj();
+   
+    int aa = 5;
+
+    return nullptr;
+
+
+}
 
 int main()
 {
@@ -19,12 +50,27 @@ int main()
    auto stream = toker->Tokenize();
    ZParser* parser = new ZParser(stream);
    ZMainNode* main1 = parser->Parse();
+   ZSystemFunctions* tmp = context1->GetSysFuncs();
 
+   ZSystemFunction test("test", sysfunc_test);
+   ZSystemFunction getc("getc", sysfunc_getc);
+   tmp->RegisterFunction(test);
+   tmp->RegisterFunction(getc);
   
 
    context1->AddNode(main1);
 
-   auto cls_inst = context1->CreateInstance("testClass","test");
+
+
+   std::vector<ZContextVar*> pars = {new ZContextVar("v1",VarType::VarCObj)};
+
+   t1 check;
+   check.bb = 5;
+   check.vv = 25;
+
+   pars[0]->SetCObj(&check);
+
+   auto cls_inst = context1->CreateInstance("testClass", "test",pars);
 
     
    //int aa = 5;
@@ -36,7 +82,7 @@ int main()
   
 
    //for (int i = 0; i < 10; i++) {                                                                                                              
-       cls_inst->CallMethod("check", { par_a});
+ //      cls_inst->CallMethod("check", { par_a});d
    //}
    int b = 5;
 

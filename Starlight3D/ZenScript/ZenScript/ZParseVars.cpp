@@ -31,6 +31,9 @@ ZScriptNode* ZParseVars::Parse() {
 		vars_node->SetType(VarType::VarInstance);
 		is_class = true;
 		break;
+	case TokenType::TokenCObj:
+		vars_node->SetType(VarType::VarCObj);
+		break;
 	}
 
 	while (!mStream->EOS()) {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "sol.hpp"
+
 
 class ScriptObject;
 
@@ -10,13 +10,13 @@ class ScriptHost
 public:
 
 	ScriptHost();
-	void RunFile(const char* file);
-	void SetFunction(void* func, std::string name);
+	void LoadFile(const char* file);
+
 
 	static ScriptHost* ScHost;
 private:
 	static bool Inited;
-	sol::state host;
+	
 
 };
 

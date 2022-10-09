@@ -89,7 +89,7 @@ void AppZen::InitApp() {
 
 void AppZen::UpdateApp() {
 
-	
+ 	zUI->UpdateUI();
 }
 bool fu = true;
 float anX = 0;

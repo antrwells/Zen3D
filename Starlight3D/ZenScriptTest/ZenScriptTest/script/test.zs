@@ -1,16 +1,15 @@
 class testClass
 
+    CObj node
 
-  method void check()
-   
-    int tt = 5
-   
-    tt = 20 + -tt
+    method void testClass()
 
+    node = getc()
+    test(node)
 
-    printf(tt)
+    end 
 
-  end 
+ 
 
 
 end 

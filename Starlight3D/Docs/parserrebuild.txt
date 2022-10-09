@@ -1,0 +1,3 @@
+- Parser rebuild thoughts
+
+	- Each predict call type, should run a score based analysis of each possible type, the highest score winning.

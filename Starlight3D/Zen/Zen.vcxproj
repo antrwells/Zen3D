@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;SOL_ALL_SAFETIES_ON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\projects\Starlight3D\lua\include;C:\git\de2\DiligentEngine\DiligentTools\Imgui\interface;C:\git\de2\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\de2\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\pxshared\include;C:\git\de2\DiligentEngine\DiligentTools;C:\git\de2\DiligentEngine\DiligentCore;C:\git\PhysX-4.1\physx\source\foundation\include;C:\projects\Starlight3D\StarlightEngine\StarlightEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\projects\Starlight3D\lua\include;C:\git\de2\DiligentEngine\DiligentTools\Imgui\interface;C:\git\de2\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\de2\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\pxshared\include;C:\git\de2\DiligentEngine\DiligentTools;C:\git\de2\DiligentEngine\DiligentCore;C:\git\PhysX-4.1\physx\source\foundation\include;C:\projects\Starlight3D\ZenScript\ZenScript;C:\projects\Starlight3D\StarlightEngine\StarlightEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -134,6 +134,7 @@
     <ClCompile Include="AppZen.cpp" />
     <ClCompile Include="ContentBrowser.cpp" />
     <ClCompile Include="NodeEditor.cpp" />
+    <ClCompile Include="PlayRelated.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="Viewport.cpp" />
     <ClCompile Include="Zen.cpp" />

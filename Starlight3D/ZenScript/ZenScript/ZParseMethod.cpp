@@ -37,6 +37,15 @@ ZScriptNode* ZParseMethod::Parse()
 
 	auto meth_name = mStream->NextToken();
 
+	if (meth_name.mType == TokenType::TokenLeftPara)
+	{
+
+		mStream->Back();
+		mStream->Back();
+		meth_name = mStream->NextToken();
+
+	}
+
 	meth_node->SetName(meth_name.mText);
 
 	auto parse_sig = new ZParseSignature(mStream);

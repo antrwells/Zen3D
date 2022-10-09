@@ -1,5 +1,5 @@
 #pragma once
 
 enum VarType {
-	VarInt,VarFloat,VarString,VarClass,VarInstance,VarVoid
+	VarInt,VarFloat,VarString,VarClass,VarInstance,VarVoid,VarCObj
 };

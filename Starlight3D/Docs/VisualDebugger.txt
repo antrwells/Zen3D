@@ -1,0 +1,5 @@
+-Comprising of two main elements.
+
+1 – Timeline. A Visual timeline of any errors or warnings, told in text and aimges, and
+2 – Function graphs. A visual graph of execution of any given function that has been called and ran.
+ When clicked an image will reveal it’s internal data, to make debugging on a code level possible also.

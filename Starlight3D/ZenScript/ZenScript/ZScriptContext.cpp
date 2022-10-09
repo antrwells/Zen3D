@@ -13,6 +13,7 @@
 #include "ZParser.h"
 #include <time.h>
 #include <ctime>
+
 //#include "ZContextVar.h"
 
 
@@ -59,15 +60,21 @@ ZScriptContext::ZScriptContext() {
 
 }
 
+ZSystemFunctions* ZScriptContext::GetSysFuncs() {
+	
+		return mSysFuncs;
+	
+}
+
 void ZScriptContext::SetupSystem() {
 
 	ZSystemFunction printf("printf", sysfunc_printf);
 
-	ZSystemFunctions* tmp = new ZSystemFunctions;
+	mSysFuncs = new ZSystemFunctions;
 	
 	ZSystemFunction millisecs("millisecs", sysfunc_millisecs);
-	tmp->RegisterFunction(printf);
-	tmp->RegisterFunction(millisecs);
+	mSysFuncs->RegisterFunction(printf);
+	mSysFuncs->RegisterFunction(millisecs);
 
 
 
@@ -86,7 +93,7 @@ void ZScriptContext::AddNode(ZMainNode* node) {
 
 }
 
-ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance_name) {
+ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance_name, const std::vector<ZContextVar*>& params) {
 
 	for (int i = 0; i < mClasses.size(); i++) {
 
@@ -94,7 +101,7 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 
 		if (cls->GetName() == name) {
 
-			auto cl =  cls->CreateInstance(instance_name);
+			auto cl =  cls->CreateInstance(instance_name,params);
 			cls->Bind();
 			//mInstances.push_back(cl);
 			return cl;

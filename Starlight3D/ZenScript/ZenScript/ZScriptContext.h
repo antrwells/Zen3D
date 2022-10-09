@@ -6,6 +6,7 @@
 
 #include "ZContextVar.h"
 class ZContextScope;
+class ZSystemFunctions;
 
 class ZScriptContext
 {
@@ -14,7 +15,7 @@ public:
 	ZScriptContext();
 	void SetupSystem();
 	void AddNode(ZMainNode* node);
-	ZClassNode* CreateInstance(std::string name,std::string instance_name);
+	ZClassNode* CreateInstance(std::string name,std::string instance_name, const std::vector<ZContextVar*>& params);
 	void PushClass(ZClassNode* cls);
 	void PopClass();
 	ZClassNode* GetClass();
@@ -36,9 +37,10 @@ public:
 	ZContextVar* RunLine(std::string code);
 
 	void LoadLib(std::string name);
-
+	ZSystemFunctions* GetSysFuncs();
 private:
 
+	ZSystemFunctions* mSysFuncs;
 	std::vector<ZClassNode*> mClasses;
 	std::stack<ZClassNode*> mClassStack;
 	std::vector<ZClassNode*> mInstances;

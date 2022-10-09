@@ -8,7 +8,7 @@
 
 enum ExprOperatorType {
 
-    OpPlus, OpMinus, OpMultiply, OpDivide, OpLeftBrace, OpRightBrace,OpGreater,OpLess,OpEquals,OpNot,OpAnd,OpOr
+    OpPlus, OpMinus, OpMultiply, OpDivide, OpLeftBrace, OpRightBrace,OpGreater,OpLess,OpEquals,OpNot,OpAnd,OpOr,OpUMinus
 
 };
 

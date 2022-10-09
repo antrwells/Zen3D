@@ -19,9 +19,10 @@ public:
 	void AddMethod(ZMethodNode* node);
 	void SetMethods(std::vector<ZMethodNode*> methods);
 	std::vector<ZMethodNode*> GetMethods();
-	ZClassNode* CreateInstance(std::string name);
+	ZClassNode* CreateInstance(std::string name, const std::vector<ZContextVar*>& params);
 	std::string GetName();
 	void AddVars(ZVarsNode* vars);
+	std::vector<ZContextVar*> GetVars();
 	void CreateScope();
 	void PopulateScope();
 	void SetVars(std::vector<ZVarsNode*> vars);
@@ -30,7 +31,9 @@ public:
 	ZContextVar* CallMethod(std::string name, const std::vector<ZContextVar*>& params);
 	void SetBaseName(std::string name);
 	void Bind();
-
+	std::string GetBaseName() {
+		return mBaseClassName;
+	}
 	ZContextScope* GetScope()
 	{
 		return mInstanceScope;

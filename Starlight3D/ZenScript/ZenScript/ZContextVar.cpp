@@ -91,3 +91,14 @@ void ZContextVar::SetClass(ZClassNode* cls) {
 
 }
 
+void* ZContextVar::GetCObj() {
+
+	return mCObj;
+
+}
+
+void ZContextVar::SetCObj(void * obj) {
+
+	mCObj = obj;
+
+}

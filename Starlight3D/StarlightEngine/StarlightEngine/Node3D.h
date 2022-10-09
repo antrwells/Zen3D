@@ -347,12 +347,13 @@ enum NodeType {
 			return mHidden;
 		}
 
-		void AddScript(std::string path);
+		void AddScript(std::string path,std::string name);
 		std::vector<ScriptObject*> GetScripts() {
 			return mScriptObjs;
 		}
 
-
+		void BeginNode();
+		void EndNode();
 
 	protected:
 

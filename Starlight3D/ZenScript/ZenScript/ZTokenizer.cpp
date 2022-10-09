@@ -310,6 +310,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair(":", TokenType::TokenColon));
 	token_map.insert(std::make_pair("|", TokenType::TokenOr));
 	token_map.insert(std::make_pair("&", TokenType::TokenAnd));
+	token_map.insert(std::make_pair("CObj", TokenType::TokenCObj));
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {
@@ -433,14 +434,68 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		new_tokens2 = new_tokens;
 	}
 
-	auto tok_stream = new ZTokenStream();
-	tok_stream->SetTokens(new_tokens2);
+	std::vector<Token> new_tokens3;
 
-	for (int i = 0; i < new_tokens2.size(); i++)
+	bool p_op = false;
+	bool p_num = false;
+	for (int i = 0; i < new_tokens2.size()-1; i++) {
+
+		auto tok = new_tokens2[i];
+
+		switch (tok.mType) {
+		//case TokenType::TokenSame:
+
+		case TokenType::TokenPlus:
+		case TokenType::TokenMultiply:
+		case TokenType::TokenMinus:
+		case TokenType::TokenDivide:
+			if(!p_op && !p_num) {
+
+				if (tok.mType == TokenType::TokenMinus) {
+					auto nt = new_tokens2[i + 1];
+					switch (nt.mType) {
+					case TokenType::TokenInt:
+
+						tok.mType = TokenType::TokenUMinus;
+						new_tokens3.push_back(tok);
+						p_op = false;
+						p_num = false;
+						continue;
+
+						break;
+					}
+				}
+				else {
+					break;
+				}
+				int aa = 5;
+
+			}
+			p_op = true;
+			p_num = false;
+			break;
+		case TokenType::TokenInt:
+			p_op = false;
+			p_num = true;
+			break;
+		default:
+			p_num = false;
+			p_op = false;
+		}
+		new_tokens3.push_back(tok);
+	}
+
+	auto tok_stream = new ZTokenStream();
+	tok_stream->SetTokens(new_tokens3);
+	printf("----------------------------------------------\n");
+	for (int i = 0; i < new_tokens3.size(); i++)
 	{
 		printf("Token:");
-		printf(new_tokens2[i].mText.c_str());
+		printf(new_tokens3[i].mText.c_str());
+		printf("=");
+		printf(TokenToString(new_tokens3[i].mType).c_str());
 		printf("\n");
+		
 	}
 
 	return tok_stream;

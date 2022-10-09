@@ -10,7 +10,9 @@ ZParseReturn::ZParseReturn(ZTokenStream* stream) : ZParseNode(stream) {
 ZScriptNode* ZParseReturn::Parse() {
 
 	auto tok = mStream->NextToken();
-
+	if (tok.mType == TokenType::TokenEndOfLine) {
+		tok = mStream->NextToken();
+	}
 	if (tok.mType != TokenType::TokenReturn)
 	{
 		assert(0);

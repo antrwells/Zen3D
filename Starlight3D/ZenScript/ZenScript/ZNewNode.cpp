@@ -33,7 +33,7 @@ ZParametersNode* ZNewNode::GetParameters() {
 ZContextVar* ZNewNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
-	auto new_cls = ZScriptContext::CurrentContext->CreateInstance(mClassName, "");
+	auto new_cls = ZScriptContext::CurrentContext->CreateInstance(mClassName, "",params);
 
 	if (new_cls == nullptr)
 	{

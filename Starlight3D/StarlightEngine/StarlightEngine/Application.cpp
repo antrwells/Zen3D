@@ -476,7 +476,7 @@ void Application::Run() {
         mMouseY = yp;
 
         mInput->SetMouse(mMouseX, mMouseY, mDeltaX, mDeltaY);
-
+        UpdateApp();
         Render();
         Present();
 

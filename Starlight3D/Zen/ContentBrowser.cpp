@@ -117,7 +117,7 @@ void ZenUI::MainContentBrowser() {
 						{
 							ImGui::SetDragDropPayload("Model", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
-						else if (mDragEntryRef.ext == "l") {
+						else if (mDragEntryRef.ext == "zs") {
 							ImGui::SetDragDropPayload("Script", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
 						ImGui::Button(mDragEntryRef.name.c_str(), ImVec2(64, 64));

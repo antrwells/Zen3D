@@ -219,6 +219,11 @@ class CubeRenderer;
 		Node3D* GetRoot() {
 			return mRootNode;
 		}
+		
+		void BeginNode(Node3D* node);
+		void BeginPlay();
+		void EndPlay();
+
 	private:
 	
 		std::vector<Node3D*> mRTNodes;

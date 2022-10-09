@@ -9,6 +9,8 @@
 #include "ScriptObject.h"
 #include "NodeProperty.h"
 #include <malloc.h>
+#include "ZContextVar.h"
+#include "ZClassNode.h"
 
 void ZenUI::MainNodeEditor() {
 
@@ -75,6 +77,72 @@ void ZenUI::MainNodeEditor() {
 				mSelectedNode->SetScale(float3(scalf[0], scalf[1], scalf[2]));
 			}
 
+			auto scripts = mSelectedNode->GetScripts();
+
+			for (int i = 0; i < scripts.size(); i++) {
+
+				ImGui::Text(scripts[i]->name.c_str());
+
+				auto vars = scripts[i]->GetVars();
+
+				for (int v = 0; v < vars.size(); v++)
+				{
+
+					auto var = vars[v];
+
+					switch (var->GetTypeInt())
+					{
+					case 0:
+					{
+						int iv = var->GetIntVal();
+
+						if (ImGui::DragInt(var->GetName().c_str(), &iv))
+						{
+							var->SetInt(iv);
+						}
+					}
+						break;
+					case 1:
+					{
+						float fv = var->GetFloatVal();
+						if (ImGui::DragFloat(var->GetName().c_str(), &fv))
+						{
+							var->SetFloat(fv);
+						}
+
+					}
+						break;
+					case 4:
+					{
+						int bb = 5;
+						auto i_cls = var->GetClassVal();
+						auto c_name = i_cls->GetBaseName();
+						
+						if (c_name == "Vec3")
+						{
+
+							float v3[3];
+							v3[0] = i_cls->FindVar("x")->GetFloatVal();
+							v3[1] = i_cls->FindVar("y")->GetFloatVal();
+							v3[2] = i_cls->FindVar("z")->GetFloatVal();
+							ImGui::DragFloat3(var->GetName().c_str(), v3);
+							i_cls->FindVar("x")->SetFloat(v3[0]);
+							i_cls->FindVar("y")->SetFloat(v3[1]);
+							i_cls->FindVar("z")->SetFloat(v3[2]);
+
+
+						}
+
+
+					}
+						break;
+					}
+
+				}
+
+			}
+
+			/*
 			auto scripts = mSelectedNode->GetScripts();
 
 			for (int i = 0; i < scripts.size(); i++) {
@@ -148,7 +216,7 @@ void ZenUI::MainNodeEditor() {
 
 
 			}
-
+			*/
 			
 			ImGui::EndChild();
 			if (ImGui::BeginDragDropTarget()) {
@@ -156,7 +224,17 @@ void ZenUI::MainNodeEditor() {
 				{
 					DirEntry* entry = (DirEntry*)payload->Data;
 					
-					mSelectedNode->AddScript(entry->full);
+					VString vs = VString(entry->name.c_str());
+
+					int mp = vs.Find(".");
+
+					VString name = vs.SubString(0, mp);
+
+					int vvv = 5;
+
+					mSelectedNode->AddScript(entry->full,name.GetConst());
+
+					int at = 5;
 
 					//node->AddNode(n_node);
 					int aa = 5;

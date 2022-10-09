@@ -692,3 +692,24 @@
 		
 
 	}
+
+	void SceneGraph::BeginNode(Node3D* node) {
+
+		node->BeginNode();
+		for (int i = 0; i < node->ChildrenCount(); i++)
+		{
+			BeginNode(node->GetChild(i));
+		}
+
+	}
+
+	void SceneGraph::BeginPlay() {
+
+		BeginNode(mRootNode);
+
+	}
+
+	void SceneGraph::EndPlay() {
+
+
+	}

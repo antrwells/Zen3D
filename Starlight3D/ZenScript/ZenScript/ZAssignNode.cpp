@@ -34,6 +34,9 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 		evar->SetString(mValue->Exec(std::vector<ZContextVar*>())->GetStringVal());
 
 		break;
+	case VarType::VarCObj:
+		evar->SetCObj(mValue->Exec({})->GetCObj());
+		break;
 
 	}
 

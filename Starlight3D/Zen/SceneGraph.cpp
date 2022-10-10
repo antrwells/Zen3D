@@ -58,18 +58,28 @@ void ZenUI::SceneTree(Node3D* node)
 
 		if (ImGui::BeginPopupContextWindow())
 		{
-			if (ImGui::MenuItem("Add Script"))
+			if (ImGui::BeginMenu("Add",true))
 			{
 
-				if (mSelectedNode != nullptr) {
+				if (ImGui::MenuItem("Light Source"))
+				{
+					if (mSelectedNode != nullptr) {
 
+						auto new_light = new NodeLight;
+						new_light->SetPosition(float3(0, 5, 0));
+						mSelectedNode = new_light;
+						mGraph->AddLight(new_light);
+						int num = mGraph->LightCount();
+						VString* lname = new VString("Light ");
+						lname->Add(VString(num));
+						new_light->SetName(lname->GetConst());
 
+						//	mSelectedNode -
+							//exit(1);
 
-					//	mSelectedNode -
-						//exit(1);
-
+					}
 				}
-
+				ImGui::EndMenu();
 			}
 
 			ImGui::EndPopup();

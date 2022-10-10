@@ -9,6 +9,20 @@
 
 ZenUI::ZenUI(SceneGraph* graph) {
 
+	//set up theme
+
+	ImGuiStyle& style = ImGui::GetStyle();
+	ImGuiIO& io = ImGui::GetIO();
+
+	style.Colors[ImGuiCol_Text] = ImColor(220,220, 220);
+	style.Colors[ImGuiCol_WindowBg] = ImColor(24,24,24);
+
+	style.FrameRounding = 0.f;
+	style.FrameBorderSize = 0.5f;
+	ImGui::StyleColorsDark();
+
+
+	//
 	mScriptNameBuf = (char*)malloc(512);
 	mScriptNameBuf[0] = "\0"[0];
 

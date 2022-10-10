@@ -20,6 +20,8 @@
 
 		}
 		//mShadowCube = new CubeRenderer()
+		mName = "LightSource";
+		mType = NodeType::Light;
 		mShadowCube = new RenderTargetCube(512, 512);
 	}
 

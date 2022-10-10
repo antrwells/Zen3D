@@ -222,11 +222,21 @@ bool Node3D::mSysInit = false;
 
 	void Node3D::Move(float3 move) {
 
-		float4 mv = mRotation * float4(move,1.0f);
+		if (mType == NodeType::Camera)
+		{
+			float4 mv = mRotation * float4(move, 1.0f);
 
 
-		mPosition += float3(mv.x, mv.y, mv.z);
-		InvalidateTransform();
+			mPosition += float3(mv.x, mv.y, mv.z);
+		}
+		else {
+
+			float4 mv = float4(move, 1.0f) * mRotation;
+
+			mPosition += float3(mv.x, mv.y, mv.z);
+
+		}
+		//InvalidateTransform();
 	}
 
 	NodeProperty* Node3D::AddProperty(NodeProperty* _property) {

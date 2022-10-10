@@ -99,7 +99,8 @@ void ZenUI::MainViewPort() {
 									mSelectedNode->SetPosition(new_pos);
 								}
 								else {
-
+									mSelectedNode->Move(float3(((float)Application::GetApp()->GetInput()->GetMouseDX()) * mTranslateRatio, 0, 0));
+										
 								}
 							}
 							if (gLock_y) {
@@ -109,7 +110,7 @@ void ZenUI::MainViewPort() {
 									mSelectedNode->SetPosition(new_pos);
 								}
 								else {
-
+									mSelectedNode->Move(float3(0,((float)Application::GetApp()->GetInput()->GetMouseDY())* mTranslateRatio, 0));
 								}
 
 							}
@@ -120,7 +121,7 @@ void ZenUI::MainViewPort() {
 									mSelectedNode->SetPosition(new_pos);
 								}
 								else {
-
+									mSelectedNode->Move(float3(0,0,((float)Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio));
 								}
 
 							}
@@ -343,6 +344,9 @@ void ZenUI::MainViewPort() {
 
 			mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());
 
+		}
+		else {
+			mCurrentGizmo->SetRotation(0, 0, 0);
 		}
 	}
 

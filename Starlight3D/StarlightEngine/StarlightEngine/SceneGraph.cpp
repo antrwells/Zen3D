@@ -515,6 +515,7 @@
 	void SceneGraph::AddLight(NodeLight* light) {
 
 		mLights.push_back(light);
+		mRootNode->AddNode(light);
 
 	}
 

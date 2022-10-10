@@ -77,6 +77,39 @@ void ZenUI::MainNodeEditor() {
 				mSelectedNode->SetScale(float3(scalf[0], scalf[1], scalf[2]));
 			}
 
+			if (mSelectedNode->GetType() == NodeType::Light)
+			{
+
+				auto light = (NodeLight*)mSelectedNode;
+				
+				float lr = light->GetRange();
+
+				if (ImGui::DragFloat("Range", &lr))
+				{
+					light->SetRange(lr);
+				}
+				
+				float c_diff[3];
+				c_diff[0] = light->GetDiffuse().x;
+				c_diff[1] = light->GetDiffuse().y;
+				c_diff[2] = light->GetDiffuse().z;
+				if (ImGui::ColorEdit3("Diffuse", c_diff)) {
+
+					light->SetDiffuse(float3(c_diff[0], c_diff[1], c_diff[2]));
+
+				}
+
+				float c_spec[3];
+				c_spec[0] = light->GetSpecular().x;
+				c_spec[1] = light->GetSpecular().y;
+				c_spec[2] = light->GetSpecular().z;
+				if (ImGui::ColorEdit3("Specular", c_spec))
+				{
+					light->SetSpecular(float3(c_spec[0], c_spec[1], c_spec[2]));
+				}
+
+			}
+
 			auto scripts = mSelectedNode->GetScripts();
 
 			for (int i = 0; i < scripts.size(); i++) {

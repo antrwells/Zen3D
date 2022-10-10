@@ -30,7 +30,7 @@ int main()
 
     AppZen* zen = new AppZen;
     int APIHint = GLFW_NO_API;
-    zen->CrWindow("Zen", appW,appH, APIHint);
+    zen->CrWindow("Zen", 620,370, APIHint);
     zen->InitEngine();
     zen->CreateResources();
     zen->Run();

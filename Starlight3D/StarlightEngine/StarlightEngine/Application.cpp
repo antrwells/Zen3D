@@ -275,7 +275,7 @@ void Application::CreateResources() {
     mPhysics = new Physics();
 
 
-    InitApp();
+  
 
 
 }
@@ -417,7 +417,7 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     }
-
+    glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
     m_Window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (m_Window == nullptr)
     {
@@ -440,7 +440,10 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
     //glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glfwSetWindowSizeLimits(m_Window, 320, 240, GLFW_DONT_CARE, GLFW_DONT_CARE);
-   
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    glfwSetWindowPos(m_Window, (mode->width - width) / 2, (mode->height - height) / 2);
+    
     return;
 
 }
@@ -457,8 +460,31 @@ void Application::InitEngine() {
 
 void Application::Run() {
 
+    bool is_splash = true;
+    int splash_start = clock();
     
+    auto splash_tex = new Texture2D("edit/splash1.png");
+    auto draw = new SmartDraw(this);
+
+
     while (true) {
+
+
+        int cur_time = clock();
+
+        if (is_splash) {
+            if (cur_time > (splash_start + 5000))
+            {
+                glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
+                glfwSetWindowPos(m_Window, 128, 128);
+                glfwSetWindowSize(m_Window, 1400, 860);
+                WindowResize(1400, 860);
+                is_splash = false;
+                InitApp();
+
+
+            }
+        }
 
         double xp, yp;
         glfwGetCursorPos(m_Window, &xp, &yp);
@@ -475,9 +501,34 @@ void Application::Run() {
         mMouseX = xp;
         mMouseY = yp;
 
-        mInput->SetMouse(mMouseX, mMouseY, mDeltaX, mDeltaY);
-        UpdateApp();
-        Render();
+        if (is_splash == false) {
+            mInput->SetMouse(mMouseX, mMouseY, mDeltaX, mDeltaY);
+            UpdateApp();
+            Render();
+        }
+        else {
+            auto* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
+            auto* pDSV = m_pSwapChain->GetDepthBufferDSV();
+            m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
+            // Clear the back buffer
+            const float ClearColor[] = { 0,0,0, 0.0f };
+            // Let the engine perform required state transitions
+            m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+            m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+
+            // RenderApp();
+
+            m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+           
+            draw->Begin();
+
+            draw->DrawTexture(0, 0, winWidth, winHeight, splash_tex, 1, 1, 1, 1, false);
+
+            draw->End();
+
+
+        }
         Present();
 
         glfwPollEvents();

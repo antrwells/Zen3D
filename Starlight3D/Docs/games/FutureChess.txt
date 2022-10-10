@@ -1,0 +1,5 @@
+Future Chess
+
+Normal Chess with futuristic pieces.
+
+Possible diff game modes.

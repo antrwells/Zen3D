@@ -136,35 +136,7 @@ bool Application::Initialize(HWND hWnd) {
         break;
     }
    
-    auto SC = m_pSwapChain->GetDesc();
-    m_pImGui.reset(new ImGuiImplWin32(hWnd, m_pDevice, SCDesc.ColorBufferFormat, SC.DepthBufferFormat));
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    
-
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-  
-    io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
-
-    io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-    io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-    io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-    io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-    io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
-    io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
-    io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
-    io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
-    io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
-    io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
-    io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-    io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
-    io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
-    io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
-    io.KeyMap[ImGuiKey_KeyPadEnter] = GLFW_KEY_KP_ENTER;
-   
-    io.WantCaptureKeyboard = true;
+ 
     return true;
 
 }
@@ -268,12 +240,9 @@ void Application::CreateResources() {
     // Finally, create the pipeline state
     PSOCreateInfo.pVS = pVS;
     PSOCreateInfo.pPS = pPS;
-    m_pDevice->CreateGraphicsPipelineState(PSOCreateInfo, &m_pPSO);
+ //  m_pDevice->CreateGraphicsPipelineState(PSOCreateInfo, &m_pPSO);
 
-    Init();
-
-    mPhysics = new Physics();
-
+   
 
   
 
@@ -465,6 +434,7 @@ void Application::Run() {
     
     auto splash_tex = new Texture2D("edit/splash1.png");
     auto draw = new SmartDraw(this);
+    auto font = new kFont("data/fonts/aqua.pf");
 
 
     while (true) {
@@ -476,8 +446,70 @@ void Application::Run() {
             if (cur_time > (splash_start + 5000))
             {
                 glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
-                glfwSetWindowPos(m_Window, 128, 128);
-                glfwSetWindowSize(m_Window, 1400, 860);
+                glfwSetWindowShouldClose(m_Window,GL_TRUE);
+                glfwDestroyWindow(m_Window);
+
+                glfwPollEvents();
+
+                m_Window = glfwCreateWindow(1400, 860, "Zen3D", nullptr, nullptr);
+                if (m_Window == nullptr)
+                {
+                    LOG_ERROR_MESSAGE("Failed to create GLFW window");
+                    return;
+                }
+                winWidth = 1420;
+                winHeight = 840;
+                glfwSetWindowUserPointer(m_Window, this);
+                //glfwSetFramebufferSizeCallback(m_Window, &GLFW_ResizeCallback);
+               // glfwSetKeyCallback(m_Window, &GLFW_KeyCallback);
+               // glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
+              //  glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
+             //   glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
+                glfwSetFramebufferSizeCallback(m_Window, &GLFW_ResizeCallback);
+                glfwSetKeyCallback(m_Window, &GLFW_KeyCallback);
+                glfwSetMouseButtonCallback(m_Window, &GLFW_MouseButtonCallback);
+                //glfwSetCursorPosCallback(m_Window, &GLFW_CursorPosCallback);
+                glfwSetScrollCallback(m_Window, &GLFW_MouseWheelCallback);
+                InitEngine();
+                CreateResources();
+                Init();
+
+                mPhysics = new Physics();
+
+                auto SC = m_pSwapChain->GetDesc();
+                m_pImGui.reset(new ImGuiImplWin32(curWin, m_pDevice, SC.ColorBufferFormat, SC.DepthBufferFormat));
+                ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+
+                //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+                //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+                io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+                io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+
+                io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
+
+                io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
+                io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
+                io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
+                io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
+                io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
+                io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
+                io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
+                io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
+                io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
+                io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
+                io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
+                io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
+                io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
+                io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
+                io.KeyMap[ImGuiKey_KeyPadEnter] = GLFW_KEY_KP_ENTER;
+
+                io.WantCaptureKeyboard = true;
+
+                //glfwSetWindowPos(m_Window, 128, 128);
+                //glfwSetWindowSize(m_Window, 1400, 860);
+                
+
                 WindowResize(1400, 860);
                 is_splash = false;
                 InitApp();
@@ -525,8 +557,10 @@ void Application::Run() {
 
             draw->DrawTexture(0, 0, winWidth, winHeight, splash_tex, 1, 1, 1, 1, false);
 
-            draw->End();
+        
 
+            font->drawText("Loading Zen Resources... ", 20, 20, 1, 1, 1,1,draw);
+            draw->End();
 
         }
         Present();

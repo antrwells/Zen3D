@@ -132,7 +132,7 @@ void kFont::drawText(const char* text, int x, int y, float r, float g, float b, 
 
 	int cc = 0;
 	
-	draw->Begin();
+//	draw->Begin();
 	float ax = x;
 
 	while (true) {
@@ -164,10 +164,9 @@ void kFont::drawText(const char* text, int x, int y, float r, float g, float b, 
 		cc++;
 
 	}
-	draw->End();
+//	draw->End();
 
 }
-
 
 void kFont::drawText(const char* text, int x, int y, float r, float g, float b, float a) {
 

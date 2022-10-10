@@ -1,16 +1,48 @@
-﻿StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui.obj)' or at ''; linking object as if no debug info
+﻿  LINK : C:\projects\Starlight3D\StarlightStudio\x64\Debug\Zen.exe not found or not built by the last incremental link; performing full link
+StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(imgui_widgets.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_widgets.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZContextVar.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZClassNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(imgui_draw.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_draw.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(ImGuiImplDiligent.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ImGuiImplDiligent.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(ImGuiImplWin32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ImGuiImplWin32.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(Win32Debug.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Win32Debug.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZScriptContext.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZSource.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZTokenizer.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParser.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZSystemFunction.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZSystemFunctions.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(imgui_tables.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_tables.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZScriptNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZContextScope.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZMethodNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZVarsNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZExpressionNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(TextureUtilities.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(TextureUtilities.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(ImGuiDiligentRenderer.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ImGuiDiligentRenderer.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(imgui_impl_win32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_impl_win32.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(BasicPlatformDebug.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicPlatformDebug.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZProgramNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseCodeBody.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZTokenStream.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseScript.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZClassStatementNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(TextureLoaderImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(TextureLoaderImpl.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(BasicFileSystem.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicFileSystem.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZParseNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseStatement.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseVars.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZCodeBodyNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseClassStatement.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseAssign.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseIf.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseFor.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseReturn.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseWhile.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZIncNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseClass.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParametersNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(SpinLock.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(SpinLock.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(Image.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Image.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(KTXLoader.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(KTXLoader.obj)' or at ''; linking object as if no debug info
@@ -22,6 +54,16 @@ StarlightEngine.lib(Win32FileSystem.obj) : warning LNK4099: PDB '' was not found
 StarlightEngine.lib(DataBlobImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(DataBlobImpl.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(PNGCodec.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PNGCodec.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(JPEGCodec.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(JPEGCodec.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZStatementNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseParameters.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseExpression.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseNew.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZAssignNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZIfnode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZForNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZReturnNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZWhileNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseMethod.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(tif_close.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_close.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_dir.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dir.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_strip.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_strip.obj)' or at ''; linking object as if no debug info
@@ -47,6 +89,8 @@ StarlightEngine.lib(jdatasrc.obj) : warning LNK4099: PDB '' was not found with '
 StarlightEngine.lib(jcparam.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcparam.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(jcapistd.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcapistd.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(jdapistd.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdapistd.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZNewNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZParseSignature.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(tif_win32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_win32.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_flush.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_flush.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_dirinfo.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dirinfo.obj)' or at ''; linking object as if no debug info
@@ -73,6 +117,8 @@ StarlightEngine.lib(jdinput.obj) : warning LNK4099: PDB '' was not found with 'S
 StarlightEngine.lib(jdmarker.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmarker.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(jcinit.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcinit.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(jdmaster.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmaster.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZParseSigParam.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+StarlightEngine.lib(ZSignatureNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(tif_write.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_write.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_dirwrite.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dirwrite.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_codec.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_codec.obj)' or at ''; linking object as if no debug info
@@ -101,6 +147,7 @@ StarlightEngine.lib(jdcolor.obj) : warning LNK4099: PDB '' was not found with 'S
 StarlightEngine.lib(jquant1.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jquant1.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(jquant2.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jquant2.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(jdmerge.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmerge.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ZSigParamNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 StarlightEngine.lib(tif_dumpmode.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dumpmode.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_packbits.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_packbits.obj)' or at ''; linking object as if no debug info
 StarlightEngine.lib(tif_fax3.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_fax3.obj)' or at ''; linking object as if no debug info

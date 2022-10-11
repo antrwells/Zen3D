@@ -145,6 +145,47 @@ void ZenUI::MainNodeEditor() {
 
 					}
 						break;
+					case 2: {
+
+						char* sbuf = (char*)malloc(512);
+
+						auto str = var->GetStringVal();
+
+						char* act = (char*)str.c_str();
+
+
+
+
+						for (int i = 0; i < 512; i++) {
+
+							auto ch = act[i];
+
+							if (ch == "\0"[0])
+							{
+								sbuf[i] = ch;
+								break;
+							}
+							sbuf[i] = ch;
+
+						}
+
+
+						if (ImGui::InputText(var->GetName().c_str(), sbuf, 512)) {
+
+							var->SetString(std::string(sbuf));
+
+
+						}
+						else {
+
+							free(sbuf);
+
+						}
+
+
+
+					}
+						  break;
 					case 4:
 					{
 						int bb = 5;

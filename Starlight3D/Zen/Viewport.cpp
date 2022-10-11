@@ -5,6 +5,7 @@
 #include "DirCollection.h"
 #include "VString.h"
 #include "VFile.h"
+#include "Application.h"
 
 void ZenUI::MainViewPort() {
 
@@ -69,8 +70,30 @@ void ZenUI::MainViewPort() {
 		if (real_pos.x > 0 && real_pos.y > 0 && real_pos.x < win_size.x && real_pos.y < win_size.y)
 		{
 
+			float spd = -0.15f;
+			auto cam = mGraph->GetCamera();
+
 			if (Application::GetApp()->GetInput()->IsMouseDown(1))
 			{
+
+				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyW))
+				{
+
+					cam->Move(float3(0, 0, -spd));
+
+				}
+				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyS)) {
+					cam->Move(float3(0, 0, spd));
+				}
+				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyA))
+				{
+					cam->Move(float3(spd, 0, 0));
+				}
+				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyD))
+				{
+					cam->Move(float3(-spd, 0, 0));
+				}
+
 				cam_interact = true;
 			}
 			else {

@@ -86,8 +86,26 @@ void ZClassNode::PopulateScope() {
 				if (def_exp.mElements.size() > 0)
 				{
 
+					auto res = names[j]->def->Exec({});
+					switch (type) {
+					case VarType::VarInt:
+						new_var->SetInt(res->GetIntVal());
+						break;
+					case VarType::VarFloat:
+						new_var->SetFloat(res->GetFloatVal());
+						break;
+					case VarType::VarCObj:
+						new_var->SetCObj(res->GetCObj());
+						break;
+					case VarType::VarString:
+						new_var->SetString(res->GetStringVal());
+						break;
+					case VarType::VarInstance:
+						new_var->SetClass(res->GetClassVal());
+						break;
+					}
 
-					new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
+					//new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
 					//TODO
 				}
 			}

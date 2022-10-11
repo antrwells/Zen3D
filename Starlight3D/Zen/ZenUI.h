@@ -6,7 +6,9 @@
 #include "VString.h"
 #include "VFile.h"
 #include "DirCollection.h"
+#include "FSPayload.h"
 class RayPicker;
+
 //class DirCollection;
 
 enum GizmoMode {
@@ -23,9 +25,16 @@ class ZenUI
 {
 public:
 
-	ZenUI(SceneGraph* graph);
 
 
+
+	ZenUI();
+
+	void CreateUI(SceneGraph* graph);
+	FSPayload* GetPayload()
+	{
+		return pUI;
+	}
 	//Main UI
 	void MainBGWindow();
 	void MainWindow();
@@ -164,6 +173,10 @@ private:
 	//Sprites
 	SmartDraw* mDraw;
 	Texture2D* mSprLight;
+
+	//Payloads
+	FSPayload* pUI;
+
 
 };
 

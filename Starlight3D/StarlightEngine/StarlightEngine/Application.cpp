@@ -2,7 +2,8 @@
 #include "Application.h"
 #include "UI.h"
 #include "ScriptHost.h"
-
+#include "FSPayload.h"
+#include "VString.h"
 
 //#include "ZContextVar.h"
 
@@ -436,6 +437,7 @@ void Application::Run() {
     auto draw = new SmartDraw(this);
     auto font = new kFont("data/fonts/aqua.pf");
 
+    SetPayload();
 
     while (true) {
 
@@ -443,7 +445,7 @@ void Application::Run() {
         int cur_time = clock();
 
         if (is_splash) {
-            if (cur_time > (splash_start + 5000))
+            if (mCurrentPayload == nullptr)
             {
                 glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
                 glfwSetWindowShouldClose(m_Window,GL_TRUE);
@@ -557,9 +559,41 @@ void Application::Run() {
 
             draw->DrawTexture(0, 0, winWidth, winHeight, splash_tex, 1, 1, 1, 1, false);
 
-        
+            float lp2 = mCurrentPayload->LoadedPercent() * 100.0f;
 
-            font->drawText("Loading Zen Resources... ", 20, 20, 1, 1, 1,1,draw);
+            printf("lp:%f", lp2);
+            printf("\n");
+
+            std::string load = "Loading Zen Resources..." + std::to_string((int)lp2) + std::string("/100");
+
+            font->drawText(load.c_str(), 20, 20, 1, 1, 1, 1, draw);
+            
+
+            auto cp = mCurrentPayload;
+
+            float lp = mCurrentPayload->LoadedPercent();
+
+            VString load_string((int)(lp * 100));
+         
+
+       //     font->drawText(load_string.GetConst(), 20, 50, 1, 0.2, 0.2, 1);
+
+            //std::string loads = std::string((lp * 100));
+
+
+
+            if (cp->Loaded())
+            {
+                mCurrentPayload = nullptr;
+      
+
+                int aa = 5;
+
+            }
+
+            std::string res = "";
+
+
             draw->End();
 
         }
@@ -705,6 +739,15 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int scancode, int s
         {
 
             io.AddInputCharacter(key);
+        }
+        else {
+            if (mod == GLFW_MOD_SHIFT) {
+                int nkey = 0;
+                if (key == GLFW_KEY_1) {
+                 
+                }
+                //io.AddInputCharacter(nkey);
+            }
         }
 
     }

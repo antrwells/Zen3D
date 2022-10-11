@@ -117,6 +117,7 @@ void ZContextVar::Push() {
 		break;
 	case VarType::VarInstance:
 
+	{
 		auto vc = mClassVal;
 		auto vars = vc->GetVars();
 		for (int i = 0; i < vars.size(); i++)
@@ -124,7 +125,10 @@ void ZContextVar::Push() {
 			auto v = vars[i];
 			v->Push();
 		}
-
+	}
+		break;
+	case VarType::VarString:
+		mPushString = mStringVal;
 		break;
 	}
 
@@ -144,6 +148,7 @@ void ZContextVar::Pop() {
 		mIntVal = mPushInt;
 		break;
 	case VarType::VarInstance:
+	{
 		auto vc = mClassVal;
 		auto vars = vc->GetVars();
 		for (int i = 0; i < vars.size(); i++)
@@ -151,6 +156,9 @@ void ZContextVar::Pop() {
 			auto v = vars[i];
 			v->Pop();
 		}
+	}	break;
+	case VarType::VarString:
+		mStringVal = mPushString;
 		break;
 	}
 

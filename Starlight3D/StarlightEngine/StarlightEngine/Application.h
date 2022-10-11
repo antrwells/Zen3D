@@ -65,6 +65,8 @@ using namespace Diligent;
 #include "imgui.h"
 
 class ImGuiImplDiligent;
+class FSPayload;
+
 
 
 class Application
@@ -245,10 +247,14 @@ public:
 
     }
 
+    virtual void SetPayload() {};
+
 private:
 
     UserInput* mInput;
-  
+protected:
+    FSPayload* mCurrentPayload = nullptr;
+private:
     RefCntAutoPtr<IRenderDevice>  m_pDevice;
     RefCntAutoPtr<IDeviceContext> m_pImmediateContext;
     RefCntAutoPtr<ISwapChain>     m_pSwapChain;

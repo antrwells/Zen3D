@@ -22,6 +22,7 @@ public:
     void InitApp();
     void UpdateApp();
     void RenderApp();
+    void SetPayload();
 
 private:
     ZenUI* zUI;

@@ -1,277 +1,42 @@
-﻿  CubeRenderer.cpp
-  FrameTypeColor.cpp
-  GBuffer.cpp
-  MeshRenderer.cpp
-  NodeCamera.cpp
-  NodeLight.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(17,1): warning C4305: 'return': truncation from 'double' to 'float' (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(34,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(41,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(42,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(61,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(71,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file NodeCamera.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(17,1): warning C4305: 'return': truncation from 'double' to 'float' (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(34,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(41,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(42,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(61,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(71,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file GBuffer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.cpp(24,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.cpp(25,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(64,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(76,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(87,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file NodeLight.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeLight.cpp(10,35): warning C4305: 'argument': truncation from 'double' to 'T'
+﻿  Application.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(79,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(80,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(102,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(149,27): warning C4018: '<': signed/unsigned mismatch (compiling source file MeshRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(665,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(44,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(665,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(64,20): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(719,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(907,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(64,17): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(907,71): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(88,16): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(961,62): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1295,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(93,16): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1295,71): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1353,62): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1657,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1657,71): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1725,62): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1765,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1765,71): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1832,62): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1863,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1863,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1907,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1956,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(1956,71): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2032,62): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2071,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2071,71): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2140,62): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2190,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2190,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\MeshRenderer.cpp(2263,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-  RayPicker.cpp
-  SceneGraph.cpp
-  SceneRayTracer.cpp
-  SceneRenderer.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file RayPicker.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(90,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(104,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(524,24): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(592,48): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(674,43): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRenderer.cpp(220,115): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRenderer.cpp(220,79): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(225,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(139,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ] (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(164,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(168,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(192,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data (compiling source file SceneRayTracer.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRayTracer.cpp(48,53): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRayTracer.cpp(361,30): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRayTracer.cpp(453,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(527,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(528,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(532,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(533,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(535,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(536,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(797,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(797,26): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Replacing x64\Debug\DirCollection.obj
   Replacing x64\Debug\pch.obj
 GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GraphicsEngineD3D12_64d.lib(GraphicsEngineD3D12_64d.dll); second definition ignored

@@ -85,6 +85,9 @@
     <Filter Include="Scripting">
       <UniqueIdentifier>{38484448-a966-45f5-a3f2-998b91f2317f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ZenFS">
+      <UniqueIdentifier>{64e6662b-6ecb-4a1b-90dd-be3051b62dc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -297,6 +300,15 @@
     <ClInclude Include="ScriptHost.h">
       <Filter>Scripting</Filter>
     </ClInclude>
+    <ClInclude Include="ZenFS.h">
+      <Filter>ZenFS</Filter>
+    </ClInclude>
+    <ClInclude Include="FSPayload.h">
+      <Filter>ZenFS</Filter>
+    </ClInclude>
+    <ClInclude Include="FSFile.h">
+      <Filter>ZenFS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -496,6 +508,15 @@
     </ClCompile>
     <ClCompile Include="ScriptHost.cpp">
       <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="ZenFS.cpp">
+      <Filter>ZenFS</Filter>
+    </ClCompile>
+    <ClCompile Include="FSPayload.cpp">
+      <Filter>ZenFS</Filter>
+    </ClCompile>
+    <ClCompile Include="FSFile.cpp">
+      <Filter>ZenFS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

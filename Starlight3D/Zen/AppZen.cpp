@@ -14,6 +14,14 @@ AppZen::AppZen() {
 }
 
 
+void AppZen::SetPayload() {
+
+	zUI = new ZenUI();
+	mCurrentPayload = zUI->GetPayload();
+	mCurrentPayload->LoadThreaded();
+
+}
+
 void AppZen::InitApp() {
 
 	mGraph = new SceneGraph;
@@ -81,15 +89,30 @@ void AppZen::InitApp() {
 	auto cam = mGraph->GetCamera();
 	cam->SetPosition(float3(0, 5, -10));
 
-	zUI = new ZenUI(mGraph);
+
+
+	float pc = 0.0f;
+
+
 
 
 
 }
-
+bool ui_started = false;
 void AppZen::UpdateApp() {
 
  	zUI->UpdateUI();
+	if (!ui_started) {
+		auto pl = zUI->GetPayload();
+
+
+		if (pl->Loaded())
+		{
+			zUI->CreateUI(mGraph);
+			ui_started = true;
+		}
+
+	}
 }
 bool fu = true;
 float anX = 0;
@@ -115,35 +138,9 @@ void AppZen::RenderApp() {
 	dx = Application::GetInput()->GetMouseDX();
 	dy = Application::GetInput()->GetMouseDY();
 	
-	if (Application::GetInput()->IsKeyDown(KeyID::Space))
-	{
-		float3 cp = cam->GetPosition();
-
-		mLight1->SetPosition(cp);
+	if (ui_started) {
+		zUI->RenderUI();
 	}
-
-	float spd = -0.15f;
-
-	if (Application::GetInput()->IsKeyDown(KeyID::KeyW))
-	{
-
-		cam->Move(float3(0, 0, -spd));
-
-	}
-	if (Application::GetInput()->IsKeyDown(KeyID::KeyS)) {
-		cam->Move(float3(0, 0, spd));
-	}
-	if (Application::GetInput()->IsKeyDown(KeyID::KeyA))
-	{
-		cam->Move(float3(spd, 0, 0));
-	}
-	if (Application::GetInput()->IsKeyDown(KeyID::KeyD))
-	{
-		cam->Move(float3(-spd, 0, 0));
-	}
-
-	zUI->RenderUI();
-
 	//zUI->RenderUI();
 	
 }

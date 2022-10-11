@@ -7,15 +7,14 @@
 #include "VString.h"
 #include "VFile.h"
 
-ZenUI::ZenUI(SceneGraph* graph) {
-
+void ZenUI::CreateUI(SceneGraph* graph) {
 	//set up theme
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	ImGuiIO& io = ImGui::GetIO();
 
-	style.Colors[ImGuiCol_Text] = ImColor(220,220, 220);
-	style.Colors[ImGuiCol_WindowBg] = ImColor(24,24,24);
+	style.Colors[ImGuiCol_Text] = ImColor(220, 220, 220);
+	style.Colors[ImGuiCol_WindowBg] = ImColor(24, 24, 24);
 
 	style.FrameRounding = 0.f;
 	style.FrameBorderSize = 0.5f;
@@ -39,19 +38,19 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 	//Icons
 
-	mIconTranslate = new Texture2D("edit/icon/MoveIcon2.png");
-	mIconRotate = new Texture2D("edit/icon/rotateIcon.png");
-	mIconScale = new Texture2D("edit/icon/scaleicon.png");
-	mIconPlay = new Texture2D("edit/icon/playicon.png");
-	mIconStop = new Texture2D("edit/icon/stopicon.png");
+	mIconTranslate = (Texture2D*)pUI->GetResource("MoveIcon");
+	mIconRotate = (Texture2D*)pUI->GetResource("RotateIcon"); // new Texture2D("edit/icon/rotateIcon.png");
+	mIconScale = (Texture2D*)pUI->GetResource("ScaleIcon"); //;new Texture2D("edit/icon/scaleicon.png");
+	mIconPlay = (Texture2D*)pUI->GetResource("PlayIcon");// new Texture2D("edit/icon/playicon.png");
+	mIconStop = (Texture2D*)pUI->GetResource("StopIcon");// n ew Texture2D("edit/icon/stopicon.png");
 
 	//Scene Graph
-	mSceneGraphPos = ImVec2(0, mToolbarSize.y+12);
-	mSceneGraphSize = ImVec2(240, Application::GetApp()->GetHeight()-22-200-mToolbarSize.y);
+	mSceneGraphPos = ImVec2(0, mToolbarSize.y + 12);
+	mSceneGraphSize = ImVec2(240, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 
 	//Scene Viewport Resources
-	mSceneViewPos = ImVec2(240, mToolbarSize.y+12);
-	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22-200-mToolbarSize.y);
+	mSceneViewPos = ImVec2(240, mToolbarSize.y + 12);
+	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
@@ -66,9 +65,9 @@ ZenUI::ZenUI(SceneGraph* graph) {
 	mScaleGizmo->GetMesh(0)->SetName("X");
 	mScaleGizmo->GetMesh(1)->SetName("Y");
 	mScaleGizmo->GetMesh(2)->SetName("Z");
-	auto red_tex = new Texture2D("edit/gizmo/red.png");
-	auto blue_tex = new Texture2D("edit/gizmo/blue.png");
-	auto green_tex = new Texture2D("edit/gizmo/green.png");
+	auto red_tex = (Texture2D*)pUI->GetResource("Red");
+	auto blue_tex = (Texture2D*)pUI->GetResource("Green");// new Texture2D("edit/gizmo/blue.png");
+	auto green_tex = (Texture2D*)pUI->GetResource("Blue"); //new Texture2D("edit/gizmo/green.png");
 
 	mTranslateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(blue_tex);
 	mTranslateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(red_tex);
@@ -97,18 +96,18 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 
 	//Content Browser
-	mContentBrowserPos = ImVec2(0, 12+Application::GetApp()->GetHeight() - 200-22);
-	mContentBrowserSize = ImVec2(Application::GetApp()->GetWidth(), 222-12);// mToolbarSize.y);
+	mContentBrowserPos = ImVec2(0, 12 + Application::GetApp()->GetHeight() - 200 - 22);
+	mContentBrowserSize = ImVec2(Application::GetApp()->GetWidth(), 222 - 12);// mToolbarSize.y);
 
 	//Icons
 
-	mIconFolder = new Texture2D("edit/browser/foldericon.png");
-	mIconFile = new Texture2D("edit/browser/fileicon.png");
-	mIconScript = new Texture2D("edit/browser/scripticon.png");
+	mIconFolder = (Texture2D*)pUI->GetResource("FolderIcon");// new Texture2D("edit/browser/foldericon.png");
+	mIconFile = (Texture2D*)pUI->GetResource("FileIcon");//  new Texture2D("edit/browser/fileicon.png");
+	mIconScript = (Texture2D*)pUI->GetResource("ScriptIcon");//  new Texture2D("edit/browser/scripticon.png");
 
 	//Node Editor
-	mNodeEditPos = ImVec2(990,mToolbarSize.y+12);
-	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() -990, Application::GetApp()->GetHeight() - 22 - 200-mToolbarSize.y);
+	mNodeEditPos = ImVec2(990, mToolbarSize.y + 12);
+	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() - 990, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 
 
 	//Other Resources
@@ -121,10 +120,32 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 	mDraw = new SmartDraw(Application::GetApp());
 
-	mSprLight = new Texture2D("edit/sprites/light1.png",true);
+	mSprLight = (Texture2D*)pUI->GetResource("LightIcon");//  new Texture2D("edit/sprites/light1.png", true);
 
 
 	ScanContent("c:/ZenContent/");
+
+}
+
+ZenUI::ZenUI() {
+
+
+
+	pUI = new FSPayload("UIPayload");
+	pUI->AddFile("MoveIcon", "edit/icon/MoveIcon2.png", ResourceType::TextureFlat);
+	pUI->AddFile("RotateIcon", "edit/icon/rotateIcon.png", ResourceType::TextureFlat);
+	pUI->AddFile("ScaleIcon", "edit/icon/scaleicon.png", ResourceType::TextureFlat);
+	pUI->AddFile("PlayIcon", "edit/icon/playicon.png", ResourceType::TextureFlat);
+	pUI->AddFile("StopIcon", "edit/icon/stopicon.png", ResourceType::TextureFlat);
+	pUI->AddFile("Red", "edit/gizmo/red.png", ResourceType::TextureFlat);
+	pUI->AddFile("Green", "edit/gizmo/green.png", ResourceType::TextureFlat);
+	pUI->AddFile("Blue", "edit/gizmo/blue.png", ResourceType::TextureFlat);
+	pUI->AddFile("FolderIcon", "edit/browser/foldericon.png", ResourceType::TextureFlat);
+	pUI->AddFile("FileIcon", "edit/browser/fileicon.png",ResourceType::TextureFlat);
+	pUI->AddFile("ScriptIcon", "edit/browser/scripticon.png", ResourceType::TextureFlat);
+	pUI->AddFile("LightIcon", "edit/sprites/light1.png", ResourceType::TextureFlat);
+
+	//pUI->LoadThreaded();
 
 
 	

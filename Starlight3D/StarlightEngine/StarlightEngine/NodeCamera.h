@@ -80,10 +80,11 @@
         float4x4 mProjectionMatrix;
 
         float mFOV = 45.0f;
-        float mMinZ = 1.0f;
+        float mMinZ = 0.1f;
         float mMaxZ = 35.0f;
         float mWidth, mHeight;
 
     };
 
 
+    

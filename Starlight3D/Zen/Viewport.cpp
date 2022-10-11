@@ -279,6 +279,57 @@ void ZenUI::MainViewPort() {
 		mRenderTarget->Bind();
 		mGraph->Render();
 		mRenderTarget->ClearDepth();
+		auto cam = mGraph->GetCamera();
+	//	cam->SetViewport(0, 0, win_size.x, win_size.y);
+		mDraw->Begin();
+
+
+		for (int i = 0; i < mGraph->LightCount(); i++) {
+			Node3D* entity = mGraph->GetLight(i);
+
+			float lx, ly;
+
+			lx = 20;
+			ly = 20;
+			float4x4 model = entity->GetWorldMatrix();
+			//angX = angX + 0.1f;
+
+			// Camera is at (0, 0, -5) looking along the Z axis
+			float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
+
+			// Get pretransform matrix that rotates the scene according the surface orientation
+			//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
+
+			// Get projection matrix adjusted to the current screen orientation
+			auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
+
+			// Compute world-view-projection matrix
+			float4x4 m_WorldViewProjMatrix = model * View * Proj;
+			m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
+
+
+			float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
+
+			pos.x /= pos.w;
+			pos.y /= pos.w;
+
+			pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
+			pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
+
+			mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprLight, 1, 1, 1, 1, false);
+			if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
+			{
+				if (Application::GetApp()->GetInput()->IsMouseDown(0))
+				{
+					mSelectedNode = entity;
+				}
+			}
+		}
+
+		float4x4 pr = float4x4::OrthoOffCenter(0,mRenderTarget->GetWidth(),mRenderTarget->GetHeight(), 0, 0, 100.0f, false);
+
+
+		mDraw->End(pr);
 		if (mCurrentGizmo != nullptr) {
 			mGraph->RenderNodeBasic(mCurrentGizmo);
 		}
@@ -348,8 +399,32 @@ void ZenUI::MainViewPort() {
 		else {
 			mCurrentGizmo->SetRotation(0, 0, 0);
 		}
+
+		
+
 	}
 
+	float3 p1 = mCurrentGizmo->GetPosition();
+	float3 p2 = mGraph->GetCamera()->GetPosition();
+	float xd, yd, zd;
+	xd = p2.x - p1.x;																							  
+	yd = p2.y - p1.y;
+	zd = p2.z - p2.z;
+	float dis = sqrt(xd * xd + yd * yd + zd * zd);
+	
+	
+	p1 = p2 - p1;
+	
+	
+	dis = Diligent::length(p1);
+
+
+	dis = dis / 1.0f;
+	dis = dis * 0.1f;
+	if (dis < 0.5f) dis = 0.5f;
+
+
+	mCurrentGizmo->SetScale(float3(dis, dis, dis));
 
 }
 

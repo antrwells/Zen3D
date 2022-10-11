@@ -73,6 +73,7 @@ public:
 	void DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a,bool flip_uv = false);
 	void End(RefCntAutoPtr<IPipelineState> pso, RefCntAutoPtr<IBuffer> consts, RefCntAutoPtr<IShaderResourceBinding> srb);
 	void End();
+	void End(float4x4 proj);
 	DrawList* GetDrawList(Texture2D* tex) {
 
 		for (int i = 0; i < Draws.size(); i++) {

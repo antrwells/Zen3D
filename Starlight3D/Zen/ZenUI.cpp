@@ -117,8 +117,17 @@ ZenUI::ZenUI(SceneGraph* graph) {
 
 	mToolbarSize.y = mToolbarSize.y - 8;
 
+	//Sprites
+
+	mDraw = new SmartDraw(Application::GetApp());
+
+	mSprLight = new Texture2D("edit/sprites/light1.png",true);
+
 
 	ScanContent("c:/ZenContent/");
+
+
+	
 
 }
 

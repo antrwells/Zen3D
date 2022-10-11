@@ -138,7 +138,7 @@ bool Node3D::mSysInit = false;
 			else {
 				position_matrix = float4x4::Translation(mPosition);
 				rot_matrix = mRotation;
-				final_matrix =  rot_matrix*position_matrix * scale_matrix;// *scale_matrix;
+				final_matrix = scale_matrix*rot_matrix * position_matrix;// *scale_matrix;// *scale_matrix;
 			}
 
 

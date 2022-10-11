@@ -51,7 +51,7 @@ using namespace Diligent;
 class Texture2D
 {
 public:
-	Texture2D(const char* path);
+	Texture2D(const char* path,bool alpha = false);
 	Texture2D(RefCntAutoPtr<ITexture> texture, RefCntAutoPtr<ITextureView> view);
 	Texture2D(RefCntAutoPtr<ITexture> texure);
 	Texture2D(Application* app,int w, int h, bool alpha,const char* buf);

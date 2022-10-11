@@ -2,13 +2,19 @@
 #include "Texture2D.h"
 
 
-Texture2D::Texture2D(const char* path) {
+Texture2D::Texture2D(const char* path,bool alpha) {
 
 
 
     auto m_pDevice = Application::GetDev();
     TextureLoadInfo loadInfo;
     loadInfo.IsSRGB = false;
+    if (alpha) {
+     //   loadInfo.Format = TEX_FORMAT_RGBA8_UINT;
+    }
+    //loadInfo.AlphaCutoff = 0.1f;
+    
+
     RefCntAutoPtr<ITexture> Tex;
     CreateTextureFromFile(path, loadInfo, m_pDevice, &Tex);
    //  Get shader resource view from the texture

@@ -160,6 +160,11 @@ private:
 	//Play 
 	bool mPlaying = false;
 
+
+	//Sprites
+	SmartDraw* mDraw;
+	Texture2D* mSprLight;
+
 };
 
 

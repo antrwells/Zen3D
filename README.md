@@ -2,6 +2,7 @@
 Zen3D is a multi-platform 3D engine &amp; editor. (DX12/11, OpenGL3+, Vulkan, Metal)
 ![ide_light1](https://user-images.githubusercontent.com/102032777/194876281-207fd51d-0776-4939-a3ca-f21bfda1d75b.jpg)
 
+![splash1](https://user-images.githubusercontent.com/102032777/195144472-2d7c8e85-0c67-4cc5-9530-9bac9dcc1ee8.gif)
 
 ![env_mapping1](https://user-images.githubusercontent.com/102032777/194854086-ddb50a84-1371-4aa2-adb5-37d787f90e73.jpg)
 ![env_mapping2](https://user-images.githubusercontent.com/102032777/194854118-29d5bec8-10f7-4841-a030-398c4edecfdc.jpg)

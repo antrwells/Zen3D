@@ -53,9 +53,9 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
-	mTranslateGizmo = importer->ImportAI("edit/gizmo/translate1.fbx");
-	mRotateGizmo = importer->ImportAI("edit/gizmo/rotate1.fbx");
-	mScaleGizmo = importer->ImportAI("edit/gizmo/scale1.fbx");
+	mTranslateGizmo = (NodeEntity*)pUI->GetResource("GizTranslate");//  importer->ImportAI("edit/gizmo/translate1.fbx");
+	mRotateGizmo = (NodeEntity*)pUI->GetResource("GizRotate");//importer->ImportAI("edit/gizmo/rotate1.fbx");
+	mScaleGizmo = (NodeEntity*)pUI->GetResource("GizScale");//importer->ImportAI("edit/gizmo/scale1.fbx");
 	mTranslateGizmo->GetMesh(0)->SetName("Z");
 	mTranslateGizmo->GetMesh(1)->SetName("X");
 	mTranslateGizmo->GetMesh(2)->SetName("Y");
@@ -144,6 +144,9 @@ ZenUI::ZenUI() {
 	pUI->AddFile("FileIcon", "edit/browser/fileicon.png",ResourceType::TextureFlat);
 	pUI->AddFile("ScriptIcon", "edit/browser/scripticon.png", ResourceType::TextureFlat);
 	pUI->AddFile("LightIcon", "edit/sprites/light1.png", ResourceType::TextureFlat);
+	pUI->AddFile("GizTranslate", "edit/gizmo/translate1.fbx", ResourceType::ModelProp);
+	pUI->AddFile("GizRotate", "edit/gizmo/rotate1.fbx", ResourceType::ModelProp);
+	pUI->AddFile("GizScale", "edit/gizmo/scale1.fbx", ResourceType::ModelProp);
 
 	//pUI->LoadThreaded();
 

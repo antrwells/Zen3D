@@ -31,9 +31,6 @@
     <Filter Include="UI\Controls">
       <UniqueIdentifier>{3d91c323-b93f-4773-a6b0-c94b5f78a064}</UniqueIdentifier>
     </Filter>
-    <Filter Include="App">
-      <UniqueIdentifier>{6366c4e9-9b97-4198-8349-cf3d67978708}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{8d3dd1ae-5c1e-4c03-b672-07d9c76f7177}</UniqueIdentifier>
     </Filter>
@@ -88,6 +85,12 @@
     <Filter Include="ZenFS">
       <UniqueIdentifier>{64e6662b-6ecb-4a1b-90dd-be3051b62dc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Anim\App">
+      <UniqueIdentifier>{6366c4e9-9b97-4198-8349-cf3d67978708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{a6ac5ed1-951b-4158-9186-2354c8728e91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -137,9 +140,6 @@
     </ClInclude>
     <ClInclude Include="WindowContent.h">
       <Filter>UI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="NoRenderList.h">
       <Filter>Scene</Filter>
@@ -309,6 +309,9 @@
     <ClInclude Include="FSFile.h">
       <Filter>ZenFS</Filter>
     </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>App</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -361,9 +364,6 @@
     </ClCompile>
     <ClCompile Include="WindowContent.cpp">
       <Filter>UI\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="NodeTerrain.cpp">
       <Filter>Scene</Filter>
@@ -517,6 +517,9 @@
     </ClCompile>
     <ClCompile Include="FSFile.cpp">
       <Filter>ZenFS</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>App</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

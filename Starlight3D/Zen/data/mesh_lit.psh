@@ -104,6 +104,15 @@ void main(in  PSInput  PSIn,
 
     float diff = max(dot(lightDir, tNormal),0.0);
 
+
+    float3 viewDir = normalize(PSIn.TVP-PSIn.TFP);
+    float3 reflectDir = reflect(-lightDir,tNormal);
+    float3 halfwayDir = normalize(lightDir+viewDir);
+
+
+    float spec = pow(max(dot(tNormal,halfwayDir),0.0),32.0);
+
+
     dis = dis * diff;
 
     float rp = PSIn.renderProps.x;
@@ -167,6 +176,8 @@ void main(in  PSInput  PSIn,
     float4 ffcol =((g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * float4(PSIn.lDiff.x * dis, PSIn.lDiff.y * dis, PSIn.lDiff.z * dis, 1.0)) + env_col)*shadowVal;
 
     ffcol.a = 1.0;
+
+    ffcol.rgb += float3(spec,spec,spec);
 
     PSOut.Color = ffcol;
 

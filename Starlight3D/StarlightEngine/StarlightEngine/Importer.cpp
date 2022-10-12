@@ -230,18 +230,13 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 
 		NodeEntity* root = new NodeEntity;
-		printf("Importing scene:");
-		printf(path);
-		printf("|\n");
+	
 		scene = aiImportFile(path,  aiProcess_OptimizeGraph |  aiProcess_CalcTangentSpace |    aiProcess_Triangulate | aiProcess_ValidateDataStructure);
 
 		if (scene == nullptr)
 		{
 
-			printf("Failed to import\n");
-			while (true) {
-
-			}
+			exit(1);
 
 		}
 		

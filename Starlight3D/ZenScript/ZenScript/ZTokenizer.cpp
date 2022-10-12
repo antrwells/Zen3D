@@ -263,16 +263,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 
 
-	std::cout << "Token Stream output." << std::endl;
 
-	for (int i = 0; i < tokens.size(); i++)
-	{
-
-		std::cout << "Token:" << TokenToString(tokens[i].mType) << "  Text:" << tokens[i].mText << std::endl;
-
-	    
-
-	}
 
 	std::map<std::string, TokenType> token_map;
 
@@ -487,16 +478,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 
 	auto tok_stream = new ZTokenStream();
 	tok_stream->SetTokens(new_tokens3);
-	printf("----------------------------------------------\n");
-	for (int i = 0; i < new_tokens3.size(); i++)
-	{
-		printf("Token:");
-		printf(new_tokens3[i].mText.c_str());
-		printf("=");
-		printf(TokenToString(new_tokens3[i].mType).c_str());
-		printf("\n");
-		
-	}
+
+
 
 	return tok_stream;
 

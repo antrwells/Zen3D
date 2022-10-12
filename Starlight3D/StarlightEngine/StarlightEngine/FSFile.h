@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <mutex>
 
 enum ResourceType {
 
@@ -17,6 +18,7 @@ public:
 	void* GetResource();
 	std::string GetName();
 	bool Loaded();
+	std::mutex lock;
 
 
 private:

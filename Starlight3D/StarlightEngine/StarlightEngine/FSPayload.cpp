@@ -41,6 +41,7 @@ void th_load(FSPayload* pl) {
 		//printf("Loading Resource:");
 	//	printf(res->GetName().c_str());
 	//	printf("\n");
+	
 		res->Load();
 	//	printf("Loaded Resource");
 

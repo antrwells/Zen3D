@@ -332,7 +332,7 @@ void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r,
 		info->a = a;
         info->flip_uv = flip_uv;
 
-        drawZ -= 0.005f;
+        drawZ -= 0.002f;
 
 		list->Draws.push_back(info);
 

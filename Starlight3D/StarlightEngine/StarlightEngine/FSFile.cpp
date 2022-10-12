@@ -2,6 +2,7 @@
 #include "FSFile.h"
 #include "Texture2D.h"
 #include "TextureCube.h"
+#include "Importer.h"
 
 FSResource::FSResource(std::string name, std::string path,ResourceType type) {
 
@@ -14,6 +15,7 @@ FSResource::FSResource(std::string name, std::string path,ResourceType type) {
 void FSResource::Load() {
 
 	if (mLoaded) return;
+	lock.lock();
 	switch (mType) {
 	case ResourceType::TextureFlat:
 	{
@@ -24,7 +26,18 @@ void FSResource::Load() {
 
 	}
 	break;
+	case ResourceType::ModelProp:
+	{
+		auto imp = new Importer;
+		
+		auto model = imp->ImportAI(mPath.c_str());
+
+		mResource = (void*)model;
+
 	}
+		break;
+	}
+	lock.unlock();
 	mLoaded = true;
 }
 
@@ -42,6 +55,11 @@ std::string FSResource::GetName() {
 
 bool FSResource::Loaded() {
 
-	return mLoaded;
+	lock.lock();
+
+	bool r = mLoaded;
+
+	lock.unlock();
+	return r;
 
 }

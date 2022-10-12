@@ -30,10 +30,10 @@ void ZenUI::MainNodeEditor() {
 			//ImGui::Text(mSelectedNode->GetName());
 
 			ImGui::BeginChild(55);
-			
-			char* buf = (char*) malloc(512);
+
+			char* buf = (char*)malloc(512);
 			auto name = mSelectedNode->GetName();
-			
+
 			for (int i = 0; i < 512; i++) {
 
 				int ch = name[i];
@@ -55,14 +55,14 @@ void ZenUI::MainNodeEditor() {
 				free(buf);
 			}
 
-			
+
 			auto pos = mSelectedNode->GetPosition();
 			float posf[3];
 			posf[0] = pos.x;
 			posf[1] = pos.y;
 			posf[2] = pos.z;
 
-			if (ImGui::DragFloat3("Position", posf,0.1f)) {
+			if (ImGui::DragFloat3("Position", posf, 0.1f)) {
 				mSelectedNode->SetPosition(float3(posf[0], posf[1], posf[2]));
 			}
 
@@ -73,7 +73,7 @@ void ZenUI::MainNodeEditor() {
 			scalf[1] = scal.y;
 			scalf[2] = scal.z;
 
-			if (ImGui::DragFloat3("Scale", scalf,0.02f)) {
+			if (ImGui::DragFloat3("Scale", scalf, 0.02f)) {
 				mSelectedNode->SetScale(float3(scalf[0], scalf[1], scalf[2]));
 			}
 
@@ -81,14 +81,14 @@ void ZenUI::MainNodeEditor() {
 			{
 
 				auto light = (NodeLight*)mSelectedNode;
-				
+
 				float lr = light->GetRange();
 
 				if (ImGui::DragFloat("Range", &lr))
 				{
 					light->SetRange(lr);
 				}
-				
+
 				float c_diff[3];
 				c_diff[0] = light->GetDiffuse().x;
 				c_diff[1] = light->GetDiffuse().y;
@@ -134,7 +134,7 @@ void ZenUI::MainNodeEditor() {
 							var->SetInt(iv);
 						}
 					}
-						break;
+					break;
 					case 1:
 					{
 						float fv = var->GetFloatVal();
@@ -144,7 +144,7 @@ void ZenUI::MainNodeEditor() {
 						}
 
 					}
-						break;
+					break;
 					case 2: {
 
 						char* sbuf = (char*)malloc(512);
@@ -191,7 +191,7 @@ void ZenUI::MainNodeEditor() {
 						int bb = 5;
 						auto i_cls = var->GetClassVal();
 						auto c_name = i_cls->GetBaseName();
-						
+
 						if (c_name == "Vec3")
 						{
 
@@ -209,7 +209,7 @@ void ZenUI::MainNodeEditor() {
 
 
 					}
-						break;
+					break;
 					}
 
 				}
@@ -284,13 +284,84 @@ void ZenUI::MainNodeEditor() {
 						break;
 
 					}
-				
+
 
 				}
 
 
 			}
 			*/
+
+
+			//Material
+
+			if (mSelectedNode->GetType() == NodeType::Entity)
+			{
+				auto entity = (NodeEntity*)mSelectedNode;
+
+				auto meshes = entity->GetMeshes();
+
+				for (int m = 0; m < meshes.size(); m++)
+				{
+
+					VString name("Mesh:");
+					name.Add(VString(m));
+
+					ImGui::Text(name.GetConst());
+
+					auto mesh = meshes[m];
+					auto mat = mesh->GetMaterial();
+
+					auto col_map = mat->GetColorMap();
+					auto norm_map = mat->GetNormalMap();
+					auto spec_map = mat->GetSpecularMap();
+
+					ImGui::Image(col_map->GetView(), ImVec2(96, 96));
+					if (ImGui::BeginDragDropTarget()) {
+						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
+						{
+							DirEntry* entry = (DirEntry*)payload->Data;
+
+							mat->SetColorMap(new Texture2D(entry->full.c_str()));
+
+							mDragEntry = nullptr;
+
+						}
+						ImGui::EndDragDropTarget();
+					}
+					ImGui::SameLine();
+					ImGui::Image(norm_map->GetView(), ImVec2(96, 96));
+					if (ImGui::BeginDragDropTarget()) {
+						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
+						{
+							DirEntry* entry = (DirEntry*)payload->Data;
+
+							mat->SetNormalMap(new Texture2D(entry->full.c_str()));
+
+							mDragEntry = nullptr;
+
+						}
+						ImGui::EndDragDropTarget();
+					}
+
+					ImGui::SameLine();
+					ImGui::Image(spec_map->GetView(), ImVec2(96, 96));
+					if (ImGui::BeginDragDropTarget()) {
+						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
+						{
+							DirEntry* entry = (DirEntry*)payload->Data;
+
+							mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
+
+							mDragEntry = nullptr;
+
+						}
+						ImGui::EndDragDropTarget();
+					}
+
+				}
+			
+			}
 			
 			ImGui::EndChild();
 			if (ImGui::BeginDragDropTarget()) {

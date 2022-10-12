@@ -4,6 +4,7 @@
 #include "ScriptHost.h"
 #include "FSPayload.h"
 #include "VString.h"
+#include "Maths.h"
 
 //#include "ZContextVar.h"
 
@@ -187,60 +188,7 @@ void main(in  PSInput  PSIn,
 void Application::CreateResources() {
 
     // Pipeline state object encompasses configuration of all GPU stages
-    //return;
-    GraphicsPipelineStateCreateInfo PSOCreateInfo;
 
-    // Pipeline state name is used by the engine to report issues.
-    // It is always a good idea to give objects descriptive names.
-    PSOCreateInfo.PSODesc.Name = "Simple triangle PSO";
-
-    // This is a graphics pipeline
-    PSOCreateInfo.PSODesc.PipelineType = PIPELINE_TYPE_GRAPHICS;
-
-    // clang-format off
-    // This tutorial will render to a single render target
-    PSOCreateInfo.GraphicsPipeline.NumRenderTargets = 1;
-    // Set render target format which is the format of the swap chain's color buffer
-    PSOCreateInfo.GraphicsPipeline.RTVFormats[0] = m_pSwapChain->GetDesc().ColorBufferFormat;
-    // Use the depth buffer format from the swap chain
-    PSOCreateInfo.GraphicsPipeline.DSVFormat = m_pSwapChain->GetDesc().DepthBufferFormat;
-    // Primitive topology defines what kind of primitives will be rendered by this pipeline state
-    PSOCreateInfo.GraphicsPipeline.PrimitiveTopology = PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
-    // No back face culling for this tutorial
-    PSOCreateInfo.GraphicsPipeline.RasterizerDesc.CullMode = CULL_MODE_NONE;
-    // Disable depth testing
-    PSOCreateInfo.GraphicsPipeline.DepthStencilDesc.DepthEnable = False;
-    // clang-format on
-
-    ShaderCreateInfo ShaderCI;
-    // Tell the system that the shader source code is in HLSL.
-    // For OpenGL, the engine will convert this into GLSL under the hood
-    ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
-    // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
-    // Create a vertex shader
-    RefCntAutoPtr<IShader> pVS;
-    {
-        ShaderCI.Desc.ShaderType = SHADER_TYPE_VERTEX;
-        ShaderCI.EntryPoint = "main";
-        ShaderCI.Desc.Name = "Triangle vertex shader";
-        ShaderCI.Source = VSSource;
-        m_pDevice->CreateShader(ShaderCI, &pVS);
-    }
-
-    // Create a pixel shader
-    RefCntAutoPtr<IShader> pPS;
-    {
-        ShaderCI.Desc.ShaderType = SHADER_TYPE_PIXEL;
-        ShaderCI.EntryPoint = "main";
-        ShaderCI.Desc.Name = "Triangle pixel shader";
-        ShaderCI.Source = PSSource;
-        m_pDevice->CreateShader(ShaderCI, &pPS);
-    }
-
-    // Finally, create the pipeline state
-    PSOCreateInfo.pVS = pVS;
-    PSOCreateInfo.pPS = pPS;
  //  m_pDevice->CreateGraphicsPipelineState(PSOCreateInfo, &m_pPSO);
 
    
@@ -388,6 +336,8 @@ void Application::CrWindow(const char* title, int width, int height, int hint) {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     }
     glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+
+
     m_Window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (m_Window == nullptr)
     {
@@ -434,10 +384,13 @@ void Application::Run() {
     int splash_start = clock();
     
     auto splash_tex = new Texture2D("edit/splash1.png");
+    auto white_tex = new Texture2D("edit/white.png");
     auto draw = new SmartDraw(this);
     auto font = new kFont("data/fonts/aqua.pf");
 
     SetPayload();
+
+    float cl = 1.0f;
 
     while (true) {
 
@@ -568,7 +521,45 @@ void Application::Run() {
 
             font->drawText(load.c_str(), 20, 20, 1, 1, 1, 1, draw);
             
+            float cx, cy;
+            float com = mCurrentPayload->LoadedPercent();
+            
+            cx = 565;
+            cy = 330;
 
+            int size = 25;
+
+            cl = cl - 0.01f;
+            if (cl < 0.f)
+            {
+                cl = 1.0f+cl;
+            }
+
+            for (int a = 0; a < 360; a+=20) {
+
+                float dx, dy;
+                dx = cx +  cos(Maths::Deg2Rad((float)a)) * size;
+                dy = cy + sin(Maths::Deg2Rad((float)a)) * size;
+
+                float cv = 1.0f;
+
+                cv = ((float)a) / 360.0f;
+                cv = 1.0 - cv;
+
+                cv = cv - cl;
+
+                if (cv < 0.0f) {
+                    cv = 1.0 + cv;
+                }
+                //cv = 0.4;
+             
+                cv = 1.0 - cv;
+                draw->DrawTexture(dx-2, dy-2,5,5, white_tex, 0, cv, cv, cv*2, false);
+                //printf("A:%d\n", a);
+                //printf("CV:%f\n", cv);
+            }
+
+            int bb = 5;
             auto cp = mCurrentPayload;
 
             float lp = mCurrentPayload->LoadedPercent();

@@ -15,7 +15,10 @@ void ZenUI::MainContentBrowser() {
 		ImGui::SetNextWindowPos(mContentBrowserPos);
 		ImGui::SetNextWindowSize(mContentBrowserSize);
 		mCBF = true;
+		
 	}
+	ImGuiIO& io = ImGui::GetIO();
+
 
 	int flags = ImGuiWindowFlags_MenuBar;
 
@@ -50,9 +53,9 @@ void ZenUI::MainContentBrowser() {
 				ImGui::Text(entry.name.c_str());
 				cx = cx + 120;
 				VString item_name = VString(entry.name.c_str());
-				if (item_name.Len() > 8)
+				if (item_name.Len() > 14)
 				{
-					item_name = item_name.SubString(0, 8);
+					item_name = item_name.SubString(0, 14);
 				}
 				ImGui::Text(item_name.GetConst());
 				ImGui::PopID();
@@ -131,11 +134,24 @@ void ZenUI::MainContentBrowser() {
 				
 				ImGui::SetCursorPos(ImVec2(cx + 5, cy + 62));
 				VString item_name = VString(entry.name.c_str());
-				if (item_name.Len() > 8)
+				if (item_name.Len() > 14)
 				{
-					item_name = item_name.SubString(0, 8);
+					item_name = item_name.SubString(0, 14);
 				}
+
+				
 				ImGui::Text(item_name.GetConst());
+				ImGui::SetCursorPos(ImVec2(cx -28, cy + 6));
+				ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 255, 255));
+				//ImGui::InputText("##text1", txt_green, sizeof(txt_green));
+
+				
+
+				//ImGui::PushFont(bigFont);
+
+				ImGui::Text(entry.ext.c_str());
+				//ImGui::PopFont();
+				ImGui::PopStyleColor();
 				ImGui::PopID();
 				id++;
 				cx = cx + 120;

@@ -59,7 +59,7 @@ void RenderTarget2D::Bind() {
 	BoundTarget = this;
 	const float ClearColor[] = { mClearColor.x,mClearColor.y,mClearColor.z, 1.0f };
 	Application* gApp = Application::GetApp();
-
+	gApp->SetFrame(mWidth, mHeight);
 	auto m_pImmediateContext = gApp->GetContext();
 	m_pImmediateContext->SetRenderTargets(1, &RenderTarget2D::BoundTarget->GetColorView(), RenderTarget2D::BoundTarget->GetDepthView(), RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 	m_pImmediateContext->ClearRenderTarget(RenderTarget2D::BoundTarget->GetColorView(), ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
@@ -71,7 +71,7 @@ void RenderTarget2D::Release() {
 
 	BoundTarget = nullptr;
 	Application* gApp = Application::GetApp();
-
+	gApp->SetFrame(-1, -1);
 	auto m_pImmediateContext = gApp->GetContext();
 	auto* pRTV = gApp->GetSwap()->GetCurrentBackBufferRTV();
 	// Clear the default render target

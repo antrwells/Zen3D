@@ -11,7 +11,7 @@ public:
 
 	PostProcessing(SceneGraph* graph);
 	void AddPostProcess(PostProcess* pp);
-
+	void PreRender();
 	void Render();
 
 private:

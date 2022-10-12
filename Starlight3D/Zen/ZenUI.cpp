@@ -122,8 +122,14 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 	mSprLight = (Texture2D*)pUI->GetResource("LightIcon");//  new Texture2D("edit/sprites/light1.png", true);
 
+	mPP = new PostProcessing(mGraph);
+	mPPBloom = new PPBloom();
+	mPP->AddPostProcess(mPPBloom);
 
 	ScanContent("c:/ZenContent/");
+
+	//ImFont* font1 = io.Fonts->AddFontDefault();
+	
 
 }
 
@@ -169,6 +175,8 @@ void ZenUI::MainWindow() {
 
 	MainNodeEditor();
 
+	PostProcessWindow();
+
 
 
 }
@@ -193,6 +201,15 @@ void ZenUI::MainMenu() {
 			{
 				exit(1);
 			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Renderer"))
+		{
+			if (ImGui::MenuItem("Post Processing"))
+			{
+				mPostProcessOpen = true;
+			}
+
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

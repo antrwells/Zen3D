@@ -316,7 +316,8 @@ void ZenUI::MainNodeEditor() {
 					auto norm_map = mat->GetNormalMap();
 					auto spec_map = mat->GetSpecularMap();
 
-					ImGui::Image(col_map->GetView(), ImVec2(96, 96));
+					ImGui::Text("Color"); ImGui::SameLine();
+					ImGui::Image(col_map->GetView(), ImVec2(64, 64));
 					if (ImGui::BeginDragDropTarget()) {
 						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
 						{
@@ -330,7 +331,8 @@ void ZenUI::MainNodeEditor() {
 						ImGui::EndDragDropTarget();
 					}
 					ImGui::SameLine();
-					ImGui::Image(norm_map->GetView(), ImVec2(96, 96));
+					ImGui::Text("Normal"); ImGui::SameLine();
+					ImGui::Image(norm_map->GetView(), ImVec2(64, 64));
 					if (ImGui::BeginDragDropTarget()) {
 						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
 						{
@@ -345,7 +347,8 @@ void ZenUI::MainNodeEditor() {
 					}
 
 					ImGui::SameLine();
-					ImGui::Image(spec_map->GetView(), ImVec2(96, 96));
+					ImGui::Text("Specular"); ImGui::SameLine();
+					ImGui::Image(spec_map->GetView(), ImVec2(64, 64));
 					if (ImGui::BeginDragDropTarget()) {
 						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
 						{

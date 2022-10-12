@@ -15,9 +15,8 @@ void PostProcessing::AddPostProcess(PostProcess* pp)
 
 }
 
-void PostProcessing::Render() {
-
-	for (int i = 0;i < mProcesses.size();i++) {
+void PostProcessing::PreRender() {
+	for (int i = 0; i < mProcesses.size(); i++) {
 
 		auto pp = mProcesses[i];
 		pp->GenerateFrames();
@@ -26,6 +25,19 @@ void PostProcessing::Render() {
 
 		//pp->Draw(pp->GetFrame(0)->GetTarget());
 
+
+	}
+
+}
+
+void PostProcessing::Render() {
+
+	for (int i = 0; i < mProcesses.size(); i++)
+	{
+
+		auto pp = mProcesses[i];
+
+		pp->Render();
 
 	}
 

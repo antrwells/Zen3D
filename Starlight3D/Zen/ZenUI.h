@@ -7,6 +7,8 @@
 #include "VFile.h"
 #include "DirCollection.h"
 #include "FSPayload.h"
+#include "PostProcessing.h"
+#include "PPBloom.h"
 class RayPicker;
 
 //class DirCollection;
@@ -52,6 +54,10 @@ public:
 	void ScanContent(std::string path);
 
 
+	//Menu/Optional
+	void PostProcessWindow();
+
+
 	int GetWidth() {
 		
 		return Application::GetApp()->GetWidth();
@@ -77,6 +83,17 @@ public:
 	void BeginPlay();
 	void EndPlay();
 
+	//fonts
+	void CheckFont() {
+		ImGuiIO& io = ImGui::GetIO();
+		if (bigFont == nullptr) {
+
+		//	bigFont = io.Fonts->AddFontFromFileTTF("edit/fonts/bigfont.ttf", 32.0f);
+
+		}
+
+	}
+
 private:
 
 
@@ -86,6 +103,10 @@ private:
 	bool mSceneViewOpen = true;
 	bool mContentBrowserOpen = true;
 	bool mNodeEditorOpen = true;
+	//Renderer
+	bool mPostProcessOpen = false;
+	bool mPPFirst = true;
+	bool mPPOn = false;
 
 	//Raw Data
 	SceneGraph* mGraph;
@@ -139,6 +160,10 @@ private:
 	bool first_render = true;
 	GizmoSpace mGizmoSpace;
 
+	//PP
+	PostProcessing* mPP = nullptr;
+	PPBloom* mPPBloom = nullptr;
+
 	//Content Browser
 	ImVec2 mContentBrowserPos;
 	ImVec2 mContentBrowserSize;
@@ -176,6 +201,10 @@ private:
 
 	//Payloads
 	FSPayload* pUI;
+
+
+	//Fonts
+	ImFont* bigFont = nullptr;
 
 
 };

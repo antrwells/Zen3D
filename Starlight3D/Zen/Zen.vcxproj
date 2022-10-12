@@ -136,6 +136,7 @@
     <ClCompile Include="ContentBrowser.cpp" />
     <ClCompile Include="NodeEditor.cpp" />
     <ClCompile Include="PlayRelated.cpp" />
+    <ClCompile Include="PostProcessWindow.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="Viewport.cpp" />
     <ClCompile Include="Zen.cpp" />

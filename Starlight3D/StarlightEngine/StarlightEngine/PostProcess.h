@@ -25,6 +25,8 @@ public:
 	RenderTarget2D* GetTarget(int index) {
 		return mTargets[index];
 	}
+	virtual void Render() {};
+
 private:
 	
 	std::vector<PPFrameType*> mFrames;

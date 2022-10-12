@@ -139,6 +139,7 @@ void AppZen::RenderApp() {
 	dy = Application::GetInput()->GetMouseDY();
 	
 	if (ui_started) {
+		zUI->CheckFont();
 		zUI->RenderUI();
 	}
 	//zUI->RenderUI();

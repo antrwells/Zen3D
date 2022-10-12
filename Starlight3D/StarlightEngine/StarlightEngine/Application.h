@@ -207,11 +207,24 @@ public:
     }
 
     int GetWidth() {
+        if (frameWidth != -1)
+        {
+            return frameWidth;
+        }
         return winWidth;
     }
 
     int GetHeight() {
+        if (frameHeight != -1)
+        {
+            return frameHeight;
+        }
         return winHeight;
+    }
+
+    void SetFrame(int w, int h) {
+        frameWidth = w;
+        frameHeight = h;
     }
 
     static RefCntAutoPtr<IRenderDevice> GetDev() {
@@ -262,6 +275,7 @@ private:
     RefCntAutoPtr<IEngineFactory> m_pEngFac;
     RENDER_DEVICE_TYPE            m_DeviceType = RENDER_DEVICE_TYPE_D3D12;
     int winWidth, winHeight;
+    int frameWidth=-1, frameHeight=-1;
     GLFWwindow* m_Window = nullptr;
 
     int mMouseX, mMouseY;

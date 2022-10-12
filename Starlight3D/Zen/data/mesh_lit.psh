@@ -111,7 +111,8 @@ void main(in  PSInput  PSIn,
 
 
     float spec = pow(max(dot(tNormal,halfwayDir),0.0),32.0);
-
+    
+    spec = spec * dis;
 
     dis = dis * diff;
 

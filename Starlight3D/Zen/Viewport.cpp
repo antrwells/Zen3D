@@ -298,9 +298,18 @@ void ZenUI::MainViewPort() {
 			cam_interact = false;
 		}
 
+		if (mPPOn) {
+			mPP->PreRender();
+		}
 		mGraph->RenderShadowMaps();
 		mRenderTarget->Bind();
-		mGraph->Render();
+		//mGraph->Render();
+		if (mPPOn) {
+			mPP->Render();
+		}
+		else {
+			mGraph->Render();
+		}
 		mRenderTarget->ClearDepth();
 		auto cam = mGraph->GetCamera();
 	//	cam->SetViewport(0, 0, win_size.x, win_size.y);

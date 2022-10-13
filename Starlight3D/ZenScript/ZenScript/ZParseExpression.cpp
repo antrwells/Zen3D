@@ -141,6 +141,51 @@ ZScriptNode* ZParseExpression::Parse() {
 			break;
 		case TokenType::TokenIdent:
 		{
+
+			ele.mType = EVar;
+			ele.mValName[0] = token.mText;
+		
+			if (mStream->PeekToken(0).mType == TokenType::TokenPeriod) {
+
+				mStream->NextToken();
+				ele.mValName[1] = mStream->NextToken().mText;
+				if (mStream->PeekToken(0).mType == TokenType::TokenLeftPara)
+				{
+					mStream->Back();
+					mStream->Back();
+					mStream->Back();
+					auto parse_classstate = new ZParseClassStatement(mStream);
+					auto classstate_node = (ZClassStatementNode*)parse_classstate->Parse();
+					ele.mClassStatement = classstate_node;
+					ele.mType = EClassStatement;
+					int yes = 1;
+				}
+
+			}
+			else {
+
+				auto vt = mStream->PeekToken(0);
+				if (vt.mType == TokenType::TokenLeftPara) {
+
+					mStream->Back();
+					auto parse_state = new ZParseStatement(mStream);
+					auto state_node = (ZStatementNode*)parse_state->Parse();
+					ele.mStatement = state_node;
+					ele.mType = EStatement;
+
+
+				}
+				int aa = 5;
+
+			}
+
+			expr.mElements.push_back(ele);
+
+			//Error("tokenident");
+
+			int av = 5;
+
+			/*
 			int nid = 0;
 			ele.mType = ExprElementType::EVar;
 			ele.mValName[nid] = token.mText;
@@ -216,6 +261,7 @@ ZScriptNode* ZParseExpression::Parse() {
 				int bb = 5;
 			}
 			expr.mElements.push_back(ele);
+			*/
 		}
 
 		break;

@@ -1,10 +1,16 @@
-class other
+static class other
 
-    float mo = 5
+    int mo = 5.5
 
     method void other()
     
     end
+
+    method float check()
+
+        printf("Called")
+
+    end 
 
 end 
 
@@ -13,11 +19,19 @@ class testClass
     CObj node
 
 
+    method float next()
+
+        return 500
+
+    end 
+
     method void testClass(CObj cin)
 
-        other tes = new other()
+        float nope = 250
 
-        printf("Testing!",tes.mo)
+        other.check()
+
+        printf("Testing!",other.mo)
 
 
     end 

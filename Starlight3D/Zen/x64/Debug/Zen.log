@@ -1,6 +1,1 @@
-﻿  ZNotification.cpp
-C:\projects\Starlight3D\Zen\ZNotification.h(12,22): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZNotification.h(13,22): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen\ZNotification.cpp(7,41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen\ZNotification.cpp(8,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Zen.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Zen.exe
+﻿  Zen.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Zen.exe

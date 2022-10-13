@@ -23,7 +23,100 @@ ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
 
 
 }
+CodeType ZParseCodeBody::PredictType() {
 
+	int peek_val = 0;
+	bool decvar = false;
+
+	while (!mStream->EOS())
+	{
+
+		auto token = mStream->PeekToken(peek_val);
+		if (token.mText == "Vec3")
+		{
+			int vv = 2;
+		}
+		int ee = 1;
+
+		switch (token.mType) {
+		case TokenType::TokenInc:
+			return CodeType::CodeInc;
+			break;
+		case TokenType::TokenDec:
+			return CodeType::CodeDec;
+			break;
+		case TokenType::TokenParseStop:
+			return CodeType::CodeParseStop;
+			break;
+		case TokenType::TokenDebugStop:
+			return CodeType::CodeDebug;
+			break;
+		case TokenType::TokenWhile:
+			return CodeType::CodeWhile;
+		case TokenType::TokenReturn:
+			return CodeType::CodeReturn;
+		case TokenType::TokenFor:
+			return CodeType::CodeFor;
+
+			break;
+		case TokenType::TokenIf:
+
+			return CodeType::CodeIf;
+
+		case TokenType::TokenPeriod:
+
+			if (mStream->FindInLine(TokenType::TokenLeftPara, peek_val))
+			{
+				if (mStream->Before(TokenType::TokenEquals, TokenType::TokenLeftPara)) {
+
+					return CodeType::CodeAssign;
+
+				}
+				return CodeType::ClassStatement;
+			}
+			break;
+		case TokenType::TokenIdent:
+
+
+			break;
+
+		case TokenType::TokenString:
+		case TokenType::TokenInt:
+		case TokenType::TokenFloat:
+			return CodeType::CodeDeclareVars;
+			break;
+
+		case TokenType::TokenLeftPara:
+
+			return CodeType::CodeStatement;
+
+			break;
+		case TokenType::TokenEnd:
+		case TokenType::TokenElse:
+		case TokenType::TokenElseIf:
+
+			return CodeType::CodeEnd;
+
+			break;
+		case TokenType::TokenEquals:
+
+			return CodeType::CodeAssign;
+
+			break;
+		}
+
+		peek_val++;
+
+	}
+
+	int aa = 5;
+
+	return CodeType::CodeUnknown;
+
+
+}
+
+/*
 CodeType ZParseCodeBody::PredictType() {
 
 	//auto token = mStream->NextToken();
@@ -147,6 +240,7 @@ CodeType ZParseCodeBody::PredictType() {
 	return CodeType::CodeUnknown;
 
 }
+*/
 
 ZScriptNode* ZParseCodeBody::Parse() {
 

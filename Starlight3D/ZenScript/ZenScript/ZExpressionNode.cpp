@@ -375,6 +375,9 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
                     {
                         depth++;
                     }
+                    else {
+                        break;
+                    }
                 }
 
                 if (depth > 1)

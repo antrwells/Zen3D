@@ -48,6 +48,24 @@ public:
 	{
 		return mTokens[id];
 	}
+	bool Before(TokenType t1, TokenType t2) {
+
+		int peek = 0;
+		while(true)
+		{ 
+			auto tok = PeekToken(peek);
+			if (tok.mType == t1)
+			{
+				return true;
+			}
+			if (tok.mType == t2) {
+				return false;
+			}
+			peek++;
+		}
+		return true;
+
+	}
 private:
 	std::vector<Token> mTokens;
 	int mTokenIndex = 0;

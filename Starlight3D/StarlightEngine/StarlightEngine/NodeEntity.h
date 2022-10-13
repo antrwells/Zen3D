@@ -112,6 +112,58 @@
         PhysicsBody* GetBody() {
             return mBody;
         }
+
+        void ReadNode(VFile* file, bool read_type)
+        {
+            
+            if (read_type) {
+                mType = (NodeType)file->ReadInt();
+            }
+            mName = file->ReadString();
+            ReadTransform(file);
+
+            int meshes = file->ReadInt();
+
+            for (int i = 0; i < meshes; i++) {
+
+                Mesh3D* new_mesh = new Mesh3D();
+                new_mesh->ReadMesh(file);
+                mMeshes.push_back(new_mesh);
+                new_mesh->SetOwner(this);
+            }
+
+            int cc = file->ReadInt();
+            for (int i = 0; i < cc; i++) {
+
+           //     NodeType mt = (NodeType)file->ReadInt();
+                Node3D* new_node = (Node3D*)new NodeEntity;
+                new_node->ReadNode(file, true);
+                AddNode(new_node);
+            }
+        }
+
+        void WriteNode(VFile* file) {
+
+            file->WriteInt((int)mType);
+            file->WriteString(mName);
+            WriteTransform(file);
+
+            file->WriteInt(mMeshes.size());
+            for (int i = 0; i < mMeshes.size(); i++) {
+
+                mMeshes[i]->WriteMesh(file);
+
+            }
+
+            file->WriteInt(mChildren.size());
+            for (int i = 0; i < mChildren.size(); i++) {
+
+                mChildren[i]->WriteNode(file);
+
+            }
+
+        }
+
     protected:
 
 

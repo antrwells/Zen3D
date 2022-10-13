@@ -18,6 +18,9 @@ public:
 	void* GetResource();
 	std::string GetName();
 	bool Loaded();
+	std::string GetPath() {
+		return mPath;
+	}
 	std::mutex lock;
 
 

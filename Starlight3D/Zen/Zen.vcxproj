@@ -134,10 +134,13 @@
   <ItemGroup>
     <ClCompile Include="AppZen.cpp" />
     <ClCompile Include="ContentBrowser.cpp" />
+    <ClCompile Include="Loading.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NodeEditor.cpp" />
     <ClCompile Include="Notify.cpp" />
     <ClCompile Include="PlayRelated.cpp" />
     <ClCompile Include="PostProcessWindow.cpp" />
+    <ClCompile Include="Saving.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="Viewport.cpp" />
     <ClCompile Include="Zen.cpp" />

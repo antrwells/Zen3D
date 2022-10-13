@@ -55,8 +55,9 @@ std::string FSResource::GetName() {
 
 bool FSResource::Loaded() {
 
-	lock.lock();
 
+	lock.lock();
+	
 	bool r = mLoaded;
 
 	lock.unlock();

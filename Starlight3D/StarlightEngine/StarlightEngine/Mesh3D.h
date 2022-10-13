@@ -20,7 +20,7 @@
 //#include "glad/glad.h"
 #include "Material.h"
 
-
+#include "VFile.h"
 class Node3D;
 	/// <summary>
 	/// A mesh3D is used to define a three dimensional mesh, often used by NodeEntity's to create the overall 3D scene.
@@ -243,6 +243,75 @@ class Node3D;
 		const char* GetName() {
 
 			return mName;
+
+		}
+		void ReadMesh(VFile* file)
+		{
+			int vc = file->ReadInt();
+			for (int i = 0; i < vc; i++)
+			{
+				Vertex vert;
+				vert.position = file->ReadVec3();
+				vert.normal = file->ReadVec3();
+				vert.bi_normal = file->ReadVec3();
+				vert.tangent = file->ReadVec3();
+				vert.texture_coord = file->ReadVec3();
+				mVertices.push_back(vert);
+			}
+			int tc = file->ReadInt();
+			for (int i = 0; i < tc; i++)
+			{
+				Tri t;
+				t.v0 = file->ReadInt();
+				t.v1 = file->ReadInt();
+				t.v2 = file->ReadInt();
+				mTris.push_back(t);
+			}
+
+			mMaterial = new Material;
+
+			mMaterial->SetColorMap(new Texture2D(file->ReadString()));
+			mMaterial->SetNormalMap(new Texture2D(file->ReadString()));
+			
+			MakeDoubleSided();
+			CreateBuffers();
+
+		}
+		void WriteMesh(VFile* file)
+		{
+
+			file->WriteInt(mVertices.size());
+			for (int i = 0; i < mVertices.size(); i++) {
+				auto v = mVertices[i];
+				file->WriteVec3(v.position);
+				file->WriteVec3(v.normal);
+				file->WriteVec3(v.bi_normal);
+				file->WriteVec3(v.tangent);
+				file->WriteVec3(v.texture_coord);
+
+			}
+
+			file->WriteInt(mTris.size());
+			for (int i = 0; i < mTris.size(); i++) {
+
+				auto t = mTris[i];
+
+				file->WriteInt(t.v0);
+				file->WriteInt(t.v1);
+				file->WriteInt(t.v2);
+
+			}
+
+			auto mat = mMaterial;
+
+			auto c_path = mat->GetColorMap()->GetPath();
+			auto n_path = mat->GetNormalMap()->GetPath();
+
+			file->WriteString(c_path.c_str());
+			file->WriteString(n_path.c_str());
+
+
+
 
 		}
 

@@ -71,6 +71,19 @@ void* FSPayload::GetResource(std::string name) {
 
 }
 
+FSResource* FSPayload::GetResourceObj(std::string name) {
+
+	for (int i = 0; i < mResources.size(); i++)
+	{
+		auto res = mResources[i];
+		if (name == res->GetName()) {
+
+			return res;
+		}
+	}
+	return nullptr;
+}
+
 std::vector<FSResource*> FSPayload::GetResources() {
 
 	return mResources;

@@ -36,7 +36,15 @@ void ZenUI::SceneTree(Node3D* node)
 		flag |= ImGuiTreeNodeFlags_Selected;
 	}
 
-	if (ImGui::TreeNodeEx(node->GetName(), flag)) {
+	std::string name = std::string(node->GetName());
+
+	if (name.size() < 1)
+	{
+		name = "NO_NAME";
+	}
+
+
+	if (ImGui::TreeNodeEx(name.c_str(), flag)) {
 
 
 		if (ImGui::IsItemClicked()) {

@@ -41,6 +41,7 @@ bool ZNotification::Update() {
 		mY = mY + 5;
 		if(mY>Application::GetApp()->GetHeight()+80)
 		{
+			mDone = true;
 			return true;
 		}
 

@@ -525,9 +525,9 @@ void Application::Run() {
             float com = mCurrentPayload->LoadedPercent();
             
             cx = 565;
-            cy = 330;
+            cy = 315;
 
-            int size = 25;
+            int size = 35;
 
             cl = cl - 0.01f;
             if (cl < 0.f)
@@ -554,7 +554,7 @@ void Application::Run() {
                 //cv = 0.4;
              
                 cv = 1.0 - cv;
-                draw->DrawTexture(dx-2, dy-2,5,5, white_tex, 0, cv, cv, cv*2, false);
+                draw->DrawTexture(dx-5, dy-5,11,11, white_tex, 0, cv, cv, cv, false);
                 //printf("A:%d\n", a);
                 //printf("CV:%f\n", cv);
             }

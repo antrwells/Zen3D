@@ -20,7 +20,7 @@ Texture2D::Texture2D(const char* path,bool alpha) {
    //  Get shader resource view from the texture
    m_TextureSRV = Tex->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
    Texture = Tex;
-
+   mPath = std::string(path);
 
 }
 

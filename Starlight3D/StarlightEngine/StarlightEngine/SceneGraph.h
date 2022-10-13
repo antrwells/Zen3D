@@ -225,6 +225,14 @@ class CubeRenderer;
 		void BeginPlay();
 		void EndPlay();
 
+		void SetRoot(Node3D* node) {
+			mRootNode = node;
+		}
+		void Reset() {
+			mLights.resize(0);
+			
+		}
+
 	private:
 	
 		std::vector<Node3D*> mRTNodes;

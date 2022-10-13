@@ -8,9 +8,10 @@
 
 #include "NodeProperty.h"
 #include "Common/interface/BasicMath.hpp"
+#include "VFile.h"
 
 class ScriptObject;
-
+class NodeEntity;
 using namespace Diligent;
 
 enum NodeType {
@@ -352,10 +353,74 @@ enum NodeType {
 		std::vector<ScriptObject*> GetScripts() {
 			return mScriptObjs;
 		}
-
+		void SetFilePath(std::string path)
+		{
+			mPath = path;
+		}
+		std::string GetFilePath() {
+			return mPath;
+		}
 		void BeginNode();
 		void EndNode();
 		void AddSystemFunctions();
+		void WriteTransform(VFile* file) {
+
+			file->WriteVec3(mPosition);
+			file->WriteVec3(mScale);
+			file->WriteMatrix(mRotation);
+
+		}
+		void ReadTransform(VFile* file) {
+
+			mPosition = file->ReadVec3();
+			mScale = file->ReadVec3();
+			mRotation = file->ReadMatrix();
+
+		}
+		virtual void ReadNode(VFile* file,bool read_type = true) {
+
+
+			/*
+			if (read_type) {
+				mType = (NodeType)file->ReadInt();
+			}
+			mName = file->ReadString();
+			ReadTransform(file);
+			int cc = file->ReadInt();
+			for (int i = 0; i < cc; i++) {
+
+				NodeType mt = (NodeType)file->ReadInt();
+				Node3D* new_node;
+				if (mt == NodeType::Node) {
+					new_node = new Node3D;
+				}
+				else if (mt == NodeType::Entity) {
+					new_node = (Node3D*)new NodeEntity;
+				}
+				new_node->ReadNode(file,false);
+				AddNode(new_node);
+
+			}
+			*/
+		}
+		virtual void WriteNode(VFile* file) {
+
+			file->WriteInt((int)mType);
+			file->WriteString(mName);
+			WriteTransform(file);
+
+			file->WriteInt(0);
+
+			file->WriteInt(mChildren.size());
+			for (int i = 0; i < mChildren.size(); i++) {
+
+				mChildren[i]->WriteNode(file);
+
+			}
+
+
+		}
+
 	protected:
 		static bool mSysInit;
 		bool mTransformInvalidated = true;
@@ -363,6 +428,7 @@ enum NodeType {
 		bool mQueueForRemove = false;
 
 		Node3D* mRootNode = nullptr;
+		std::string mPath = "None";
 
 		/// <summary>
 		/// Children of this node.

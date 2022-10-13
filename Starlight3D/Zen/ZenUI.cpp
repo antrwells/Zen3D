@@ -7,9 +7,18 @@
 #include "VString.h"
 #include "VFile.h"
 
+
+ZenUI* ZenUI::mUI = nullptr;
+
+SceneGraph* ZenUI::GetGraph() {
+
+	return mGraph;
+
+}
+
 void ZenUI::CreateUI(SceneGraph* graph) {
 	//set up theme
-
+	mUI = this;
 	ImGuiStyle& style = ImGui::GetStyle();
 	ImGuiIO& io = ImGui::GetIO();
 
@@ -179,48 +188,20 @@ void ZenUI::MainWindow() {
 
 	PostProcessWindow();
 
+	if (mSaveSceneOpen) {
+
+		SaveSceneDialog();
+
+	}
+
+	LoadingIndicator();
+
 	Notifications();
 
 
 
 }
 
-void ZenUI::MainMenu() {
-	//return;
-
-	if (ImGui::BeginMainMenuBar()) {
-
-		if(ImGui::BeginMenu("Projects"))
-		{
-
-			if (ImGui::MenuItem("Load Project")) {
-
-			}
-			if (ImGui::MenuItem("Save Projects"))
-			{
-
-			}
-
-			if (ImGui::MenuItem("Exit Zen"))
-			{
-				exit(1);
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("Renderer"))
-		{
-			if (ImGui::MenuItem("Post Processing"))
-			{
-				mPostProcessOpen = true;
-			}
-
-			ImGui::EndMenu();
-		}
-		ImGui::EndMainMenuBar();
-	}
-		
-
-}
 
 
 

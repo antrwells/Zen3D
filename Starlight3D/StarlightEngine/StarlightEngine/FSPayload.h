@@ -13,6 +13,7 @@ public:
 	void Load();
 	void LoadThreaded();
 	void* GetResource(std::string name);
+	FSResource* GetResourceObj(std::string name);
 	bool Loaded();
 	std::vector<FSResource*> GetResources();
 	float LoadedPercent();

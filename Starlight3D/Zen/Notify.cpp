@@ -16,8 +16,9 @@ void ZenUI::Notifications() {
 
 	if (mCurrentNotice == nullptr) {
 
-		mCurrentNotice = mNotices[0];
-
+		if (mNotices.size() > 0) {
+			mCurrentNotice = mNotices[0];
+		}
 		
 
 	}
@@ -34,5 +35,11 @@ void ZenUI::Notifications() {
 	ImGui::TextWrapped(mCurrentNotice->GetMsg().c_str());
 
 	ImGui::End();
+
+	if (mCurrentNotice->Done()) {
+
+		mNotices.erase(mNotices.begin());
+		mCurrentNotice = nullptr;
+	}
 
 }

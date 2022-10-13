@@ -27,6 +27,7 @@ public:
 	void WriteBytes(void* data, int length);
 	void WriteBool(bool b);
 	void WriteVec3(float3 v);
+	void WriteMatrix(float4x4 v);
 	float3 ReadVec3();
 	//void WriteVec3(Vec3 v);
 	void WriteLong(long v);
@@ -42,6 +43,8 @@ public:
 	const char* ReadString();
 	long ReadLong();
 	bool ReadBool();
+	
+	float4x4 ReadMatrix();
 	void Close();
 	static long Length(const char * path);
 

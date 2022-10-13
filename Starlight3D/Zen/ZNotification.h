@@ -11,6 +11,9 @@ public:
 	std::string GetMsg() { return mMsg; }
 	int GetX() { return mX; }
 	int GetY() { return mY; }
+	bool Done() {
+		return mDone;
+	}
 private:
 
 	std::string mTitle;
@@ -18,6 +21,7 @@ private:
 	bool mUp = true;
 	bool mWait = false;
 	bool mDown = false;
+	bool mDone = false;
 	//ImVec2 Pos;/
 	float mX, mY;
 };

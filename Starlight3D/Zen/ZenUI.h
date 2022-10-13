@@ -96,8 +96,32 @@ public:
 
 	}
 
+	//Notifications
+
 	void Notify(std::string title, std::string msg);
 	void Notifications();
+
+	// Loading
+	bool LoadPayload(FSPayload* payload, void(*mWhenDone)(FSPayload* pl));
+	float PayloadPercent();
+		void LoadingIndicator();
+
+	//Scene IO
+		void OpenSaveScene()
+		{
+			mSaveSceneOpen = true;
+		}
+
+		void SaveSceneDialog();
+
+		void LoadScene(const char* path);
+		void SaveScene(const char* path);
+
+	//globals
+
+	static ZenUI* mUI;
+
+	SceneGraph* GetGraph();
 
 private:
 
@@ -108,6 +132,7 @@ private:
 	bool mSceneViewOpen = true;
 	bool mContentBrowserOpen = true;
 	bool mNodeEditorOpen = true;
+	bool mSaveSceneOpen = false;
 	//Renderer
 	bool mPostProcessOpen = false;
 	bool mPPFirst = true;
@@ -216,6 +241,15 @@ private:
 
 	std::vector<ZNotification*> mNotices;
 	ZNotification* mCurrentNotice = nullptr;
+
+	//Loading
+	FSPayload* mCurrentPayload = nullptr;
+	void(*mWhenDone)(FSPayload* pl);// mWhenDone;
+
+	//saving
+	char* saveName = nullptr;
+
 };
+
 
 

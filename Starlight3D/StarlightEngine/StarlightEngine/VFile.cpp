@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "VFile.h"
 #include <filesystem>
+#include <memory>
 VFile::VFile(const char* path, FileMode mode) {
 
 	printf("Opening File:");
@@ -23,25 +24,25 @@ VFile::VFile(const char* path, FileMode mode) {
 
 void VFile::WriteInt(int v) {
 
-	ostream.write((char *)&v, 4);
+	ostream.write(reinterpret_cast<char*>(&v), sizeof(int));
 
 }
 
 void VFile::WriteByte(char b) {
 
-	ostream.write(&b, 1);
+	ostream.write(reinterpret_cast<char*>(&b),sizeof(char));
 
 }
 
 void VFile::WriteFloat(float b) {
 
-	ostream.write((char *)&b, 4);
+	ostream.write(reinterpret_cast<char*>(&b),sizeof(float));
 
 }
 
 void VFile::WriteBytes(void* dat, int len)
 {
-	ostream.write((char *)dat, len);
+	ostream.write(reinterpret_cast<char*>(dat), len);
 }
 
 void VFile::WriteString(const char* str) {
@@ -86,7 +87,7 @@ bool VFile::ReadBool()
 int VFile::ReadInt()
 {
 	int r = 0;
-	istream.read((char *)&r, sizeof(int));
+	istream.read(reinterpret_cast<char*>(&r) , sizeof(int));
 	readPos += 4;
 	return r;
 }
@@ -94,7 +95,7 @@ int VFile::ReadInt()
 float VFile::ReadFloat() {
 
 	float r = 0;
-	istream.read((char *)&r, sizeof(float));
+	istream.read(reinterpret_cast<char*>(&r),sizeof(float));
 	readPos += 4;
 	return r;
 }
@@ -103,7 +104,7 @@ float VFile::ReadFloat() {
 char VFile::ReadByte() {
 
 	char r = 0;
-	istream.read(&r, sizeof(char));
+	istream.read(reinterpret_cast<char*>(&r),sizeof(char));
 	readPos += 1;
 	return r;
 
@@ -111,10 +112,10 @@ char VFile::ReadByte() {
 
 void* VFile::ReadBytes(int len) {
 
-	char* r = new char[len];
-	istream.read(r, len);
+	char* r = (char*)malloc(len);
+	istream.read(reinterpret_cast<char*>(r), len);
 	readPos += len;
-	return r;
+	return (void*)r;
 
 }
 
@@ -142,6 +143,63 @@ void VFile::WriteVec3(float3 v) {
 	WriteFloat(v.x);
 	WriteFloat(v.y);
 	WriteFloat(v.z);
+
+}
+
+void VFile::WriteMatrix(float4x4 mat)
+{
+
+	WriteFloat(mat.m00);
+	WriteFloat(mat.m01);
+	WriteFloat(mat.m02);
+	WriteFloat(mat.m03);
+
+	WriteFloat(mat.m10);
+	WriteFloat(mat.m11);
+	WriteFloat(mat.m12);
+	WriteFloat(mat.m13);
+
+	WriteFloat(mat.m20);
+	WriteFloat(mat.m21);
+	WriteFloat(mat.m22);
+	WriteFloat(mat.m23);
+	
+	WriteFloat(mat.m30);
+	WriteFloat(mat.m31);
+	WriteFloat(mat.m32);
+	WriteFloat(mat.m33);
+
+}
+
+
+float4x4 VFile::ReadMatrix() {
+
+	float4x4 mat;
+
+	mat.m00 = ReadFloat();
+	mat.m01 = ReadFloat();
+	mat.m02 = ReadFloat();
+	mat.m03 = ReadFloat();
+
+
+	mat.m10 = ReadFloat();
+	mat.m11 = ReadFloat();
+	mat.m12 = ReadFloat();
+	mat.m13 = ReadFloat();
+
+
+	mat.m20 = ReadFloat();
+	mat.m21 = ReadFloat();
+	mat.m22 = ReadFloat();
+	mat.m23 = ReadFloat();
+
+
+	mat.m30 = ReadFloat();
+	mat.m31 = ReadFloat();
+	mat.m32 = ReadFloat();
+	mat.m33 = ReadFloat();
+
+	return mat;
 
 }
 
@@ -225,7 +283,7 @@ long VFile::Length(const char *file) {
 long VFile::ReadLong() {
 
 	long r = 0;
-	istream.read((char*)&r, sizeof(long));
+	istream.read(reinterpret_cast<char*>(&r),sizeof(long));
 	readPos += sizeof(long);
 	return r;
 
@@ -233,7 +291,7 @@ long VFile::ReadLong() {
 
 void VFile::WriteLong(long v) {
 
-	ostream.write((char*)&v, sizeof(long));
+	ostream.write(reinterpret_cast<char*>(&v), sizeof(long));
 
 }
 

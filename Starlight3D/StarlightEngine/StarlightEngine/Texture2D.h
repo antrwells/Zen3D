@@ -71,12 +71,16 @@ public:
 		return Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
 
 	}
+	std::string GetPath() {
+		return mPath;
+	}
 private:
 
 	RefCntAutoPtr<ITexture> Texture;
 	RefCntAutoPtr<ITextureView>           m_TextureSRV;
 	int mWidth;
 	int mHeight;
+	std::string mPath;
 };
 
 

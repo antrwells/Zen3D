@@ -7,6 +7,22 @@
 #include "VFile.h"
 // Content Browser
 
+void import_modeldone(FSPayload* pl) {
+
+	//if(pl->GetName())
+	auto model = (NodeEntity*)pl->GetResource("Import");
+	
+	auto ares = pl->GetResourceObj("Import");
+
+	model->SetFilePath(ares->GetPath());
+
+	ZenUI::mUI->GetGraph()->AddNode(model);
+
+
+	ZenUI::mUI->Notify("Model imported.", "Imported model succesfully:"+ares->GetPath());
+
+}
+
 void ZenUI::MainContentBrowser() {
 
 	if (!mCBF) {
@@ -97,8 +113,17 @@ void ZenUI::MainContentBrowser() {
 
 					if (entry.ext == "fbx" || entry.ext == "dae")
 					{
+						//FSPayload* pl = new FSPayload("Load model");
+						//pl->AddFile("Import", entry.full.c_str(), ResourceType::ModelProp);
+						//LoadPayload(pl, import_modeldone);
 						auto nn = ImportNode(entry.full.c_str());
 						mGraph->AddNode(nn);
+					}
+					if (entry.ext == "zscene")
+					{
+
+						LoadScene(entry.full.c_str());
+
 					}
 					if (entry.ext == "ch")
 					{

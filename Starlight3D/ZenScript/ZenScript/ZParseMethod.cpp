@@ -6,18 +6,31 @@
 #include "ZCodeBodyNode.h"
 #include "ZParseExpression.h"
 #include "ZExpressionNode.h"
+#include "ZParseMethod.h"
 
 ZParseMethod::ZParseMethod(ZTokenStream* stream) : ZParseNode(stream)
 {
 
 }
 
+
+
 ZScriptNode* ZParseMethod::Parse()
 {
+
+
+	//Error("Error Parsing method.");
+
+
+
 	
 	auto meth_node = new ZMethodNode;
 
+	ZMethodNode::mCurrentNode = meth_node;
+
 	auto return_type = mStream->NextToken();
+
+	
 
 	switch (return_type.mType) {
 	case TokenType::TokenInt:

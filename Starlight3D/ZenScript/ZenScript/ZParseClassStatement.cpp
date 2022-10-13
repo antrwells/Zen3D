@@ -12,6 +12,7 @@ ZScriptNode* ZParseClassStatement::Parse() {
 
 	auto cs_node = new ZClassStatementNode;
 
+
 	while (!mStream->EOS()) {
 
 		auto tok = mStream->NextToken();

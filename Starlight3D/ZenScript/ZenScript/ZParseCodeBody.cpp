@@ -17,6 +17,7 @@
 #include "ZWhileNode.h"
 #include "ZIncNode.h"
 #include "ZScriptContext.h"
+#include "ZMethodNode.h"
 ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
 
 
@@ -232,6 +233,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			auto ret_node = (ZReturnNode*)parse_ret->Parse();
 			ret_node->SetReturn(true);
 			codebody->AddNode(ret_node);
+			ret_node->SetReturnType(ZMethodNode::mCurrentNode->GetReturnType());
 			int z = 0;
 		}
 			break;

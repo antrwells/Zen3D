@@ -85,7 +85,7 @@ void ZClassNode::PopulateScope() {
 
 				if (def_exp.mElements.size() > 0)
 				{
-
+					ZExpressionNode::RecvType = type;
 					auto res = names[j]->def->Exec({});
 					switch (type) {
 					case VarType::VarInt:
@@ -274,5 +274,17 @@ void ZClassNode::SetExtends(std::string cls)
 {
 
 	mInherits = cls;
+
+}
+
+ZMethodNode* ZClassNode::GetMethod(std::string name) {
+
+	for (int i = 0; i < mMethods.size(); i++)
+	{
+		if (mMethods[i]->GetName() == name) {
+			return mMethods[i];
+		}
+	}
+	return nullptr;
 
 }

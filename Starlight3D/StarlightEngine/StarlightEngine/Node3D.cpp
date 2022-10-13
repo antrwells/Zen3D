@@ -14,6 +14,7 @@
 #include "ZClassNode.h"
 #include "ZSystemFunction.h"
 #include "ZSystemFunctions.h"
+#include "Application.h"
 #include "ZContextVar.h"
 
 bool Node3D::mSysInit = false;
@@ -396,6 +397,12 @@ bool Node3D::mSysInit = false;
 
 	}
 
+	Node3D* getNode(ZContextVar* v)
+	{
+		return (Node3D*)v->GetCObj();
+	}
+
+
 	ZContextVar* node3d_turn(const std::vector<ZContextVar*>& args)
 	{
 
@@ -406,6 +413,17 @@ bool Node3D::mSysInit = false;
 		int bb = 5;
 
 		return nullptr;
+	}
+
+	ZContextVar* node3d_setrot(const std::vector<ZContextVar*>& args)
+	{
+
+		auto node = getNode(args[0]);
+
+		node->SetRotation(args[1]->GetFloatVal(), args[2]->GetFloatVal(), args[3]->GetFloatVal());
+
+		return nullptr;
+
 	}
 
 	ZContextVar* node3d_getpos(const std::vector<ZContextVar*>& args)
@@ -443,6 +461,20 @@ bool Node3D::mSysInit = false;
 
 	}
 
+	ZContextVar* node3d_getmousemovex(const std::vector<ZContextVar*>& args)
+	{
+
+		return VMakeFloat(Application::GetApp()->GetInput()->GetMouseDX());
+
+	}
+
+	ZContextVar* node3d_getmousemovey(const std::vector<ZContextVar*>& args)
+	{
+
+		return VMakeFloat(Application::GetApp()->GetInput()->GetMouseDY());
+
+	}
+
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
 
 	void Node3D::AddSystemFunctions() {
@@ -451,6 +483,7 @@ bool Node3D::mSysInit = false;
 
 		con1->LoadLib("math");
 		con1->LoadLib("scene");
+		con1->LoadLib("input");
 
 		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 		
@@ -458,10 +491,16 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction n_turn("Node3DTurn", node3d_turn);
 		ZSystemFunction n_getpos("Node3DGetPos", node3d_getpos);
 		ZSystemFunction n_setpos("Node3DSetPos", node3d_setpos);
+		ZSystemFunction n_setrot("Node3DSetRotation", node3d_setrot);
+		ZSystemFunction n_getmousemovex("Node3DGetMouseMoveX", node3d_getmousemovex);
+		ZSystemFunction n_getmousemovey("Node3DGetMouseMoveY", node3d_getmousemovey);
 
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
 		funcs->RegisterFunction(n_setpos);
+		funcs->RegisterFunction(n_setrot);
+		funcs->RegisterFunction(n_getmousemovex);
+		funcs->RegisterFunction(n_getmousemovey);
 		
 
 		int aa=5;

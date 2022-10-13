@@ -128,6 +128,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 	ScanContent("c:/ZenContent/");
 
+	Notify("Zen3D started", "You may now begin to edit your project.");
+
 	//ImFont* font1 = io.Fonts->AddFontDefault();
 	
 
@@ -176,6 +178,8 @@ void ZenUI::MainWindow() {
 	MainNodeEditor();
 
 	PostProcessWindow();
+
+	Notifications();
 
 
 

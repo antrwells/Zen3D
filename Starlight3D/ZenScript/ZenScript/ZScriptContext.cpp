@@ -95,6 +95,16 @@ void ZScriptContext::AddNode(ZMainNode* node) {
 
 	}
 
+	auto static_classes = node->GetStaticClasses();
+
+	for (int i = 0; i < static_classes.size(); i++) {
+
+		auto sint = static_classes[i]->CreateInstance(static_classes[i]->GetName(), {});
+
+		mStaticClasses.push_back(sint);
+
+	}
+
 }
 
 ZClassNode* ZScriptContext::FindClass(std::string name) {
@@ -225,6 +235,36 @@ void ZScriptContext::LoadLib(std::string name)
 
 	}
 
+
+}
+
+
+bool ZScriptContext::IsStaticClass(std::string name) {
+
+	for (int i = 0; i < mStaticClasses.size(); i++)
+	{
+
+		if (mStaticClasses[i]->GetName() == name)
+		{
+			return true;
+		}
+
+	}
+	return false;
+}
+
+ZClassNode* ZScriptContext::GetStaticClass(std::string name) {
+
+	for (int i = 0; i < mStaticClasses.size(); i++)
+	{
+
+		if (mStaticClasses[i]->GetName() == name)
+		{
+			return mStaticClasses[i];
+		}
+
+	}
+	return nullptr;
 
 }
 

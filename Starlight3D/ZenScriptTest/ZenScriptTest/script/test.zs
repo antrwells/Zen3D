@@ -1,14 +1,24 @@
+class other
+
+    float mo = 5
+
+    method void other()
+    
+    end
+
+end 
+
 class testClass
 
     CObj node
 
-    method void testClass()
 
-        Vec3 pos = new Vec3()
+    method void testClass(CObj cin)
 
-        pos.x = 200
+        other tes = new other()
 
-        printf("Pos:",pos.x,pos.y,pos.z)
+        printf("Testing!",tes.mo)
+
 
     end 
 

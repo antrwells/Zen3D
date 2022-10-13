@@ -31,6 +31,8 @@ public:
 		return mReturnType;
 	}
 	void SetGuard(ZExpressionNode* g_e);
+	static ZMethodNode* mCurrentNode;
+
 
 private:
 	ZExpressionNode* mGuardExpr = nullptr;

@@ -7,7 +7,7 @@ enum TokenType {
 	TokenIdent,TokenNumber,TokenString,TokenClass,TokenEnd,TokenLeftPara,TokenRightPara,TokenNot,TokenAnd,TokenElse,TokenIf,
 	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma,
 	TokenPlus,TokenMinus,TokenDivide,TokenMultiply,TokenEndOfLine,TokenEquals,TokenNew,TokenVoid,TokenGreater,TokenLess,TokenTo,TokenReturn,
-	TokenWhile,TokenDebugStop,TokenParseStop,TokenInc,TokenDec,TokenColon,TokenSame,TokenNotSame,TokenOr,TokenUMinus,TokenCObj
+	TokenWhile,TokenDebugStop,TokenParseStop,TokenInc,TokenDec,TokenColon,TokenSame,TokenNotSame,TokenOr,TokenUMinus,TokenCObj,TokenStatic
 };
 
 std::string TokenToString(enum TokenType type);
@@ -41,6 +41,13 @@ public:
 	bool EOS();
 	void SetTokens(std::vector<Token> tokens);
 	bool FindInLine(TokenType type, int peek = 0);
+	int TokenIndex() {
+		return mTokenIndex;
+	}
+	Token GetToken(int id)
+	{
+		return mTokens[id];
+	}
 private:
 	std::vector<Token> mTokens;
 	int mTokenIndex = 0;

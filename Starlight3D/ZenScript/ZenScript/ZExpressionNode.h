@@ -57,9 +57,101 @@ int precedence(char op) {
 class Expression
 {
 public:
-
+    
     std::vector<ExpressionElement> mElements;
-    ZContextVar* Evaluate();
+    ZContextVar* Evaluate(VarType recv);
+    bool HasCObj() {
+        for (int i = 0; i < mElements.size(); i++) {
+            if (mElements[i].mType == EOp)
+            {
+                return true;
+            }
+        }
+        return false;
+
+
+    }
+    bool HasOperators() {
+        for (int i = 0; i < mElements.size(); i++) {
+            if (mElements[i].mType == EOp)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    bool IsStrings() {
+        for (int i = 0; i < mElements.size(); i++) {
+            if (mElements[i].mType == EString) {
+                return true;
+            }
+        }
+        return false;
+    }
+    bool IsInt() {
+        bool rv = true;
+        bool o_int = false;
+
+        for (int i = 0; i < mElements.size(); i++)
+        {
+            if (mElements[i].mType == EString) {
+                return false;
+            }
+            if (mElements[i].mType == EInt)
+            {
+                o_int = true;
+                return true;
+            }
+            if (mElements[i].mType == EVar)
+            {
+               
+                return false;
+
+            }
+            else if (mElements[i].mType == EFloat)
+            {
+                return false;
+            }
+
+
+        }
+        return o_int;
+    }
+
+    bool IsFloat() {
+        bool rv = true;
+        bool o_flt = false;
+
+        for (int i = 0; i < mElements.size(); i++)
+        {
+            if (mElements[i].mType == EString) {
+                return false;
+            }
+            if (mElements[i].mType == EFloat)
+            {
+                o_flt = true;
+            }
+            else if (mElements[i].mType == EInt)
+            {
+                return false;
+            }
+            
+
+        }
+        return o_flt;
+    }
+
+    bool IsVar() {
+      
+    }
+
+    bool IsCObj() {
+
+    }
+
+    bool IsStatic() {
+
+    }
     
 
 };
@@ -68,7 +160,7 @@ class ZExpressionNode :
     public ZScriptNode
 {
 public:
-
+    static VarType RecvType;
     //void AddElement(ExpressionElement element);
     void SetExpression(Expression expr);
     ZContextVar* Exec(const std::vector<ZContextVar*>& params);

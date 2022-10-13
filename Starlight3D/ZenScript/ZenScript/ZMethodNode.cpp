@@ -75,3 +75,5 @@ void ZMethodNode::Bind() {
 
 
 }
+
+ZMethodNode* ZMethodNode::mCurrentNode = nullptr;

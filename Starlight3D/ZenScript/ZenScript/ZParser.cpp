@@ -6,6 +6,8 @@ ZParser::ZParser(ZTokenStream* stream) {
 
 	mStream = stream;
 
+
+
 }
 
 ZMainNode* ZParser::Parse()
@@ -17,3 +19,4 @@ ZMainNode* ZParser::Parse()
 
 
 }
+

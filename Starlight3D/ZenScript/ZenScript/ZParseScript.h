@@ -8,6 +8,8 @@ public:
 	ZParseScript(ZTokenStream* stream);
 	ZScriptNode* Parse();
 
+	
+
 private:
 };
 

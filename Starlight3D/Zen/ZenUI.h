@@ -9,6 +9,8 @@
 #include "FSPayload.h"
 #include "PostProcessing.h"
 #include "PPBloom.h"
+#include "ZNotification.h"
+#include <stack>
 class RayPicker;
 
 //class DirCollection;
@@ -93,6 +95,9 @@ public:
 		}
 
 	}
+
+	void Notify(std::string title, std::string msg);
+	void Notifications();
 
 private:
 
@@ -207,6 +212,10 @@ private:
 	ImFont* bigFont = nullptr;
 
 
+	//Notifications
+
+	std::vector<ZNotification*> mNotices;
+	ZNotification* mCurrentNotice = nullptr;
 };
 
 

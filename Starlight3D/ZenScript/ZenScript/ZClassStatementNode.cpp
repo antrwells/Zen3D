@@ -5,6 +5,8 @@
 #include "ZParametersNode.h"
 #include "ZExpressionNode.h"
 #include "ZMethodNode.h"
+#include "ZSignatureNode.h"
+#include "ZSigParamNode.h"
 ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
@@ -15,10 +17,27 @@ ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 	while (true) {
 
 		auto name = mNames[name_id];
+		ZClassNode* cls = nullptr;
 
-		auto var = ZScriptContext::CurrentContext->GetScope()->FindVar(name);
+		if (ZScriptContext::CurrentContext->IsStaticClass(name)) {
 
-		auto cls = var->GetClassVal();
+			cls = ZScriptContext::CurrentContext->GetStaticClass(name);
+			int bv = 1;
+
+
+		}
+		else {
+
+			auto var = ZScriptContext::CurrentContext->GetScope()->FindVar(name);
+			cls = var->GetClassVal();
+		}
+		//auto cls = var->GetClassVal();
+
+		auto meth_node = cls->GetMethod(mNames[name_id + 1]);
+
+		auto sig_node = meth_node->GetSignature();
+
+		auto spars = sig_node->GetParams();
 
 		auto pars = mPars->GetParameters();
 
@@ -27,6 +46,9 @@ ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 		for (int i = 0; i < pars.size(); i++) {
 
 			auto par = pars[i];
+
+			auto ttype = spars[i]->GetType();
+			ZExpressionNode::RecvType = ttype;
 			vpars.push_back(par->Exec(std::vector<ZContextVar*>()));
 
 

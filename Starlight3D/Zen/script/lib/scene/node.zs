@@ -20,6 +20,12 @@ class Node3D
 
     end 
 
+    method void SetRotation(float pitch,float yaw,float roll)
+
+        Node3DSetRotation(Node,pitch,yaw,roll)    
+    
+    end 
+
     method Vec3 GetPosition()
 
         return Node3DGetPos(Node)
@@ -31,5 +37,7 @@ class Node3D
         Node3DSetPos(Node,pos)
 
     end 
+
+ 
 
 end 

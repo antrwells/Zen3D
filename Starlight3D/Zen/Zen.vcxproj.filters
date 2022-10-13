@@ -42,12 +42,21 @@
     <ClCompile Include="PostProcessWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ZNotification.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Notify.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppZen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZenUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZNotification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

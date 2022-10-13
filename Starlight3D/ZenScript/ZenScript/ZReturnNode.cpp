@@ -10,7 +10,7 @@ void ZReturnNode::SetExpression(ZExpressionNode* expr)
 
 ZContextVar* ZReturnNode::Exec(const std::vector<ZContextVar*>& params)
 {
-
+	ZExpressionNode::RecvType = mReturnType;
 	return mExpr->Exec({});
 
 }

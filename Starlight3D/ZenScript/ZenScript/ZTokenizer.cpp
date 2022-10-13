@@ -302,6 +302,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("|", TokenType::TokenOr));
 	token_map.insert(std::make_pair("&", TokenType::TokenAnd));
 	token_map.insert(std::make_pair("CObj", TokenType::TokenCObj));
+	token_map.insert(std::make_pair("static", TokenType::TokenStatic));
+
 	std::vector<Token> new_tokens;
 
 	for (int i = 0; i < tokens.size(); i++) {

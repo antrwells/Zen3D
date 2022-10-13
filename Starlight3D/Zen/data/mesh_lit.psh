@@ -178,6 +178,8 @@ void main(in  PSInput  PSIn,
 
     ffcol.a = 1.0;
 
+    spec = spec * shadowVal;
+
     ffcol.rgb += float3(spec,spec,spec);
 
     PSOut.Color = ffcol;

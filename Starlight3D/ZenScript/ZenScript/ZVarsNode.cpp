@@ -52,6 +52,8 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 		ZContextVar* new_var = new ZContextVar(var->name, this->mVarType);
 		ZClassNode* cls = nullptr;
 
+		ZExpressionNode::RecvType = mVarType;
+
 		switch (mVarType) {
 		case VarType::VarString:
 
@@ -75,7 +77,7 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 		case VarType::VarFloat:
 
 		{
-		
+			
 			auto rv = var->def->Exec({});
 			switch (rv->GetType()) {
 			case VarType::VarFloat:

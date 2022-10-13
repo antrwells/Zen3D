@@ -4,9 +4,9 @@ class Vec3
 
     method void Vec3()
 
-        x = 3.2
-        y = 3.5
-        z = 4.2
+        x = 0
+        y = 0
+        z = 0
   
       
     end 

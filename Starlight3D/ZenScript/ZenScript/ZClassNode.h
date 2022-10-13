@@ -40,6 +40,9 @@ public:
 	std::string GetBaseName() {
 		return mBaseClassName;
 	}
+
+	ZMethodNode* GetMethod(std::string name);
+
 	ZContextScope* GetScope()
 	{
 		return mInstanceScope;

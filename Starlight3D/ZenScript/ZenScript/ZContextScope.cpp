@@ -28,7 +28,7 @@ ZContextVar* ZContextScope::FindVar(std::string name) {
 			return mVars[i];
 		}
 	}
-		assert(false);
+	
 		return nullptr;
 
 }

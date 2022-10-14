@@ -89,7 +89,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_text.push_back("X"[0]);
 	is_text.push_back("Y"[0]);
 	is_text.push_back("Z"[0]);
-	
+	is_text.push_back("_"[0]);
 	//Operators
 	is_op.push_back("("[0]);
 	is_op.push_back(")"[0]);
@@ -447,6 +447,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 				if (tok.mType == TokenType::TokenMinus) {
 					auto nt = new_tokens2[i + 1];
 					switch (nt.mType) {
+					case TokenType::TokenFloat:
 					case TokenType::TokenInt:
 
 						tok.mType = TokenType::TokenUMinus;

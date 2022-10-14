@@ -34,13 +34,15 @@ public:
 	RayPicker(SceneGraph* graph);
 
 	PickResult RayPick(rpRay ray);
+	PickResult RayPick(rpRay ray, Node3D* ignore);
 	PickResult MousePick(int x, int y, int w, int h, NodeCamera* cam);
 	PickResult RayToTri(rpRay ray, float3 v0, float3 v1, float3 v2);
 	PickResult MousePickNode(int x, int y, int w, int h, NodeEntity* entity, NodeCamera* cam);
-
+	void SetGraph(SceneGraph* graph);
 
 private:
 
+	Node3D* mIgnore;
 	PickResult RayPickNode(rpRay ray, Node3D* node);
 	PickResult RayPickMesh(rpRay ray, Mesh3D* mesh);
 

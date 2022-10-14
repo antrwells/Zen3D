@@ -23,7 +23,9 @@ ZScriptNode* ZParseNew::Parse() {
 
 	if (tok.mType != TokenType::TokenNew)
 	{
-		assert(false);
+		mStream->Back();
+	
+		//assert(false);
 	}
 
 	tok = mStream->NextToken();

@@ -1,6 +1,7 @@
 #include "ZenUI.h"
 #include <memory>
 #include "Importer.h"
+#include "RayPicker.h"
 void ZenUI::SaveSceneDialog() {
 
 	ImGui::SetNextWindowPos(ImVec2(Application::GetApp()->GetWidth() / 2 - 180, Application::GetApp()->GetHeight() / 2 - 40));
@@ -114,12 +115,15 @@ void ZenUI::LoadScene(const char* path) {
 		nl->SetRange(file->ReadFloat());
 		nl->SetName(file->ReadString());
 		mGraph->AddLight(nl);
+		root->AddNode(nl);
 
 	}
 	
 	root->ReadNode(file,true);
 
 	mGraph->SetRoot(root);
+
+	mRayPick->SetGraph(mGraph);
 
 	file->Close();
 
@@ -145,7 +149,13 @@ void ZenUI::SaveScene(const char* path)
 		file_out->WriteVec3(light->GetSpecular());
 		file_out->WriteFloat(light->GetRange());
 		file_out->WriteString(light->GetName());
+		
+		auto getRoot = light->GetRootNode();
+		getRoot->RemoveNode(light);
+
 	}
+
+
 
 	auto node1 = mGraph->GetRoot();
 

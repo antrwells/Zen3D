@@ -241,9 +241,13 @@
 
 		for (int i = 0; i < mMeshes.size(); i++) {
 
-			clone->AddMesh(mMeshes[i]);
+			clone->AddMesh(mMeshes[i]->Clone());
 
 		}
+
+		clone->SetScripts(GetScripts());
+
+		clone->SetName(GetName());
 
 		return (Node3D*)clone;
 

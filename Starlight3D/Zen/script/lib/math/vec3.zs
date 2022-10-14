@@ -2,11 +2,11 @@ class Vec3
 
     float x,y,z
 
-    method void Vec3()
+    method void Vec3(float vx,float vy,float vz)
 
-        x = 0
-        y = 0
-        z = 0
+        x = vx
+        y = vy
+        z = vz
   
       
     end 

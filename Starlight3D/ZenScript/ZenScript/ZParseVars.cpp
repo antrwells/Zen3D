@@ -74,6 +74,12 @@ ZScriptNode* ZParseVars::Parse() {
 				}
 				else {
 
+
+					auto check = mStream->PeekToken(0);
+					if (check.mType == TokenType::TokenEndOfLine) {
+						vars_node->AddVar(tok.mText);
+						continue;
+					}
 					int cc = 1;
 					auto exp_parse = new ZParseExpression(mStream);
 					def = (ZExpressionNode*)exp_parse->Parse();

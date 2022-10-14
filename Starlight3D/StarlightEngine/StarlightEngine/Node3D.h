@@ -362,6 +362,10 @@ enum NodeType {
 		std::string GetFilePath() {
 			return mPath;
 		}
+		void SetScripts(std::vector<ScriptObject*> objs)
+		{
+			mScriptObjs = objs;
+		}
 		void BeginNode();
 		void EndNode();
 		void AddSystemFunctions();
@@ -411,6 +415,7 @@ enum NodeType {
 		void WriteClass(VFile* file,ZClassNode* cls);
 		ZClassNode* ReadClass(VFile* file,ZClassNode* cls);
 		virtual void WriteNode(VFile* file) {
+
 
 			file->WriteInt((int)mType);
 			file->WriteString(mName);

@@ -11,6 +11,17 @@ void ZVarsNode::SetType(VarType type) {
 
 }
 
+void ZVarsNode::AddVar(std::string name)
+{
+
+	VarPair* pair = new VarPair;
+	pair->name = name;
+	pair->def = nullptr;
+	pair->new_node = nullptr;
+	//mVarNames.push_back(name);
+	mVars.push_back(pair);
+}
+
 void ZVarsNode::AddVar(std::string name,ZExpressionNode* def) {
 
 	VarPair* pair = new VarPair;
@@ -99,14 +110,16 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 			}
 			else {
 
-				auto ge = var->def->Exec({});
-				switch (ge->GetType()) {
-				case VarType::VarCObj:
-					new_var->SetCObj(ge);
-					break;
-				case VarType::VarInstance:
-					new_var->SetClass(ge->GetClassVal());
-					break;
+				if (var->def != nullptr) {
+					auto ge = var->def->Exec({});
+					switch (ge->GetType()) {
+					case VarType::VarCObj:
+						new_var->SetCObj(ge);
+						break;
+					case VarType::VarInstance:
+						new_var->SetClass(ge->GetClassVal());
+						break;
+					}
 				}
 			}
 

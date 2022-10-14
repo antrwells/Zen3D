@@ -4,6 +4,7 @@
 #include "ZStatementNode.h"
 #include "ZParseClassStatement.h"
 #include "ZClassStatementNode.h"
+#include "ZParseNew.h"
 
 ZParseExpression::ZParseExpression(ZTokenStream* stream) : ZParseNode(stream) {
 
@@ -139,6 +140,23 @@ ZScriptNode* ZParseExpression::Parse() {
 			expr.mElements.push_back(ele);
 
 			break;
+		case TokenType::TokenNew:
+			ele.mType = ExprElementType::ENew;
+			ele.mValString = std::string(token.mText);
+			
+			{
+
+				auto parse_new = new ZParseNew(mStream);
+				auto new_node = (ZNewNode*)parse_new->Parse();
+				ele.mNew = new_node;
+			}
+
+			expr.mElements.push_back(ele);
+			exp_node->SetExpression(expr);
+			return exp_node;
+
+
+			break;
 		case TokenType::TokenIdent:
 		{
 
@@ -271,7 +289,7 @@ ZScriptNode* ZParseExpression::Parse() {
 			break;
 		case TokenType::TokenRightPara:
 
-			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
+			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine || mStream->PeekToken(0).mType == TokenType::TokenComma)
 			{
 				lb.mOp = ExprOperatorType::OpRightBrace;
 				//expr.mElements.push_back(lb);

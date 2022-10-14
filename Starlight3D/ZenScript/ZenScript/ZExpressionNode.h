@@ -14,11 +14,11 @@ enum ExprOperatorType {
 
 enum ExprElementType {
 
-    EInt,EFloat,EString,EOp,SubExpression,EVar,EStatement,EClassStatement
+    EInt,EFloat,EString,EOp,SubExpression,EVar,EStatement,EClassStatement,ENew
 
 };
 
-
+class ZNewNode;
 class ZStatementNode;
 class ZClassStatementNode;
 class Expression;
@@ -35,6 +35,7 @@ public:
     ExprElementType mType;
     ZStatementNode* mStatement = nullptr;
     ZClassStatementNode* mClassStatement = nullptr;
+    ZNewNode* mNew;
 
 };
 int precedence(ExprOperatorType op);

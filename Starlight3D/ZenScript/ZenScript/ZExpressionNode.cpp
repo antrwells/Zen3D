@@ -5,6 +5,7 @@
 #include "ZStatementNode.h"
 #include "ZClassStatementNode.h"
 #include "ZContextVar.h"
+#include "ZNewNode.h"
 void ZExpressionNode::SetExpression(Expression expr) {
 
 	//mElements.push_back(element);
@@ -31,9 +32,9 @@ int precedence(ExprOperatorType op) {
         return 3;
     
     if (op == OpPlus || op == OpMinus)
-        return 6;
-    if (op == OpMultiply || op == OpDivide)
         return 5;
+    if (op == OpMultiply || op == OpDivide)
+        return 6;
     if (op == OpGreater || op == OpLess)
         return 8;
     if (op == OpEquals || op == OpNot)
@@ -162,6 +163,7 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                 case VarType::VarFloat:
                     values.push((int)res->GetFloatVal());
                     break;
+                
                 }
 
                 //values.push(res->GetIntVal());
@@ -442,22 +444,22 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
             while (!ops.empty() && precedence(ops.top())
                 >= precedence(tok.mOp)) {
                 float val2 = values.top();
-                values.pop();
+values.pop();
 
-                float val1 = 0;
-                if (values.size() == 0) {
+float val1 = 0;
+if (values.size() == 0) {
 
-                }
-                else {
-                    val1 = values.top();
-                    values.pop();
-                }
-                 
+}
+else {
+    val1 = values.top();
+    values.pop();
+}
 
-                ExprOperatorType op = ops.top();
-                ops.pop();
 
-                values.push(applyOpFloat(val1, val2, op));
+ExprOperatorType op = ops.top();
+ops.pop();
+
+values.push(applyOpFloat(val1, val2, op));
             }
 
             ops.push(tok.mOp);
@@ -523,6 +525,74 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     VarType rt = recv;
     ZExpressionNode::RecvType = VarVoid;
 
+
+    if (mElements.size() == 1) {
+        if (mElements[0].mType == ENew)
+        {
+
+            auto new_cls = mElements[0].mNew->Exec({});
+            return VMakeClass(new_cls->GetClassVal());
+
+        }
+        if (mElements[0].mType == EStatement)
+        {
+
+            auto rv = mElements[0].mStatement->Exec({});
+
+            switch (rv->GetType()) {
+            case VarInstance:
+                return VMakeClass(rv->GetClassVal());
+            case VarFloat:
+                return VMakeFloat(rv->GetFloatVal());
+            case VarInt:
+                return VMakeInt(rv->GetIntVal());
+            }
+
+            int a4a = 5;
+
+        }
+        else if (mElements[0].mType == EClassStatement)
+        {
+
+            auto rv = mElements[0].mClassStatement->Exec({});
+            switch (rv->GetType()) {
+            case VarInstance:
+                return VMakeClass(rv->GetClassVal());
+            case VarFloat:
+                return VMakeFloat(rv->GetFloatVal());
+            case VarInt:
+                return VMakeInt(rv->GetIntVal());
+            case VarCObj:
+                return VMakeC(rv->GetCObj());
+                break;
+            }
+            int no = 5;
+        }
+        else if (mElements[0].mType == EVar)
+        {
+
+            auto rv = GetVar(mElements[0].mValName);
+
+            switch (rv->GetType()) {
+            case VarInstance:
+                if (rv->GetCObj() != nullptr) {
+                    return VMakeC(rv->GetCObj());
+                }
+
+                return VMakeClass(rv->GetClassVal());
+            case VarFloat:
+                return VMakeFloat(rv->GetFloatVal());
+            case VarInt:
+                return VMakeInt(rv->GetIntVal());
+            case VarCObj:
+                return VMakeC(rv->GetCObj());
+                break;
+            }
+
+            int aaa = 5;
+
+        }
+    }
 
     if (rt == VarVoid) {
 
@@ -600,12 +670,15 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     default:
 
             
+
       
 
         if (IsStrings()) {
             return VMakeString(mElements[0].mValString);
         }
 
+        VMakeFloat(evaluateFloat(mElements));
+        
         int bb = 0;
 
         break;

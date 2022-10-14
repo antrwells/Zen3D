@@ -38,6 +38,22 @@ class Node3D
 
     end 
 
- 
+    method void SetPhysicsToBox()
+
+        Node3DSetPyToBox(Node)
+
+    end
+
+    method void SetPhysicsToTriMesh()
+
+        Node3DSetPyTriMesh(Node)
+
+    end 
+
+    method void SetPhysicsToConvex()
+
+        Node3DSetPyToConvex(Node)
+
+    end 
 
 end 

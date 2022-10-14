@@ -148,7 +148,7 @@ void ZenUI::MainContentBrowser() {
 						else if (mDragEntryRef.ext == "zs") {
 							ImGui::SetDragDropPayload("Script", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
-						else if (mDragEntryRef.ext == "png")
+						else if (mDragEntryRef.ext == "png" || mDragEntryRef.ext=="jpg")
 						{
 							ImGui::SetDragDropPayload("Texture", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}

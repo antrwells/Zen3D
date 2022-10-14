@@ -54,6 +54,8 @@ PickResult RayPicker::MousePick(int x, int y, int w, int h, NodeCamera* cam) {
 	float3 rayDir = normalize(rayend - rayorigin);
 
 
+
+
 	rpRay ray;
 
 	ray.pos = cam->GetPosition();
@@ -63,6 +65,33 @@ PickResult RayPicker::MousePick(int x, int y, int w, int h, NodeCamera* cam) {
 
 	return result;
 
+}
+
+PickResult RayPicker::RayPick(rpRay ray,Node3D* node)
+{
+
+	mIgnore = node;
+
+	auto result =  RayPick(ray);
+
+	if (result.hit) {
+
+		float xd, yd, zd;
+
+		xd = result.hit_point.x - ray.pos.x;
+		yd = result.hit_point.y - ray.pos.y;
+		zd = result.hit_point.z - ray.pos.z;
+		float dist = sqrt(xd * xd + yd * yd + zd * zd);
+		float dir_dist = sqrt(ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y + ray.dir.z * ray.dir.z);
+		if (dist > dir_dist) {
+			result.hit = false;
+		}
+
+
+	
+
+	}
+	return result;
 }
 
 PickResult RayPicker::RayPick(rpRay ray)
@@ -112,11 +141,15 @@ PickResult RayPicker::RayToTri(rpRay ray, float3 v0, float3 v1, float3 v2)
 			return result;
 		// At this stage we can compute t to find out where the intersection point is on the line.
 		float t = f * Diligent::dot(edge2,q);
+		
 		if (t > EPSILON) // ray intersection
 		{
 			//outIntersectionPoint = rayOrigin + rayVector * t;
 			result.hit = true;
 			result.hit_point = ray.pos + ray.dir * t;
+
+			
+
 			return result;
 		}
 		else // This means that there is a line intersection but not a ray intersection.
@@ -213,62 +246,70 @@ PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
 	PickResult close_result;
 	close_result.hit = false;
 
-	if (node->GetType() == NodeType::Entity) {
-	
-		auto entity = (NodeEntity*)node;
+	if (node == mIgnore) {
 
-		for (int i = 0;i < entity->GetMeshes().size();i++) {
+		int aa = 5;
 
-			auto result = RayPickMesh(ray, entity->GetMesh(i));
+	}
+	else {
 
-			if (result.hit)
-			{
-				if (close_result.hit == false) {
-					float xd, yd, zd;
-					xd = result.hit_point.x - ray.pos.x;
-					yd = result.hit_point.y - ray.pos.y;
-					zd = result.hit_point.z - ray.pos.z;
-					float dist = sqrt(xd * xd + yd * yd + zd * zd);
-					close_result = result;
-					close_result.hit = true;
-					close_result.hit_distance = dist;
-					close_result.hit_point = result.hit_point;
-					close_result.hit_node = node;
-					close_result.hit_entity = (NodeEntity*)node;
-					close_result.hit_mesh = entity->GetMesh(i);
+		if (node->GetType() == NodeType::Entity) {
 
+			auto entity = (NodeEntity*)node;
 
+			for (int i = 0; i < entity->GetMeshes().size(); i++) {
 
-					close_result.hit_distance = dist;
-				}
-				else {
+				auto result = RayPickMesh(ray, entity->GetMesh(i));
 
-					float xd, yd, zd;
-
-					xd = result.hit_point.x - ray.pos.x;
-					yd = result.hit_point.y - ray.pos.y;
-					zd = result.hit_point.z - ray.pos.z;
-					float dist = sqrt(xd * xd + yd * yd + zd * zd);
-					if (dist < close_result.hit_distance)
-					{
+				if (result.hit)
+				{
+					if (close_result.hit == false) {
+						float xd, yd, zd;
+						xd = result.hit_point.x - ray.pos.x;
+						yd = result.hit_point.y - ray.pos.y;
+						zd = result.hit_point.z - ray.pos.z;
+						float dist = sqrt(xd * xd + yd * yd + zd * zd);
+						close_result = result;
+						close_result.hit = true;
 						close_result.hit_distance = dist;
 						close_result.hit_point = result.hit_point;
 						close_result.hit_node = node;
 						close_result.hit_entity = (NodeEntity*)node;
 						close_result.hit_mesh = entity->GetMesh(i);
+
+
+
+						close_result.hit_distance = dist;
 					}
+					else {
 
-					//float dist1 =  
+						float xd, yd, zd;
+
+						xd = result.hit_point.x - ray.pos.x;
+						yd = result.hit_point.y - ray.pos.y;
+						zd = result.hit_point.z - ray.pos.z;
+						float dist = sqrt(xd * xd + yd * yd + zd * zd);
+						if (dist < close_result.hit_distance)
+						{
+							close_result.hit_distance = dist;
+							close_result.hit_point = result.hit_point;
+							close_result.hit_node = node;
+							close_result.hit_entity = (NodeEntity*)node;
+							close_result.hit_mesh = entity->GetMesh(i);
+						}
+
+						//float dist1 =  
 
 
 
+					}
 				}
+
 			}
 
+
+
 		}
-
-
-
 	}
 
 	for (int i = 0;i < node->ChildrenCount();i++) {
@@ -325,5 +366,11 @@ PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
 	}
 
 	return close_result;
+
+}
+
+void RayPicker::SetGraph(SceneGraph* graph) {
+
+	mGraph = graph;
 
 }

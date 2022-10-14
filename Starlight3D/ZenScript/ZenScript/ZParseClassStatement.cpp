@@ -44,6 +44,7 @@ ZScriptNode* ZParseClassStatement::Parse() {
 
 			break;
 		case TokenType::TokenRightPara:
+		case TokenType::TokenEndOfLine:
 
 			return cs_node;
 		}

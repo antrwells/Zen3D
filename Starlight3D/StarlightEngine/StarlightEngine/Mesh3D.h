@@ -245,6 +245,8 @@ class Node3D;
 			return mName;
 
 		}
+
+
 		void ReadMesh(VFile* file)
 		{
 			int vc = file->ReadInt();
@@ -313,6 +315,18 @@ class Node3D;
 
 
 
+		}
+
+		Mesh3D* Clone() {
+
+			auto mesh = new Mesh3D();
+			mesh->SetVertices(mVertices);
+			mesh->SetTris(mTris);
+			mesh->CreateBuffers();
+			mesh->SetOwner(GetOwner());
+			mesh->SetMaterial(GetMaterial());
+			mesh->SetName(GetName());
+			return mesh;
 		}
 
 	private:

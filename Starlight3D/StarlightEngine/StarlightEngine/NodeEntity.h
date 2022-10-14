@@ -146,6 +146,7 @@
 
         void WriteNode(VFile* file) {
 
+
             file->WriteInt((int)mType);
             file->WriteString(mName);
             WriteTransform(file);

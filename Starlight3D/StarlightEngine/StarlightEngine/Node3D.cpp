@@ -15,7 +15,9 @@
 #include "ZSystemFunction.h"
 #include "ZSystemFunctions.h"
 #include "Application.h"
-
+#include "NodeEntity.h"
+#include "SceneGraph.h"
+#include "RayPicker.h"
 #include "ZContextVar.h"
 
 bool Node3D::mSysInit = false;
@@ -435,11 +437,12 @@ bool Node3D::mSysInit = false;
 		auto nc = (Node3D*)args[0]->GetCObj();
 
 		
-		auto pv = ZScriptContext::CurrentContext->CreateInstance("Vec3", "v", {});
+		auto pv = ZScriptContext::CurrentContext->CreateInstance("Vec3", "v", {VMakeFloat(nc->GetPosition().x),VMakeFloat(nc->GetPosition().y),VMakeFloat(nc->GetPosition().z)});
 
-		pv->FindVar("x")->SetFloat(nc->GetPosition().x);
-		pv->FindVar("y")->SetFloat(nc->GetPosition().y);
-		pv->FindVar("z")->SetFloat(nc->GetPosition().z);
+		//pv->FindVar("x")->SetFloat(nc->GetPosition().x);
+		//pv->FindVar("y")->SetFloat(nc->GetPosition().y);
+		//pv->FindVar("z")->SetFloat(nc->GetPosition().z);
+
 
 		int v = 0;
 
@@ -478,6 +481,92 @@ bool Node3D::mSysInit = false;
 
 	}
 
+	ZContextVar* node3d_setpybox(const std::vector<ZContextVar*>& args)
+	{
+
+		auto nc = (Node3D*)args[0]->GetCObj();
+		
+		NodeEntity* ent = (NodeEntity*)nc;
+
+		ent->SetPhysicsBox();
+
+		return nullptr;
+
+	}
+
+	ZContextVar* node3d_setpytris(const std::vector<ZContextVar*>& args)
+	{
+
+		auto nc = (Node3D*)args[0]->GetCObj();
+
+		NodeEntity* ent = (NodeEntity*)nc;
+
+		ent->SetPhysicsTris();
+
+		return nullptr;
+
+	}
+
+
+	ZContextVar* node3d_setpyconvex(const std::vector<ZContextVar*>& args)
+	{
+
+		auto nc = (Node3D*)args[0]->GetCObj();
+
+		NodeEntity* ent = (NodeEntity*)nc;
+
+		ent->SetPhysicsConvex();
+
+		return nullptr;
+
+	}
+
+	void SetVec3(ZClassNode* v,float3 p)
+	{
+		v->FindVar("x")->SetFloat(p.x);
+		v->FindVar("y")->SetFloat(p.y);
+		v->FindVar("z")->SetFloat(p.z);
+	}
+
+	// GameScene - Bindings
+
+	ZContextVar* gs_raycast(const std::vector<ZContextVar*>& args) {
+
+		auto origin = args[0]->GetClassVal();
+		auto dest = args[1]->GetClassVal();
+		auto ignore = (Node3D*)args[2]->GetCObj();
+
+		
+		float3 v_origin = float3(origin->FindVar("x")->GetFloatVal(), origin->FindVar("y")->GetFloatVal(), origin->FindVar("z")->GetFloatVal());
+		float3 v_dest = float3(dest->FindVar("x")->GetFloatVal(),dest->FindVar("y")->GetFloatVal(), dest->FindVar("z")->GetFloatVal());
+		rpRay ray;
+		ray.pos = v_origin;
+		ray.dir = v_dest;
+		auto res = SceneGraph::mThis->mRayPick->RayPick(ray,ignore);
+
+		auto hit = VMakeClass(ZScriptContext::CurrentContext->CreateInstance("RayHit", "res", {}));
+
+		auto cls = hit->GetClassVal();
+
+		if (res.hit) {
+			printf("Hit!!!\n");
+			cls->FindVar("Hit")->SetInt(1);
+			auto hp = cls->FindVar("HitPosition")->GetClassVal();
+			SetVec3(hp, res.hit_point);
+			SetVec3(cls->FindVar("HitOrigin")->GetClassVal(), v_origin);
+			cls->FindVar("HitDistance")->SetFloat(res.hit_distance);
+			//cls->FindVar("HitNode")->Se
+
+
+		}
+		else {
+			cls->FindVar("Hit")->SetInt(0);
+		}
+
+		return hit;
+
+	}
+
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
 
 	void Node3D::AddSystemFunctions() {
@@ -497,6 +586,10 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction n_setrot("Node3DSetRotation", node3d_setrot);
 		ZSystemFunction n_getmousemovex("Node3DGetMouseMoveX", node3d_getmousemovex);
 		ZSystemFunction n_getmousemovey("Node3DGetMouseMoveY", node3d_getmousemovey);
+		ZSystemFunction n_setpybox("Node3DSetPyToBox", node3d_setpybox);
+		ZSystemFunction n_setpytris("Node3DSetPyTriMesh", node3d_setpytris);
+		ZSystemFunction n_setpyconvex("Node3DSetPyToConvex", node3d_setpyconvex);
+		ZSystemFunction gs_raycast("GameSceneRayCast", gs_raycast);
 
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
@@ -504,7 +597,10 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(n_setrot);
 		funcs->RegisterFunction(n_getmousemovex);
 		funcs->RegisterFunction(n_getmousemovey);
-		
+		funcs->RegisterFunction(n_setpybox);
+		funcs->RegisterFunction(n_setpytris);
+		funcs->RegisterFunction(n_setpyconvex);
+		funcs->RegisterFunction(gs_raycast);
 
 		int aa=5;
 	}

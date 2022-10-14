@@ -28,6 +28,7 @@ CodeType ZParseCodeBody::PredictType() {
 	int peek_val = 0;
 	bool decvar = false;
 
+	int idnum = 0;
 	while (!mStream->EOS())
 	{
 
@@ -37,6 +38,8 @@ CodeType ZParseCodeBody::PredictType() {
 			int vv = 2;
 		}
 		int ee = 1;
+
+
 
 		switch (token.mType) {
 		case TokenType::TokenInc:
@@ -76,8 +79,17 @@ CodeType ZParseCodeBody::PredictType() {
 			}
 			break;
 		case TokenType::TokenIdent:
-
-
+		{
+			int aa = 5;
+			idnum++;
+			if (idnum == 2)
+			{
+				if (mStream->PeekToken(peek_val+1).mType == TokenType::TokenEndOfLine)
+				{
+					return CodeType::CodeDeclareVars;
+				}
+			}
+		}
 			break;
 
 		case TokenType::TokenString:
@@ -301,6 +313,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			next_Debug = true;
 			{
 				auto cc = mStream->NextToken();
+				mStream->NextToken();
 			}
 			break;
 		case CodeType::CodeWhile:

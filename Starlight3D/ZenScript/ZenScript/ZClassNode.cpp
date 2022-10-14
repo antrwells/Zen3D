@@ -81,32 +81,38 @@ void ZClassNode::PopulateScope() {
 			}
 			else {
 				auto def = names[j]->def;
-				auto def_exp = def->GetExpression();
 
-				if (def_exp.mElements.size() > 0)
-				{
-					ZExpressionNode::RecvType = type;
-					auto res = names[j]->def->Exec({});
-					switch (type) {
-					case VarType::VarInt:
-						new_var->SetInt(res->GetIntVal());
-						break;
-					case VarType::VarFloat:
-						new_var->SetFloat(res->GetFloatVal());
-						break;
-					case VarType::VarCObj:
-						new_var->SetCObj(res->GetCObj());
-						break;
-					case VarType::VarString:
-						new_var->SetString(res->GetStringVal());
-						break;
-					case VarType::VarInstance:
-						new_var->SetClass(res->GetClassVal());
-						break;
+				if (def == nullptr) {
+
+				}
+				else {
+					auto def_exp = def->GetExpression();
+
+					if (def_exp.mElements.size() > 0)
+					{
+						ZExpressionNode::RecvType = type;
+						auto res = names[j]->def->Exec({});
+						switch (type) {
+						case VarType::VarInt:
+							new_var->SetInt(res->GetIntVal());
+							break;
+						case VarType::VarFloat:
+							new_var->SetFloat(res->GetFloatVal());
+							break;
+						case VarType::VarCObj:
+							new_var->SetCObj(res->GetCObj());
+							break;
+						case VarType::VarString:
+							new_var->SetString(res->GetStringVal());
+							break;
+						case VarType::VarInstance:
+							new_var->SetClass(res->GetClassVal());
+							break;
+						}
+
+						//new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
+						//TODO
 					}
-
-					//new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
-					//TODO
 				}
 			}
 			mInstanceScope->RegisterVar(new_var);
@@ -197,7 +203,7 @@ ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContext
 
 		auto pa = pars[i];
 		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType());
-		switch (pa->GetType())
+		switch (params[i]->GetType())
 		{
 		case VarInt:
 			v1->SetInt(params[i]->GetIntVal());

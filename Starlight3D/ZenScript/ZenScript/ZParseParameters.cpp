@@ -36,10 +36,11 @@ ZScriptNode* ZParseParameters::Parse() {
 			continue;
 			break;
 		case TokenType::TokenRightPara:
-
+		case TokenType::TokenEndOfLine:
 			return par_node;
 
 			break;
+		
 		default:
 
 			mStream->Back();

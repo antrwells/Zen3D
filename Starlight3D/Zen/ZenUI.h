@@ -251,6 +251,9 @@ private:
 
 	Texture2D* mWhiteTex;
 
+
+	//Clipboard
+	Node3D* mClipNode = nullptr;
 };
 
 

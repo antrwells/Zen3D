@@ -28,6 +28,7 @@ public:
     void SetType(VarType type);
     void AddVar(std::string name, ZExpressionNode* def);
     void AddVar(std::string name, ZNewNode* new_node);
+    void AddVar(std::string name);
     std::vector<VarPair*> GetVars();
     VarType GetType();
     ZContextVar* Exec(const std::vector<ZContextVar*>& params);

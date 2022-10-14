@@ -59,6 +59,11 @@ ZScriptNode* ZParseIf::Parse() {
 
 	}
 
+	if (mStream->PeekToken(0).mType == TokenType::TokenEnd)
+	{
+		mStream->NextToken();
+	}
+
 	return if_node;
 
 	return nullptr;

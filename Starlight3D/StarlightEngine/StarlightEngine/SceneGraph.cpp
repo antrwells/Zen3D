@@ -3,6 +3,7 @@
 #include "CubeRenderer.h"
 #include "VString.h"
 #include "NodeActor.h"
+#include "RayPicker.h"
 #define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
@@ -11,6 +12,8 @@
 		mRenderer = new MeshRenderer;
 		mShadowRenderer = new CubeRenderer(this, nullptr);
 		mRootNode->SetName("Scene Root");
+		mThis = this;
+		mRayPick = new RayPicker(this);
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
 
@@ -725,3 +728,6 @@
 		EndNode(mRootNode);
 
 	}
+
+
+	SceneGraph* SceneGraph::mThis = nullptr;

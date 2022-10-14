@@ -33,12 +33,9 @@ ZParametersNode* ZNewNode::GetParameters() {
 ZContextVar* ZNewNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
-	auto new_cls = ZScriptContext::CurrentContext->CreateInstance(mClassName, "",params);
+	
 
-	if (new_cls == nullptr)
-	{
-		assert(false);
-	}
+	
 
 	int a = 5;
 
@@ -52,8 +49,12 @@ ZContextVar* ZNewNode::Exec(const std::vector<ZContextVar*>& params)
 		pars.push_back(val);
 
 	}
-
-	new_cls->CallMethod(mClassName, pars);
+	auto new_cls = ZScriptContext::CurrentContext->CreateInstance(mClassName, "", pars);
+	if (new_cls == nullptr)
+	{
+		assert(false);
+	}
+	//new_cls->CallMethod(mClassName, pars);
 
 	ZContextVar* result = new ZContextVar("a", VarType::VarInstance);
 	result->SetClass(new_cls);

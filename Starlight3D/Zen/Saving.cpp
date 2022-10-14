@@ -155,6 +155,10 @@ void ZenUI::SaveScene(const char* path)
 
 
 	file_out->Close();
+	
+	//Save file info file for progress bar.
+
+	
 	ZenUI::mUI->Notify("Scene Saved", "Succesfully saved scene " + std::string(fpath));
 
 }

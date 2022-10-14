@@ -14,7 +14,10 @@ FSResource::FSResource(std::string name, std::string path,ResourceType type) {
 
 void FSResource::Load() {
 
-	if (mLoaded) return;
+	lock.lock();
+	bool mr = mLoaded;
+	lock.unlock();
+	if (mr) return;
 	lock.lock();
 	switch (mType) {
 	case ResourceType::TextureFlat:
@@ -37,8 +40,9 @@ void FSResource::Load() {
 	}
 		break;
 	}
-	lock.unlock();
 	mLoaded = true;
+	lock.unlock();
+	
 }
 
 void* FSResource::GetResource() {

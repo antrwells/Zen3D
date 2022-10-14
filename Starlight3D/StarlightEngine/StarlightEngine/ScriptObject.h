@@ -12,6 +12,8 @@ public:
 	ZScriptContext* mContext = nullptr;
 	ZClassNode* mMainClass = nullptr;
 	std::string name = "";
+	std::string mPath;
+	std::string mClsName;
 	void CallUpdate();
 	void CallInit();
 	void CallUI();

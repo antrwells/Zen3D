@@ -249,6 +249,8 @@ private:
 	//saving
 	char* saveName = nullptr;
 
+	Texture2D* mWhiteTex;
+
 };
 
 

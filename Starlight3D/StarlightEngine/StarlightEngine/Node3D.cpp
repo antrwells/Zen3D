@@ -15,6 +15,7 @@
 #include "ZSystemFunction.h"
 #include "ZSystemFunctions.h"
 #include "Application.h"
+
 #include "ZContextVar.h"
 
 bool Node3D::mSysInit = false;
@@ -315,12 +316,14 @@ bool Node3D::mSysInit = false;
 
 	}
 
-	void Node3D::AddScript(std::string path,std::string cls_name) {
+	ScriptObject* Node3D::AddScript(std::string path,std::string cls_name) {
 
 		ScriptObject* new_obj = new ScriptObject;
 		auto con = ZScriptContext::CurrentContext;
 		
 		new_obj->mContext = con;
+		new_obj->mPath = path;
+		new_obj->mClsName = cls_name;
 
 		auto src = new ZSource(path);
 		ZTokenizer* toker = new ZTokenizer(src);
@@ -349,7 +352,7 @@ bool Node3D::mSysInit = false;
 		new_obj->name = cls_name;
 		mScriptObjs.push_back(new_obj);
 		int aa = 5;
-	
+		return new_obj;
 	}
 	
 	//Kinetic::FX::Effect* Node3D::FXDepth = nullptr;
@@ -504,4 +507,112 @@ bool Node3D::mSysInit = false;
 		
 
 		int aa=5;
+	}
+
+
+	void Node3D::WriteScripts(VFile* file) {
+
+		file->WriteInt(mScriptObjs.size());
+
+		for (int i = 0; i < mScriptObjs.size(); i++) {
+
+			auto obj = mScriptObjs[i];
+
+			file->WriteString(obj->mPath.c_str());
+			file->WriteString(obj->mClsName.c_str());
+
+			WriteClass(file,obj->mMainClass);
+
+			
+
+
+		}
+
+	}
+
+	void Node3D::ReadScripts(VFile* file) {
+
+		int snum = file->ReadInt();
+		for (int i = 0; i < snum; i++) {
+
+			std::string spath = std::string(file->ReadString());
+			std::string cls_name = std::string(file->ReadString());
+
+			auto obj = AddScript(spath, cls_name);
+			
+			ReadClass(file, obj->mMainClass);
+
+
+
+
+		}
+
+	}
+
+	void Node3D::WriteClass(VFile* file, ZClassNode* cls) {
+		
+		auto vars = cls->GetVars();
+
+		for (int i = 0; i < vars.size(); i++)
+		{
+			auto v = vars[i];
+			//file->WriteInt((int)v->GetType());
+
+
+			switch ((int)v->GetType()) {
+			case 0:
+				file->WriteInt(v->GetIntVal());
+				break;
+			case 1:
+				file->WriteFloat(v->GetFloatVal());
+				break;
+			case 2:
+				file->WriteString(v->GetStringVal().c_str());
+				break;
+			case 4:
+
+				WriteClass(file, v->GetClassVal());
+
+				break;
+			}
+
+		}
+
+	}
+
+	ZClassNode* Node3D::ReadClass(VFile* file,ZClassNode* cls) {
+
+
+		auto vars = cls->GetVars();
+
+
+		for (int i = 0; i < vars.size(); i++)
+		{
+			auto v = vars[i];
+			//file->WriteInt((int)v->GetType());
+
+
+			switch ((int)v->GetType()) {
+			case 0:
+				//file->WriteInt(v->GetIntVal());
+				v->SetInt(file->ReadInt());
+				break;
+			case 1:
+				//file->WriteFloat(v->GetFloatVal());
+				v->SetFloat(file->ReadFloat());
+				break;
+			case 2:
+				v->SetString(std::string(file->ReadString()));
+				//file->WriteString(v->GetStringVal().c_str());
+				break;
+			case 4:
+
+				ReadClass(file, v->GetClassVal());
+				//v->SetClass(ReadClass(file));
+
+
+			}
+
+		}
+		return nullptr;
 	}

@@ -11,6 +11,7 @@
 #include "VFile.h"
 
 class ScriptObject;
+class ZClassNode;
 class NodeEntity;
 using namespace Diligent;
 
@@ -349,7 +350,8 @@ enum NodeType {
 			return mHidden;
 		}
 
-		void AddScript(std::string path,std::string name);
+		ScriptObject* AddScript(std::string path,std::string name);
+
 		std::vector<ScriptObject*> GetScripts() {
 			return mScriptObjs;
 		}
@@ -403,6 +405,11 @@ enum NodeType {
 			}
 			*/
 		}
+
+		void WriteScripts(VFile* file);
+		void ReadScripts(VFile* file);
+		void WriteClass(VFile* file,ZClassNode* cls);
+		ZClassNode* ReadClass(VFile* file,ZClassNode* cls);
 		virtual void WriteNode(VFile* file) {
 
 			file->WriteInt((int)mType);
@@ -410,6 +417,8 @@ enum NodeType {
 			WriteTransform(file);
 
 			file->WriteInt(0);
+
+			WriteScripts(file);
 
 			file->WriteInt(mChildren.size());
 			for (int i = 0; i < mChildren.size(); i++) {

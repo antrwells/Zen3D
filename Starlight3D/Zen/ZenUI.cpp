@@ -53,6 +53,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mIconPlay = (Texture2D*)pUI->GetResource("PlayIcon");// new Texture2D("edit/icon/playicon.png");
 	mIconStop = (Texture2D*)pUI->GetResource("StopIcon");// n ew Texture2D("edit/icon/stopicon.png");
 
+	mWhiteTex = (Texture2D*)pUI->GetResource("WhiteTex");
+
 	//Scene Graph
 	mSceneGraphPos = ImVec2(0, mToolbarSize.y + 12);
 	mSceneGraphSize = ImVec2(240, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
@@ -164,7 +166,7 @@ ZenUI::ZenUI() {
 	pUI->AddFile("GizTranslate", "edit/gizmo/translate1.fbx", ResourceType::ModelProp);
 	pUI->AddFile("GizRotate", "edit/gizmo/rotate1.fbx", ResourceType::ModelProp);
 	pUI->AddFile("GizScale", "edit/gizmo/scale1.fbx", ResourceType::ModelProp);
-
+	pUI->AddFile("WhiteTex", "edit/white.png", ResourceType::TextureFlat);
 	//pUI->LoadThreaded();
 
 

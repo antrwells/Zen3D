@@ -132,6 +132,8 @@
                 new_mesh->SetOwner(this);
             }
 
+            ReadScripts(file);
+
             int cc = file->ReadInt();
             for (int i = 0; i < cc; i++) {
 
@@ -154,6 +156,7 @@
                 mMeshes[i]->WriteMesh(file);
 
             }
+            WriteScripts(file);
 
             file->WriteInt(mChildren.size());
             for (int i = 0; i < mChildren.size(); i++) {

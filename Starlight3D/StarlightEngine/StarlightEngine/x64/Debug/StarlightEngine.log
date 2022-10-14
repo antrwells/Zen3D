@@ -1,4 +1,18 @@
-﻿  VFile.cpp
+﻿  Node3D.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(227,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(423,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(17,1): warning C4305: 'return': truncation from 'double' to 'float'
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(34,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(41,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(42,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(61,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(71,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.cpp(414,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.cpp(414,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.cpp(414,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.cpp(470,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.cpp(477,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.cpp(515,36): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Replacing x64\Debug\DirCollection.obj
   Replacing x64\Debug\pch.obj
 GraphicsEngineD3D11_64d.lib(GraphicsEngineD3D11_64d.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GraphicsEngineD3D12_64d.lib(GraphicsEngineD3D12_64d.dll); second definition ignored

@@ -33,95 +33,81 @@ CodeType ZParseCodeBody::PredictType() {
 	{
 
 		auto token = mStream->PeekToken(peek_val);
-		if (token.mText == "Vec3")
-		{
-			int vv = 2;
-		}
-		int ee = 1;
-
-
 
 		switch (token.mType) {
-		case TokenType::TokenInc:
-			return CodeType::CodeInc;
-			break;
-		case TokenType::TokenDec:
-			return CodeType::CodeDec;
-			break;
-		case TokenType::TokenParseStop:
-			return CodeType::CodeParseStop;
-			break;
-		case TokenType::TokenDebugStop:
-			return CodeType::CodeDebug;
-			break;
-		case TokenType::TokenWhile:
-			return CodeType::CodeWhile;
 		case TokenType::TokenReturn:
 			return CodeType::CodeReturn;
+		case TokenType::TokenIf:
+			return CodeType::CodeIf;
+		case TokenType::TokenElseIf:
+			return CodeType::CodeElseIf;
+		case TokenType::TokenElse:
+			return CodeType::CodeElse;
 		case TokenType::TokenFor:
 			return CodeType::CodeFor;
-
-			break;
-		case TokenType::TokenIf:
-
-			return CodeType::CodeIf;
-
-		case TokenType::TokenPeriod:
-
-			if (mStream->FindInLine(TokenType::TokenLeftPara, peek_val))
-			{
-				if (mStream->Before(TokenType::TokenEquals, TokenType::TokenLeftPara)) {
-
-					return CodeType::CodeAssign;
-
-				}
-				return CodeType::ClassStatement;
-			}
-			break;
+		case TokenType::TokenWhile:
+			return CodeType::CodeWhile;
+		case TokenType::TokenDebugStop:
+			return CodeType::CodeDebug;
 		case TokenType::TokenIdent:
-		{
-			int aa = 5;
-			idnum++;
-			if (idnum == 2)
-			{
-				if (mStream->PeekToken(peek_val+1).mType == TokenType::TokenEndOfLine)
-				{
-					return CodeType::CodeDeclareVars;
-				}
-			}
-		}
-			break;
 
-		case TokenType::TokenString:
+			if (mStream->PeekToken(peek_val + 1).mType == TokenType::TokenPeriod)
+			{
+
+				auto quick = mStream->PeekToken(peek_val + 3);
+				
+				if (quick.mType == TokenType::TokenLeftPara)
+				{
+					return CodeType::ClassStatement;
+				}
+				else {
+					if (quick.mType == TokenType::TokenEquals)
+					{
+						return CodeType::CodeAssign;
+					}
+				}
+				
+				//if(mStream->PeekToken(peek_val+3).)
+
+
+			}
+
+			if (mStream->PeekToken(peek_val+1).mType == TokenType::TokenLeftPara) {
+				return CodeType::CodeStatement;
+			}
+
+			if (mStream->PeekToken(peek_val + 1).mType == TokenType::TokenEquals) {
+				return CodeType::CodeAssign;
+			}
+
+			if (mStream->PeekToken(peek_val + 1).mType == TokenType::TokenIdent) {
+
+				return CodeType::CodeDeclareVars;
+
+			}
+
+			break;
 		case TokenType::TokenInt:
 		case TokenType::TokenFloat:
+		case TokenType::TokenString:
+		case TokenType::TokenCObj:
 			return CodeType::CodeDeclareVars;
 			break;
+		case TokenType::TokenEndOfLine:
+		
+		
+		{int a = 5;
 
-		case TokenType::TokenLeftPara:
-
-			return CodeType::CodeStatement;
-
-			break;
+		}break;
 		case TokenType::TokenEnd:
-		case TokenType::TokenElse:
-		case TokenType::TokenElseIf:
-
 			return CodeType::CodeEnd;
-
-			break;
-		case TokenType::TokenEquals:
-
-			return CodeType::CodeAssign;
-
+		default:
+			int bb = 5;
 			break;
 		}
-
 		peek_val++;
 
 	}
-
-	int aa = 5;
 
 	return CodeType::CodeUnknown;
 
@@ -412,6 +398,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 
 			break;
 		case CodeType::CodeEnd:
+		case CodeType::CodeElse:
 
 			if (mStream->PeekToken(0).mType == TokenType::TokenEnd || TokenType::TokenElseIf)
 			{

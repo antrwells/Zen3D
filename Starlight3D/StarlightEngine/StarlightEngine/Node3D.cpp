@@ -36,7 +36,8 @@ bool Node3D::mSysInit = false;
 			AddSystemFunctions();
 			mSysInit = true;
 		}
-
+		mChanged = true;
+		SetChanged();
 		
 
 	}
@@ -195,6 +196,8 @@ bool Node3D::mSysInit = false;
 
 		mPosition = position;
 		//InvalidateTransform();
+		mChanged = true;
+		SetChanged();
 
 
 	}
@@ -213,13 +216,16 @@ bool Node3D::mSysInit = false;
 
 
 		mRotation = yaw_matrix * pitch_matrix * roll_matrix;
-		
+		mChanged = true;
+		SetChanged();
 		//InvalidateTransform();
 	}
 
 	void Node3D::SetScale(float3 scale) {
 
 		mScale = scale;
+		mChanged = true;
+		SetChanged();
 	//	InvalidateTransform();
 
 	}
@@ -240,6 +246,8 @@ bool Node3D::mSysInit = false;
 			mPosition += float3(mv.x, mv.y, mv.z);
 
 		}
+		SetChanged();
+		mChanged = true;
 		//InvalidateTransform();
 	}
 
@@ -289,7 +297,8 @@ bool Node3D::mSysInit = false;
 		mRotation = (yaw_matrix * pitch_matrix * roll_matrix) * mRotation;
 
 		InvalidateTransform();
-
+		mChanged = true;
+		SetChanged();
 	}
 
 
@@ -308,13 +317,16 @@ bool Node3D::mSysInit = false;
 
 
 		InvalidateTransform();
-
+		mChanged = true;
+		SetChanged();
 	}
 
 	void Node3D::SetRotation4x4(float4x4 rotation) {
 
 		mRotation = rotation;
 		InvalidateTransform();
+		mChanged = true;
+		SetChanged();
 
 	}
 
@@ -565,6 +577,23 @@ bool Node3D::mSysInit = false;
 
 		return hit;
 
+
+
+	}
+
+
+	// General
+
+	ZContextVar* sys_random(const std::vector<ZContextVar*>& args)
+	{
+
+		float min = args[0]->GetFloatVal();
+		float max = args[1]->GetFloatVal();
+
+		float r3 = min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
+
+		return VMakeFloat(r3);
+
 	}
 
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
@@ -590,6 +619,7 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction n_setpytris("Node3DSetPyTriMesh", node3d_setpytris);
 		ZSystemFunction n_setpyconvex("Node3DSetPyToConvex", node3d_setpyconvex);
 		ZSystemFunction gs_raycast("GameSceneRayCast", gs_raycast);
+		ZSystemFunction sys_rnd("random", sys_random);
 
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
@@ -601,6 +631,7 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(n_setpytris);
 		funcs->RegisterFunction(n_setpyconvex);
 		funcs->RegisterFunction(gs_raycast);
+		funcs->RegisterFunction(sys_rnd);
 
 		int aa=5;
 	}

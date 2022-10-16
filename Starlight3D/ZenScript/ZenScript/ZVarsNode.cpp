@@ -66,47 +66,23 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 		ZExpressionNode::RecvType = mVarType;
 
 		switch (mVarType) {
-		case VarType::VarString:
-
-			new_var->SetString(var->def->Exec({})->GetStringVal());
-
-			break;
-		case VarType::VarInt:
-			
-		{
-
-			auto rv = var->def->Exec({});
-			switch (rv->GetType()) {
-			case VarType::VarFloat:
-				new_var->SetInt((int)rv->GetFloatVal());
-				break;
-			case VarType::VarInt:
-				new_var->SetInt(rv->GetIntVal());
+		case VarInt:
+			if (var->def != nullptr) {
+				new_var->SetInt(var->def->Exec({})->GetIntVal());
 			}
-		}
 			break;
-		case VarType::VarFloat:
-
-		{
-			
-			auto rv = var->def->Exec({});
-			switch (rv->GetType()) {
-			case VarType::VarFloat:
-				new_var->SetFloat(rv->GetFloatVal());
-				break;
-			case VarType::VarInt:
-				new_var->SetFloat(rv->GetIntVal());
+		case VarFloat:
+			if (var->def != nullptr) {
+				new_var->SetFloat(var->def->Exec({})->GetFloatVal());
 			}
-		}
 			break;
-		case VarType::VarInstance:
-			
+		case VarInstance:
+
 			if (var->new_node != nullptr) {
+				
 				cls = var->new_node->Exec(std::vector<ZContextVar*>())->GetClassVal();
-
-
 				new_var->SetClass(cls);
-
+			
 			}
 			else {
 
@@ -121,24 +97,13 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 						break;
 					}
 				}
+
 			}
 
-			int bb = 7;
-
-			
-			//auto owner = mCodeOwner->GetOwner();
-			auto scope = ZScriptContext::CurrentContext->GetScope();//  owner->GetScope();
-			scope->RegisterVar(new_var);
 			break;
 		}
-		//if (mCodeOwner != nullptr) {
-			int aa = 5;
-			//auto owner = mCodeOwner->GetOwner();
-			auto scope = ZScriptContext::CurrentContext->GetScope();
-			scope->RegisterVar(new_var);
-
-		
-		
+		auto scope = ZScriptContext::CurrentContext->GetScope();//  owner->GetScope();
+		scope->RegisterVar(new_var);
 
 	}
 	int b = 5;

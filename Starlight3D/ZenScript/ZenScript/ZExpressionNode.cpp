@@ -305,6 +305,107 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
 
 }
 
+float GetValue(ExpressionElement tok)
+{
+    if (tok.mType == EInt) {
+        //values.push((float)tok.mValInt);
+        return (float)tok.mValInt;
+    }
+    else if (tok.mType == EFloat) {
+        //values.push(tok.mValFloat);
+        return tok.mValFloat;
+    }
+    else if (tok.mType == EClassStatement)
+    {
+        auto res = tok.mClassStatement->Exec({});
+
+        switch (res->GetType()) {
+        case VarType::VarInt:
+            //values.push((float)res->GetIntVal());
+            return (float)res->GetIntVal();
+            break;
+        case VarType::VarFloat:
+            //values.push(res->GetFloatVal());
+            return res->GetFloatVal();
+
+            break;
+        }
+        int aa = 5;
+    }
+    else if (tok.mType == EStatement)
+    {
+        auto res = tok.mStatement->Exec(std::vector<ZContextVar*>());
+
+        switch (res->GetType()) {
+        case VarType::VarInt:
+
+            //values.push((float)res->GetIntVal());
+            return (float)res->GetIntVal();
+            break;
+        case VarType::VarFloat:
+            //values.push(res->GetFloatVal());
+            return res->GetFloatVal();
+            break;
+        }
+
+        //values.push(res->GetIntVal());
+
+
+    }
+    else if (tok.mType == EVar)
+    {
+        int depth = 0;
+        for (int i = 0; i < 16; i++)
+        {
+            if (tok.mValName[i] != "")
+            {
+                depth++;
+            }
+            else {
+                break;
+            }
+        }
+
+        if (depth > 1)
+        {
+            if (ZScriptContext::CurrentContext->IsStaticClass(tok.mValName[0])) {
+
+                auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mValName[0]);
+
+                auto gv = scls->FindVar(tok.mValName[1]);
+                //values.push(gv->GetFloatVal());
+                return gv->GetFloatVal();
+
+            }
+            else {
+                auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
+                auto av = cls->GetClassVal()->FindVar(tok.mValName[1]);
+                if (av->GetType() == VarType::VarInt)
+                {
+                    return (float)av->GetIntVal();
+                    //   values.push((float)av->GetIntVal());
+                }
+                else {
+                    //values.push(av->GetFloatVal())
+                    return av->GetFloatVal();
+                }
+            }//values.push(333);
+        }
+        else {
+            auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
+            if (evar->GetType() == EInt) {
+
+                //values.push((float)evar->GetIntVal());
+                return (float)evar->GetIntVal();
+            }
+            else {
+                //values.push(evar->GetFloatVal());
+                return evar->GetFloatVal();
+            }
+        }
+    }
+}
+
 
 float evaluateFloat(std::vector<ExpressionElement> mElements) {
 
@@ -317,7 +418,12 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
 
 
         if (tok.mOp == OpUMinus) {
-            values.push(-mElements[i + 1].mValFloat);
+            
+            auto nx = mElements[i + 1];
+            
+            values.push(-GetValue(nx));
+            //values.push(-mElements[i + 1].mValFloat);
+
             i++;
             continue;
         };
@@ -331,90 +437,7 @@ float evaluateFloat(std::vector<ExpressionElement> mElements) {
         else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar || tok.mType == EStatement || tok.mType == EClassStatement)
         {
             //int val = 0;
-            if (tok.mType == EInt) {
-                values.push((float)tok.mValInt);
-            }
-            else if (tok.mType == EFloat) {
-                values.push(tok.mValFloat);
-            }
-            else if (tok.mType == EClassStatement)
-            {
-                auto res = tok.mClassStatement->Exec({});
-
-                switch (res->GetType()) {
-                case VarType::VarInt:
-                    values.push((float)res->GetIntVal());
-                    break;
-                case VarType::VarFloat:
-                    values.push(res->GetFloatVal());
-                    break;
-                }
-                int aa = 5;
-            }
-            else if (tok.mType == EStatement)
-            {
-                auto res = tok.mStatement->Exec(std::vector<ZContextVar*>());
-
-                switch (res->GetType()) {
-                case VarType::VarInt:
-                    values.push((float)res->GetIntVal());
-                    break;
-                case VarType::VarFloat:
-                    values.push(res->GetFloatVal());
-                    break;
-                }
-
-                //values.push(res->GetIntVal());
-
-
-            }
-            else if (tok.mType == EVar)
-            {
-                int depth = 0;
-                for (int i = 0; i < 16; i++)
-                {
-                    if (tok.mValName[i] != "")
-                    {
-                        depth++;
-                    }
-                    else {
-                        break;
-                    }
-                }
-
-                if (depth > 1)
-                {
-                    if (ZScriptContext::CurrentContext->IsStaticClass(tok.mValName[0])) {
-
-                        auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mValName[0]);
-
-                        auto gv = scls->FindVar(tok.mValName[1]);
-                        values.push(gv->GetFloatVal());
-
-                    }
-                    else {
-                        auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
-                        auto av = cls->GetClassVal()->FindVar(tok.mValName[1]);
-                        if (av->GetType() == VarType::VarInt)
-                        {
-
-                            values.push((float)av->GetIntVal());
-                        }
-                        else {
-                            values.push(av->GetFloatVal());
-                        }
-                    }//values.push(333);
-                }
-                else {
-                    auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
-                    if (evar->GetType() == EInt) {
-                        values.push((float)evar->GetIntVal());
-                    }
-                    else {
-                        values.push(evar->GetFloatVal());
-                    }
-                }
-            }
+            values.push(GetValue(tok));
         }
         else if (tok.mOp == OpRightBrace)
         {

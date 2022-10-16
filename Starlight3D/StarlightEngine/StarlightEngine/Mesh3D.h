@@ -33,6 +33,16 @@ class Node3D;
 		/// Creates an empty mesh. Meshes are used as part of a scenegraph/nodes to achieve a real time 3D scene, with lighting and shadows.
 		/// </summary>
 		Mesh3D();
+		void SetChanged() {
+			mChanged = true;
+		}
+		bool Changed() {
+			if (mChanged) {
+				mChanged = false;
+				return true;
+			}
+			return false;
+		}
 
 
 		void SetOwner(Node3D* owner) {
@@ -329,6 +339,8 @@ class Node3D;
 			return mesh;
 		}
 
+
+
 	private:
 		
 		/// <summary>
@@ -348,6 +360,7 @@ class Node3D;
 		RefCntAutoPtr<IBufferView> m_IndexBufferView;
 		RefCntAutoPtr<IBottomLevelAS> mBLAS;
 		const char* mGeoName;
+		bool mChanged = true;
 		//OpenGL
 		//GLuint VertexArray = -1;
 		//GLuint VertexBuffer = -1;

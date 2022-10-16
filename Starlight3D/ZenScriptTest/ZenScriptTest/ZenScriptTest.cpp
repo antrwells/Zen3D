@@ -72,6 +72,7 @@ int main()
 
    auto cls_inst = context1->CreateInstance("testClass", "test",pars);
 
+   cls_inst->CallMethod("test", {});
     
    //int aa = 5;
    auto par_a = new ZContextVar("a", VarType::VarInt);

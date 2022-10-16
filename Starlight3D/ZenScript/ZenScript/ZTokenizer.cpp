@@ -449,6 +449,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 					switch (nt.mType) {
 					case TokenType::TokenFloat:
 					case TokenType::TokenInt:
+					case TokenType::TokenIdent:
 
 						tok.mType = TokenType::TokenUMinus;
 						new_tokens3.push_back(tok);
@@ -457,6 +458,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 						continue;
 
 						break;
+						
 					}
 				}
 				else {

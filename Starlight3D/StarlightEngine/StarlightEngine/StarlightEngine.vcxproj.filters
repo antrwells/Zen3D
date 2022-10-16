@@ -70,9 +70,6 @@
     <Filter Include="Import">
       <UniqueIdentifier>{39b59755-098d-46ce-b058-c0a6bc8f7510}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{dec0b767-2000-43cd-b9d7-b1d9b91a2774}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{2c9440d4-51e1-4211-a944-3e47d63ea804}</UniqueIdentifier>
     </Filter>
@@ -90,6 +87,9 @@
     </Filter>
     <Filter Include="App">
       <UniqueIdentifier>{a6ac5ed1-951b-4158-9186-2354c8728e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Import\Input">
+      <UniqueIdentifier>{dec0b767-2000-43cd-b9d7-b1d9b91a2774}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -265,7 +265,7 @@
       <Filter>Import</Filter>
     </ClInclude>
     <ClInclude Include="UserInput.h">
-      <Filter>Input</Filter>
+      <Filter>Import\Input</Filter>
     </ClInclude>
     <ClInclude Include="VString.h">
       <Filter>Util</Filter>
@@ -311,6 +311,15 @@
     </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAtlas.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="AtlasNode.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureData.h">
+      <Filter>Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -486,7 +495,7 @@
       <Filter>Import</Filter>
     </ClCompile>
     <ClCompile Include="UserInput.cpp">
-      <Filter>Input</Filter>
+      <Filter>Import\Input</Filter>
     </ClCompile>
     <ClCompile Include="VString.cpp">
       <Filter>Util</Filter>
@@ -520,6 +529,15 @@
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAtlas.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="AtlasNode.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureData.cpp">
+      <Filter>Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

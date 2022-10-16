@@ -199,9 +199,12 @@ void Application::CreateResources() {
 }
 
 void Application::Present() {
+    try {
+        m_pSwapChain->Present();
+    }
+    catch (...) {
 
-    m_pSwapChain->Present();
-
+    }
 }
 bool mouse1_in = false;
 bool mouse2_in = false;

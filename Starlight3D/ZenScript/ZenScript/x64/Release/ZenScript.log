@@ -1,7 +1,140 @@
-﻿  ZAssignNode.cpp
+﻿  pch.cpp
+  DirCollection.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2824,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2664): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2664): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  ZAssignNode.cpp
+  ZClassNode.cpp
+  ZClassStatementNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZClassStatementNode.cpp(13,14): warning C4101: 'top': unreferenced local variable
+  ZCodeBodyNode.cpp
+  ZContextScope.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZContextScope.cpp(26,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ZContextVar.cpp
+  ZenScript.cpp
+  ZExpressionNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(86,30): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(87,27): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(88,29): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(89,26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(207,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ZForNode.cpp
+  ZIfnode.cpp
   ZIncNode.cpp
   ZMethodNode.cpp
+  ZNewNode.cpp
+  ZParametersNode.cpp
+  ZParseAssign.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseClass.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseClass.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  ZParseClassStatement.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
   ZParseCodeBody.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
   ZParseExpression.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  Compiling...
+  ZParseFor.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseIf.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
   ZParseMethod.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseNew.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseParameters.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParser.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseReturn.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseScript.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseSignature.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseSigParam.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseStatement.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseValue.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseVars.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZParseWhile.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+  ZProgramNode.cpp
+  ZReturnNode.cpp
+  ZScriptContext.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2824,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2664): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2664): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  ZScriptNode.cpp
+  ZSignatureNode.cpp
+  Compiling...
+  ZSigParamNode.cpp
+  ZSource.cpp
+  ZStatementNode.cpp
+  ZSystemFunction.cpp
+  ZSystemFunctions.cpp
+  ZTokenizer.cpp
+  ZTokenStream.cpp
+  ZVarsNode.cpp
+  ZWhileNode.cpp
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Release\ZenScript.lib

@@ -1,2 +1,3 @@
-﻿  ZClassNode.cpp
+﻿  ZParseCodeBody.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

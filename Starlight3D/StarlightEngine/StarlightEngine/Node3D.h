@@ -181,6 +181,10 @@ enum NodeType {
 		void SetRotation(float4x4 mat) {
 
 			mRotation = mat;
+			//mChanged = true;
+			SetChanged();
+
+
 			//InvalidateTransform();
 
 		}
@@ -284,6 +288,9 @@ enum NodeType {
 		/// <returns></returns>
 		Node3D* GetRootNode() {
 			return mRootNode;
+		}
+		virtual void SetChanged() {
+
 		}
 
 		/// <summary>
@@ -435,6 +442,14 @@ enum NodeType {
 
 		}
 
+		bool Changed() {
+			if (mChanged) {
+				mChanged = false;
+				return true;
+			}
+			return false;
+		}
+
 	protected:
 		static bool mSysInit;
 		bool mTransformInvalidated = true;
@@ -475,5 +490,5 @@ enum NodeType {
 		float4x4 mPushRot;
 		float3 mPushPos;
 		float3 mPushScale;
-
+		bool mChanged = false;
 	};

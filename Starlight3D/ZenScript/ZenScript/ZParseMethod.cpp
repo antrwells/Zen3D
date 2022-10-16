@@ -96,6 +96,10 @@ ZScriptNode* ZParseMethod::Parse()
 
 	auto code_parse = new ZParseCodeBody(mStream);
 
+	if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine) {
+		mStream->NextToken();
+	}
+
 	auto code_node = (ZCodeBodyNode*)code_parse->Parse();
 
 	code_node->SetOwner(meth_node);

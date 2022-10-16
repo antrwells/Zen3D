@@ -53,6 +53,12 @@
         //This converts a whole entity into a single draw call, using bindless textures. max of 1024 unique textures per  smart mesh.
         void ConvertToSmartMesh();
 
+
+        void SetChanged() {
+            for (int i = 0; i < mMeshes.size(); i++) {
+                mMeshes[i]->SetChanged();
+            }
+        }
         /// <summary>
         /// Returns the given mesh of the entity.
         /// </summary>
@@ -110,7 +116,7 @@
     
         
         PhysicsBody* GetBody() {
-            return mBody;
+            return nullptr;
         }
 
         void ReadNode(VFile* file, bool read_type)
@@ -179,8 +185,7 @@
         
        // static Kinetic::FX::Effect* FXSmartMesh;
 
-        PhysicsBody* mBody;
-        PhysicsBody* mTriBody;
+      
 
     };
 

@@ -69,7 +69,7 @@ PickResult RayPicker::MousePick(int x, int y, int w, int h, NodeCamera* cam) {
 
 PickResult RayPicker::RayPick(rpRay ray,Node3D* node)
 {
-
+	int start = clock();
 	mIgnore = node;
 
 	auto result =  RayPick(ray);
@@ -91,6 +91,8 @@ PickResult RayPicker::RayPick(rpRay ray,Node3D* node)
 	
 
 	}
+	int end = clock();
+	printf("RP took:%d ms\n", end - start);
 	return result;
 }
 
@@ -102,8 +104,10 @@ PickResult RayPicker::RayPick(rpRay ray)
 	return result;
 
 }
-
-PickResult RayPicker::RayToTri(rpRay ray, float3 v0, float3 v1, float3 v2)
+const float EPSILON = 0.0000001;
+float3 edge1, edge2, h, s, q;
+float a, f, u, v;
+inline PickResult RayPicker::RayToTri(rpRay& ray,rpTri& tri)// float3& vertex0, float3& vertex1, float3& vertex2)
 {
 
 	PickResult result;
@@ -116,22 +120,19 @@ PickResult RayPicker::RayToTri(rpRay ray, float3 v0, float3 v1, float3 v2)
 		Vector3D & outIntersectionPoint)
 	*/
 
-		const float EPSILON = 0.0000001;
+	
 		
-		float3 vertex0 = v0;
-		float3 vertex1 = v1;
-		float3 vertex2 = v2;
+		
 
-		float3 edge1, edge2, h, s, q;
-		float a, f, u, v;
-		edge1 = vertex1 - vertex0;
-		edge2 = vertex2 - vertex0;
+	
+	edge1 = tri.v1 - tri.v0;// vertex1 - vertex0;
+		edge2 = tri.v2 - tri.v0;
 		h = Diligent::cross(ray.dir,edge2);
 		a = Diligent::dot(edge1,h);
 		if (a > -EPSILON && a < EPSILON)
 			return result;    // This ray is parallel to this triangle.
 		f = 1.0 / a;
-		s = ray.pos - vertex0;
+		s = ray.pos - tri.v0;
 		u = f * Diligent::dot(s,h);
 		if (u < 0.0 || u > 1.0)
 			return result;
@@ -161,87 +162,178 @@ PickResult RayPicker::RayToTri(rpRay ray, float3 v0, float3 v1, float3 v2)
 
 }
 
-PickResult RayPicker::RayPickMesh(rpRay ray, Mesh3D* mesh) {
+float NOHIT = -255;
 
-	int a = 5;
+inline float rayBoxIntersect(rpRay& ray,float3& vmin, float3& vmax)
+{
+	float t[10];
+	t[1] = (vmin.x - ray.pos.x) / ray.dir.x;
+	t[2] = (vmax.x - ray.pos.x) / ray.dir.x;
+	t[3] = (vmin.y - ray.pos.y) / ray.dir.y;
+	t[4] = (vmax.y - ray.pos.y) / ray.dir.y;
+	t[5] = (vmin.z - ray.pos.z) / ray.dir.z;
+	t[6] = (vmax.z - ray.pos.z) / ray.dir.z;
+	t[7] = fmax(fmax(fmin(t[1], t[2]), fmin(t[3], t[4])), fmin(t[5], t[6]));
+	t[8] = fmin(fmin(fmax(t[1], t[2]), fmax(t[3], t[4])), fmax(t[5], t[6]));
+	t[9] = (t[8] < 0 || t[7] > t[8]) ? NOHIT : t[7];
+	return t[9];
+}
+
+inline PickResult RayPicker::RayPickMesh(rpRay& ray, Mesh3D* mesh) {
+
+
 
 	auto tris = mesh->GetTris();
 	auto verts = mesh->GetVertices();
 
 	auto transform = mesh->GetOwner()->GetWorldMatrix();
 
+	int a = 5;
+	PickCache cache;
+
+//restart:
+
+	if (caches.count(mesh) == 0)
+	{
+		restart:
+				//printf("!!!!");
+
+		float3 min = float3(99999, 99999, 99999);
+		float3 max = float3(-99999, -99999, -99999);
+
+		for (int i = 0; i < tris.size(); i++)
+		{
+	
+			auto tri = tris[i];
+			auto v0 = verts[tri.v0];
+			auto v1 = verts[tri.v1];
+			auto v2 = verts[tri.v2];
+
+			auto pos1 = v0.position;
+			auto pos2 = v1.position;
+			auto pos3 = v2.position;
+
+			auto t_pos1 = pos1 * transform;
+			auto t_pos2 = pos2 * transform;
+			auto t_pos3 = pos3 * transform;
+
+			min.x = fmin(t_pos1.x, min.x);
+			min.y = fmin(t_pos1.y, min.y);
+			min.z = fmin(t_pos1.z, min.z);
+
+			min.x = fmin(t_pos2.x, min.x);
+			min.y = fmin(t_pos2.y, min.y);
+			min.z = fmin(t_pos2.z, min.z);
+
+			min.x = fmin(t_pos3.x, min.x);
+			min.y = fmin(t_pos3.y, min.y);
+			min.z = fmin(t_pos3.z, min.z);
+
+
+			max.x = fmax(t_pos1.x, max.x);
+			max.y = fmax(t_pos1.y, max.y);
+			max.z = fmax(t_pos1.z, max.z);
+
+			max.x = fmax(t_pos2.x, max.x);
+			max.y = fmax(t_pos2.y, max.y);
+			max.z = fmax(t_pos2.z, max.z);
+
+			max.x = fmax(t_pos3.x, max.x);
+			max.y = fmax(t_pos3.y, max.y);
+			max.z = fmax(t_pos3.z, max.z);
+
+			rpTri ctri;
+			ctri.v0 = t_pos1;
+			ctri.v1 = t_pos2;
+			ctri.v2 = t_pos3;
+
+			cache.tris.push_back(ctri);
+
+		}
+		cache.bmin = min;
+		cache.bmax = max;
+		cache.node = mesh->GetOwner();
+		caches[mesh] = cache;
+	
+	
+	}
+
+	else {
+		cache = caches[mesh];
+		if(mesh->Changed())
+		{
+			auto ee = caches.find(mesh);
+			cache.tris.clear();
+			caches.erase(ee);
+			int bb = 0;
+			goto restart;
+		}
+		
+	}
+
+
 	PickResult close_result;
 
 	close_result.hit = false;
 
-	for (int i = 0; i < tris.size(); i++) {
-
-		auto tri = tris[i];
-
-		auto v0 = verts[tri.v0];
-		auto v1 = verts[tri.v1];
-		auto v2 = verts[tri.v2];
-
-		auto pos1 = v0.position;
-		auto pos2 = v1.position;
-		auto pos3 = v2.position;
-
-		auto t_pos1 = pos1 * transform;
-		auto t_pos2 = pos2 * transform;
-		auto t_pos3 = pos3 * transform;
+	if (rayBoxIntersect(ray, cache.bmin, cache.bmax)!=NOHIT)
+	{
 
 
-		auto result = RayToTri(ray, t_pos1, t_pos2, t_pos3);
+		for (int i = 0; i < cache.tris.size(); i++) {
 
-		if (result.hit)
-		{
-			if (close_result.hit == false) {
-				float xd, yd, zd;
-				xd = result.hit_point.x - ray.pos.x;
-				yd = result.hit_point.y - ray.pos.y;
-				zd = result.hit_point.z - ray.pos.z;
-				float dist = sqrt(xd * xd + yd * yd + zd * zd);
-				close_result = result;
-				close_result.hit = true;
-				close_result.hit_distance = dist;
-				close_result.hit_point = result.hit_point;
-				close_result.hit_node = mesh->GetOwner();
-				close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
-				close_result.hit_mesh = mesh;
+			auto result = RayToTri(ray, cache.tris[i]);
 
-	
-				close_result.hit_distance = dist;
-			}
-			else {
-
-				float xd, yd, zd;
-
-				xd = result.hit_point.x - ray.pos.x;
-				yd = result.hit_point.y - ray.pos.y;
-				zd = result.hit_point.z - ray.pos.z;
-				float dist = sqrt(xd * xd + yd * yd + zd * zd);
-				if (dist < close_result.hit_distance)
-				{
+			if (result.hit)
+			{
+				if (close_result.hit == false) {
+					float xd, yd, zd;
+					xd = result.hit_point.x - ray.pos.x;
+					yd = result.hit_point.y - ray.pos.y;
+					zd = result.hit_point.z - ray.pos.z;
+					float dist = sqrt(xd * xd + yd * yd + zd * zd);
+					close_result = result;
+					close_result.hit = true;
 					close_result.hit_distance = dist;
 					close_result.hit_point = result.hit_point;
 					close_result.hit_node = mesh->GetOwner();
-					close_result.hit_mesh = mesh;
 					close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
+					close_result.hit_mesh = mesh;
+
+
+					close_result.hit_distance = dist;
 				}
+				else {
 
-				//float dist1 =  
+					float xd, yd, zd;
 
-		
+					xd = result.hit_point.x - ray.pos.x;
+					yd = result.hit_point.y - ray.pos.y;
+					zd = result.hit_point.z - ray.pos.z;
+					float dist = sqrt(xd * xd + yd * yd + zd * zd);
+					if (dist < close_result.hit_distance)
+					{
+						close_result.hit_distance = dist;
+						close_result.hit_point = result.hit_point;
+						close_result.hit_node = mesh->GetOwner();
+						close_result.hit_mesh = mesh;
+						close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
+					}
 
+					//float dist1 =  
+
+
+
+				}
 			}
-		}
 
+		}
 	}
 
 	return close_result;
 }
 
-PickResult RayPicker::RayPickNode(rpRay ray, Node3D* node) {
+inline PickResult RayPicker::RayPickNode(rpRay& ray, Node3D* node) {
 
 	PickResult close_result;
 	close_result.hit = false;

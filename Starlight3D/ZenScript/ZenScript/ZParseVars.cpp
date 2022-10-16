@@ -65,15 +65,20 @@ ZScriptNode* ZParseVars::Parse() {
 
 				if (mStream->FindInLine(TokenType::TokenNew))
 				{
+					if (mStream->Before(TokenType::TokenLeftPara, TokenType::TokenNew))
+					{
+						goto skip2;
+					}
+					else {
+						auto parse_new = new ZParseNew(mStream);
+						auto parse_node = parse_new->Parse();
 
-					auto parse_new = new ZParseNew(mStream);
-					auto parse_node = parse_new->Parse();
-				
-					vars_node->AddVar(tok.mText, (ZNewNode*)parse_node);
+						vars_node->AddVar(tok.mText, (ZNewNode*)parse_node);
+					}
 					continue;
 				}
 				else {
-
+					skip2:
 
 					auto check = mStream->PeekToken(0);
 					if (check.mType == TokenType::TokenEndOfLine) {
@@ -101,7 +106,10 @@ ZScriptNode* ZParseVars::Parse() {
 					int b = 5;
 				}
 			}
-
+			if (def->GetExpression().mElements.size() == 0)
+			{
+				def = nullptr;
+			}
 			vars_node->AddVar(tok.mText,def);
 		}
 		int aa = 5;

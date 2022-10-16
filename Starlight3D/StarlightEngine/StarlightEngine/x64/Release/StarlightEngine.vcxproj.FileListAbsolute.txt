@@ -1,0 +1,1 @@
+C:\projects\Starlight3D\StarlightStudio\x64\Release\assimp-vc142-mt.dll

@@ -161,7 +161,7 @@
 		bb.x = bb.x + 0.1f;
 		bb.y = bb.y + 0.1f;
 		bb.z = bb.z + 0.1f;
-		mBody = new PBBox(bb.x, bb.y, bb.z);
+		
 		
 	}
 
@@ -169,7 +169,7 @@
 
 		
 		float3 bb = GetBounds();
-		mBody = new PBSphere(bb.y / 2.0f + 0.1f);
+	
 		
 	}
 
@@ -177,62 +177,43 @@
 
 		
 		float3 bb = GetBounds();
-		mBody = new PBCapsule((bb.y / 2.0f) - 1.1f, bb.x / 2.0f);
+		
 		
 	}
 
 	void NodeEntity::SetConstraint(bool x, bool y, bool z) {
 
-		mBody->SetConstraint(x, y, z);
-
 	}
 
 	void NodeEntity::SetPhysicsConvex() {
 
-		mBody = new PBConvex(mMeshes[0]);
-
+	
 	}
 
 
 	void NodeEntity::UpdatePhysics() {
 
-		if (mBody == NULL) return;
-
-		mPosition = mBody->GetPosition();
-		mRotation = mBody->GetRotation();
-		//printf("Updating physicsx. %f %f %f", mPosition.x, mPosition.y, mPosition.z);
-		InvalidateTransform();
+		
 
 	}
 
 	void NodeEntity::SetPosition(float3 position) {
 
-		Node3D::SetPosition(position);
-
-
-		if (mBody == NULL) return;
-
-		mBody->SetPosition(position);
-
+		mPosition = position;
+		SetChanged();
 	}
 
 	void NodeEntity::SetRotation(float pitch, float yaw, float roll) {
 
 		Node3D::SetRotation(pitch, yaw, roll);
-
-		
+		SetChanged();
 
 
 	}
 
 	void NodeEntity::SetPhysicsTris() {
 
-		for (int i = 0; i < mMeshes.size(); i++) {
-
-			mTriBody = new PBTriangles(mMeshes, i);
-
-
-		}
+		
 	}
 
 	Node3D* NodeEntity::Clone() {

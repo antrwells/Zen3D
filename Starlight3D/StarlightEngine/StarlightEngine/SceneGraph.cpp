@@ -45,7 +45,7 @@
 		mBillboards = new_list;
 
 		//***
-		Physics::Main->Simulate(1.0f);
+
 
 		UpdateNodePhysics(mRootNode);
 

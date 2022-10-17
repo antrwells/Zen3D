@@ -20,13 +20,17 @@ struct PSInput
     float3 TFP : NORMAL3;
     float3 lPos : POSITION1;
     float3 vPos : POSITION2;
-    float3 lightProp : POSITION3;
+    float4 lightProp : POSITION3;
     float3 fragPos : POSITION4;
     float3 lDiff : POSITION5;
     float3 lSpec : POSITION6;
     float3 localNormal : NORMAL4;
     float4 renderProps : POSITION7;
+    int4 lightMode : POSITION8;
+    float3 lDir : NORMAL5;
+    float3 lCone : NORMAL6;
    // float3 Norm : NORMAL0;x
+
 };
 
 struct PSOutput
@@ -54,6 +58,8 @@ void main(in  PSInput  PSIn,
     float xd = PSIn.lPos.x - PSIn.fragPos.x;
     float yd = PSIn.lPos.y - PSIn.fragPos.y;
     float zd = PSIn.lPos.z - PSIn.fragPos.z;
+
+    float3 ltp = PSIn.lPos.xyz - PSIn.fragPos.xyz;
 
     float dis = sqrt(xd * xd + yd * yd + zd * zd);
 
@@ -100,7 +106,16 @@ void main(in  PSInput  PSIn,
     tNormal = normalize(tNormal * 2.0 - 1.0);
     tNormal.y = -tNormal.y;
 
-    float3 lightDir = normalize(PSIn.TLP - PSIn.TFP);
+ 
+    float spec = 0.0;
+
+
+    
+    
+
+    if(PSIn.lightMode[0]==0)
+    {
+float3 lightDir = normalize(PSIn.TLP - PSIn.TFP);
 
     float diff = max(dot(lightDir, tNormal),0.0);
 
@@ -110,11 +125,53 @@ void main(in  PSInput  PSIn,
     float3 halfwayDir = normalize(lightDir+viewDir);
 
 
-    float spec = pow(max(dot(tNormal,halfwayDir),0.0),32.0);
+      spec = pow(max(dot(tNormal,halfwayDir),0.0),32.0);
     
     spec = spec * dis;
 
-    dis = dis * diff;
+     dis = dis * diff;
+    }
+    if(PSIn.lightMode[0]==1){
+
+
+float3 lightDir = normalize(PSIn.TLP - PSIn.TFP);
+
+    float diff = max(dot(lightDir, tNormal),0.0);
+
+
+    float3 viewDir = normalize(PSIn.TVP-PSIn.TFP);
+    float3 reflectDir = reflect(-lightDir,tNormal);
+    float3 halfwayDir = normalize(lightDir+viewDir);
+
+    float3 lightPixel = normalize(PSIn.fragPos - PSIn.lPos);
+ spec = pow(max(dot(tNormal,halfwayDir),0.0),32.0);
+  float factor = dot(lightPixel,PSIn.lDir);
+
+        factor *= pow(max(factor,0.0f),PSIn.lCone.x);
+
+     //   factor = factor * (1.0 - (1.0 - factor) * 1.0/(1.0 - PSIn.lCone.x));
+    
+        
+        float ff = factor;
+
+
+
+    
+    spec = spec * dis * ff;
+
+     dis = dis * diff * ff;
+    
+
+        //dis = 0;
+        //spec =0;
+
+    }
+    if(PSIn.lightMode[0]==2)
+    {
+        dis=0;
+        spec=0;
+    }
+ 
 
     float rp = PSIn.renderProps.x;
 

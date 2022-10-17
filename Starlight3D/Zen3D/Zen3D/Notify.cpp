@@ -25,6 +25,7 @@ void ZenUI::Notifications() {
 
 	ImGui::SetNextWindowPos(ImVec2(mCurrentNotice->GetX(), mCurrentNotice->GetY()));
 	ImGui::SetNextWindowSize(ImVec2(280, 120));
+	ImGui::SetNextWindowBgAlpha(0.75f);
 	mCurrentNotice->Update();
 
 	int flags = ImGuiWindowFlags_NoDecoration;

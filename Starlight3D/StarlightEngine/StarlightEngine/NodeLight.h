@@ -4,7 +4,9 @@
 
 
 
-
+enum LightType {
+	PointLight,SpotLight,DirectionalLight
+};
 
 	
 	/// <summary>
@@ -125,6 +127,22 @@
 
 		}
 
+		void SetLightType(LightType type) {
+			mLightType = type;
+		}
+		LightType GetLightType() {
+			return mLightType;
+		}
+
+		float3 GetCone() {
+			return float3(mICone, mOCone, 0);
+		}
+		void SetCone(float3 cone)
+		{
+			mICone = cone.x;
+			mOCone = cone.y;
+		}
+
 	private:
 
 		float mRange = 100;
@@ -137,7 +155,8 @@
 		//Kinetic::Framebuffer::FramebufferCube* ShadowFB;
 		bool mQueueRemove = false;
 		RenderTargetCube* mShadowCube = nullptr;
-
+		LightType mLightType = PointLight;
+		float mICone, mOCone;
 
 	};
 

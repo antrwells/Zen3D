@@ -23,6 +23,9 @@
 		mName = "LightSource";
 		mType = NodeType::Light;
 		mShadowCube = new RenderTargetCube(512, 512);
+		mICone = 12;
+
+		mOCone = 12;
 	}
 
 	int NodeLight::ShadowMapRes = 1024;

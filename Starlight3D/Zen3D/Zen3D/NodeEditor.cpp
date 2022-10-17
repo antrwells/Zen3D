@@ -87,12 +87,64 @@ void ZenUI::MainNodeEditor() {
 
 				auto light = (NodeLight*)mEditNode;
 
+				int lightType = (int)light->GetLightType();
+
+				ImGui::PushItemWidth(128);
+				//if (ImGui::BeginCombo("Transform Space","Transform Space")) {
+					//ImGui::Combo("Local Space",&mSpaceItem,"Local Space 0 Global Space",32);
+				const char* items[] = { "Point", "Spot","Directional"};
+				ImGui::Combo("Light Type", &lightType, items, 3);
+				//ImGui::Combo("Global Space",&mSpaceItem,"");
+			//	ImGui::EndCombo();
+			//}
+				switch (lightType) {
+				case 0:
+
+					//mGizmoSpace = GizmoSpace::Local;
+					light->SetLightType(LightType::PointLight);
+
+					break;
+				case 1:
+
+				{
+					light->SetLightType(LightType::SpotLight);
+
+					auto cone = light->GetCone();
+
+					float ic, oc;
+
+					ic = cone.x;
+					oc = cone.y;
+
+					if (ImGui::DragFloat("Inner Cone", &ic, 0.15f, 0, 300))
+					{
+						cone.x = ic;
+					}
+					if (ImGui::DragFloat("Outter Cone", &oc, 0.15f, 300)) {
+						cone.y = oc;
+					}
+					light->SetCone(cone);
+
+					//mGizmoSpace = GizmoSpace::Global;
+					}
+					break;
+				case 2:
+					light->SetLightType(LightType::DirectionalLight);
+					break;
+				}
+
+				ImGui::PopItemWidth();
+
+
+				ImGui::SameLine();
+				ImGui::PushItemWidth(72);
 				float lr = light->GetRange();
 
 				if (ImGui::DragFloat("Range", &lr))
 				{
 					light->SetRange(lr);
 				}
+				ImGui::PopItemWidth();
 
 				float c_diff[3];
 				c_diff[0] = light->GetDiffuse().x;

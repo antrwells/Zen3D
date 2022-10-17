@@ -56,6 +56,10 @@ struct LitConstants {
     float4 lightDiff;
     float4 lightSpec;
     float4 renderProps;
+    int4 lightModes;
+    float4 lightDir;
+    float4 lightCone;
+ 
 
 
 };
@@ -1607,6 +1611,8 @@ void MeshRenderer::CreateLitGP() {
 
     // Create a shader resource binding object and bind all static resources in it
     m_PSO_Lit_SP->CreateShaderResourceBinding(&m_SRB_Lit, true);
+
+    int bb = 5;
 }
 
 float angX = 0;
@@ -1696,10 +1702,19 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.g_Proj = Proj.Transpose();
             lc.viewPos = float4(cam->GetPosition(), 1.0);
             lc.lightPos = float4(light->GetPosition(), 1.0);
-            lc.lightProp = float4(light->GetRange(), 0, 0, 0);
+            lc.lightProp = float4(light->GetRange(),0, 0, 0);
+            printf("LT:%d\n", (int)light->GetLightType());
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
             lc.renderProps = float4(p1, p2, p3, p4);
+            lc.lightModes = int4((int)light->GetLightType(), 0, 0, 0);
+            lc.lightCone = light->GetCone();
+        
+            float3 ldir = float3(0, 0, 1) * light->GetRotation();
+
+            
+            lc.lightDir = ldir;
+
 
 
             MapHelper<LitConstants> CBConstants(cont, m_LitConstants, MAP_WRITE, MAP_FLAG_DISCARD);
@@ -1804,10 +1819,18 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.g_Proj = Proj.Transpose();
             lc.viewPos = float4(cam->GetPosition(), 1.0);
             lc.lightPos = float4(light->GetPosition(), 1.0);
-            lc.lightProp = float4(light->GetRange(), 0, 0, 0);
+            lc.lightProp = float4(light->GetRange(),0, 0, 0);
+            //printf("LT:%d\n", (int)light->GetLightType());
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
             lc.renderProps = float4(p1, p2, p3, p4);
+            lc.lightModes = int4((int)light->GetLightType(), 0, 0, 0);
+            lc.lightCone = float4(light->GetCone().x, light->GetCone().y, 0, 0);
+
+            float3 ldir = float3(0, 0, 1) * light->GetRotation();
+
+
+            lc.lightDir = float4(ldir, 0);
 
             MapHelper<LitConstants> CBConstants(cont, m_LitConstants, MAP_WRITE, MAP_FLAG_DISCARD);
             *CBConstants = lc;

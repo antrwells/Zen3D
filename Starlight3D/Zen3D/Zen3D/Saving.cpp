@@ -114,6 +114,8 @@ void ZenUI::LoadScene(const char* path) {
 		nl->SetSpecular(file->ReadVec3());
 		nl->SetRange(file->ReadFloat());
 		nl->SetName(file->ReadString());
+		nl->SetCone(file->ReadVec3());
+		nl->SetLightType((LightType)file->ReadInt());
 		mGraph->AddLight(nl);
 		root->AddNode(nl);
 
@@ -149,6 +151,8 @@ void ZenUI::SaveScene(const char* path)
 		file_out->WriteVec3(light->GetSpecular());
 		file_out->WriteFloat(light->GetRange());
 		file_out->WriteString(light->GetName());
+		file_out->WriteVec3(light->GetCone());
+		file_out->WriteInt((int)light->GetLightType());
 		
 		auto getRoot = light->GetRootNode();
 		getRoot->RemoveNode(light);

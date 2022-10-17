@@ -11,6 +11,11 @@
 #include <malloc.h>
 #include "ZContextVar.h"
 #include "ZClassNode.h"
+struct NodeRef {
+
+	Node3D* node = nullptr;
+
+};
 
 void ZenUI::MainNodeEditor() {
 
@@ -26,13 +31,13 @@ void ZenUI::MainNodeEditor() {
 	if (ImGui::Begin("Node Editor"))
 	{
 
-		if (mSelectedNode != nullptr) {
-			//ImGui::Text(mSelectedNode->GetName());
+		if (mEditNode != nullptr) {
+			//ImGui::Text(mEditNode->GetName());
 
 			ImGui::BeginChild(55);
 
 			char* buf = (char*)malloc(512);
-			auto name = mSelectedNode->GetName();
+			auto name = mEditNode->GetName();
 
 			for (int i = 0; i < 512; i++) {
 
@@ -48,7 +53,7 @@ void ZenUI::MainNodeEditor() {
 
 			if (ImGui::InputText("Name", buf, 512)) {
 
-				mSelectedNode->SetName(buf);
+				mEditNode->SetName(buf);
 
 			}
 			else {
@@ -56,31 +61,31 @@ void ZenUI::MainNodeEditor() {
 			}
 
 
-			auto pos = mSelectedNode->GetPosition();
+			auto pos = mEditNode->GetPosition();
 			float posf[3];
 			posf[0] = pos.x;
 			posf[1] = pos.y;
 			posf[2] = pos.z;
 
 			if (ImGui::DragFloat3("Position", posf, 0.1f)) {
-				mSelectedNode->SetPosition(float3(posf[0], posf[1], posf[2]));
+				mEditNode->SetPosition(float3(posf[0], posf[1], posf[2]));
 			}
 
 
-			auto scal = mSelectedNode->GetScale();
+			auto scal = mEditNode->GetScale();
 			float scalf[3];
 			scalf[0] = scal.x;
 			scalf[1] = scal.y;
 			scalf[2] = scal.z;
 
 			if (ImGui::DragFloat3("Scale", scalf, 0.02f)) {
-				mSelectedNode->SetScale(float3(scalf[0], scalf[1], scalf[2]));
+				mEditNode->SetScale(float3(scalf[0], scalf[1], scalf[2]));
 			}
 
-			if (mSelectedNode->GetType() == NodeType::Light)
+			if (mEditNode->GetType() == NodeType::Light)
 			{
 
-				auto light = (NodeLight*)mSelectedNode;
+				auto light = (NodeLight*)mEditNode;
 
 				float lr = light->GetRange();
 
@@ -110,7 +115,7 @@ void ZenUI::MainNodeEditor() {
 
 			}
 
-			auto scripts = mSelectedNode->GetScripts();
+			auto scripts = mEditNode->GetScripts();
 
 			for (int i = 0; i < scripts.size(); i++) {
 
@@ -190,21 +195,62 @@ void ZenUI::MainNodeEditor() {
 					{
 						int bb = 5;
 						auto i_cls = var->GetClassVal();
-						auto c_name = i_cls->GetBaseName();
+						//if (i_cls == nullptr) continue
+						if (i_cls != nullptr) {
+							auto c_name = i_cls->GetBaseName();
 
-						if (c_name == "Vec3")
-						{
+							if (c_name == "Vec3")
+							{
 
-							float v3[3];
-							v3[0] = i_cls->FindVar("x")->GetFloatVal();
-							v3[1] = i_cls->FindVar("y")->GetFloatVal();
-							v3[2] = i_cls->FindVar("z")->GetFloatVal();
-							ImGui::DragFloat3(var->GetName().c_str(), v3);
-							i_cls->FindVar("x")->SetFloat(v3[0]);
-							i_cls->FindVar("y")->SetFloat(v3[1]);
-							i_cls->FindVar("z")->SetFloat(v3[2]);
+								float v3[3];
+								v3[0] = i_cls->FindVar("x")->GetFloatVal();
+								v3[1] = i_cls->FindVar("y")->GetFloatVal();
+								v3[2] = i_cls->FindVar("z")->GetFloatVal();
+								ImGui::DragFloat3(var->GetName().c_str(), v3);
+								i_cls->FindVar("x")->SetFloat(v3[0]);
+								i_cls->FindVar("y")->SetFloat(v3[1]);
+								i_cls->FindVar("z")->SetFloat(v3[2]);
+								break;
+
+							}
+							else {
+								std::string vn = std::string("Script:");
+								auto bt = var->GetBaseID();
+								vn = vn + bt;
+								ImGui::InputText(var->GetName().c_str(), (char*)vn.c_str(), 256);
+							}
+						}
+						else {
+							 
+							
+								//****
+							std::string vn = std::string("Empty:");
+							auto bt = var->GetBaseID();
+							vn = vn + bt;
+							ImGui::InputText(var->GetName().c_str(), (char*)vn.c_str(), 256);
+							if (ImGui::BeginDragDropTarget()) {
+
+								if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Node"))
+								{
+									auto nr = (NodeRef*)payload->Data;
+									auto node2 = nr->node;
+
+									auto scripts = node2->GetScripts();
+									if (scripts.size() == 0) {
+										return;
+									}
+									auto s1 = scripts[0];
+									auto cn = s1->mClsName;
+									var->SetClass(s1->mMainClass);
+
+									//node2->GetRootNode()->RemoveNode(node2);
+									//node->AddNode(node2);
 
 
+								}
+								ImGui::EndDragDropTarget();
+							}
+							
 						}
 
 
@@ -217,13 +263,13 @@ void ZenUI::MainNodeEditor() {
 			}
 
 			/*
-			auto scripts = mSelectedNode->GetScripts();
+			auto scripts = mEditNode->GetScripts();
 
 			for (int i = 0; i < scripts.size(); i++) {
 
 				ImGui::Text(scripts[i]->name.c_str());
 
-				auto props = mSelectedNode->GetProperties();
+				auto props = mEditNode->GetProperties();
 
 				for (int p = 0; p < props.size(); p++)
 				{
@@ -295,9 +341,9 @@ void ZenUI::MainNodeEditor() {
 
 			//Material
 
-			if (mSelectedNode->GetType() == NodeType::Entity)
+			if (mEditNode->GetType() == NodeType::Entity)
 			{
-				auto entity = (NodeEntity*)mSelectedNode;
+				auto entity = (NodeEntity*)mEditNode;
 
 				auto meshes = entity->GetMeshes();
 
@@ -380,7 +426,7 @@ void ZenUI::MainNodeEditor() {
 
 					int vvv = 5;
 
-					mSelectedNode->AddScript(entry->full,name.GetConst());
+					mEditNode->AddScript(entry->full,name.GetConst());
 
 					int at = 5;
 

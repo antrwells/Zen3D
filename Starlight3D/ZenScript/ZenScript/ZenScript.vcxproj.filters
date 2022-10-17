@@ -180,6 +180,12 @@
     <ClInclude Include="ZIncNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
+    <ClInclude Include="ZenParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZenByteCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -331,6 +337,12 @@
     </ClCompile>
     <ClCompile Include="ZIncNode.cpp">
       <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZenParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZenByteCode.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

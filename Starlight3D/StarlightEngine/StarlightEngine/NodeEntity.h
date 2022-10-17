@@ -58,6 +58,9 @@
             for (int i = 0; i < mMeshes.size(); i++) {
                 mMeshes[i]->SetChanged();
             }
+            for (int i = 0; i < mChildren.size(); i++) {
+                mChildren[i]->SetChanged();
+            }
         }
         /// <summary>
         /// Returns the given mesh of the entity.

@@ -14,3 +14,6 @@
 
 
 - loop unrolling - where possible. possibly [3000] for 3000 loops etc.
+
+
+- Parser rewrite, this time based on actual lines, not a stream of dlimited tokens.

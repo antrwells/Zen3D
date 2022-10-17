@@ -40,6 +40,10 @@ ZScriptNode* ZParseIf::Parse() {
 
 	mStream->Back();
 	auto ct = mStream->NextToken();
+	
+	if (ct.mType == TokenEndOfLine) {
+		ct = mStream->NextToken();
+	}
 
 	if (ct.mType == TokenType::TokenElseIf)
 	{

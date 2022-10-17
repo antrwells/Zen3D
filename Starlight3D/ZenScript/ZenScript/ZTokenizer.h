@@ -11,7 +11,7 @@ public:
 
 	ZTokenizer(ZSource * source);
 	ZTokenStream* Tokenize();
-
+	ZTokens* Finalize(ZTokenStream* stream);
 
 private:
 

@@ -33,7 +33,10 @@ public:
     VarType GetType();
     ZContextVar* Exec(const std::vector<ZContextVar*>& params);
     void SetCodeOwner(ZCodeBodyNode* code);
+    void SetBaseType(std::string);
+    std::string GetBaseType();
 
+    
 private:
 
     VarType mVarType;
@@ -41,6 +44,7 @@ private:
     std::vector<VarPair*> mVars;
     ZClassNode* mClassOwner = nullptr;
     ZCodeBodyNode* mCodeOwner = nullptr;
+    std::string TypeID;
 
 
 };

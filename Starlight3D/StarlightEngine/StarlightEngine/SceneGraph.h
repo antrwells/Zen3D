@@ -43,6 +43,9 @@ class RayPicker;
 		/// </summary>
 		void Update();
 
+
+		Node3D* FindNode(std::string name);
+
 		/// <summary>
 		/// Internal use.
 		/// </summary>

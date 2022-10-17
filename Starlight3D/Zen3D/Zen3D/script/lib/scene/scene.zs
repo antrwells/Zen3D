@@ -10,14 +10,20 @@ end
 
 static class GameScene
 
+    method Node3D GetSceneNode(string name)
+
+        Node3D res = GameSceneGetNode(name)
+
+        return res
+
+
+    end 
+
     method RayHit Raycast(Vec3 pos,Vec3 dst,Node ignore)
         
         RayHit res
         
         res = GameSceneRayCast(pos,dst,ignore)
-
-        printf("Hit?",res.Hit)
-        printf("Dist:",res.HitDistance)
 
         return res
 

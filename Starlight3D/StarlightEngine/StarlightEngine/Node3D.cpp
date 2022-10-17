@@ -19,6 +19,8 @@
 #include "SceneGraph.h"
 #include "RayPicker.h"
 #include "ZContextVar.h"
+#include "SceneGlobal.h"
+
 
 bool Node3D::mSysInit = false;
 
@@ -27,7 +29,7 @@ bool Node3D::mSysInit = false;
 		mRotation = float4x4::Identity();
 
 		//mRotation = glm::mat4(1.0f);
-
+		
 		mPosition = float3(0, 0, 0);
 		mScale = float3(1, 1, 1);
 		mComponents.resize(0);
@@ -38,6 +40,7 @@ bool Node3D::mSysInit = false;
 		}
 		mChanged = true;
 		SetChanged();
+		
 		
 
 	}
@@ -156,7 +159,7 @@ bool Node3D::mSysInit = false;
 
 			mTransformInvalidated = false;
 
-			return previous_matrix * final_matrix;
+			return  final_matrix * previous_matrix;
 
 		
 		
@@ -533,6 +536,15 @@ bool Node3D::mSysInit = false;
 
 	}
 
+	ZContextVar* node_GetName(const std::vector<ZContextVar*>& args)
+	{
+		int a = 5;
+		auto node =(Node3D*) args[0]->GetCObj();
+
+		return VMakeString(node->GetName());
+
+	}
+
 	void SetVec3(ZClassNode* v,float3 p)
 	{
 		v->FindVar("x")->SetFloat(p.x);
@@ -567,7 +579,15 @@ bool Node3D::mSysInit = false;
 			SetVec3(hp, res.hit_point);
 			SetVec3(cls->FindVar("HitOrigin")->GetClassVal(), v_origin);
 			cls->FindVar("HitDistance")->SetFloat(res.hit_distance);
-			//cls->FindVar("HitNode")->Se
+			
+			auto hcls = VMakeClass(ZScriptContext::CurrentContext->CreateInstance("Node3D", "resnh", {}));
+			auto nh = hcls->GetClassVal()->FindVar("Node");
+			nh->SetCObj(res.hit_node);
+
+
+			cls->FindVar("HitNode")->SetClass(hcls->GetClassVal());
+
+
 
 
 		}
@@ -581,6 +601,20 @@ bool Node3D::mSysInit = false;
 
 	}
 
+	ZContextVar* gs_getNode(const std::vector<ZContextVar*>& args) {
+
+		auto node = SceneGlobal::mCurrentScene->FindNode(args[0]->GetStringVal());
+
+		int aa = 5;
+
+		auto  n3 = VMakeClass(ZScriptContext::CurrentContext->CreateInstance("Node3D", "res", {}));
+	
+		n3->GetClassVal()->FindVar("Node")->SetCObj(node);
+		
+
+
+		return n3;
+	}
 
 	// General
 
@@ -618,7 +652,9 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction n_setpybox("Node3DSetPyToBox", node3d_setpybox);
 		ZSystemFunction n_setpytris("Node3DSetPyTriMesh", node3d_setpytris);
 		ZSystemFunction n_setpyconvex("Node3DSetPyToConvex", node3d_setpyconvex);
+		ZSystemFunction n_GetName("Node3DGetName", node_GetName);
 		ZSystemFunction gs_raycast("GameSceneRayCast", gs_raycast);
+		ZSystemFunction gs_getNode("GameSceneGetNode", gs_getNode);
 		ZSystemFunction sys_rnd("random", sys_random);
 
 		funcs->RegisterFunction(n_turn);
@@ -630,8 +666,10 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(n_setpybox);
 		funcs->RegisterFunction(n_setpytris);
 		funcs->RegisterFunction(n_setpyconvex);
+		funcs->RegisterFunction(n_GetName);
 		funcs->RegisterFunction(gs_raycast);
 		funcs->RegisterFunction(sys_rnd);
+		funcs->RegisterFunction(gs_getNode);
 
 		int aa=5;
 	}
@@ -697,7 +735,10 @@ bool Node3D::mSysInit = false;
 				file->WriteString(v->GetStringVal().c_str());
 				break;
 			case 4:
-
+				if (v->GetClassVal() == nullptr)
+				{
+					continue;
+				}
 				WriteClass(file, v->GetClassVal());
 
 				break;
@@ -733,7 +774,10 @@ bool Node3D::mSysInit = false;
 				//file->WriteString(v->GetStringVal().c_str());
 				break;
 			case 4:
-
+				if (v->GetClassVal() == nullptr)
+				{
+					continue;
+				}
 				ReadClass(file, v->GetClassVal());
 				//v->SetClass(ReadClass(file));
 

@@ -1,0 +1,1 @@
+- physics recorder, for such momenets when needed, without the need to animate each frame. - initial force/torque for each recordable object.

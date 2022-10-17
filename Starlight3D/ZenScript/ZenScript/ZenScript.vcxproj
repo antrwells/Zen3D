@@ -111,7 +111,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -167,6 +167,8 @@
     <ClInclude Include="ZCodeBodyNode.h" />
     <ClInclude Include="ZContextScope.h" />
     <ClInclude Include="ZContextVar.h" />
+    <ClInclude Include="ZenByteCode.h" />
+    <ClInclude Include="ZenParser.h" />
     <ClInclude Include="ZExpressionNode.h" />
     <ClInclude Include="ZForNode.h" />
     <ClInclude Include="ZIfnode.h" />
@@ -223,6 +225,8 @@
     <ClCompile Include="ZCodeBodyNode.cpp" />
     <ClCompile Include="ZContextScope.cpp" />
     <ClCompile Include="ZContextVar.cpp" />
+    <ClCompile Include="ZenByteCode.cpp" />
+    <ClCompile Include="ZenParser.cpp" />
     <ClCompile Include="ZenScript.cpp" />
     <ClCompile Include="ZExpressionNode.cpp" />
     <ClCompile Include="ZForNode.cpp" />

@@ -56,7 +56,7 @@ ZContextVar* ZNewNode::Exec(const std::vector<ZContextVar*>& params)
 	}
 	//new_cls->CallMethod(mClassName, pars);
 
-	ZContextVar* result = new ZContextVar("a", VarType::VarInstance);
+	ZContextVar* result = new ZContextVar("a", VarType::VarInstance,new_cls->GetBaseName());
 	result->SetClass(new_cls);
 
 	return result;

@@ -9,6 +9,13 @@ bool z = false;
 
 int node_id = 0;
 
+struct NodeRef {
+
+	Node3D* node = nullptr;
+
+};
+bool Block = false;
+
 void ZenUI::SceneTree(Node3D* node)
 {
 
@@ -46,22 +53,51 @@ void ZenUI::SceneTree(Node3D* node)
 
 	if (ImGui::TreeNodeEx(name.c_str(), flag)) {
 
-
 		if (ImGui::IsItemClicked()) {
 			mSelectedNode = node;
-		}
-		if (ImGui::BeginDragDropTarget()) {
-			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Model"))
-			{
-				DirEntry* entry = (DirEntry*)payload->Data;
-				auto n_node = ImportNode(entry->full.c_str());
 
-				node->AddNode(n_node);
 
-				mDragEntry = nullptr;
-
+			if (ImGui::IsMouseDoubleClicked(0)) {
+				mEditNode = node;
 			}
-			ImGui::EndDragDropTarget();
+		}
+		if (ImGui::BeginDragDropSource()) {
+
+			NodeRef* nr = new NodeRef;
+			nr->node = mSelectedNode;
+			ImGui::SetDragDropPayload("Node", nr, sizeof(NodeRef));
+			ImGui::Button(mSelectedNode->GetName(), ImVec2(64, 64));
+			ImGui::EndDragDropSource();
+			
+
+		}
+		else {
+			if (ImGui::BeginDragDropTarget()) {
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Model"))
+				{
+					DirEntry* entry = (DirEntry*)payload->Data;
+					auto n_node = ImportNode(entry->full.c_str());
+
+					node->AddNode(n_node);
+
+					mDragEntry = nullptr;
+					BlockSG = true;
+
+				}
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Node"))
+				{
+					auto nr = (NodeRef*)payload->Data;
+					auto node2 = nr->node;
+					node2->GetRootNode()->RemoveNode(node2);
+					node->AddNode(node2);
+
+				}
+				ImGui::EndDragDropTarget();
+			}
+			
+
+
+			//
 		}
 
 		if (ImGui::BeginPopupContextWindow())

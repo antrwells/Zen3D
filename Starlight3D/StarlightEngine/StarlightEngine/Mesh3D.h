@@ -121,14 +121,14 @@ class Node3D;
 		}
 
 		void AddVertex(Vertex vertex,bool reset);
-		std::vector<Vertex> GetVertices();
+		std::vector<Vertex>& GetVertices();
 
 		void AddTri(Tri tri);
 		void SetTris(std::vector<Tri> tris) {
 			mTris = tris;
 		}
 
-		std::vector<Tri> GetTris();
+		std::vector<Tri>& GetTris();
 
 		void SetBoneData(int index, int boneID, float weight) {
 

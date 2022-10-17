@@ -54,6 +54,7 @@ int precedence(char op) {
 }
 */
 
+bool IsString(ExpressionElement e);
 
 class Expression
 {
@@ -84,6 +85,10 @@ public:
     bool IsStrings() {
         for (int i = 0; i < mElements.size(); i++) {
             if (mElements[i].mType == EString) {
+                return true;
+            }
+            if (IsString(mElements[i]))
+            {
                 return true;
             }
         }

@@ -56,4 +56,10 @@ class Node3D
 
     end 
 
+    method string GetName()
+
+        return Node3DGetName(Node)
+
+    end 
+
 end 

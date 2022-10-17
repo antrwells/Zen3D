@@ -73,7 +73,11 @@ ZScriptNode* ZParseSignature::Parse() {
 			break;
 	
 		case TokenType::TokenString:
+			parse_par = new ZParseSigParam(mStream);
+			mStream->Back();
+			par_node = (ZSigParamNode*)parse_par->Parse();
 
+			sig_node->AddParameter(par_node);
 			break;
 		default:
 			assert(false);

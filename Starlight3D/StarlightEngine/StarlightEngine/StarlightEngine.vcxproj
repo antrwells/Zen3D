@@ -111,7 +111,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;SOL_ALL_SAFETIES_ON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -142,7 +142,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -227,6 +227,7 @@
     <ClInclude Include="RayPicker.h" />
     <ClInclude Include="RenderTarget2D.h" />
     <ClInclude Include="RenderTargetCube.h" />
+    <ClInclude Include="SceneGlobal.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SceneRayTracer.h" />
     <ClInclude Include="SceneRenderer.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="RayPicker.cpp" />
     <ClCompile Include="RenderTarget2D.cpp" />
     <ClCompile Include="RenderTargetCube.cpp" />
+    <ClCompile Include="SceneGlobal.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneRayTracer.cpp" />
     <ClCompile Include="SceneRenderer.cpp" />

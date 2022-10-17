@@ -1,4 +1,5 @@
 #pragma once
+
 #include "SceneGraph.h"
 #include <vector>
 #include <map>
@@ -51,20 +52,23 @@ public:
 	RayPicker(SceneGraph* graph);
 
 	PickResult RayPick(rpRay ray);
+	PickResult RayPickNoChange(rpRay ray);
 	PickResult RayPick(rpRay ray, Node3D* ignore);
 	PickResult MousePick(int x, int y, int w, int h, NodeCamera* cam);
 	PickResult RayToTri(rpRay& ray,rpTri& tri);
 	PickResult MousePickNode(int x, int y, int w, int h, NodeEntity* entity, NodeCamera* cam);
 	void SetGraph(SceneGraph* graph);
+	void addMeshes(Node3D* e);
 
 private:
 
 	Node3D* mIgnore;
 	PickResult RayPickNode(rpRay& ray, Node3D* node);
-	PickResult RayPickMesh(rpRay& ray, Mesh3D* mesh);
+	PickResult RayPickMesh(rpRay& ray);
 
 	SceneGraph* mGraph = nullptr;
 	std::map<Mesh3D*, PickCache> caches;
+	std::vector<Mesh3D*> meshes;
 
 };
 

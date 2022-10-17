@@ -247,7 +247,7 @@
 
 	}
 
-	std::vector<Vertex> Mesh3D::GetVertices() {
+	std::vector<Vertex>& Mesh3D::GetVertices() {
 
 		return mVertices;
 
@@ -259,7 +259,7 @@
 
 	}
 
-	std::vector<Tri> Mesh3D::GetTris()
+	std::vector<Tri>& Mesh3D::GetTris()
 	{
 
 		return mTris;

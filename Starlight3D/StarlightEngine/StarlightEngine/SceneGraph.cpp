@@ -4,6 +4,7 @@
 #include "VString.h"
 #include "NodeActor.h"
 #include "RayPicker.h"
+#include "SceneGlobal.h"
 #define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
@@ -14,8 +15,16 @@
 		mRootNode->SetName("Scene Root");
 		mThis = this;
 		mRayPick = new RayPicker(this);
+		SceneGlobal::mCurrentScene = this;
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
+
+	}
+
+	Node3D* SceneGraph::FindNode(std::string name)
+	{
+
+		return mRootNode->FindNode(name);
 
 	}
 	

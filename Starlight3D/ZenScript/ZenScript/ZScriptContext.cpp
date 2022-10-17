@@ -20,7 +20,7 @@
 ZContextVar* sysfunc_millisecs(const std::vector<ZContextVar*>& args)
 {
 
-	auto res = new ZContextVar("ms:", VarType::VarInt);
+	auto res = new ZContextVar("ms:", VarType::VarInt,"int");
 	res->SetInt(clock());
 	return res;
 

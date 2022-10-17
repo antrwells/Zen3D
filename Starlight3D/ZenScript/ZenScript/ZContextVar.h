@@ -10,7 +10,7 @@ class ZContextVar
 {
 public:
 
-	ZContextVar(std::string name,enum VarType type);
+	ZContextVar(std::string name,enum VarType type,std::string baseID);
 
 	std::string GetName();
 	VarType GetType();
@@ -26,6 +26,12 @@ public:
 	void* GetCObj();
 	int GetTypeInt() {
 		return (int)mType;
+	}
+	std::string GetBaseID() {
+		return mBaseID;
+	}
+	void SetBaseID(std::string name) {
+		mBaseID = name;
 	}
 
 	//For run/stop type scenarios.
@@ -45,6 +51,7 @@ private:
 	float mPushFloat;
 	int mPushInt;
 	std::string mPushString;
+	std::string mBaseID;
 
 
 };

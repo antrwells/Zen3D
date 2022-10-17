@@ -4,7 +4,7 @@
 #include "VarTypes.h"
 #include "ZClassNode.h"
 
-ZContextVar::ZContextVar(std::string name, enum VarType type) {
+ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID) {
 
 	mName = name;
 	mType = type;
@@ -12,7 +12,7 @@ ZContextVar::ZContextVar(std::string name, enum VarType type) {
 	mFloatVal = 0;
 	mStringVal = "";
 	mClassVal = nullptr;
-
+	mBaseID = baseID;
 }
 
 std::string ZContextVar::GetName() {
@@ -119,6 +119,7 @@ void ZContextVar::Push() {
 
 	{
 		auto vc = mClassVal;
+		if (vc == nullptr) return;
 		auto vars = vc->GetVars();
 		for (int i = 0; i < vars.size(); i++)
 		{
@@ -150,6 +151,7 @@ void ZContextVar::Pop() {
 	case VarType::VarInstance:
 	{
 		auto vc = mClassVal;
+		if (vc == nullptr) return;
 		auto vars = vc->GetVars();
 		for (int i = 0; i < vars.size(); i++)
 		{
@@ -167,14 +169,14 @@ void ZContextVar::Pop() {
 
 ZContextVar* VMakeInt(int v)
 {
-	auto var = new ZContextVar("", VarType::VarInt);
+	auto var = new ZContextVar("", VarType::VarInt,"int");
 	var->SetInt(v);
 	return var;
 
 }
 ZContextVar* VMakeFloat(float v)
 {
-	auto var = new ZContextVar("", VarType::VarFloat);
+	auto var = new ZContextVar("", VarType::VarFloat,"float");
 	var->SetFloat(v);
 	return var;
 
@@ -182,7 +184,7 @@ ZContextVar* VMakeFloat(float v)
 
 ZContextVar* VMakeString(std::string v)
 {
-	auto var = new ZContextVar("", VarType::VarString);
+	auto var = new ZContextVar("", VarType::VarString,"string");
 	var->SetString(v);
 	return var;
 
@@ -190,7 +192,7 @@ ZContextVar* VMakeString(std::string v)
 
 ZContextVar* VMakeC(void* v)
 {
-	auto var = new ZContextVar("", VarType::VarCObj);
+	auto var = new ZContextVar("", VarType::VarCObj,"CObj");
 	var->SetCObj(v);
 	return var;
 
@@ -199,7 +201,7 @@ ZContextVar* VMakeC(void* v)
 ZContextVar* VMakeClass(ZClassNode* v)
 {
 
-	auto var = new ZContextVar("", VarType::VarInstance);
+	auto var = new ZContextVar("", VarType::VarInstance,v->GetBaseName());
 	var->SetClass(v);
 	return var;
 

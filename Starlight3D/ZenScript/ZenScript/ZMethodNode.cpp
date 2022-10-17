@@ -44,7 +44,7 @@ ZContextVar* ZMethodNode::Exec(const std::vector<ZContextVar*>& params)
 	if (mGuardExpr != nullptr) {
 
 		if (mGuardExpr->Exec({})->GetIntVal()<=0) {
-			return new ZContextVar("", VarType::VarInt);
+			return new ZContextVar("", VarType::VarInt,"Zero");
 		}
 
 	}

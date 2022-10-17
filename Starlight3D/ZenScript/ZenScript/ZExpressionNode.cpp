@@ -517,25 +517,78 @@ Expression ZExpressionNode::GetExpression() {
 
 }
 
-ZContextVar* GetVar(std::string names[32]) {
+ZContextVar* GetVar(std::string name1,std::string name2) {
     ZContextVar* var = nullptr;
-    if (ZScriptContext::CurrentContext->IsStaticClass(names[0]))
+    if (ZScriptContext::CurrentContext->IsStaticClass(name1))
     {
-        auto scls = ZScriptContext::CurrentContext->GetStaticClass(names[0]);
-        var = scls->FindVar(names[1]);
+        auto scls = ZScriptContext::CurrentContext->GetStaticClass(name1);
+        var = scls->FindVar(name2);
 
     }
     else {
 
-        var = ZScriptContext::CurrentContext->GetScope()->FindVar(names[0]);
-        if (names[1] != "")
+        var = ZScriptContext::CurrentContext->GetScope()->FindVar(name1);
+        if (name2 != "")
         {
             auto cls = var->GetClassVal();
-            var = cls->FindVar(names[1]);
+            var = cls->FindVar(name2);
         }
 
     }
     return var;
+}
+
+std::string StringValue(ExpressionElement e)
+{
+
+    switch (e.mType) {
+    case EStatement:
+        return e.mStatement->Exec({})->GetStringVal();
+    case EClassStatement:
+        return e.mClassStatement->Exec({})->GetStringVal();
+    case EVar:
+        return GetVar(e.mValName[0],e.mValName[1])->GetStringVal();
+        break;
+    case EString:
+        return e.mValString;
+    }
+
+}
+
+bool IsString(ExpressionElement e)
+{
+    switch (e.mType) {
+    case EStatement: {
+        auto res = e.mStatement->Exec({});
+        if (res->GetType() == VarString)
+        {
+            return true;
+        }
+    }
+        break;
+    case EClassStatement:
+    {
+        auto ret = e.mClassStatement->GetReturnType();
+        if (ret == VarType::VarString)
+        {
+            return true;
+        }
+    }
+        break;
+    case EVar:
+    {
+        auto vv = GetVar(e.mValName[0], e.mValName[1]);
+        if (vv->GetType() == VarType::VarString)
+        {
+            return true;
+        }
+    }
+        break;
+    case EString:
+        return true;
+    }
+    return false;
+
 }
 
 ZContextVar* Expression::Evaluate(VarType recv) {
@@ -548,6 +601,35 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     VarType rt = recv;
     ZExpressionNode::RecvType = VarVoid;
 
+
+    if (mElements.size() == 3)
+    {
+
+        if (IsStrings()) {
+
+            if (mElements[1].mType == EOp)
+            {
+                auto s1 = StringValue(mElements[0]);
+                auto s2 = StringValue(mElements[2]);
+                if (mElements[1].mOp == OpEquals)
+                {
+                    int same = 0;
+                    bool s = s1 == s2;
+                    if (s) {
+                        same = 1;
+                    }
+                    
+                    return VMakeInt(same);
+
+                    
+
+                }
+            }
+
+            int bb = 5;
+        }
+
+    }
 
     if (mElements.size() == 1) {
         if (mElements[0].mType == ENew)
@@ -569,6 +651,9 @@ ZContextVar* Expression::Evaluate(VarType recv) {
                 return VMakeFloat(rv->GetFloatVal());
             case VarInt:
                 return VMakeInt(rv->GetIntVal());
+            case VarString:
+                return VMakeString(rv->GetStringVal());
+
             }
 
             int a4a = 5;
@@ -588,14 +673,17 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             case VarCObj:
                 return VMakeC(rv->GetCObj());
                 break;
+            case VarString:
+                    return VMakeString(rv->GetStringVal());
             }
             int no = 5;
         }
         else if (mElements[0].mType == EVar)
         {
 
-            auto rv = GetVar(mElements[0].mValName);
+            auto rv = GetVar(mElements[0].mValName[0],mElements[0].mValName[1]);
 
+            
             switch (rv->GetType()) {
             case VarInstance:
                 if (rv->GetCObj() != nullptr) {
@@ -610,6 +698,9 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             case VarCObj:
                 return VMakeC(rv->GetCObj());
                 break;
+            case VarString:
+                return VMakeString(rv->GetStringVal());
+                break;
             }
 
             int aaa = 5;
@@ -623,7 +714,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
         {
             auto ele = mElements[0];
 
-            auto quick_v = GetVar(mElements[0].mValName);
+            auto quick_v = GetVar(mElements[0].mValName[0],mElements[0].mValName[1]);
 
             if (quick_v != nullptr) {
                 return quick_v;
@@ -648,7 +739,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             bool is_float = false;
             for (int i = 0; i < mElements.size(); i++) {
 
-                auto var = GetVar(mElements[i].mValName);
+                auto var = GetVar(mElements[i].mValName[0],mElements[i].mValName[1]);
                 if (var != nullptr) {
                     if (var->GetType() == VarCObj)
                     {
@@ -683,7 +774,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     case VarCObj:
     {
 
-        auto var = GetVar(mElements[0].mValName);
+        auto var = GetVar(mElements[0].mValName[0],mElements[0].mValName[1]);
 
         return VMakeC(var->GetCObj());
 

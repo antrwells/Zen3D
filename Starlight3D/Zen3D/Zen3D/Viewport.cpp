@@ -422,7 +422,10 @@ void ZenUI::MainViewPort() {
 
 	if (mSelectedNode != nullptr) {
 
-		mCurrentGizmo->SetPosition(mSelectedNode->GetPosition());
+
+		
+
+		mCurrentGizmo->SetPosition(mSelectedNode->GetPositionWorld());
 		if (mGizmoSpace == GizmoSpace::Local) {
 
 			mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());

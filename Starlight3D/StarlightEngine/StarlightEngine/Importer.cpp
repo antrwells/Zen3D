@@ -391,8 +391,8 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 					Tri new_tri;
 
 					new_tri.v0 = face.mIndices[0];
-					new_tri.v1 = face.mIndices[1];
-					new_tri.v2 = face.mIndices[2];
+					new_tri.v1 = face.mIndices[2];
+					new_tri.v2 = face.mIndices[1];
 
 					new_mesh->AddTri(new_tri);
 
@@ -403,7 +403,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 				}
 			}
 			//new_mesh->GenerateNormals();
-			new_mesh->MakeDoubleSided();
+		//	new_mesh->MakeDoubleSided();
 			new_mesh->CreateBuffers();
 
 

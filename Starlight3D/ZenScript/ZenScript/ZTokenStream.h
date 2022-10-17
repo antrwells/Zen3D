@@ -28,6 +28,14 @@ public:
 	
 };
 
+class ZTokenStream;
+
+class ZTokens {
+public:
+	std::vector<ZTokenStream*> Lines;
+
+};
+
 class ZTokenStream
 {
 public:

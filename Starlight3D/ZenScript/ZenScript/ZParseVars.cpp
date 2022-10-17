@@ -29,6 +29,7 @@ ZScriptNode* ZParseVars::Parse() {
 		break;
 	case TokenType::TokenIdent:
 		vars_node->SetType(VarType::VarInstance);
+		vars_node->SetBaseType(var_type.mText);
 		is_class = true;
 		break;
 	case TokenType::TokenCObj:

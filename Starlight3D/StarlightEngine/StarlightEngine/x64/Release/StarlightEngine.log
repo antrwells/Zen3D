@@ -1,54 +1,26 @@
 ﻿cl : command line  warning D9025: overriding '/sdl' with '/GS-'
-  Application.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(41,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+  RayPicker.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(231,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(442,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(149,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(44,18): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(64,20): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(64,17): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(88,16): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\UIControl.h(93,16): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(17,1): warning C4305: 'return': truncation from 'double' to 'float'
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(34,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(41,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(42,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(61,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Maths.h(71,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(483,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(484,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(488,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(489,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(491,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(492,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(550,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(555,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(559,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(560,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(560,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(791,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(791,26): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(174,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(178,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(295,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(306,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeEntity.h(163,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeEntity.h(171,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(193,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(135,32): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(162,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(240,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Replacing x64\Release\DirCollection.obj
   Replacing x64\Release\pch.obj
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC5lock(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC5lock@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

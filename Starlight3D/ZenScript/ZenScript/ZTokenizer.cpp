@@ -489,3 +489,33 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	return tok_stream;
 
 }													
+
+
+ZTokens* ZTokenizer::Finalize(ZTokenStream* tok_stream) {
+	ZTokens* res = new ZTokens;
+
+	while (!tok_stream->EOS()) {
+
+		ZTokenStream* line_s = new ZTokenStream;
+		res->Lines.push_back(line_s);
+
+		while (!tok_stream->EOS()) {
+
+			auto tok = tok_stream->NextToken();
+
+			if (tok.mType == TokenType::TokenEndOfLine) {
+
+				break;
+
+			}
+			else {
+				line_s->AddToken(tok);
+			}
+
+		}
+
+
+	}
+	return res;
+
+}

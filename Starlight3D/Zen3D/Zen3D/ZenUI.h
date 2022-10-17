@@ -168,6 +168,7 @@ private:
 	ImVec2 mSceneGraphSize;
 	bool mSGF = false;
 	Node3D* mSelectedNode = nullptr;
+	Node3D* mEditNode = nullptr;
 
 	//Main Viewport
 	ImVec2 mSceneViewPos;
@@ -265,6 +266,8 @@ private:
 
 	//Clipboard
 	Node3D* mClipNode = nullptr;
+
+	bool BlockSG = false;
 };
 
 

@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "RayPicker.h"
 
+#include "RayPicker.h"
 RayPicker::RayPicker(SceneGraph* graph) {
 
 	mGraph = graph;
@@ -30,7 +30,12 @@ PickResult RayPicker::MousePickNode(int x, int y, int w, int h, NodeEntity* enti
 	ray.pos = cam->GetPosition();
 	ray.dir = rayDir;
 
-	auto result = RayPickNode(ray, entity);
+	meshes.clear();
+	for (int i = 0; i < entity->GetMeshes().size(); i++)
+	{
+		meshes.push_back(entity->GetMesh(i));
+	}
+	auto result = RayPickNoChange(ray);
 
 	return result;
 
@@ -92,16 +97,39 @@ PickResult RayPicker::RayPick(rpRay ray,Node3D* node)
 
 	}
 	int end = clock();
-	printf("RP took:%d ms\n", end - start);
+//	printf("RP took:%d ms\n", end - start);
 	return result;
 }
 
+
+void RayPicker::addMeshes(Node3D* e) {
+	if (e == mIgnore) {
+		return;
+	}
+	if (e->GetType() == NodeType::Entity) {
+		NodeEntity* ee = (NodeEntity*)e;
+		for (int i = 0; i < ee->GetMeshes().size(); i++)
+		{
+			meshes.push_back(ee->GetMesh(i));
+		}
+	}
+	for (int i = 0; i < e->ChildrenCount(); i++) {
+		addMeshes(e->GetChild(i));
+	}
+
+}
+PickResult RayPicker::RayPickNoChange(rpRay ray) {
+	return RayPickMesh(ray);
+}
 PickResult RayPicker::RayPick(rpRay ray)
 {
 
-	PickResult result = RayPickNode(ray, mGraph->GetRoot());
+	//PickResult result = RayPickNode(ray, mGraph->GetRoot());
+	meshes.clear();
 
-	return result;
+	addMeshes(mGraph->GetRoot());
+
+	return RayPickMesh(ray);
 
 }
 const float EPSILON = 0.0000001;
@@ -179,162 +207,177 @@ inline float rayBoxIntersect(rpRay& ray,float3& vmin, float3& vmax)
 	return t[9];
 }
 
-inline PickResult RayPicker::RayPickMesh(rpRay& ray, Mesh3D* mesh) {
+inline PickResult RayPicker::RayPickMesh(rpRay& ray) {
 
+	int start = clock();
+	PickResult close_result;
 
-
-	auto tris = mesh->GetTris();
-	auto verts = mesh->GetVertices();
-
-	auto transform = mesh->GetOwner()->GetWorldMatrix();
-
-	int a = 5;
-	PickCache cache;
-
-//restart:
-
-	if (caches.count(mesh) == 0)
+	close_result.hit = false;
+	for (int i = 0; i < meshes.size(); i++)
 	{
-		restart:
-				//printf("!!!!");
 
-		float3 min = float3(99999, 99999, 99999);
-		float3 max = float3(-99999, -99999, -99999);
-
-		for (int i = 0; i < tris.size(); i++)
-		{
+		auto mesh = meshes[i];
 	
-			auto tri = tris[i];
-			auto v0 = verts[tri.v0];
-			auto v1 = verts[tri.v1];
-			auto v2 = verts[tri.v2];
 
-			auto pos1 = v0.position;
-			auto pos2 = v1.position;
-			auto pos3 = v2.position;
+		int a = 5;
+		PickCache cache;
 
-			auto t_pos1 = pos1 * transform;
-			auto t_pos2 = pos2 * transform;
-			auto t_pos3 = pos3 * transform;
+		//restart:
+	restart:
+		if (caches.count(mesh) == 0)
+		{
+		
+			//printf("!!!!!!");
+			auto tris = mesh->GetTris();
+			auto verts = mesh->GetVertices();
 
-			min.x = fmin(t_pos1.x, min.x);
-			min.y = fmin(t_pos1.y, min.y);
-			min.z = fmin(t_pos1.z, min.z);
+			auto transform = mesh->GetOwner()->GetWorldMatrix();
+			float3 min = float3(99999, 99999, 99999);
+			float3 max = float3(-99999, -99999, -99999);
+			
+			cache.tris.reserve(tris.size());
 
-			min.x = fmin(t_pos2.x, min.x);
-			min.y = fmin(t_pos2.y, min.y);
-			min.z = fmin(t_pos2.z, min.z);
+			int ts = tris.size();
 
-			min.x = fmin(t_pos3.x, min.x);
-			min.y = fmin(t_pos3.y, min.y);
-			min.z = fmin(t_pos3.z, min.z);
+			for (int i = 0; i < ts; i++)
+			{
+
+				auto tri = tris[i];
+				auto v0 = verts[tri.v0];
+				auto v1 = verts[tri.v1];
+				auto v2 = verts[tri.v2];
 
 
-			max.x = fmax(t_pos1.x, max.x);
-			max.y = fmax(t_pos1.y, max.y);
-			max.z = fmax(t_pos1.z, max.z);
 
-			max.x = fmax(t_pos2.x, max.x);
-			max.y = fmax(t_pos2.y, max.y);
-			max.z = fmax(t_pos2.z, max.z);
+				auto t_pos1 = v0.position * transform;
+				auto t_pos2 = v1.position * transform;
+				auto t_pos3 = v2.position * transform;
 
-			max.x = fmax(t_pos3.x, max.x);
-			max.y = fmax(t_pos3.y, max.y);
-			max.z = fmax(t_pos3.z, max.z);
+				min.x = fmin(t_pos1.x, min.x);
+				min.y = fmin(t_pos1.y, min.y);
+				min.z = fmin(t_pos1.z, min.z);
 
-			rpTri ctri;
-			ctri.v0 = t_pos1;
-			ctri.v1 = t_pos2;
-			ctri.v2 = t_pos3;
+				min.x = fmin(t_pos2.x, min.x);
+				min.y = fmin(t_pos2.y, min.y);
+				min.z = fmin(t_pos2.z, min.z);
 
-			cache.tris.push_back(ctri);
+				min.x = fmin(t_pos3.x, min.x);
+				min.y = fmin(t_pos3.y, min.y);
+				min.z = fmin(t_pos3.z, min.z);
+
+
+				max.x = fmax(t_pos1.x, max.x);
+				max.y = fmax(t_pos1.y, max.y);
+				max.z = fmax(t_pos1.z, max.z);
+
+				max.x = fmax(t_pos2.x, max.x);
+				max.y = fmax(t_pos2.y, max.y);
+				max.z = fmax(t_pos2.z, max.z);
+
+				max.x = fmax(t_pos3.x, max.x);
+				max.y = fmax(t_pos3.y, max.y);
+				max.z = fmax(t_pos3.z, max.z);
+
+				rpTri ctri;
+				ctri.v0 = t_pos1;
+				ctri.v1 = t_pos2;
+				ctri.v2 = t_pos3;
+
+				cache.tris.push_back(ctri);
+
+			}
+			cache.bmin = min;
+			cache.bmax = max;
+			cache.node = mesh->GetOwner();
+				caches[mesh] = cache;
+
 
 		}
-		cache.bmin = min;
-		cache.bmax = max;
-		cache.node = mesh->GetOwner();
-		caches[mesh] = cache;
-	
-	
-	}
 
-	else {
-		cache = caches[mesh];
-		if(mesh->Changed())
+		else {
+		
+			cache = caches[mesh];
+			if (mesh->Changed())
+			{
+				auto ee = caches.find(mesh);
+				cache.tris.clear();
+				caches.erase(ee);
+				int bb = 0;
+				goto restart;
+			}
+
+		}
+
+	
+
+		if (rayBoxIntersect(ray, cache.bmin, cache.bmax)!=NOHIT)
 		{
-			auto ee = caches.find(mesh);
-			cache.tris.clear();
-			caches.erase(ee);
-			int bb = 0;
-			goto restart;
+
+
+			for (int i = 0; i < cache.tris.size(); i++) {
+
+				auto result = RayToTri(ray, cache.tris[i]);
+
+				if (result.hit)
+				{
+//					printf("HIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+						if (close_result.hit == false) {
+							float xd, yd, zd;
+							xd = result.hit_point.x - ray.pos.x;
+							yd = result.hit_point.y - ray.pos.y;
+							zd = result.hit_point.z - ray.pos.z;
+							float dist = sqrt(xd * xd + yd * yd + zd * zd);
+							close_result = result;
+							close_result.hit = true;
+							close_result.hit_distance = dist;
+							close_result.hit_point = result.hit_point;
+							close_result.hit_node = mesh->GetOwner();
+							close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
+							close_result.hit_mesh = mesh;
+
+
+							close_result.hit_distance = dist;
+						}
+						else {
+
+							float xd, yd, zd;
+
+							xd = result.hit_point.x - ray.pos.x;
+							yd = result.hit_point.y - ray.pos.y;
+							zd = result.hit_point.z - ray.pos.z;
+							float dist = sqrt(xd * xd + yd * yd + zd * zd);
+							if (dist < close_result.hit_distance)
+							{
+								close_result.hit_distance = dist;
+								close_result.hit_point = result.hit_point;
+								close_result.hit_node = mesh->GetOwner();
+								close_result.hit_mesh = mesh;
+								close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
+							}
+
+							//float dist1 =  
+
+
+
+						}
+				}
+
+			}
 		}
 		
 	}
 
+	int end = clock();
 
-	PickResult close_result;
-
-	close_result.hit = false;
-
-	if (rayBoxIntersect(ray, cache.bmin, cache.bmax)!=NOHIT)
-	{
-
-
-		for (int i = 0; i < cache.tris.size(); i++) {
-
-			auto result = RayToTri(ray, cache.tris[i]);
-
-			if (result.hit)
-			{
-				if (close_result.hit == false) {
-					float xd, yd, zd;
-					xd = result.hit_point.x - ray.pos.x;
-					yd = result.hit_point.y - ray.pos.y;
-					zd = result.hit_point.z - ray.pos.z;
-					float dist = sqrt(xd * xd + yd * yd + zd * zd);
-					close_result = result;
-					close_result.hit = true;
-					close_result.hit_distance = dist;
-					close_result.hit_point = result.hit_point;
-					close_result.hit_node = mesh->GetOwner();
-					close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
-					close_result.hit_mesh = mesh;
-
-
-					close_result.hit_distance = dist;
-				}
-				else {
-
-					float xd, yd, zd;
-
-					xd = result.hit_point.x - ray.pos.x;
-					yd = result.hit_point.y - ray.pos.y;
-					zd = result.hit_point.z - ray.pos.z;
-					float dist = sqrt(xd * xd + yd * yd + zd * zd);
-					if (dist < close_result.hit_distance)
-					{
-						close_result.hit_distance = dist;
-						close_result.hit_point = result.hit_point;
-						close_result.hit_node = mesh->GetOwner();
-						close_result.hit_mesh = mesh;
-						close_result.hit_entity = (NodeEntity*)mesh->GetOwner();
-					}
-
-					//float dist1 =  
-
-
-
-				}
-			}
-
-		}
-	}
+	//printf("MS====%d\n", end - start);
 
 	return close_result;
 }
 
 inline PickResult RayPicker::RayPickNode(rpRay& ray, Node3D* node) {
 
+	/*
+	exit(0);
 	PickResult close_result;
 	close_result.hit = false;
 
@@ -351,7 +394,7 @@ inline PickResult RayPicker::RayPickNode(rpRay& ray, Node3D* node) {
 
 			for (int i = 0; i < entity->GetMeshes().size(); i++) {
 
-				auto result = RayPickMesh(ray, entity->GetMesh(i));
+				//auto result = RayPickMesh(ray, entity->GetMesh(i));
 
 				if (result.hit)
 				{
@@ -458,7 +501,8 @@ inline PickResult RayPicker::RayPickNode(rpRay& ray, Node3D* node) {
 	}
 
 	return close_result;
-
+	*/
+return PickResult();
 }
 
 void RayPicker::SetGraph(SceneGraph* graph) {

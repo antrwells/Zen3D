@@ -1,25 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  RayPicker.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(231,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Node3D.h(435,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(65,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeCamera.h(75,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(149,28): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(174,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(178,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(295,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.h(306,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeEntity.h(160,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\NodeEntity.h(168,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.h(193,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(107,32): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(134,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Replacing x64\Debug\DirCollection.obj
   Replacing x64\Debug\pch.obj
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

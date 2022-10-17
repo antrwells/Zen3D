@@ -53,6 +53,19 @@ VarType ZVarsNode::GetType() {
 
 }
 
+void ZVarsNode::SetBaseType(std::string v) {
+
+	TypeID = v;
+
+}
+
+std::string ZVarsNode::GetBaseType()
+{
+
+	return TypeID;
+
+}
+
 ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
@@ -60,12 +73,20 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 	{
 
 		auto var = mVars[i];
-		ZContextVar* new_var = new ZContextVar(var->name, this->mVarType);
+		ZContextVar* new_var = new ZContextVar(var->name, this->mVarType,TypeID);
 		ZClassNode* cls = nullptr;
+		new_var->SetBaseID(TypeID);
 
 		ZExpressionNode::RecvType = mVarType;
 
 		switch (mVarType) {
+		case VarString:
+			if (var->def != nullptr) {
+
+				new_var->SetString(var->def->Exec({})->GetStringVal());
+				int cc = 5;
+			}
+			break;
 		case VarInt:
 			if (var->def != nullptr) {
 				new_var->SetInt(var->def->Exec({})->GetIntVal());

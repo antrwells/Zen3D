@@ -290,9 +290,33 @@ enum NodeType {
 			return mRootNode;
 		}
 		virtual void SetChanged() {
+			for (int i = 0; i < mChildren.size(); i++) {
+				mChildren[i]->SetChanged();
+			}
+		}
+		float3 GetPositionWorld() {
 
+			//return float4x4::Translation(0,0,0)* GetWorldMatrix();
+
+			return float3(0, 0, 0) * GetWorldMatrix();
 		}
 
+		Node3D* FindNode(std::string name) {
+
+			if (std::string(mName) == name) {
+				return this;
+			}
+			for (int i = 0; i < mChildren.size(); i++) {
+				
+				auto res = mChildren[i]->FindNode(name);
+				if (res != nullptr) {
+					return res;
+				}
+
+			}
+
+			return nullptr;
+		}
 		/// <summary>
 		/// Removes a node from the children nodes.
 		/// </summary>

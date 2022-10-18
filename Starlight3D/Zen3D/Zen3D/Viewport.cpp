@@ -272,9 +272,10 @@ void ZenUI::MainViewPort() {
 
 						if (result.hit) {
 							int bb = 5;
-							if (result.hit_entity != mTranslateGizmo) {
+							if (result.hit_entity != mCurrentGizmo) {
 
 								mSelectedNode = result.hit_entity;
+								mEditNode = result.hit_entity;
 								//mTranslateGizmo->SetPosition(result.hit_node->GetPosition());
 
 							}
@@ -354,6 +355,7 @@ void ZenUI::MainViewPort() {
 				if (Application::GetApp()->GetInput()->IsMouseDown(0))
 				{
 					mSelectedNode = entity;
+					mEditNode = entity;
 				}
 			}
 		}

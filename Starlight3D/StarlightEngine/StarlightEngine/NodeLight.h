@@ -143,6 +143,10 @@ enum LightType {
 			mOCone = cone.y;
 		}
 
+		bool GetCastShadows() {
+			return mCastShadows;
+		}
+
 	private:
 
 		float mRange = 100;

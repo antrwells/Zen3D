@@ -36,6 +36,14 @@ void ZenUI::MainNodeEditor() {
 
 			ImGui::BeginChild(55);
 
+			bool enable = mEditNode->GetEnabled();
+
+			if(ImGui::Checkbox("Enabled", &enable)){
+	
+				mEditNode->SetEnabled(enable);
+
+			}
+
 			char* buf = (char*)malloc(512);
 			auto name = mEditNode->GetName();
 
@@ -116,13 +124,14 @@ void ZenUI::MainNodeEditor() {
 					ic = cone.x;
 					oc = cone.y;
 
-					if (ImGui::DragFloat("Inner Cone", &ic, 0.15f, 0, 300))
+					if (ImGui::DragFloat("Cone", &ic, 0.15f, 0, 300))
 					{
 						cone.x = ic;
 					}
-					if (ImGui::DragFloat("Outter Cone", &oc, 0.15f, 300)) {
-						cone.y = oc;
-					}
+
+					//if (ImGui::DragFloat("Outter Cone", &oc, 0.15f, 300)) {
+				//		cone.y = oc;
+				//	}
 					light->SetCone(cone);
 
 					//mGizmoSpace = GizmoSpace::Global;
@@ -145,6 +154,13 @@ void ZenUI::MainNodeEditor() {
 					light->SetRange(lr);
 				}
 				ImGui::PopItemWidth();
+
+
+				bool castShadows = light->GetCastShadows();
+				if (ImGui::Checkbox("Cast Shadows", &castShadows))
+				{
+					light->SetCastShadows(castShadows);
+				}
 
 				float c_diff[3];
 				c_diff[0] = light->GetDiffuse().x;

@@ -6,15 +6,15 @@ cbuffer Constants
     float4x4 g_Model;
     float4x4 g_View;
     float4x4 g_ModelInv;
-    float4 vPos;
-    float4 lPos;
-    float4 lProp;
+    float4 viewPos;
+    float4 lightPos;
+    float4 lightProp;
     float4 lightDiff;
     float4 lightSpec;
     float4 renderProps;
-    int4 lMode;
-    float4 lDir;
-    float4 lCone;
+    int4 lightMode;
+    float4 lightDir;
+    float4 lightCone;
     
 };
 
@@ -42,17 +42,17 @@ struct PSInput
     float3 TLP : NORMAL1;
     float3 TVP : NORMAL2;
     float3 TFP : NORMAL3;
-    float3 lPos : POSITION1;
-    float3 vPos : POSITION2;
+    float3 lightPos : POSITION1;
+    float3 viewPos : POSITION2;
     float4 lightProp : POSITION3;
     float3 fragPos : POSITION4;
-    float3 lDiff : POSITION5;
-    float3 lSpec : POSITION6;
+    float3 lightDiff : POSITION5;
+    float3 lightSpec : POSITION6;
     float3 localNormal : NORMAL4;
     float4 renderProps : POSITION7;
     int4 lightMode : POSITION8;
-    float3 lDir : NORMAL5;
-    float3 lCone : NORMAL6;
+    float3 lightDir : NORMAL5;
+    float3 lightCone : NORMAL6;
 
 
 };
@@ -87,8 +87,8 @@ void main(in  VSInput VSIn,
     
     float3x3 TBN = transpose(float3x3(T, B, N));
 
-    PSIn.TLP = mul(lPos.xyz, TBN);
-    PSIn.TVP = mul(vPos.xyz, TBN);
+    PSIn.TLP = mul(lightPos.xyz, TBN);
+    PSIn.TVP = mul(viewPos.xyz, TBN);
     PSIn.TFP = mul(fragPos, TBN);
 
     //float4x4 mvp = g_Proj;
@@ -97,14 +97,14 @@ void main(in  VSInput VSIn,
    // PSIn.Norm = float3(0, 0, 0);
     PSIn.Color = VSIn.Color;
     PSIn.Uv = VSIn.Uv;
-    PSIn.lPos = lPos.xyz;
-    PSIn.vPos = vPos.xyz;
-    PSIn.lightProp = lProp;
+    PSIn.lightPos = lightPos.xyz;
+    PSIn.viewPos = viewPos.xyz;
+    PSIn.lightProp = lightProp;
     PSIn.fragPos = fragPos;
-    PSIn.lDiff = lightDiff;
-    PSIn.lSpec = lightSpec;
+    PSIn.lightDiff = lightDiff;
+    PSIn.lightSpec = lightSpec;
     PSIn.renderProps = renderProps;
-    PSIn.lightMode = lMode;
-    PSIn.lDir = lDir.xyz;
-    PSIn.lCone = lCone.xyz;
+    PSIn.lightMode = lightMode;
+    PSIn.lightDir = lightDir.xyz;
+    PSIn.lightCone = lightCone.xyz;
 }

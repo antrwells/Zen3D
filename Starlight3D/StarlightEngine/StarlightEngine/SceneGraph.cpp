@@ -30,8 +30,10 @@
 	
 	void SceneGraph::Update() {
 
-		mRootNode->Update();
-
+		if (mRootNode->GetEnabled() == false)
+		{
+			mRootNode->Update();
+		}
 		for (int i = 0; i < mBillboards.size(); i++) {
 
 			mBillboards[i]->Update();
@@ -249,10 +251,13 @@
 
 		for (int i = 0;i < mLights.size();i++) {
 
-			mShadowRenderer->SetRenderTargetCube(mLights[i]->GetShadowCube());
+			if (mLights[i]->GetEnabled() == false) continue;
+			if (mLights[i]->GetCastShadows()) {
 
-			mShadowRenderer->RenderDepth(mLights[i]->GetPosition(),mLights[i]->GetRange());
+				mShadowRenderer->SetRenderTargetCube(mLights[i]->GetShadowCube());
 
+				mShadowRenderer->RenderDepth(mLights[i]->GetPosition(), mLights[i]->GetRange());
+			}
 		}
 	//	printf("DS:%d\n",(int)(et - bt));
 
@@ -287,6 +292,7 @@
 				auto entity = (NodeEntity*)mRootNode->GetChild(i);
 
 				if (entity->IsHidden()) continue;
+				if (entity->GetEnabled() == false) continue;
 
 				RenderNodeDepth((NodeEntity*)entity);
 			}
@@ -295,6 +301,7 @@
 
 				auto actor = (NodeActor*)mRootNode->GetChild(i);
 				if (actor->IsHidden()) continue;
+				if (actor->GetEnabled() == false) continue;
 				RenderNodeActorDepth(actor);
 
 
@@ -311,12 +318,15 @@
 
 	void SceneGraph::RenderNodeActorDepth(NodeActor* actor) {
 
+		if (actor->GetEnabled() == false) return;
 		mRenderer->RenderActorDepth(actor, mCam);
 
 	}
 
 	void SceneGraph::RenderNodeBasic(NodeEntity* entity)
 	{
+
+		if (entity->GetEnabled() == false) return;
 
 		//int a = 5;
 		//mRenderer->RenderSimple(entity, mCam);
@@ -339,6 +349,7 @@
 
 	void SceneGraph::RenderNodePositions(NodeEntity* entity) {
 
+		if (entity->GetEnabled() == false) return;
 
 		bool first = true;
 		if (entity->GetMeshes().size() > 0) {
@@ -359,7 +370,7 @@
 
 	void SceneGraph::RenderNodeDepth(NodeEntity* entity)
 	{
-
+		if (entity->GetEnabled() == false) return;
 		bool first = true;
 		if (entity->GetMeshes().size() > 0) {
 		
@@ -380,6 +391,7 @@
 	void SceneGraph::RenderNodeActorLit(NodeActor* actor) {
 
 		bool first = true;
+		if (actor->GetEnabled() == false) return;
 //	{
 			for (int i = 0;i < mLights.size();i++)
 			{
@@ -402,10 +414,11 @@
 	void SceneGraph::RenderNodeLit(NodeEntity* entity) {
 
 		bool first = true;
+		if (entity->GetEnabled() == false) return;
 		if (entity->GetMeshes().size() > 0) {
 			for (int i = 0;i < mLights.size();i++)
 			{
-
+				if (mLights[i]->GetEnabled() == false) continue;
 				mRenderer->RenderLit(entity, mCam, mLights[i], first);
 				first = false;
 			}
@@ -421,7 +434,7 @@
 
 	void SceneGraph::RenderNodeNormals(NodeEntity* entity)
 	{
-
+		if (entity->GetEnabled() == false) return;
 		bool first = true;
 		if (entity->GetMeshes().size() > 0) {
 
@@ -446,6 +459,7 @@
 			auto entity = (NodeEntity*)mRootNode->GetChild(i);
 
 			if (entity->IsHidden()) continue;
+			if (entity->GetEnabled() == false) continue;
 
 			RenderNodeNormals((NodeEntity*)entity);
 		}
@@ -458,6 +472,8 @@
 		for (int i = 0;i < mRootNode->ChildrenCount();i++)
 		{
 			auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+			if (entity->GetEnabled() == false) continue;
 
 			if (entity->IsHidden()) continue;
 
@@ -474,6 +490,7 @@
 			auto entity = (NodeEntity*)mRootNode->GetChild(i);
 
 			if (entity->IsHidden()) continue;
+			if (entity->GetEnabled() == false) continue;
 
 			RenderNodePositions((NodeEntity*)entity);
 		}
@@ -491,11 +508,13 @@
 				auto entity = (NodeEntity*)mRootNode->GetChild(i);
 
 				if (entity->IsHidden()) continue;
+				if (entity->GetEnabled() == false) continue;
 
 				RenderNodeLit((NodeEntity*)entity);
 			}
 			if (node->GetType() == NodeType::Actor) {
 
+				if (node->GetEnabled() == false) continue;
 				RenderNodeActorLit((NodeActor*)node);
 
 			}
@@ -707,8 +726,9 @@
 	}
 
 	void SceneGraph::BeginNode(Node3D* node) {
-
+		if (node->GetEnabled() == false) return;
 		node->BeginNode();
+		
 		for (int i = 0; i < node->ChildrenCount(); i++)
 		{
 			BeginNode(node->GetChild(i));
@@ -718,7 +738,7 @@
 
 	void SceneGraph::EndNode(Node3D* node)
 	{
-
+		if (node->GetEnabled() == false) return;
 		node->EndNode();
 		for (int i = 0; i < node->ChildrenCount(); i++) {
 			EndNode(node->GetChild(i));

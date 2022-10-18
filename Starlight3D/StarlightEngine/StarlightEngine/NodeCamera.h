@@ -81,7 +81,7 @@
 
         float mFOV = 45.0f;
         float mMinZ = 0.05f;
-        float mMaxZ = 25.0f;
+        float mMaxZ = 60.0f;
         float mWidth, mHeight;
 
     };

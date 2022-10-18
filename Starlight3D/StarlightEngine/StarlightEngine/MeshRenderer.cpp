@@ -1707,8 +1707,11 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
             lc.renderProps = float4(p1, p2, p3, p4);
-            lc.lightModes = int4((int)light->GetLightType(), 0, 0, 0);
-            lc.lightCone = light->GetCone();
+            bool cs = light->GetCastShadows();
+            int csp = 0;
+            if (cs) csp = 1;
+            lc.lightModes = int4((int)light->GetLightType(),csp, 0, 0);
+            lc.lightCone = float4(light->GetCone().x, light->GetCone().y, 0, 0);
         
             float3 ldir = float3(0, 0, 1) * light->GetRotation();
 
@@ -1824,7 +1827,10 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
             lc.renderProps = float4(p1, p2, p3, p4);
-            lc.lightModes = int4((int)light->GetLightType(), 0, 0, 0);
+            bool cs = light->GetCastShadows();
+            int csp = 0;
+            if (cs) csp = 1;
+            lc.lightModes = int4((int)light->GetLightType(), csp, 0, 0);
             lc.lightCone = float4(light->GetCone().x, light->GetCone().y, 0, 0);
 
             float3 ldir = float3(0, 0, 1) * light->GetRotation();

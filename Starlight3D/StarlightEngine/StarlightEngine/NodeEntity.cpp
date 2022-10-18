@@ -91,7 +91,7 @@
 	}
 
 	void NodeEntity::Render() {
-
+		if (GetEnabled() == false) return;
 		for (int i = 0; i < NoRenderList::mNoRender.size(); i++) {
 
 			if (this == NoRenderList::mNoRender[i])
@@ -229,6 +229,7 @@
 		clone->SetScripts(GetScripts());
 
 		clone->SetName(GetName());
+		clone->SetEnabled(GetEnabled());
 
 		return (Node3D*)clone;
 

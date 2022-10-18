@@ -40,13 +40,14 @@ bool Node3D::mSysInit = false;
 		}
 		mChanged = true;
 		SetChanged();
-		
+		mEnabled = true;
 		
 
 	}
 
 	void Node3D::Update() {
 
+		if (mEnabled == false) return;
 		for (int i = 0; i < mScriptObjs.size(); i++)
 		{
 			auto obj = mScriptObjs[i];
@@ -110,7 +111,7 @@ bool Node3D::mSysInit = false;
 	}
 
 	void Node3D::UpdateChildren() {
-
+		if (mEnabled == false) return;
 		for (int i = 0; i < mChildren.size(); i++) {
 
 			auto child = mChildren[i];
@@ -384,6 +385,7 @@ bool Node3D::mSysInit = false;
 
 	void Node3D::BeginNode() {
 
+		if (mEnabled == false) return;
 		mPushPos = mPosition;
 		mPushRot = mRotation;
 		mPushScale = mScale;
@@ -400,7 +402,7 @@ bool Node3D::mSysInit = false;
 	}
 
 	void Node3D::EndNode() {
-
+		if (mEnabled == false) return;
 		SetPosition(mPushPos);
 		SetScale(mPushScale);
 		SetRotation(mPushRot);

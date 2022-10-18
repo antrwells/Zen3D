@@ -26,6 +26,7 @@
 		mICone = 12;
 
 		mOCone = 12;
+		mCastShadows = true;
 	}
 
 	int NodeLight::ShadowMapRes = 1024;

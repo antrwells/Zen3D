@@ -123,8 +123,9 @@ enum NodeType {
 		/// </summary>
 		void RenderChildren() {
 			for (int i = 0; i < mChildren.size(); i++) {
-
+				
 				auto child = mChildren[i];
+				if (child->GetEnabled() == false) continue;
 				child->Render();
 
 			}
@@ -137,6 +138,7 @@ enum NodeType {
 			for (int i = 0; i < mChildren.size(); i++) {
 
 				auto child = mChildren[i];
+				if (child->GetEnabled() == false) continue;
 				child->RenderDepth();
 
 			}
@@ -474,6 +476,14 @@ enum NodeType {
 			return false;
 		}
 
+		void SetEnabled(bool enable) {
+			mEnabled = enable;
+		}
+
+		bool GetEnabled() {
+			return mEnabled;
+		}
+
 	protected:
 		static bool mSysInit;
 		bool mTransformInvalidated = true;
@@ -515,4 +525,5 @@ enum NodeType {
 		float3 mPushPos;
 		float3 mPushScale;
 		bool mChanged = false;
+		bool mEnabled = true;
 	};

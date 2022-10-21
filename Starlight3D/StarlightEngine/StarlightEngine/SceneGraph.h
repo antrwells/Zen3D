@@ -9,6 +9,7 @@
 #include "NodeBillboard.h"
 #include "MeshRenderer.h"
 #include "BigBuffer.h"
+#include "VFile.h"
 
 
 struct TexItem {
@@ -37,6 +38,18 @@ class RayPicker;
 		/// Initializes an empty scene Graph.
 		/// </summary>
 		SceneGraph();
+
+		void ClearNodes() {
+
+			mRootNode->ClearNodes();
+
+		}
+		void AddCamera(NodeCamera* cam)
+		{
+			mCams.push_back(cam);
+			AddNode(cam);
+		}
+		void AddNodeTemp(Node3D* node);
 
 		/// <summary>
 		/// Will update the scene graph by calling each node's update method.
@@ -76,7 +89,10 @@ class RayPicker;
 		/// </summary>
 		/// <param name="node"></param>
 		void UpdateNodePhysics(Node3D* node);
-		
+		void UpdatePhyscs()
+		{
+			UpdateNodePhysics(mRootNode);
+		}
 		/// <summary>
 		/// Internal use.
 		/// </summary>
@@ -146,7 +162,7 @@ class RayPicker;
 		/// Adds a light to the scene. You can use as many as you'd like.
 		/// </summary>
 		/// <param name="light"></param>
-		void AddLight(NodeLight* light);
+		void AddLight(NodeLight* light,bool addtoscene=true);
 
 		/// <summary>
 		/// Adds a billboard to the scene.
@@ -252,10 +268,334 @@ class RayPicker;
 			mLights = new_list;
 		}
 
+		void LoadGraph(std::string path)
+		{
+			VFile* file = new VFile(path.c_str(), FileMode::Read);
+		
+			//Node3D* root = new Node3D;
+			mLights.resize(0);
+			mCams.resize(0);
+			mCam = nullptr;
+
+			mRootNode = ReadNodeHeader(file);
+			ReadNode(file,mRootNode);
+			mProperties.resize(0);
+
+			int pc = file->ReadInt();
+			for (int i = 0; i < pc; i++) {
+
+				
+				PropertyType type = (PropertyType)file->ReadInt();
+				std::string name(file->ReadString());
+				
+				NodeProperty* prop = new NodeProperty(name);
+				prop->SetType(type);
+				switch (type) {
+				case PropertyType::Int:
+					prop->SetInt(file->ReadInt());
+					break;
+				case PropertyType::Float:
+					prop->SetFloat(file->ReadFloat());
+					break;
+				case PropertyType::Float2:
+					
+				{float x, y;
+				x = file->ReadFloat();
+				y = file->ReadFloat();
+				prop->SetFloat2(float2(x,y));
+				}
+					break;
+				case PropertyType::Float3:
+					prop->SetFloat3(file->ReadVec3());
+					break;
+				case PropertyType::Bool:
+					prop->SetBool(file->ReadBool());
+					break;
+				case PropertyType::String:
+					prop->SetString(file->ReadString());
+					break;
+				}
+				mProperties.push_back(prop);
+			}
+
+			file->Close();
+		
+		}
+
+		void ReadNode(VFile* file, Node3D* node)
+		{
+			switch (node->GetType()) {
+			case NodeType::Node:
+			{
+				node->ReadScripts(file);
+
+				int cc = file->ReadInt();
+				for (int i = 0; i < cc; i++) {
+
+					auto sub = ReadNodeHeader(file);
+					ReadNode(file, sub);
+					node->AddNode(sub);
+
+				}
+			}
+				break;
+			case NodeType::Entity:
+			{
+				auto ent = (NodeEntity*)node;
+
+				int mc = file->ReadInt();
+				for (int i = 0; i < mc; i++) {
+
+					Mesh3D* mesh = new Mesh3D();
+					mesh->ReadMesh(file);
+					ent->AddMesh(mesh);
+					mesh->SetOwner(node);
+
+
+				}
+
+				node->ReadScripts(file);
+
+				int cc = file->ReadInt();
+				for (int i = 0; i < cc; i++) {
+
+					auto sub = ReadNodeHeader(file);
+					ReadNode(file, sub);
+					node->AddNode(sub);
+
+				}
+
+			}
+				break;
+			case NodeType::Light:
+			{
+				auto l = (NodeLight*)node;
+				l->SetDiffuse(file->ReadVec3());
+				l->SetSpecular(file->ReadVec3());
+				l->SetRange(file->ReadFloat());
+				l->SetCastShadows(file->ReadBool());
+
+				l->ReadScripts(file);
+
+
+				int cc = file->ReadInt();
+				for (int i = 0; i < cc; i++) {
+
+					auto sub = ReadNodeHeader(file);
+					ReadNode(file, sub);
+					node->AddNode(sub);
+
+
+				}
+			}
+				break;
+			case NodeType::Camera:
+				break;
+			}
+		}
+
+		void WriteTransform(VFile* file,Node3D* node) {
+
+			file->WriteVec3(node->GetPosition());
+			file->WriteVec3(node->GetScale());
+			file->WriteMatrix(node->GetRotation4x4());
+
+		}
+		void ReadTransform(VFile* file,Node3D* node) {
+
+			node->SetPosition(file->ReadVec3());
+			node->SetScale(file->ReadVec3());
+			node->SetRotation(file->ReadMatrix());
+
+
+		}
+		void SaveGraph(std::string path)
+		{
+			VFile* file = new VFile(path.c_str(), FileMode::Write);
+			SaveNodeHeader(file,mRootNode);
+			SaveNode(file,mRootNode);
+
+			file->WriteInt(mProperties.size());
+			for (int i = 0; i < mProperties.size(); i++) {
+
+				auto prop = mProperties[i];
+				file->WriteInt((int)prop->GetType());
+				file->WriteString(prop->GetName().c_str());
+				switch (prop->GetType()) {
+				case PropertyType::Int:
+					file->WriteInt(prop->GetInt());
+					break;
+				case PropertyType::Float:
+					file->WriteFloat(prop->GetFloat());
+					break;
+				case PropertyType::Float2:
+					file->WriteFloat(prop->GetFloat2().x);
+					file->WriteFloat(prop->GetFloat2().y);
+					break;
+				case PropertyType::Float3:
+					file->WriteVec3(prop->GetFloat3());
+					break;
+				case PropertyType::Bool:
+					file->WriteBool(prop->GetBool());
+					break;
+				case PropertyType::String:
+					file->WriteString(prop->GetString().c_str());
+					break;
+				}
+			}
+			//SaveProperties - > Global 
+			file->Close();
+		}
+		Node3D* ReadNodeHeader(VFile* file) {
+
+			Node3D* res = nullptr;
+			NodeType type = (NodeType)file->ReadInt();
+			switch (type) {
+			case NodeType::Node:
+				res = new Node3D;
+				break;
+			case NodeType::Entity:
+				res = new NodeEntity;
+				break;
+			case NodeType::Light:
+				res = new NodeLight;
+				mLights.push_back((NodeLight*)res);
+				break;
+			case NodeType::Camera:
+				res = new NodeCamera;
+				mCams.push_back((NodeCamera*)res);
+				if (mCam == nullptr) {
+					mCam = (NodeCamera*)res;
+				}
+				mCams.push_back((NodeCamera*)res);
+
+				break;
+			}
+
+			res->SetName(file->ReadString());
+			res->SetEnabled(file->ReadBool());
+			ReadTransform(file, res);
+			return res;
+		}
+		void SaveNodeHeader(VFile* file,Node3D* node) {
+
+			file->WriteInt((int)node->GetType());
+			file->WriteString(node->GetName());
+			file->WriteBool(node->GetEnabled());
+			WriteTransform(file,node);
+
+		}
+
+		void SaveNode(VFile* file, Node3D* node)
+		{
+
+			switch (node->GetType())
+			{
+			case NodeType::Node:
+			{
+				node->WriteScripts(file);
+
+				file->WriteInt(node->ChildrenCount());
+				for (int i = 0; i < node->ChildrenCount(); i++) {
+
+					auto sub = node->GetChild(i);
+					SaveNodeHeader(file, sub);
+					SaveNode(file, sub);
+					//mChildren[i]->WriteNode(file);
+
+				}
+
+			}
+				break;
+			case NodeType::Entity:
+			{
+				auto ent = (NodeEntity*)node;
+
+				file->WriteInt(ent->GetMeshes().size());
+				for (int i = 0; i < ent->GetMeshes().size(); i++) {
+
+					ent->GetMesh(i)->WriteMesh(file);
+
+
+				}
+
+				ent->WriteScripts(file);
+
+				file->WriteInt(node->ChildrenCount());
+				for (int i = 0; i < node->ChildrenCount(); i++) {
+
+					auto sub = node->GetChild(i);
+					SaveNodeHeader(file, sub);
+					SaveNode(file, sub);
+					//mChildren[i]->WriteNode(file);
+
+				}
+			}
+				break;
+			case NodeType::Light:
+			{
+				auto l = (NodeLight*)node;
+
+				file->WriteVec3(l->GetDiffuse());
+				file->WriteVec3(l->GetSpecular());
+				file->WriteFloat(l->GetRange());
+				file->WriteBool(l->GetCastShadows());
+
+				node->WriteScripts(file);
+
+				file->WriteInt(node->ChildrenCount());
+				for (int i = 0; i < node->ChildrenCount(); i++) {
+
+					auto sub = node->GetChild(i);
+					SaveNodeHeader(file, sub);
+					SaveNode(file, sub);
+					//mChildren[i]->WriteNode(file);
+
+				}
+			}
+				break;
+			}
+
+	
+		}
+
 		static SceneGraph* mThis;
 		RayPicker* mRayPick = nullptr;
+		void AddProperty(NodeProperty* prop)
+		{
+			for (int i = 0; i < mProperties.size(); i++)
+			{
+
+				if (mProperties[i]->GetName() == prop->GetName())
+				{
+					mProperties.erase(mProperties.begin() + i);
+					break;
+				}
+
+			}
+			mProperties.push_back(prop);
+		}
+		NodeProperty* GetProperty(std::string name) {
+
+			for (int i = 0; i < mProperties.size(); i++) {
+
+				if (mProperties[i]->GetName() == name) {
+					return mProperties[i];
+				}
+
+			}
+			return nullptr;
+
+		}
+
+		std::vector<NodeCamera*> GetCams() {
+			return mCams;
+		}
+
 	private:
 	
+
+		std::vector<NodeCamera*> mCams;
 		std::vector<Node3D*> mRTNodes;
 		std::vector<Mesh3D*> mRTMeshes;
 		//Kinetic::FX::Effect* FXDepth;
@@ -280,4 +620,5 @@ class RayPicker;
 		RefCntAutoPtr<ITopLevelAS> mTLAS;
 		RefCntAutoPtr<IBuffer>             m_ScratchBuffer;
 		RefCntAutoPtr<IBuffer>             m_InstanceBuffer;
-	};
+		std::vector<NodeProperty*> mProperties;
+};

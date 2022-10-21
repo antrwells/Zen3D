@@ -10,7 +10,7 @@ class ZContextVar
 {
 public:
 
-	ZContextVar(std::string name,enum VarType type,std::string baseID);
+	ZContextVar(std::string name,enum VarType type,std::string baseID,bool comparer);
 
 	std::string GetName();
 	VarType GetType();
@@ -33,6 +33,9 @@ public:
 	void SetBaseID(std::string name) {
 		mBaseID = name;
 	}
+	bool GetCompare() {
+		return mComparer;
+	}
 
 	//For run/stop type scenarios.
 
@@ -52,16 +55,17 @@ private:
 	int mPushInt;
 	std::string mPushString;
 	std::string mBaseID;
+	bool mComparer = false;
 
 
 };
 
 
-ZContextVar* VMakeInt(int v);
-ZContextVar* VMakeFloat(float v);
-ZContextVar* VMakeString(std::string v);
-ZContextVar* VMakeC(void* v);
-ZContextVar* VMakeClass(ZClassNode* v);
+ZContextVar* VMakeInt(int v,bool comparer = false);
+ZContextVar* VMakeFloat(float v,bool cmparer = false);
+ZContextVar* VMakeString(std::string v,bool comparer=false);
+ZContextVar* VMakeC(void* v,bool comparer=false);
+ZContextVar* VMakeClass(ZClassNode* v,bool comparer=false);
 
 int VGetInt(ZContextVar* v);
 float VGetFloat(ZContextVar* v);

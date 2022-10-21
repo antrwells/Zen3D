@@ -1,0 +1,2 @@
+- small scene set inside a burger place.
+-no gameplay, just random camera switches, at pre-defined places.

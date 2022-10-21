@@ -92,7 +92,7 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 		//args = { 25,40,30 };
 
-		ZContextVar* v1 = new ZContextVar("Test", VarType::VarInt,"int");
+		ZContextVar* v1 = new ZContextVar("Test", VarType::VarInt,"int",false);
 		v1->SetInt(2555);
 
 

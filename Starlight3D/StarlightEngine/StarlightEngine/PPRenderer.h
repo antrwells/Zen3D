@@ -32,9 +32,11 @@ class PPRenderer
 public:
 
 	PPRenderer();
+	void CreateOutlineGP();
 	void CreateColorLimitGP();
 	void CreateBlurGP();
 	void CreateCombineGP();
+	void RenderOutline(Texture2D* texture, int w, int h, float diff, float inc, float4 color);
 	void RenderCombine(Texture2D* texture,Texture2D* tex2, int w, int h, float i1, float i2);
 	void RenderColorLimit(Texture2D* texture, int w, int h,float limit);
 	void RenderBlur(Texture2D* texture, int w, int h, float blur);
@@ -49,6 +51,10 @@ private:
 	RefCntAutoPtr<IPipelineState>         m_pPSO_Combine;
 	RefCntAutoPtr<IBuffer>                m_VSConstants_Combine;
 	RefCntAutoPtr<IShaderResourceBinding> m_pSRB_Combine;
+	RefCntAutoPtr<IPipelineState> m_pPSO_Outline;
+	RefCntAutoPtr<IBuffer> m_VSConstants_Outline;
+	RefCntAutoPtr<IShaderResourceBinding> m_pSRB_Outline;
+
 	SmartDraw* mDraw;
 
 };

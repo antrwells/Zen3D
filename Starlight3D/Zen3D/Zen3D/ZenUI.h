@@ -9,6 +9,7 @@
 #include "FSPayload.h"
 #include "PostProcessing.h"
 #include "PPBloom.h"
+#include "PPOutline.h"
 #include "ZNotification.h"
 #include <stack>
 class RayPicker;
@@ -129,6 +130,8 @@ public:
 
 	SceneGraph* GetGraph();
 
+	//Renderer - A combo box that sets up all the types of rendering possible.
+
 private:
 
 
@@ -186,6 +189,12 @@ private:
 	NodeEntity* mRotateGizmo;
 	NodeEntity* mScaleGizmo;
 	NodeEntity* mCurrentGizmo;
+	NodeEntity* mCamGizmo;
+
+	//Camera
+	NodeCamera* mCurrentCamera = nullptr;
+	int mCurrentCamID = 0;
+	NodeCamera* mEditCam = nullptr;
 
 	//Main Viewport Globals
 	bool gLock_x, gLock_y, gLock_z;
@@ -202,6 +211,7 @@ private:
 	//PP
 	PostProcessing* mPP = nullptr;
 	PPBloom* mPPBloom = nullptr;
+	PPOutline* mPPOutline = nullptr;
 
 	//Lightmapper
 	int mLMRes[2];
@@ -268,6 +278,9 @@ private:
 	Node3D* mClipNode = nullptr;
 
 	bool BlockSG = false;
+
+	SceneGraph* mEditGraph;
+
 };
 
 

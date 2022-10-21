@@ -1,7 +1,7 @@
 #pragma once
 #include <ctype.h>
 
-//#include "PxPhysicsAPI.h"
+#include "PxPhysicsAPI.h"
 #include "Physics.h"
 
 #include "Common/interface/BasicMath.hpp"
@@ -29,9 +29,9 @@ using namespace Diligent;
 		float3 GetForce();
 		float GetRotationY();
 	protected:
-		//physx::PxRigidDynamic* body;
-		//physx::PxRigidStatic* sbody;
-	//	physx::PxShape* shape;
-	//	physx::PxMaterial* material;
+		physx::PxRigidDynamic* body;
+		physx::PxRigidStatic* sbody;
+		physx::PxShape* shape;
+		physx::PxMaterial* material;
 		float w, h, d;
 	};

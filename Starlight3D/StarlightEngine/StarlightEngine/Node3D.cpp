@@ -29,7 +29,7 @@ bool Node3D::mSysInit = false;
 		mRotation = float4x4::Identity();
 
 		//mRotation = glm::mat4(1.0f);
-		
+		mName = "Root";
 		mPosition = float3(0, 0, 0);
 		mScale = float3(1, 1, 1);
 		mComponents.resize(0);
@@ -147,7 +147,7 @@ bool Node3D::mSysInit = false;
 			else {
 				position_matrix = float4x4::Translation(mPosition);
 				rot_matrix = mRotation;
-				final_matrix = scale_matrix*rot_matrix * position_matrix;// *scale_matrix;// *scale_matrix;
+				final_matrix = scale_matrix * rot_matrix * position_matrix;// *scale_matrix;// *scale_matrix;
 			}
 
 
@@ -184,6 +184,10 @@ bool Node3D::mSysInit = false;
 
 	void Node3D::AddNode(Node3D* node) {
 
+		if (node->GetRootNode() != nullptr) {
+			auto rn = node->GetRootNode();
+			rn->RemoveNode(node);
+		}
 		mChildren.push_back(node);
 		node->SetRootNode(this);
 
@@ -220,6 +224,7 @@ bool Node3D::mSysInit = false;
 
 
 		mRotation = yaw_matrix * pitch_matrix * roll_matrix;
+	//	mRotation = mRotation.Inverse();
 		mChanged = true;
 		SetChanged();
 		//InvalidateTransform();
@@ -238,14 +243,13 @@ bool Node3D::mSysInit = false;
 
 		if (mType == NodeType::Camera)
 		{
-			float4 mv = mRotation * float4(move, 1.0f);
-
+			float4 mv = mRotation * float4(move, 1.0f);// *mRotation;
 
 			mPosition += float3(mv.x, mv.y, mv.z);
 		}
 		else {
 
-			float4 mv = float4(move, 1.0f) * mRotation;
+			float4 mv = mRotation * float4(move, 1.0f);// *mRotation;
 
 			mPosition += float3(mv.x, mv.y, mv.z);
 
@@ -575,7 +579,7 @@ bool Node3D::mSysInit = false;
 		auto cls = hit->GetClassVal();
 
 		if (res.hit) {
-			printf("Hit!!!\n");
+	//		printf("Hit!!!\n");
 			cls->FindVar("Hit")->SetInt(1);
 			auto hp = cls->FindVar("HitPosition")->GetClassVal();
 			SetVec3(hp, res.hit_point);

@@ -74,7 +74,7 @@ void ZClassNode::PopulateScope() {
 		for (int j = 0; j < names.size(); j++)
 		{
 
-			ZContextVar* new_var = new ZContextVar(names[j]->name, type,vars->GetBaseType());
+			ZContextVar* new_var = new ZContextVar(names[j]->name, type,vars->GetBaseType(),names[j]->comparer);
 
 			if (names[j]->new_node != nullptr) {
 				new_var->SetClass(names[j]->new_node->Exec(std::vector<ZContextVar*>())->GetClassVal());
@@ -202,7 +202,7 @@ ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContext
 	for (int i = 0; i < pars.size(); i++) {
 
 		auto pa = pars[i];
-		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType(),pa->GetName());
+		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType(),pa->GetName(),params[i]->GetCompare());
 		switch (params[i]->GetType())
 		{
 		case VarInt:

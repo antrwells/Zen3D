@@ -297,7 +297,10 @@
 
 		int ds = sizeof(Vertex) * mVertices.size();
 
-
+		m_VertexBuffer.Detach();
+		m_VertexBuffer.Release();
+		m_VertexBufferView.Detach();
+		m_VertexBufferView.Release();
 	
 		BufferDesc VertBuffDesc;
 		VertBuffDesc.Name = "Mesh3D - vertex buffer";
@@ -320,6 +323,9 @@
 		//ASSERT_NE(pVertexBufferView, nullptr);
 
 
+
+		m_IndexBuffer.Detach();
+		m_IndexBuffer.Release();
 		int b = 5;
 
 		ds = sizeof(Tri) * mTris.size();
@@ -341,7 +347,7 @@
 
 		b = 5;
 
-		CreateRTBuffers();
+	//	CreateRTBuffers();
 
 		int a = 5;
 

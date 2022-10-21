@@ -1,6 +1,6 @@
 class Node3D
 
-    CObj Node
+    CObj (Node) 
 
     method void Node3D()
 
@@ -59,6 +59,18 @@ class Node3D
     method string GetName()
 
         return Node3DGetName(Node)
+
+    end 
+
+    method int IsNode(Node3D node)
+
+        if Node == node.Node
+
+            return 1
+
+        end
+        
+        return 0
 
     end 
 

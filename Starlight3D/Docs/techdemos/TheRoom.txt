@@ -1,0 +1,1 @@
+- A tech game set in a room, with four external areas linked by a door each, to the room.

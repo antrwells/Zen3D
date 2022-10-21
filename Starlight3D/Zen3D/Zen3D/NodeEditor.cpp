@@ -90,6 +90,26 @@ void ZenUI::MainNodeEditor() {
 				mEditNode->SetScale(float3(scalf[0], scalf[1], scalf[2]));
 			}
 
+			int pmode = 0;
+
+			if (mEditNode->GetType() == NodeType::Entity) {
+				auto ent = (NodeEntity*)mEditNode;
+				ImGui::Text("Physics Type");
+				if (ImGui::Button("Box"))
+				{
+					ent->SetPhysicsBox();
+					pmode = 0;
+				}
+				if (ImGui::Button("Mesh"))
+				{
+					pmode = 1;
+					ent->SetPhysicsTris();
+				}
+			}
+
+
+
+
 			if (mEditNode->GetType() == NodeType::Light)
 			{
 

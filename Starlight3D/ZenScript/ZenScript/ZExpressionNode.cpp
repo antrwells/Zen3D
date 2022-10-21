@@ -591,6 +591,95 @@ bool IsString(ExpressionElement e)
 
 }
 
+
+bool Expression::IsCompare() {
+
+    if (mElements.size() == 3)
+    {
+        if (mElements[1].mType == EOp)
+        {
+            if (mElements[1].mOp == OpEquals)
+            {
+
+                if (mElements[0].mType == EVar && mElements[2].mType == EVar) {
+                    //return true;
+
+                    auto v1 = GetVar(mElements[0].mValName[0], mElements[0].mValName[1]);
+                    auto v2 = GetVar(mElements[2].mValName[0], mElements[2].mValName[1]);
+                    auto c1 = v1->GetClassVal();
+                    auto c2 = v2->GetClassVal();
+
+                    auto com1 = c1->FindComparer();
+                    auto com2 = c2->FindComparer();
+
+                    if (com1 != nullptr && com2 != nullptr) {
+
+                        return true;
+
+                    }
+
+
+                    int b = 5;
+
+                }
+
+            }
+        }
+    }
+    return false;
+}
+
+bool Expression::DoesCompare() {
+
+    if (mElements.size() == 3)
+    {
+        if (mElements[1].mType == EOp)
+        {
+            if (mElements[1].mOp == OpEquals)
+            {
+
+                if (mElements[0].mType == EVar && mElements[2].mType == EVar) {
+                    //return true;
+
+                    auto v1 = GetVar(mElements[0].mValName[0], mElements[0].mValName[1]);
+                    auto v2 = GetVar(mElements[2].mValName[0], mElements[2].mValName[1]);
+                    auto c1 = v1->GetClassVal();
+                    auto c2 = v2->GetClassVal();
+
+                    auto com1 = c1->FindComparer();
+                    auto com2 = c2->FindComparer();
+
+                    if (com1 != nullptr && com2 != nullptr) {
+
+                        switch (com1->GetType()) {
+                        case VarType::VarCObj:
+
+                            if (com1->GetCObj() == com2->GetCObj())
+                            {
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
+
+                            break;
+                        }
+
+                        return true;
+
+                    }
+
+
+                    int b = 5;
+
+                }
+
+            }
+        }
+    }
+    return false;
+}
+
 ZContextVar* Expression::Evaluate(VarType recv) {
 
     int aa = 5;
@@ -604,6 +693,19 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
     if (mElements.size() == 3)
     {
+
+        if (IsCompare()) {
+
+            if (DoesCompare()) {
+
+                return VMakeInt(1, false);
+
+            }
+            else {
+                return VMakeInt(0, false);
+            }
+            int b = 5;
+        }
 
         if (IsStrings()) {
 
@@ -619,7 +721,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
                         same = 1;
                     }
                     
-                    return VMakeInt(same);
+                    return VMakeInt(same,false);
 
                     
 
@@ -636,7 +738,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
         {
 
             auto new_cls = mElements[0].mNew->Exec({});
-            return VMakeClass(new_cls->GetClassVal());
+            return VMakeClass(new_cls->GetClassVal(),false);
 
         }
         if (mElements[0].mType == EStatement)
@@ -646,13 +748,13 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
             switch (rv->GetType()) {
             case VarInstance:
-                return VMakeClass(rv->GetClassVal());
+                return VMakeClass(rv->GetClassVal(),false);
             case VarFloat:
-                return VMakeFloat(rv->GetFloatVal());
+                return VMakeFloat(rv->GetFloatVal(),false);
             case VarInt:
-                return VMakeInt(rv->GetIntVal());
+                return VMakeInt(rv->GetIntVal(),false);
             case VarString:
-                return VMakeString(rv->GetStringVal());
+                return VMakeString(rv->GetStringVal(),false);
 
             }
 
@@ -665,16 +767,16 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             auto rv = mElements[0].mClassStatement->Exec({});
             switch (rv->GetType()) {
             case VarInstance:
-                return VMakeClass(rv->GetClassVal());
+                return VMakeClass(rv->GetClassVal(),false);
             case VarFloat:
-                return VMakeFloat(rv->GetFloatVal());
+                return VMakeFloat(rv->GetFloatVal(),false);
             case VarInt:
-                return VMakeInt(rv->GetIntVal());
+                return VMakeInt(rv->GetIntVal(),false);
             case VarCObj:
-                return VMakeC(rv->GetCObj());
+                return VMakeC(rv->GetCObj(),false);
                 break;
             case VarString:
-                    return VMakeString(rv->GetStringVal());
+                    return VMakeString(rv->GetStringVal(),false);
             }
             int no = 5;
         }
@@ -687,10 +789,10 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             switch (rv->GetType()) {
             case VarInstance:
                 if (rv->GetCObj() != nullptr) {
-                    return VMakeC(rv->GetCObj());
+                    return VMakeC(rv->GetCObj(),false);
                 }
 
-                return VMakeClass(rv->GetClassVal());
+                return VMakeClass(rv->GetClassVal(),false);
             case VarFloat:
                 return VMakeFloat(rv->GetFloatVal());
             case VarInt:

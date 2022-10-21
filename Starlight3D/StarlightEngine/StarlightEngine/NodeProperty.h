@@ -1,13 +1,15 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Common/interface/BasicMath.hpp"
 
+using namespace Diligent;
 /// <summary>
 /// The data namespace is for using app specific data within nodes.
 /// </summary>
 
 enum PropertyType {
-	Int, Float, Double, String, Table
+	Int, Float, Double, String, Table,Float2,Float3,Bool
 };
 	/// <summary>
 	/// NodeProperty is a named piece of data for a node/component.
@@ -28,9 +30,15 @@ enum PropertyType {
 		//void SetData(void* data);
 		void SetInt(int v);
 		void SetFloat(float v);
+		void SetFloat2(float2 v);
+		void SetFloat3(float3 v);
+		void SetBool(bool v);
+		bool GetBool();
 		void SetString(std::string v);
 		int GetInt();
 		float GetFloat();
+		float2 GetFloat2();
+		float3 GetFloat3();
 		std::string GetString();
 		PropertyType GetType();
 		void SetType(PropertyType type);
@@ -54,6 +62,9 @@ enum PropertyType {
 		int mInt;
 		float mFloat;
 		double mDouble;
+		float2 mFloat2;
+		float3 mFloat3;
+		bool mBool;
 		std::string mString;
 
 	};

@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 #include <initializer_list>
-
+#include "ZContextScope.h"
 
 class ZMethodNode;
 class ZContextScope;
@@ -46,6 +46,17 @@ public:
 	ZContextScope* GetScope()
 	{
 		return mInstanceScope;
+	}
+	ZContextVar* FindComparer() {
+
+		auto vars = mInstanceScope->GetVars();
+		for (int i = 0; i < vars.size(); i++) {
+			if (vars[i]->GetCompare())
+			{
+				return vars[i];
+			}
+		}
+		return nullptr;
 	}
 
 private:

@@ -37,111 +37,40 @@ void ZenUI::SaveSceneDialog() {
 
 }
 
-void Read_Node(VFile* file, Node3D* node) {
-
-	bool just_node = file->ReadBool();
-	if (just_node == false) {
-		node->ReadTransform(file);
-		node->SetName(VString(file->ReadString()).GetConst());
-		int nc = file->ReadInt();
-		for (int i = 0; i < nc; i++) {
-			auto new_node = new Node3D;
-			Read_Node(file, new_node);
-			node->AddNode(new_node);
-		}
-	
-	}
-	else {
-
-		std::string path(file->ReadString());
-		auto imp = new Importer;
-		auto im = imp->ImportAI(path.c_str());
-		//im->ReadTransform(file);
-		node->ReadTransform(file);
-		im->SetName(VString(file->ReadString()).GetConst());
-		node->AddNode(im);
-		node->SetName(im->GetName());
-
-
-	}
-
-}
-
-void Write_Node(VFile* file, Node3D* node)
-{
-
-	std::string n_path = node->GetFilePath();
-
-	if(n_path == "None")
-	{
-		file->WriteBool(false);
-		node->WriteTransform(file);
-		file->WriteString(node->GetName());
-
-	}
-	else {
-
-		file->WriteBool(true);
-		file->WriteString(n_path.c_str());
-		node->WriteTransform(file);
-		file->WriteString(node->GetName());
-	}
-
-	file->WriteInt(node->ChildrenCount());
-	for (int i = 0; i < node->ChildrenCount();i++)
-	{
-
-		Write_Node(file, node->GetChild(i));
-
-	}
-
-
-}
-
 void ZenUI::LoadScene(const char* path) {
 
-	VFile* file = new VFile(path, FileMode::Read);
-
-	mGraph->Reset();
-
-	NodeEntity* root = new NodeEntity();
-
-	int lc = file->ReadInt();
-	for (int i = 0; i < lc; i++) {
-		auto nl = new NodeLight;
-		nl->ReadTransform(file);
-		nl->SetDiffuse(file->ReadVec3());
-		nl->SetSpecular(file->ReadVec3());
-		nl->SetRange(file->ReadFloat());
-		nl->SetName(file->ReadString());
-		nl->SetCone(file->ReadVec3());
-		nl->SetLightType((LightType)file->ReadInt());
-		mGraph->AddLight(nl);
-		root->AddNode(nl);
-
-	}
+	mGraph->LoadGraph(path);
+	mCurrentCamera = mGraph->GetCamera();
+//	mEditCam = mCurrentCamera;
+	auto cam_rot = mGraph->GetProperty("CameraRotation");
+	cam_rotation.x = cam_rot->GetFloat2().x;
+	cam_rotation.y = cam_rot->GetFloat2().y;
 	
-	root->ReadNode(file,true);
-
-	mGraph->SetRoot(root);
-
-	mRayPick->SetGraph(mGraph);
-
-	file->Close();
-
 	ZenUI::mUI->Notify("Imported scene.", "Scene imported succesfully.");
 
 }
 
 void ZenUI::SaveScene(const char* path)
 {
+	std::string fpath(mContentPath->GetConst());
+	fpath = fpath + "/" + std::string(path);
+	fpath = fpath + ".zscene";
 
+	NodeProperty* cam_rot = new NodeProperty("CameraRotation");
+	cam_rot->SetFloat2(float2(cam_rotation.x, cam_rotation.y));
+	mGraph->AddProperty(cam_rot);
+
+	mGraph->SaveGraph(fpath);
+
+
+	/*
 	std::string fpath(mContentPath->GetConst());
 	fpath = fpath + "/"+ std::string(path);
 	fpath = fpath + ".zscene";
 
 	VFile* file_out = new VFile(fpath.c_str(), FileMode::Write);
 
+	std::vector<std::string> lroot;
 	file_out->WriteInt(mGraph->LightCount());
 	for (int i = 0; i < mGraph->LightCount(); i++)
 	{
@@ -153,10 +82,10 @@ void ZenUI::SaveScene(const char* path)
 		file_out->WriteString(light->GetName());
 		file_out->WriteVec3(light->GetCone());
 		file_out->WriteInt((int)light->GetLightType());
+		file_out->WriteBool(light->GetCastShadows());
+		file_out->WriteBool(light->GetEnabled());
 		
-		auto getRoot = light->GetRootNode();
-		getRoot->RemoveNode(light);
-
+	
 	}
 
 
@@ -165,13 +94,17 @@ void ZenUI::SaveScene(const char* path)
 
 	node1->WriteNode(file_out);
 
+	file_out->WriteString(mCurrentCamera->GetName());
+
 	//Write_Node(file_out, node1);
 
 
 	file_out->Close();
 	
-	//Save file info file for progress bar.
+	
 
+	//Save file info file for progress bar.
+	*/
 	
 	ZenUI::mUI->Notify("Scene Saved", "Succesfully saved scene " + std::string(fpath));
 

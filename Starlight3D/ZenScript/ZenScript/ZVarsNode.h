@@ -11,6 +11,7 @@ struct VarPair {
     std::string name;
     ZExpressionNode* def = nullptr;
     ZNewNode* new_node = nullptr;
+    bool comparer = false;
 };
 
 
@@ -26,9 +27,9 @@ class ZVarsNode :
 public:
 
     void SetType(VarType type);
-    void AddVar(std::string name, ZExpressionNode* def);
-    void AddVar(std::string name, ZNewNode* new_node);
-    void AddVar(std::string name);
+    void AddVar(std::string name, ZExpressionNode* def,bool compare = false);
+    void AddVar(std::string name, ZNewNode* new_node, bool compare = false);
+    void AddVar(std::string name,bool compare = false);
     std::vector<VarPair*> GetVars();
     VarType GetType();
     ZContextVar* Exec(const std::vector<ZContextVar*>& params);

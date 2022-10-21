@@ -155,7 +155,11 @@ enum NodeType {
 		/// </summary>
 		/// <param name="node"></param>
 		void AddNode(Node3D* node);
+		void AddNodeTemp(Node3D* node) {
 
+			mChildren.push_back(node);
+
+		}
 		/// <summary>
 		/// Returns the 3D position of the node as a glm::vec3 
 		/// </summary>
@@ -205,7 +209,7 @@ enum NodeType {
 		/// Moves the node with the given delta.
 		/// </summary>
 		/// <param name="move"></param>
-		void Move(float3 move);
+		virtual void Move(float3 move);
 
 		/// <summary>
 		/// Points a node at the L vector.
@@ -402,20 +406,7 @@ enum NodeType {
 		void BeginNode();
 		void EndNode();
 		void AddSystemFunctions();
-		void WriteTransform(VFile* file) {
-
-			file->WriteVec3(mPosition);
-			file->WriteVec3(mScale);
-			file->WriteMatrix(mRotation);
-
-		}
-		void ReadTransform(VFile* file) {
-
-			mPosition = file->ReadVec3();
-			mScale = file->ReadVec3();
-			mRotation = file->ReadMatrix();
-
-		}
+	
 		virtual void ReadNode(VFile* file,bool read_type = true) {
 
 
@@ -451,8 +442,9 @@ enum NodeType {
 
 
 			file->WriteInt((int)mType);
+			file->WriteBool(mEnabled);
 			file->WriteString(mName);
-			WriteTransform(file);
+			//WriteTransform(file);
 
 			file->WriteInt(0);
 
@@ -482,6 +474,12 @@ enum NodeType {
 
 		bool GetEnabled() {
 			return mEnabled;
+		}
+
+		void ClearNodes() {
+
+			mChildren.resize(0);
+
 		}
 
 	protected:

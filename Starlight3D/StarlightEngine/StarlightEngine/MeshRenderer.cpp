@@ -1703,7 +1703,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
             lc.viewPos = float4(cam->GetPosition(), 1.0);
             lc.lightPos = float4(light->GetPosition(), 1.0);
             lc.lightProp = float4(light->GetRange(),0, 0, 0);
-            printf("LT:%d\n", (int)light->GetLightType());
+            //printf("LT:%d\n", (int)light->GetLightType());
             lc.lightDiff = float4(light->GetDiffuse(), 0);
             lc.lightSpec = float4(light->GetSpecular(), 0);
             lc.renderProps = float4(p1, p2, p3, p4);

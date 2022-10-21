@@ -4,7 +4,7 @@
 #include "VarTypes.h"
 #include "ZClassNode.h"
 
-ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID) {
+ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID,bool comparer) {
 
 	mName = name;
 	mType = type;
@@ -13,6 +13,7 @@ ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID)
 	mStringVal = "";
 	mClassVal = nullptr;
 	mBaseID = baseID;
+	mComparer = comparer;
 }
 
 std::string ZContextVar::GetName() {
@@ -167,42 +168,48 @@ void ZContextVar::Pop() {
 }
 
 
-ZContextVar* VMakeInt(int v)
+ZContextVar* VMakeInt(int v,bool comparer)
 {
-	auto var = new ZContextVar("", VarType::VarInt,"int");
+	auto var = new ZContextVar("", VarType::VarInt,"int",comparer);
 	var->SetInt(v);
+
+
 	return var;
 
 }
-ZContextVar* VMakeFloat(float v)
+ZContextVar* VMakeFloat(float v,bool comparer)
 {
-	auto var = new ZContextVar("", VarType::VarFloat,"float");
+	auto var = new ZContextVar("", VarType::VarFloat,"float",comparer);
 	var->SetFloat(v);
+
 	return var;
 
 }
 
-ZContextVar* VMakeString(std::string v)
+ZContextVar* VMakeString(std::string v,bool comparer)
 {
-	auto var = new ZContextVar("", VarType::VarString,"string");
+	auto var = new ZContextVar("", VarType::VarString,"string",comparer);
 	var->SetString(v);
+
 	return var;
 
 }
 
-ZContextVar* VMakeC(void* v)
+ZContextVar* VMakeC(void* v,bool comparer)
 {
-	auto var = new ZContextVar("", VarType::VarCObj,"CObj");
+	auto var = new ZContextVar("", VarType::VarCObj,"CObj",comparer);
 	var->SetCObj(v);
+
 	return var;
 
 }
 
-ZContextVar* VMakeClass(ZClassNode* v)
+ZContextVar* VMakeClass(ZClassNode* v,bool comparer)
 {
 
-	auto var = new ZContextVar("", VarType::VarInstance,v->GetBaseName());
+	auto var = new ZContextVar("", VarType::VarInstance,v->GetBaseName(),comparer);
 	var->SetClass(v);
+
 	return var;
 
 }

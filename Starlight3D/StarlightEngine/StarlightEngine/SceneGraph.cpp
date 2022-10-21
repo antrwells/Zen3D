@@ -16,6 +16,7 @@
 		mThis = this;
 		mRayPick = new RayPicker(this);
 		SceneGlobal::mCurrentScene = this;
+		mCams.push_back(mCam);
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
 
@@ -30,7 +31,7 @@
 	
 	void SceneGraph::Update() {
 
-		if (mRootNode->GetEnabled() == false)
+		if (mRootNode->GetEnabled() == true)
 		{
 			mRootNode->Update();
 		}
@@ -56,6 +57,7 @@
 		mBillboards = new_list;
 
 		//***
+		Physics::Main->Simulate(0.45f);
 
 
 		UpdateNodePhysics(mRootNode);
@@ -537,17 +539,25 @@
 	}
 
 
+	void SceneGraph::AddNodeTemp(Node3D* node)
+	{
+
+		mRootNode->AddNodeTemp(node);
+
+	}
+
 	NodeCamera* SceneGraph::GetCamera() {
 
 		return mCam;
 
 	}
 
-	void SceneGraph::AddLight(NodeLight* light) {
+	void SceneGraph::AddLight(NodeLight* light,bool addtoscene) {
 
 		mLights.push_back(light);
-		mRootNode->AddNode(light);
-
+		//if (addtoscene) {
+			mRootNode->AddNode(light);
+		//}
 	}
 
 	int SceneGraph::LightCount() {

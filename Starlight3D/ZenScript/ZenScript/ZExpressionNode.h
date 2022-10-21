@@ -94,6 +94,8 @@ public:
         }
         return false;
     }
+    bool IsCompare();
+    bool DoesCompare();
     bool IsInt() {
         bool rv = true;
         bool o_int = false;

@@ -15,6 +15,12 @@ void PostProcessing::AddPostProcess(PostProcess* pp)
 
 }
 
+void PostProcessing::SetPush(SceneGraph* graph) {
+
+	mPushGraph = graph;
+
+}
+
 void PostProcessing::PreRender() {
 	for (int i = 0; i < mProcesses.size(); i++) {
 

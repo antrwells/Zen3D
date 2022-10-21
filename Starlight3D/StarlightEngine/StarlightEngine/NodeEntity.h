@@ -4,7 +4,6 @@
 // 
 //#include "SmartMesh.h"
 #include "PhysicsBody.h"
-#include "PhysicsBody.h"
 #include "PBBox.h"
 #include "PBSphere.h"
 #include "PBConvex.h"
@@ -122,14 +121,24 @@
             return nullptr;
         }
 
+        void Move(float3 move) {
+
+            Node3D::Move(move);
+            if (mBody == NULL) return;
+
+            mBody->SetPosition(mPosition);
+
+        }
+
         void ReadNode(VFile* file, bool read_type)
         {
             
             if (read_type) {
                 mType = (NodeType)file->ReadInt();
             }
+            mEnabled = file->ReadBool();
             mName = file->ReadString();
-            ReadTransform(file);
+            //ReadTransform(file);
 
             int meshes = file->ReadInt();
 
@@ -157,8 +166,9 @@
 
 
             file->WriteInt((int)mType);
+            file->WriteBool(mEnabled);
             file->WriteString(mName);
-            WriteTransform(file);
+            //WriteTransform(file);
 
             file->WriteInt(mMeshes.size());
             for (int i = 0; i < mMeshes.size(); i++) {
@@ -178,8 +188,8 @@
         }
 
     protected:
-
-
+        PhysicsBody* mBody;
+        PhysicsBody* mTriBody;
         /// <summary>
         /// A list containing all of this NodeEntity's attached meshes.
         /// </summary>

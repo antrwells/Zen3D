@@ -74,6 +74,7 @@
             mFOV = fov;
             SetViewport(0, 0, mWidth, mHeight);
         }
+      
 
     private:
 
@@ -83,7 +84,7 @@
         float mMinZ = 0.05f;
         float mMaxZ = 60.0f;
         float mWidth, mHeight;
-
+  
     };
 
 

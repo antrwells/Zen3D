@@ -106,6 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\projects\Starlight3D\StarlightEngine\StarlightEngine;C:\projects\Starlight3D\lua\include;C:\FBX\2020.2.1\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\PhysX-4.1\physx\source\foundation\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\physx\include;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +147,7 @@
     <ClCompile Include="PostProcessWindow.cpp" />
     <ClCompile Include="Saving.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="Toolbar.cpp" />
     <ClCompile Include="Viewport.cpp" />
     <ClCompile Include="Zen.cpp" />
     <ClCompile Include="ZenUI.cpp" />

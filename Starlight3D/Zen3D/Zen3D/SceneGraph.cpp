@@ -88,7 +88,7 @@ void ZenUI::SceneTree(Node3D* node)
 				{
 					auto nr = (NodeRef*)payload->Data;
 					auto node2 = nr->node;
-					node2->GetRootNode()->RemoveNode(node2);
+					//node2->GetRootNode()->RemoveNode(node2);
 					node->AddNode(node2);
 
 				}
@@ -122,6 +122,13 @@ void ZenUI::SceneTree(Node3D* node)
 							//exit(1);
 
 					}
+				}
+				if (ImGui::MenuItem("Camera"))
+				{
+					auto new_cam = new NodeCamera;
+					mGraph->AddCamera(new_cam);
+					//mGameCam = new_cam;
+
 				}
 				ImGui::EndMenu();
 			}

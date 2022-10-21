@@ -17,6 +17,7 @@ void CubeRenderer::RenderDepth(float3 pos,float maxZ) {
 	auto new_cam = new NodeCamera;
 
 	mGraph->SetCamera(new_cam);
+	//new_cam->SetInvertWorld(true);
 
 	new_cam->SetPosition(pos);
 

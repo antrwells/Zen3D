@@ -41,6 +41,19 @@ ZScriptNode* ZParseVars::Parse() {
 
 		auto tok = mStream->NextToken();
 
+
+		bool comparer = false;
+		if (tok.mType == TokenType::TokenLeftPara) {
+
+			if (mStream->PeekToken(1).mType == TokenType::TokenRightPara)
+			{
+				comparer = true;
+				tok = mStream->NextToken();
+				mStream->NextToken();
+			}
+
+		}
+
 		auto def = new ZExpressionNode;
 
 
@@ -74,7 +87,7 @@ ZScriptNode* ZParseVars::Parse() {
 						auto parse_new = new ZParseNew(mStream);
 						auto parse_node = parse_new->Parse();
 
-						vars_node->AddVar(tok.mText, (ZNewNode*)parse_node);
+						vars_node->AddVar(tok.mText, (ZNewNode*)parse_node,comparer);
 					}
 					continue;
 				}
@@ -83,14 +96,14 @@ ZScriptNode* ZParseVars::Parse() {
 
 					auto check = mStream->PeekToken(0);
 					if (check.mType == TokenType::TokenEndOfLine) {
-						vars_node->AddVar(tok.mText);
+						vars_node->AddVar(tok.mText,comparer);
 						continue;
 					}
 					int cc = 1;
 					auto exp_parse = new ZParseExpression(mStream);
 					def = (ZExpressionNode*)exp_parse->Parse();
 					int b = 5;
-					vars_node->AddVar(tok.mText, def);
+					vars_node->AddVar(tok.mText, def,comparer);
 
 				}
 				continue;
@@ -111,7 +124,7 @@ ZScriptNode* ZParseVars::Parse() {
 			{
 				def = nullptr;
 			}
-			vars_node->AddVar(tok.mText,def);
+			vars_node->AddVar(tok.mText,def,comparer);
 		}
 		int aa = 5;
 

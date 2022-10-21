@@ -44,12 +44,13 @@ void ZenUI::MainViewPort() {
 
 			mRenderTarget = new RenderTarget2D((int)win_size.x, (int)win_size.y);
 			printf("============================================================>\n");
-			auto cam = mGraph->GetCamera();
-			cam->SetViewport(0, 0, win_size.x, win_size.y);
+			//auto cam = mGraph->dGetCamera();
+			
+			//mGameCam->SetViewport(0, 0, win_size.x, win_size.y);
 			first_render = false;
 
 		}
-
+		mCurrentCamera->SetViewport(0, 0, win_size.x, win_size.y);
 		ImVec2 real_pos;
 		real_pos.x = mp.x - win_pos.x;
 		real_pos.y = mp.y - win_pos.y;
@@ -71,7 +72,7 @@ void ZenUI::MainViewPort() {
 		{
 
 			float spd = -0.15f;
-			auto cam = mGraph->GetCamera();
+			auto cam = mCurrentCamera;// mGraph->GetCamera();
 
 			if (Application::GetApp()->GetInput()->IsMouseDown(1))
 			{
@@ -220,7 +221,7 @@ void ZenUI::MainViewPort() {
 				else {
 					bool check_rest = true;
 					if (mSelectedNode != nullptr) {
-						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y, mCurrentGizmo, mMainCamera);
+						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y, mCurrentGizmo, mCurrentCamera);
 
 						int bbb = 5;
 
@@ -268,7 +269,7 @@ void ZenUI::MainViewPort() {
 					}
 
 					if (check_rest) {
-						auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 5, mMainCamera);
+						auto result = mRayPick->MousePick((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y - 5, mCurrentCamera);
 
 						if (result.hit) {
 							int bb = 5;
@@ -300,17 +301,28 @@ void ZenUI::MainViewPort() {
 		}
 
 		if (mPPOn) {
-			mPP->PreRender();
 		}
+			mPP->PreRender();
+		
 		mGraph->RenderShadowMaps();
 		mRenderTarget->Bind();
 		//mGraph->Render();
 		if (mPPOn) {
-			mPP->Render();
+			
+		
 		}
 		else {
 			mGraph->Render();
 		}
+		if (mSelectedNode != nullptr) {
+			mEditGraph->ClearNodes();
+			mEditGraph->SetCamera(mCurrentCamera);
+			mEditGraph->AddNodeTemp(mSelectedNode);
+
+			mPPOutline->SetGraph(mEditGraph);
+			mPP->Render();
+		}
+
 		mRenderTarget->ClearDepth();
 		auto cam = mGraph->GetCamera();
 	//	cam->SetViewport(0, 0, win_size.x, win_size.y);
@@ -364,9 +376,24 @@ void ZenUI::MainViewPort() {
 
 
 		mDraw->End(pr);
-		if (mCurrentGizmo != nullptr) {
-			mGraph->RenderNodeBasic(mCurrentGizmo);
+
+
+		if (mCurrentCamera == mEditCam) {
+			//if (mCurrentCamera == mEditCam) {
+			if (mCurrentGizmo != nullptr) {
+				
+				//else {
+					mGraph->RenderNodeBasic(mCurrentGizmo);
+			//	}
+
+			}
+			if (mSelectedNode != nullptr) {
+				if (mSelectedNode->GetType() == NodeType::Camera) {
+					mGraph->RenderNodeBasic(mCamGizmo);
+				}
+			}
 		}
+	//	}
 		mRenderTarget->Release();
 
 
@@ -396,7 +423,7 @@ void ZenUI::MainViewPort() {
 		cam_rotation.x -= dy;
 		cam_rotation.y -= dx;
 
-		mMainCamera->SetRotation(cam_rotation.x, cam_rotation.y, 0);
+		mCurrentCamera->SetRotation(cam_rotation.x, cam_rotation.y, 0);
 	}
 
 
@@ -426,11 +453,20 @@ void ZenUI::MainViewPort() {
 
 
 		
+		mCamGizmo->SetPosition(mSelectedNode->GetPosition());
 
 		mCurrentGizmo->SetPosition(mSelectedNode->GetPositionWorld());
+		
+		
+		mCamGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4().Inverse());
 		if (mGizmoSpace == GizmoSpace::Local) {
 
-			mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());
+			if (mSelectedNode->GetType() == NodeType::Camera) {
+				mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4().Inverse());
+			}
+			else {
+				mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());
+			}
 
 		}
 		else {

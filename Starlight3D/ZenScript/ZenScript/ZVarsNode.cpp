@@ -11,32 +11,36 @@ void ZVarsNode::SetType(VarType type) {
 
 }
 
-void ZVarsNode::AddVar(std::string name)
+void ZVarsNode::AddVar(std::string name,bool comparer)
 {
 
 	VarPair* pair = new VarPair;
 	pair->name = name;
 	pair->def = nullptr;
 	pair->new_node = nullptr;
+	pair->comparer = comparer;
 	//mVarNames.push_back(name);
 	mVars.push_back(pair);
 }
 
-void ZVarsNode::AddVar(std::string name,ZExpressionNode* def) {
+void ZVarsNode::AddVar(std::string name,ZExpressionNode* def,bool compare) {
 
 	VarPair* pair = new VarPair;
 	pair->name = name;
 	pair->def = def;
 	//mVarNames.push_back(name);
+	pair->comparer = compare;
 	mVars.push_back(pair);
+	
 
 }
 
-void ZVarsNode::AddVar(std::string name, ZNewNode* new_node) {
+void ZVarsNode::AddVar(std::string name, ZNewNode* new_node,bool compare) {
 
 	VarPair* pair = new VarPair;
 	pair->name = name;
 	pair->new_node = new_node;
+	pair->comparer = compare;
 	mVars.push_back(pair);
 
 }
@@ -73,7 +77,7 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 	{
 
 		auto var = mVars[i];
-		ZContextVar* new_var = new ZContextVar(var->name, this->mVarType,TypeID);
+		ZContextVar* new_var = new ZContextVar(var->name, this->mVarType,TypeID,var->comparer);
 		ZClassNode* cls = nullptr;
 		new_var->SetBaseID(TypeID);
 

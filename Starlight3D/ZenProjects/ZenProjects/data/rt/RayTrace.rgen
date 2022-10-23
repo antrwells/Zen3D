@@ -1,0 +1,23 @@
+
+#include "data/rt/sl_structs.fxh"
+
+RWTexture2D<float4> g_ColorBuffer;
+
+[shader("raygeneration")]
+void main()
+{
+    // Calculate view ray direction from the inverse view-projection matrix
+    float2 uv       = (float2(DispatchRaysIndex().xy) + float2(0.5, 0.5)) / float2(DispatchRaysDimensions().xy);
+    float4 worldPos = mul(float4(uv * 2.0 - 1.0, 1.0, 1.0), bScene[0].InvViewProj);
+    float3 rayDir   = normalize(worldPos.xyz/worldPos.w - bScene[0].CameraPos.xyz);
+
+    RayDesc ray;
+    ray.Origin    = bScene[0].CameraPos.xyz;
+    ray.Direction = rayDir;
+    ray.TMin      = bScene[0].camMinZ;
+    ray.TMax      = bScene[0].camMaxZ;
+
+    PrimaryRayPayload payload = CastPrimaryRay(ray, /*recursion*/0);
+
+    g_ColorBuffer[DispatchRaysIndex().xy] = float4(payload.Color, 1.0);
+}

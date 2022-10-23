@@ -73,6 +73,7 @@ using namespace physx;
 
 		scene->simulate(time / 60.0f);
 		scene->fetchResults(true);
+		
 
 	}
 

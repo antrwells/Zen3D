@@ -1,0 +1,268 @@
+#define dx 1.0
+
+Texture2D    g_Texture;
+SamplerState g_Texture_sampler;
+Texture2D g_TextureNorm;
+SamplerState g_TextureNorm_sampler;
+TextureCube  g_Env;
+SamplerState g_Env_sampler;
+TextureCube g_Shadow;
+SamplerState g_Shadow_sampler;
+
+struct PSInput
+{
+    float4 Pos   : SV_POSITION;
+    float4 Color : COLOR0;
+    float3 Norm : NORMAL0;
+    float3 Uv : TEX_COORD;
+    float3 TLP : NORMAL1;
+    float3 TVP : NORMAL2;
+    float3 TFP : NORMAL3;
+    float3 lightPos : POSITION1;
+    float3 viewPos : POSITION2;
+    float4 lightProp : POSITION3;
+    float3 fragPos : POSITION4;
+    float3 lightDiff : POSITION5;
+    float3 lightSpec : POSITION6;
+    float3 localNormal : NORMAL4;
+    float4 renderProps : POSITION7;
+    int4 lightMode : POSITION8;
+    float3 lightDir : NORMAL5;
+    float3 lightCone : NORMAL6;
+   // float3 Norm : NORMAL0;x
+
+};
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+static const float3 sampleOffsetDirections[20] = {
+   float3( dx,  dx,  dx), float3( dx, -dx,  dx), float3(-dx, -dx,  dx), float3(-dx,  dx,  dx), 
+   float3( dx,  dx, -dx), float3( dx, -dx, -dx), float3(-dx, -dx, -dx), float3(-dx,  dx, -dx),
+   float3( dx,  dx,  0), float3( dx, -dx,  0), float3(-dx, -dx,  0), float3(-dx,  dx,  0),
+   float3( dx,  0,  dx), float3(-dx,  0,  dx), float3( dx,  0, -dx), float3(-dx,  0, -dx),
+   float3( 0,  dx,  dx), float3( 0, -dx,  dx), float3( 0, -dx, -dx), float3( 0,  dx, -dx)
+};
+
+float3 light_GetNormal(float2 uv)
+{
+
+    float3 tNormal = float3(0.5, 0.0f, 1.0f);
+                                                                                 
+    tNormal = g_TextureNorm.Sample(g_TextureNorm_sampler, uv).rgb;
+
+      tNormal = normalize(tNormal * 2.0 - 1.0);
+    tNormal.y = -tNormal.y;
+
+    return tNormal;
+
+}
+
+float light_GetDist(float3 lightPos,float3 fragPos,float lightRange)
+{
+
+  float xd = lightPos.x - fragPos.x;
+    float yd = lightPos.y - fragPos.y;
+    float zd = lightPos.z - fragPos.z;
+
+
+    float dis = sqrt(xd * xd + yd * yd + zd * zd);
+
+    if (dis < 0) {
+        dis = -dis;
+    }
+
+    float dv = dis / lightRange;
+
+    if (dv > 1.0) {
+        dv = 1.0;
+    }
+    dv = 1.0 - dv;
+
+
+    return dv;
+
+
+}
+
+float light_GetPointDiff(float3 TLP,float3 TFP,float3 TVP,float3 tNormal,float3 lightPos,float3 fragPos)
+{
+
+
+    float3 lightDir = normalize(TLP - TFP);
+    return max(dot(lightDir, tNormal),0.0);
+
+
+}
+
+float light_GetPointSpec(float3 TLP,float3 TFP,float3 TVP,float3 tNormal)
+{
+
+    float3 lightDir = normalize(TLP - TFP);
+    float3 viewDir = normalize(TVP-TFP);
+    float3 reflectDir = reflect(-lightDir,tNormal);
+    float3 halfwayDir = normalize(lightDir+viewDir);
+
+    return pow(max(dot(tNormal,halfwayDir),0.0),32.0);
+    
+
+}
+
+float light_GetDirectional(float3 lightDir,float3 TLP,float3 TFP,float3 tNormal){
+
+    float3 lDir = normalize(lightDir);
+    return max(dot(lDir, tNormal),0.0);
+
+}
+
+float light_GetSpotFalloff(float3 lightPos,float3 lightDir,float3 fragPos,float lightCone)
+{
+      float3 lightPixel = normalize(fragPos - lightPos);
+      float factor = dot(lightPixel,-lightDir);
+       factor *= pow(max(factor,0.0f),lightCone);
+    return factor;
+}
+
+float light_GetShadow(float3 fragPos,float3 lightPos,float lightRange){
+
+    float3 fragToLight = fragPos - lightPos;
+    float currentDepth = abs(distance(fragPos,lightPos));
+
+    int samples = 20;
+    float diskRadius = 0.005f;
+    float bias = 0.005;
+    float shadowVal = 0;
+    currentDepth = currentDepth / lightRange;
+
+    for(int i=0;i<samples;i++){
+
+        float closestDepth = g_Shadow.Sample(g_Shadow_sampler,normalize(fragToLight)+sampleOffsetDirections[i] * diskRadius).r;
+
+        if( (currentDepth-0.015)>closestDepth)
+        {
+
+         shadowVal +=1.0f;
+        
+
+        }
+    
+    }
+
+    shadowVal = shadowVal / (float)samples;
+    shadowVal = 1.0 - shadowVal;
+   
+    return shadowVal;
+
+}
+
+float4 env_Mapping(float3 viewPos,float3 fragPos,float3 localNormal){
+
+    float4  env_col = float4(1, 1, 1, 1);
+
+
+        //vec3 I = normalize(Position - viewPos);
+        //vec3 R = reflect(I, normalize(Normal));
+
+        float3 I = viewPos - fragPos;
+        float3 R = reflect(-normalize(I), normalize(localNormal));
+
+        return env_col;
+
+}
+
+// Note that if separate shader objects are not supported (this is only the case for old GLES3.0 devices), vertex
+// shader output variable name must match exactly the name of the pixel shader input variable.
+// If the variable has structure type (like in this example), the structure declarations must also be identical.
+void main(in  PSInput  PSIn,
+    out PSOutput PSOut)
+{
+
+    float4 col = float4(1, 0, 0, 1);
+  
+    float light = light_GetDist(PSIn.lightPos,PSIn.fragPos,PSIn.lightProp.x);
+
+    float3 tNormal = light_GetNormal(PSIn.Uv.xy);
+ 
+    float spec = 0.0;
+
+    float shadowVal = 0;
+
+     float4 env_col = float4(0, 0, 0, 0);
+
+    //Point
+    if(PSIn.lightMode[0]==0)
+    {
+
+        float diff = light_GetPointDiff(PSIn.TLP,PSIn.TFP,PSIn.TVP,tNormal,PSIn.lightPos,PSIn.fragPos);
+        spec = light_GetPointSpec(PSIn.TLP,PSIn.TFP,PSIn.TVP,tNormal);
+
+        spec = spec * light;
+        light = light * diff;
+
+    }
+    //Spot
+    if(PSIn.lightMode[0]==1){
+
+
+         float diff = light_GetPointDiff(PSIn.TLP,PSIn.TFP,PSIn.TVP,tNormal,PSIn.lightPos,PSIn.fragPos);
+         spec = light_GetPointSpec(PSIn.TLP,PSIn.TFP,PSIn.TVP,tNormal); 
+         float ff = light_GetSpotFalloff(PSIn.lightPos,PSIn.lightDir,PSIn.fragPos,PSIn.lightCone.x);
+       
+        spec = spec * light * ff;
+
+         light = light * diff * ff;
+    
+
+    }
+    //Directional
+    if(PSIn.lightMode[0]==2)
+    {
+        
+        float diff = light_GetDirectional(PSIn.lightDir,PSIn.TLP,PSIn.TFP,PSIn.localNormal);
+        spec = light_GetPointSpec(PSIn.TLP,PSIn.TFP,PSIn.TVP,tNormal); 
+
+        light = diff;
+        spec = spec *  diff;
+
+
+    }
+ 
+
+    float rp = PSIn.renderProps.x;
+
+    if (rp > 0.5)
+    {
+
+       env_col = env_Mapping(PSIn.viewPos,PSIn.fragPos,PSIn.localNormal);
+      
+    }
+
+
+
+    if(PSIn.lightMode[1]==1)
+    {
+        
+        shadowVal = light_GetShadow(PSIn.fragPos,PSIn.lightPos,PSIn.lightProp.x);
+
+    }else{
+
+        shadowVal = 1.0;
+
+
+    }
+
+    float4 ffcol =((g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * float4(PSIn.lightDiff.x * light, PSIn.lightDiff.y * light, PSIn.lightDiff.z * light, 1.0)) + env_col)*shadowVal;
+
+    ffcol.a = 1.0;
+
+    spec = spec * shadowVal;
+
+    ffcol.rgb += float3(spec*PSIn.lightSpec.x,spec*PSIn.lightSpec.y,spec*PSIn.lightSpec.z);
+
+    PSOut.Color = ffcol;
+
+
+}
+

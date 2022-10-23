@@ -28,9 +28,25 @@ using namespace Diligent;
 		void AddLocalForce(float x, float y, float z, float dampen);
 		float3 GetForce();
 		float GetRotationY();
+		void RemoveStatic() {
+			
+			
+		}
+		void RemoveDynamic() {
+			
+		}
+		void Remove() {
+			if (body != nullptr) {
+				Physics::Main->Remove(body);
+			}
+			if (sbody != nullptr) {
+				Physics::Main->RemoveStatic(sbody);
+			}
+		}
 	protected:
-		physx::PxRigidDynamic* body;
-		physx::PxRigidStatic* sbody;
+		physx::PxRigidDynamic* body = nullptr;
+		physx::PxRigidStatic* sbody = nullptr;
+		bool mHere = false;
 		physx::PxShape* shape;
 		physx::PxMaterial* material;
 		float w, h, d;

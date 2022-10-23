@@ -9,6 +9,9 @@
 #include "PBConvex.h"
 #include "PBCapsule.h"
 
+enum PhysicsType {
+    Static,Box,Sphere,Capsule,Convex,Mesh
+};
 
     /// <summary>
     /// A NodeEntity is a 3D node, that contains a single or multiple meshes, binded to the node, and rendered
@@ -186,16 +189,35 @@
             }
 
         }
+        PhysicsType GetPhysicsType() {
+            return mPType;
+        }
+        void SetPhysicsType(PhysicsType type)
+        {
+            mPType = type;
+        }
+
+        void ClearPhysics() {
+
+
+            if (mTriBody != nullptr) {
+                mTriBody->Remove();
+            }
+            if (mBody != nullptr) {
+                mBody->Remove();
+            }
+
+        }
 
     protected:
-        PhysicsBody* mBody;
-        PhysicsBody* mTriBody;
+        PhysicsBody* mBody = nullptr;
+        PhysicsBody* mTriBody = nullptr;
         /// <summary>
         /// A list containing all of this NodeEntity's attached meshes.
         /// </summary>
         std::vector<Mesh3D*> mMeshes;
        // SmartMesh* mSmartMesh;
-        
+        PhysicsType mPType = PhysicsType::Static;
        // static Kinetic::FX::Effect* FXSmartMesh;
 
       

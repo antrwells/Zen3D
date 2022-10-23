@@ -94,17 +94,25 @@ void ZenUI::MainNodeEditor() {
 
 			if (mEditNode->GetType() == NodeType::Entity) {
 				auto ent = (NodeEntity*)mEditNode;
-				ImGui::Text("Physics Type");
-				if (ImGui::Button("Box"))
-				{
-					ent->SetPhysicsBox();
-					pmode = 0;
+			//	ImGui::Text("Physics Type");
+
+				int pType = (int)ent->GetPhysicsType();
+
+				ImGui::PushItemWidth(128);
+				//if (ImGui::BeginCombo("Transform Space","Transform Space")) {
+					//ImGui::Combo("Local Space",&mSpaceItem,"Local Space 0 Global Space",32);
+				
+				
+				const char* items[] = { "None", "Box", "Sphere","Capsule","Convex","Mesh"};
+				
+				if (ImGui::Combo("Physics Type", &pType, items,6)) {
+
+					ent->SetPhysicsType((PhysicsType)pType);
+
 				}
-				if (ImGui::Button("Mesh"))
-				{
-					pmode = 1;
-					ent->SetPhysicsTris();
-				}
+
+
+				ImGui::PopItemWidth();
 			}
 
 

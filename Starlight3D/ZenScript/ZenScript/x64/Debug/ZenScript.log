@@ -10,8 +10,8 @@ C:\projects\Starlight3D\ZenScript\ZenScript\ZContextScope.cpp(26,2): warning C42
 C:\projects\Starlight3D\ZenScript\ZenScript\ZClassStatementNode.cpp(13,14): warning C4101: 'top': unreferenced local variable
   ZenByteCode.cpp
   ZenParser.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZClassStatementNode.cpp(117): warning C4715: 'ZClassStatementNode::GetReturnType': not all control paths return a value
   ZenScript.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZClassStatementNode.cpp(117): warning C4715: 'ZClassStatementNode::GetReturnType': not all control paths return a value
   ZExpressionNode.cpp
   ZForNode.cpp
   ZIfnode.cpp
@@ -57,8 +57,8 @@ C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(207,56): warning
   ZParseClass.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(78): warning C4715: 'applyOpInt': not all control paths return a value
 C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(107): warning C4715: 'applyOpFloat': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(556): warning C4715: 'StringValue': not all control paths return a value
 C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(407): warning C4715: 'GetValue': not all control paths return a value
+C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(556): warning C4715: 'StringValue': not all control paths return a value
   ZParseClassStatement.cpp
   ZParseCodeBody.cpp
   ZParseExpression.cpp
@@ -67,48 +67,48 @@ C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: '
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseClass.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseClass.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseClassStatement.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseCodeBody.cpp)
   ZParseIf.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseExpression.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseFor.cpp)
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseCodeBody.cpp)
   ZParseMethod.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseExpression.cpp)
   ZParseNew.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseFor.cpp)
   ZParseNode.cpp
   ZParseParameters.cpp
   ZParser.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseIf.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseNew.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseMethod.cpp)
   ZParseReturn.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseNew.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseNode.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseParameters.cpp)
   ZParseScript.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParser.cpp)
   ZParseSignature.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseParameters.cpp)
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParser.cpp)
   ZParseSigParam.cpp
   ZParseStatement.cpp
   ZParseValue.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseReturn.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseScript.cpp)
   ZParseVars.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseSigParam.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseSignature.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseStatement.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseValue.cpp)
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseSigParam.cpp)
   ZParseWhile.cpp
   ZProgramNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseStatement.cpp)
   ZReturnNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseValue.cpp)
   ZScriptContext.cpp
   ZScriptNode.cpp
   ZSignatureNode.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseVars.cpp)
   ZSigParamNode.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseWhile.cpp)
   ZSource.cpp
   ZStatementNode.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseWhile.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZScriptContext.cpp)
   ZSystemFunction.cpp
   ZSystemFunctions.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZScriptContext.cpp)
   ZTokenizer.cpp
   ZTokenStream.cpp
   ZVarsNode.cpp

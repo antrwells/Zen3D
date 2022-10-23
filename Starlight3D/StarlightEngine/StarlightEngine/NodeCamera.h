@@ -74,7 +74,12 @@
             mFOV = fov;
             SetViewport(0, 0, mWidth, mHeight);
         }
-      
+        
+        float4x4 GetWorldMatrixNoInvert() {
+
+            return Node3D::GetWorldMatrix();
+
+        }
 
     private:
 

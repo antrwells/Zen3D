@@ -34,7 +34,7 @@ void PPOutline::PP() {
 
 	BindTarget(1);
 
-	p_ren->RenderOutline(GetTarget(0)->ToTexture2D(), Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(),0.02,0.001,float4(1,0,0,1));
+	p_ren->RenderOutline(GetTarget(0)->ToTexture2D(), Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(),0.02,0.001,float4(0.2,1,0.2,1));
 
 	ReleaseTarget(1);
 

@@ -756,8 +756,41 @@
 
 	}
 
-	void SceneGraph::BeginPlay() {
+	void BeginPhysics(Node3D* node) {
 
+		if (node->GetType() == NodeType::Entity) {
+			NodeEntity* ent = (NodeEntity*)node;
+			switch (ent->GetPhysicsType()) {
+			case PhysicsType::Box:
+				ent->SetPhysicsBox();
+				break;
+			case PhysicsType::Mesh:
+				ent->SetPhysicsTris();
+				break;
+			}
+		}
+		for (int i = 0; i < node->ChildrenCount(); i++) {
+			BeginPhysics(node->GetChild(i));
+		}
+
+	}
+
+	void ClearPhysics(Node3D* node) {
+
+		if (node->GetType() == NodeType::Entity) {
+			NodeEntity* ent = (NodeEntity*)node;
+			ent->ClearPhysics();
+		}
+		for (int i = 0; i < node->ChildrenCount(); i++) {
+			ClearPhysics(node->GetChild(i));
+		}
+
+	}
+
+	void SceneGraph::BeginPlay() {
+	
+		ClearPhysics(mRootNode);
+		BeginPhysics(mRootNode);
 		BeginNode(mRootNode);
 
 	}

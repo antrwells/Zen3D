@@ -19,6 +19,7 @@ void ZenUI::EndPlay() {
 		//	mCurrentCamera = mEditCam;
 	//		mGraph->SetCamera(mEditCam);
 	//	}
+	
 		mPlaying = false;
 		mGraph->EndPlay();
 	}

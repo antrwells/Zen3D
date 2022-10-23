@@ -23,6 +23,19 @@
 		}
 		void Simulate(float time);
 
+		void RemoveStatic(physx::PxRigidStatic* body)
+		{
+			body->release();
+			//scene->removeActor(body->release());
+
+		}
+
+		void Remove(physx::PxRigidDynamic* body)
+		{
+			body->release();
+			//scene->removeActor(body);
+		}
+
 	private:
 
 		physx::PxFoundation* gFoundation;

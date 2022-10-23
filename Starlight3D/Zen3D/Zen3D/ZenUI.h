@@ -66,6 +66,8 @@ public:
 	void LightMapperWindow();
 
 
+	//Material Editor
+	void MaterialEditor();
 
 	int GetWidth() {
 		
@@ -250,6 +252,8 @@ private:
 	//Sprites
 	SmartDraw* mDraw;
 	Texture2D* mSprLight;
+	Texture2D* mSprCam;
+	Texture2D* mSprNode;
 
 	//Payloads
 	FSPayload* pUI;
@@ -281,6 +285,10 @@ private:
 
 	SceneGraph* mEditGraph;
 
+
+
+	//Misc
+	int empty_index = 0;
 };
 
 

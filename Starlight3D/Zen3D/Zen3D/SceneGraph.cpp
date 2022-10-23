@@ -100,41 +100,6 @@ void ZenUI::SceneTree(Node3D* node)
 			//
 		}
 
-		if (ImGui::BeginPopupContextWindow())
-		{
-			if (ImGui::BeginMenu("Add",true))
-			{
-
-				if (ImGui::MenuItem("Light Source"))
-				{
-					if (mSelectedNode != nullptr) {
-
-						auto new_light = new NodeLight;
-						new_light->SetPosition(float3(0, 5, 0));
-						mSelectedNode = new_light;
-						mGraph->AddLight(new_light);
-						int num = mGraph->LightCount();
-						VString* lname = new VString("Light ");
-						lname->Add(VString(num));
-						new_light->SetName(lname->GetConst());
-
-						//	mSelectedNode -
-							//exit(1);
-
-					}
-				}
-				if (ImGui::MenuItem("Camera"))
-				{
-					auto new_cam = new NodeCamera;
-					mGraph->AddCamera(new_cam);
-					//mGameCam = new_cam;
-
-				}
-				ImGui::EndMenu();
-			}
-
-			ImGui::EndPopup();
-		}
 		if (node->ChildrenCount() > 0) {
 
 			for (int i = 0; i < node->ChildrenCount(); i++) {
@@ -171,8 +136,105 @@ void ZenUI::SceneGraphWindow() {
 	}
 
 	ImGui::Begin("Scene Graph", &mSceneGraphOpen, ImGuiWindowFlags_MenuBar);
+	if (ImGui::BeginMenuBar())
+	{
+
+
+		if (ImGui::BeginMenu("Scene"))
+		{
+			if (ImGui::BeginMenu("Add")) {
+				if (ImGui::MenuItem("Light Source"))
+				{
+					//if (mSelectedNode != nullptr) {
+
+					auto new_light = new NodeLight;
+					new_light->SetPosition(float3(0, 5, 0));
+					mSelectedNode = new_light;
+					mGraph->AddLight(new_light);
+					int num = mGraph->LightCount();
+					VString* lname = new VString("Light ");
+					lname->Add(VString(num));
+					new_light->SetName(lname->GetConst());
+
+					//	mSelectedNode -
+						//exit(1);
+
+				//}
+				}
+				if (ImGui::MenuItem("Camera"))
+				{
+					auto new_cam = new NodeCamera;
+					mGraph->AddCamera(new_cam);
+					//mGameCam = new_cam;
+
+				}
+				if (ImGui::MenuItem("Empty Node"))
+				{
+					auto new_node = new Node3D;
+					mGraph->AddNode(new_node);
+					std::string new_name = "Empty Node" + std::to_string(empty_index);
+					empty_index++;
+					VString name(new_name.c_str());
+					new_node->SetName(name.GetConst());
+
+				}
+				ImGui::EndMenu();
+			}
+			ImGui::EndMenu();
+		}
+
+		ImGui::EndMenuBar();
+	}
+
+
+	
 	ImGui::BeginChild("SceneTree");
 
+	if (ImGui::BeginPopupContextWindow())
+	{
+		if (ImGui::BeginMenu("Add", true))
+		{
+
+			if (ImGui::MenuItem("Light Source"))
+			{
+				//if (mSelectedNode != nullptr) {
+
+					auto new_light = new NodeLight;
+					new_light->SetPosition(float3(0, 5, 0));
+					mSelectedNode = new_light;
+					mGraph->AddLight(new_light);
+					int num = mGraph->LightCount();
+					VString* lname = new VString("Light ");
+					lname->Add(VString(num));
+					new_light->SetName(lname->GetConst());
+
+					//	mSelectedNode -
+						//exit(1);
+
+				
+			}
+			if (ImGui::MenuItem("Camera"))
+			{
+				auto new_cam = new NodeCamera;
+				mGraph->AddCamera(new_cam);
+				//mGameCam = new_cam;
+
+			}
+			if (ImGui::MenuItem("Empty Node"))
+			{
+				auto new_node = new Node3D;
+				mGraph->AddNode(new_node);
+				std::string new_name = "Empty Node" + std::to_string(empty_index);
+				empty_index++;
+				VString name(new_name.c_str());
+				new_node->SetName(name.GetConst());
+
+			}
+			ImGui::EndMenu();
+		}
+
+		ImGui::EndPopup();
+	}
 	node_id = 0;
 	SceneTree(mGraph->GetRoot());
 	if (mSelectedNode != nullptr) {

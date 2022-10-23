@@ -40,6 +40,8 @@ enum NodeType {
 
 		}
 
+
+
 		float3x3 GetRotation() {
 
 			auto r1 = mRotation[0];

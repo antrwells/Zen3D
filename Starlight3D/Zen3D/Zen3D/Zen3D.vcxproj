@@ -111,6 +111,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>C:\ZenEditor\Zen3D.exe</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,6 +142,7 @@
     <ClCompile Include="Lightmapper.cpp" />
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MaterialEditor.cpp" />
     <ClCompile Include="NodeEditor.cpp" />
     <ClCompile Include="Notify.cpp" />
     <ClCompile Include="PlayRelated.cpp" />

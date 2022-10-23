@@ -394,6 +394,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mDraw = new SmartDraw(Application::GetApp());
 
 	mSprLight = (Texture2D*)pUI->GetResource("LightIcon");//  new Texture2D("edit/sprites/light1.png", true);
+	mSprCam = (Texture2D*)pUI->GetResource("CameraIcon");
+	mSprNode = (Texture2D*)pUI->GetResource("NodeIcon");
 
 	//Post Processing
 
@@ -429,6 +431,8 @@ ZenUI::ZenUI() {
 	pUI->AddFile("FileIcon", "edit/browser/fileicon.png",ResourceType::TextureFlat);
 	pUI->AddFile("ScriptIcon", "edit/browser/scripticon.png", ResourceType::TextureFlat);
 	pUI->AddFile("LightIcon", "edit/sprites/light1.png", ResourceType::TextureFlat);
+	pUI->AddFile("CameraIcon", "edit/sprites/camera1.png", ResourceType::TextureFlat);
+	pUI->AddFile("NodeIcon", "edit/sprites/emptynode1.png", ResourceType::TextureFlat);
 	pUI->AddFile("GizTranslate", "edit/gizmo/translate1.fbx", ResourceType::ModelProp);
 	pUI->AddFile("GizRotate", "edit/gizmo/rotate1.fbx", ResourceType::ModelProp);
 	pUI->AddFile("GizScale", "edit/gizmo/scale1.fbx", ResourceType::ModelProp);

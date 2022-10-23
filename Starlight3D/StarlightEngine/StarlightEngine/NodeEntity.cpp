@@ -158,10 +158,10 @@
 
 		
 		float3 bb = GetBounds();
-		bb.x = bb.x + 0.1f;
-		bb.y = bb.y + 0.1f;
-		bb.z = bb.z + 0.1f;
-		mBody = new PBBox(bb.x, bb.y, bb.z);
+		//bb.x = bb.x + 0.1f;
+		//bb.y = bb.y + 0.1f;
+		//bb.z = bb.z + 0.1f;
+		mBody = new PBBox(bb.x*2, bb.y*2, bb.z*2);
 	    
 		mBody->SetPosition(mPosition);
 		

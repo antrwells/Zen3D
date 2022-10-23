@@ -409,14 +409,15 @@ void Application::Run() {
 
                 glfwPollEvents();
 
-                m_Window = glfwCreateWindow(1400, 860, "Zen3D", nullptr, nullptr);
+                m_Window = glfwCreateWindow(winWidth, winHeight, "Zen3D", nullptr, nullptr);
                 if (m_Window == nullptr)
                 {
                     LOG_ERROR_MESSAGE("Failed to create GLFW window");
                     return;
                 }
-                winWidth = 1420;
-                winHeight = 840;
+
+                //winWidth = ;
+                //winHeight = 450;
                 glfwSetWindowUserPointer(m_Window, this);
                 //glfwSetFramebufferSizeCallback(m_Window, &GLFW_ResizeCallback);
                // glfwSetKeyCallback(m_Window, &GLFW_KeyCallback);
@@ -468,7 +469,7 @@ void Application::Run() {
                 //glfwSetWindowSize(m_Window, 1400, 860);
                 
 
-                WindowResize(1400, 860);
+                WindowResize(winWidth,winHeight);
                 is_splash = false;
                 InitApp();
 

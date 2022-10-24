@@ -120,27 +120,6 @@
     <ClInclude Include="DockUsage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UITheme_Neon.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UITheme.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UIControl.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonControl.h">
-      <Filter>UI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowControl.h">
-      <Filter>UI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowContent.h">
-      <Filter>UI\Controls</Filter>
-    </ClInclude>
     <ClInclude Include="NoRenderList.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -358,27 +337,6 @@
     </ClCompile>
     <ClCompile Include="DockUsage.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UIControl.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UITheme.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UITheme_Neon.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonControl.cpp">
-      <Filter>UI\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowControl.cpp">
-      <Filter>UI\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowContent.cpp">
-      <Filter>UI\Controls</Filter>
     </ClCompile>
     <ClCompile Include="NodeTerrain.cpp">
       <Filter>Scene</Filter>

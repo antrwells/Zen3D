@@ -764,9 +764,19 @@
 			case PhysicsType::Box:
 				ent->SetPhysicsBox();
 				break;
+			case PhysicsType::Sphere:
+				ent->SetPhysicsSphere();
+				break;
+			case PhysicsType::Capsule:
+				ent->SetPhysicsCapsule();
+				break;
+			case PhysicsType::Convex:
+				ent->SetPhysicsConvex();
+				break;
 			case PhysicsType::Mesh:
 				ent->SetPhysicsTris();
 				break;
+			
 			}
 		}
 		for (int i = 0; i < node->ChildrenCount(); i++) {

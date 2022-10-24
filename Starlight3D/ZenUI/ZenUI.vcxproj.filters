@@ -19,6 +19,9 @@
     <Filter Include="UI\Controls">
       <UniqueIdentifier>{fdbd22c7-411b-43ce-8d3c-00d01b3bb8f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\Controls\Window">
+      <UniqueIdentifier>{84f2cece-6d31-4be1-8f9b-4fd084d4e7c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -32,6 +35,36 @@
     </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRect.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRenderer.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIColor.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>UI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImage.h">
+      <Filter>UI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="UITheme.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWindow.h">
+      <Filter>UI\Controls\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWindowTitle.h">
+      <Filter>UI\Controls\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWindowContent.h">
+      <Filter>UI\Controls\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowPage.h">
+      <Filter>UI\Controls\Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,5 +80,35 @@
     <ClCompile Include="UI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="UIRect.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRenderer.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIColor.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIImage.cpp">
+      <Filter>UI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>UI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="UITheme.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWindow.cpp">
+      <Filter>UI\Controls\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWindowTitle.cpp">
+      <Filter>UI\Controls\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWindowContent.cpp">
+      <Filter>UI\Controls\Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

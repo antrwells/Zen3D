@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "Application.h"
-#include "UI.h"
+
 #include "ScriptHost.h"
 #include "FSPayload.h"
 #include "VString.h"
 #include "Maths.h"
-
+#include "Texture2D.h"
+#include "kFont.h"
+#include "SmartDraw.h"
 //#include "ZContextVar.h"
 
 //#include "ImGuiImplWin32.hpp"
@@ -761,11 +763,11 @@ void Application::GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int stat
     if (button == GLFW_MOUSE_BUTTON_LEFT)
     {
         if (state == GLFW_PRESS) {
-            UI::SetMouseBut(0, true);
+           // UI::SetMouseBut(0, true);
             Application::GetApp()->GetInput()->SetMouseDown(0, true);
         }
         else {
-            UI::SetMouseBut(0, false);
+          //  UI::SetMouseBut(0, false);
             Application::GetApp()->GetInput()->SetMouseDown(0, false);
         }
 
@@ -773,11 +775,11 @@ void Application::GLFW_MouseButtonCallback(GLFWwindow* wnd, int button, int stat
     }
     if (button == GLFW_MOUSE_BUTTON_RIGHT) {
         if (state == GLFW_PRESS) {
-            UI::SetMouseBut(1, true);
+          //  UI::SetMouseBut(1, true);
             Application::GetApp()->GetInput()->SetMouseDown(1, true);
         }
         else {
-            UI::SetMouseBut(1, false);
+         //   UI::SetMouseBut(1, false);
             Application::GetApp()->GetInput()->SetMouseDown(1, false);
         }
     }

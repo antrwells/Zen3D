@@ -74,6 +74,11 @@
             mFOV = fov;
             SetViewport(0, 0, mWidth, mHeight);
         }
+
+        float GetFOV()
+        {
+            return mFOV;
+        }
         
         float4x4 GetWorldMatrixNoInvert() {
 
@@ -86,8 +91,8 @@
         float4x4 mProjectionMatrix;
 
         float mFOV = 45.0f;
-        float mMinZ = 0.05f;
-        float mMaxZ = 60.0f;
+        float mMinZ = 0.55f;
+        float mMaxZ = 40.0f;
         float mWidth, mHeight;
   
     };

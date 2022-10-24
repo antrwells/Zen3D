@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <process.h>
+#include "VFile.h"
 
 
 ProjectsUI::ProjectsUI() {
 
 	fileDialog = ImGui::FileBrowser(ImGuiFileBrowserFlags_SelectDirectory);
 	fileDialog.SetTitle("Select path for Project.");
+	if (VFile::Exists("projects.list"))
+	{
+		LoadList();
+	}
+	else {
+		SaveList();
+	}
 
 }
 
@@ -46,9 +54,11 @@ void ProjectsUI::RenderProjectList() {
 			//const char* zenPath = "C:\ZenEditor\Zen3D.exe";
 			
 			auto path = "C:\\ZenEditor\\Zen3D.exe";
+			auto open_proj = new VFile("C:\\ZenEditor\\Project.load", FileMode::Write);
+			open_proj->WriteString(mCurrentProject->GetPath().c_str());
+			open_proj->Close();
 			system(path);
 			
-
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Remove Project"))
@@ -65,6 +75,7 @@ void ProjectsUI::RenderProjectList() {
 
 				}
 			}
+			SaveList();
 		}
 
 	}
@@ -87,8 +98,10 @@ void ProjectsUI::RenderProjectList() {
 
 		}
 
-		ImGui::InputText("Project Name", (char*)name, 512);
-		mCurrentProject->SetName(std::string(name));
+		if (ImGui::InputText("Project Name", (char*)name, 512)) {
+			mCurrentProject->SetName(std::string(name));
+			SaveList();
+		}
 
 		char* path = (char*)malloc(1024);
 
@@ -106,9 +119,14 @@ void ProjectsUI::RenderProjectList() {
 
 		}
 
-		ImGui::InputText("Project Path", (char*)path, 512);
-		mCurrentProject->SetPath(std::string(path));
+		if (ImGui::InputText("Project Path", (char*)path, 512))
+		{
 
+		
+			mCurrentProject->SetPath(std::string(path));
+			SaveList();
+		}
+	
 
 		char* info = (char*)malloc(4096);
 
@@ -130,6 +148,7 @@ void ProjectsUI::RenderProjectList() {
 		if (ImGui::InputTextMultiline("Project Info", (char*)info, 4096)) {
 
 			mCurrentProject->SetInfo(info);
+			SaveList();
 
 		}
 
@@ -151,7 +170,7 @@ void ProjectsUI::RenderProjectList() {
 		{
 
 			mCurrentProject->SetAuthor(author);
-
+			SaveList();
 		}
 
 	}
@@ -202,6 +221,7 @@ void ProjectsUI::RenderProjectList() {
 		int b = 5;
 		fileDialog.ClearSelected();
 		mCurrentProject->SetName("New Project");
+		SaveList();
 
 	}
 
@@ -212,5 +232,46 @@ void ProjectsUI::NewProject() {
 	ZenProject* new_proj = new ZenProject;
 	mProjects.push_back(new_proj);
 	mCurrentProject = new_proj;
+	SaveList();
+
+}
+
+void ProjectsUI::SaveList()
+{
+
+	VFile* projList = new VFile("projects.list", FileMode::Write);
+
+	projList->WriteInt(mProjects.size());
+	for (int i = 0; i < mProjects.size(); i++) {
+
+		auto proj = mProjects[i];
+		projList->WriteString(proj->GetName().c_str());
+		projList->WriteString(proj->GetPath().c_str());
+		projList->WriteString(proj->GetAuthor().c_str());
+		projList->WriteString(proj->GetInfo().c_str());
+
+
+	}
+
+	projList->Close();
+
+}
+
+void ProjectsUI::LoadList() {
+
+	VFile* list = new VFile("projects.list", FileMode::Read);
+
+	int pc = list->ReadInt();
+	for (int i = 0; i < pc; i++) {
+
+		ZenProject* proj = new ZenProject;
+		proj->SetName(list->ReadString());
+		proj->SetPath(list->ReadString());
+		proj->SetAuthor(list->ReadString());
+		proj->SetInfo(list->ReadString());
+		mProjects.push_back(proj);
+	}
+
+	list->Close();
 
 }

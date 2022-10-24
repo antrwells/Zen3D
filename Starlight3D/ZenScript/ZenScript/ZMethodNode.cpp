@@ -76,4 +76,17 @@ void ZMethodNode::Bind() {
 
 }
 
+
+void ZMethodNode::SetVirtual(bool is_virtual) {
+
+	mIsVirtual = is_virtual;
+
+}
+
+bool ZMethodNode::GetVirtual() {
+
+	return mIsVirtual;
+
+}
+
 ZMethodNode* ZMethodNode::mCurrentNode = nullptr;

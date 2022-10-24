@@ -77,6 +77,9 @@
     <ClInclude Include="ZNotification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="imfilebrowser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="RayUtils.fxh" />

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "AppZen.h"
-
+#include "VFile.h"
 
 
 int appW, appH;
@@ -29,12 +29,20 @@ int main()
     appH = 860;
     std::cout << "Hello Zen!\n";
 
+    VFile* load_proj = new VFile("project.load", FileMode::Read);
+
+    std::string proj_path = std::string(load_proj->ReadString());
+
+    load_proj->Close();
+
     AppZen* zen = new AppZen;
     int APIHint = GLFW_NO_API;
     zen->CrWindow("Zen", 1400,800, APIHint);
     zen->InitEngine();
     zen->CreateResources();
+    zen->SetProjectPath(proj_path);
     zen->Run();
+
 
 
 }

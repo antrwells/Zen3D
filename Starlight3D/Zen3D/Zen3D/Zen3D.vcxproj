@@ -71,6 +71,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>C:\ZenEditor\</OutDir>
+    <IntDir>C:\ZenEditor</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -107,6 +111,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\projects\Starlight3D\StarlightEngine\StarlightEngine;C:\projects\Starlight3D\lua\include;C:\FBX\2020.2.1\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\PhysX-4.1\physx\source\foundation\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\source\physxextensions\src;C:\git\PhysX-4.1\physx\include;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppZen.h" />
+    <ClInclude Include="imfilebrowser.h" />
     <ClInclude Include="ZenUI.h" />
     <ClInclude Include="ZNotification.h" />
   </ItemGroup>

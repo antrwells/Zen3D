@@ -1,7 +1,7 @@
 
 Graphics 800,600
 
-Local lf:String = "aqua.ttf"
+Local lf:String = "air.ttf"
 
 Local font:TimageFont = LoadImageFont(lf,16) 
 

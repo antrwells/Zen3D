@@ -24,7 +24,10 @@ public:
     void UpdateApp();
     void RenderApp();
     void SetPayload();
-
+    void SetProjectPath(std::string path)
+    {
+        mProjectPath = path;
+    }
 private:
     ZenUI* zUI;
     RenderTarget2D* t1;
@@ -46,5 +49,6 @@ private:
     SceneRenderer* mRenderer;
     SceneRayTracer* mRTRenderer;
     PostProcessing* mPP;
+    std::string mProjectPath = "";
 };
 

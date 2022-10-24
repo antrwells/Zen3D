@@ -15,6 +15,9 @@ public:
 
 	void NewProject();
 
+	void SaveList();
+	void LoadList();
+
 private:
 
 	std::vector<ZenProject*> mProjects;

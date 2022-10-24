@@ -255,6 +255,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mUI = this;
 	ImGuiStyle& style = ImGui::GetStyle();
 	ImGuiIO& io = ImGui::GetIO();
+	fileBrowse = ImGui::FileBrowser();
+	fileBrowse.SetTitle("Select file to open..");
 
 	style.Colors[ImGuiCol_Text] = ImColor(220, 220, 220);
 	style.Colors[ImGuiCol_WindowBg] = ImColor(5, 5, 5);
@@ -405,7 +407,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mPP->AddPostProcess(mPPOutline);
 
 	mEditGraph = new SceneGraph;
-	ScanContent("c:/ZenContent/");
+	ScanContent(mProjectPath);
 
 	Notify("Zen3D started", "You may now begin to edit your project.");
 
@@ -474,6 +476,11 @@ void ZenUI::MainWindow() {
 
 	Notifications();
 
+	if (fileBrowseOpen) {
+
+		fileBrowse.Display();
+
+	}
 
 
 }

@@ -3,6 +3,15 @@
 void ZenUI::MainMenu() {
 	//return;
 
+	if (fileBrowse.HasSelected())
+	{
+
+		std::string pick = fileBrowse.GetSelected().string();
+		LoadScene(pick.c_str());
+		fileBrowse.ClearSelected();
+		fileBrowseOpen = false;
+	}
+
 	if (ImGui::BeginMainMenuBar()) {
 
 		if (ImGui::BeginMenu("Projects"))
@@ -15,11 +24,18 @@ void ZenUI::MainMenu() {
 			{
 
 			}
+
+			ImGui::MenuItem("-----------------");
+			if (ImGui::MenuItem("Load Scene"))
+			{
+				fileBrowse.Open();
+				fileBrowseOpen = true;
+			}
 			if (ImGui::MenuItem("Save Scene"))
 			{
 				OpenSaveScene();
 			}
-
+			ImGui::MenuItem("-----------------");
 			if (ImGui::MenuItem("Exit Zen"))
 			{
 				exit(1);

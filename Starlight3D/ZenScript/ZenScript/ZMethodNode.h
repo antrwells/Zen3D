@@ -32,8 +32,8 @@ public:
 	}
 	void SetGuard(ZExpressionNode* g_e);
 	static ZMethodNode* mCurrentNode;
-
-
+	void SetVirtual(bool is_virtual);
+	bool GetVirtual();
 private:
 	ZExpressionNode* mGuardExpr = nullptr;
 	std::string mMethodName;
@@ -42,6 +42,6 @@ private:
 	ZCodeBodyNode* mCode;
 	ZContextScope* mScope;
 	ZClassNode* mClass;
-
+	bool mIsVirtual = false;
 };
 

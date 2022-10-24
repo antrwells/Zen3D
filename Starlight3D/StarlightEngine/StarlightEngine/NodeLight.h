@@ -149,7 +149,7 @@ enum LightType {
 
 	private:
 
-		float mRange = 100;
+		float mRange = 40;
 
 		float3 mDiffuse;
 		float3 mSpecular;

@@ -12,6 +12,7 @@
 #include "PPOutline.h"
 #include "ZNotification.h"
 #include <stack>
+#include "imfilebrowser.h"
 class RayPicker;
 
 //class DirCollection;
@@ -133,10 +134,12 @@ public:
 	SceneGraph* GetGraph();
 
 	//Renderer - A combo box that sets up all the types of rendering possible.
-
+	void SetProjectPath(std::string path) {
+		mProjectPath = path;
+	}
 private:
 
-
+	std::string mProjectPath = "";
 	// Open States
 	bool mMainOpen = true;
 	bool mSceneGraphOpen = true;
@@ -286,7 +289,9 @@ private:
 	SceneGraph* mEditGraph;
 
 
+	ImGui::FileBrowser fileBrowse;
 
+	bool fileBrowseOpen = false;
 	//Misc
 	int empty_index = 0;
 };

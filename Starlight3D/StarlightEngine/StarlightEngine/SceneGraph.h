@@ -467,7 +467,7 @@ class RayPicker;
 				if (mCam == nullptr) {
 					mCam = (NodeCamera*)res;
 				}
-				mCams.push_back((NodeCamera*)res);
+				//mCams.push_back((NodeCamera*)res);
 
 				break;
 			}

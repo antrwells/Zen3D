@@ -181,7 +181,6 @@
     <ClInclude Include="BigBuffer.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneInfo.h" />
-    <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="DirCollection.h" />
@@ -241,15 +240,9 @@
     <ClInclude Include="TextureCube.h" />
     <ClInclude Include="TextureData.h" />
     <ClInclude Include="tinydir.h" />
-    <ClInclude Include="UI.h" />
-    <ClInclude Include="UIControl.h" />
-    <ClInclude Include="UITheme.h" />
-    <ClInclude Include="UITheme_Neon.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="VFile.h" />
     <ClInclude Include="VString.h" />
-    <ClInclude Include="WindowContent.h" />
-    <ClInclude Include="WindowControl.h" />
     <ClInclude Include="ZenFS.h" />
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +254,6 @@
     <ClCompile Include="BigBuffer.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneInfo.cpp" />
-    <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="DirCollection.cpp" />
     <ClCompile Include="DockUsage.cpp" />
@@ -322,15 +314,9 @@
     <ClCompile Include="TextureAtlas.cpp" />
     <ClCompile Include="TextureCube.cpp" />
     <ClCompile Include="TextureData.cpp" />
-    <ClCompile Include="UI.cpp" />
-    <ClCompile Include="UIControl.cpp" />
-    <ClCompile Include="UITheme.cpp" />
-    <ClCompile Include="UITheme_Neon.cpp" />
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="VFile.cpp" />
     <ClCompile Include="VString.cpp" />
-    <ClCompile Include="WindowContent.cpp" />
-    <ClCompile Include="WindowControl.cpp" />
     <ClCompile Include="ZenFS.cpp" />
   </ItemGroup>
   <ItemGroup>

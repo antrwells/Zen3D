@@ -28,7 +28,8 @@ void AppZen::InitApp() {
 
 	Importer* imp = new Importer;
 
-	
+	zUI->SetProjectPath(mProjectPath);
+
 	//Application::GetApp()->TextToScript("puts(\"Hey everyone!\")");
 //	Application::GetApp()->FileToScript("script/application_init.ch");
 

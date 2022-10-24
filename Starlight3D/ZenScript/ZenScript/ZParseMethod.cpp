@@ -28,8 +28,14 @@ ZScriptNode* ZParseMethod::Parse()
 
 	ZMethodNode::mCurrentNode = meth_node;
 
+	bool is_virtual = false;
 	auto return_type = mStream->NextToken();
 
+	if (return_type.mType == TokenType::TokenVirtual)
+	{
+		is_virtual = true;
+		return_type = mStream->NextToken();
+	}
 	
 
 	switch (return_type.mType) {
@@ -106,7 +112,7 @@ ZScriptNode* ZParseMethod::Parse()
 
 	meth_node->SetCode(code_node);
 
-	
+	meth_node->SetVirtual(is_virtual);
 
 	int aa = 5;
 

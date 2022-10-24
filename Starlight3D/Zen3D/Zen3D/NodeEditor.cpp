@@ -117,7 +117,24 @@ void ZenUI::MainNodeEditor() {
 
 
 
+			if (mEditNode->GetType() == NodeType::Camera) {
 
+				auto cam = (NodeCamera*)mEditNode;
+
+				float ce[2];
+				ce[0] = cam->GetMinZ();
+				ce[1] = cam->GetMaxZ();
+				if (ImGui::DragFloat2("Camera Extents", ce, 0.01f, 0.0001, 1024)) {
+					cam->SetMinZ(ce[0]);
+					cam->SetMaxZ(ce[1]);
+				}
+
+				float fov = cam->GetFOV();
+				if (ImGui::DragFloat("Field Of View", &fov, 0.1f, 1, 180))
+				{
+					cam->SetFOV(fov);
+				}
+			}
 			if (mEditNode->GetType() == NodeType::Light)
 			{
 

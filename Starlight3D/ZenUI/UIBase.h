@@ -20,12 +20,17 @@ public:
 	//Render
 	void SetRect(UIRect rect);
 	UIRect GetRenderRect();
+	UIRect GetRenderRectNoScroll();
 	UIRect GetRect();
+	int ContentHeight();
 
 	//Graph
 	UIBase* GetRoot();
 	void Add(UIBase* ui);
 	void SetRoot(UIBase* base);
+	bool Contains(UIBase* base);
+	float2 GetScroll();
+	void SetScroll(float2 scroll);
 
 	std::vector<UIBase*> GetSub();
 
@@ -50,7 +55,9 @@ public:
 	void SetText(std::string text) {
 		mText = text;
 	}
-
+	bool IsContent() {
+		return mIsContent;
+	}
 protected:
 
 	//Graph related
@@ -65,6 +72,9 @@ protected:
 	//Details related
 	std::string mName = "";
 	std::string mText = "";
+	bool mCanScroll = true;
+	float2 mScroll;
+	bool mIsContent = true;
 
 
 };

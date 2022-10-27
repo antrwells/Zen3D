@@ -6,6 +6,7 @@
 #include "VString.h"
 #include "VFile.h"
 #include "Application.h"
+#include "SmartDraw.h"
 
 void ZenUI::MainViewPort() {
 
@@ -312,6 +313,8 @@ void ZenUI::MainViewPort() {
 		
 		}
 		else {
+			auto ren = mGraph->GetRenderer();
+			ren->RenderMeshLines(mEditGrid, mCurrentCamera);
 			mGraph->Render();
 		}
 		if (mSelectedNode != nullptr) {

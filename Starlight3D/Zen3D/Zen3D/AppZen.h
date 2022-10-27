@@ -2,7 +2,7 @@
 
 #include "Application.h"
 #include "SmartDraw.h"
-#include "UI.h"
+
 #include "kFont.h"
 #include "Importer.h"
 #include "SceneGraph.h"
@@ -35,7 +35,7 @@ private:
     Texture2D* mTex1;
     Texture2D* mTex2;
     Texture2D* mTex3;
-    UI* mUI;
+  
     //TTFont* mFont1;
     kFont* mFont1;
     SceneGraph* mGraph;

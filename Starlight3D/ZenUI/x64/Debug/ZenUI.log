@@ -1,16 +1,12 @@
-﻿  UIWindow.cpp
-  UIWindowTitle.cpp
-C:\projects\Starlight3D\ZenUI\UIWindowTitle.cpp(63,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\ZenUI\UIWindowTitle.cpp(76,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+﻿  UIBase.cpp
+C:\projects\Starlight3D\ZenUI\UIBase.cpp(97,18): warning C4244: '-=': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\projects\Starlight3D\ZenUI\UIWindowTitle.cpp(76,28): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\projects\Starlight3D\ZenUI\UIBase.cpp(98,18): warning C4244: '-=': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  Generating Code...
-C:\projects\Starlight3D\ZenUI\UIWindow.cpp(72): warning C4715: 'UIWindow::GetPage': not all control paths return a value
   ZenUI.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenUI.lib

@@ -120,6 +120,13 @@ enum PhysicsType {
         void SetPhysicsTris();
     
         
+        void UpdateRotation() {
+
+            if (mBody == NULL) return;
+            mBody->SetRotation(GetRotation());
+
+        }
+
         PhysicsBody* GetBody() {
             return nullptr;
         }

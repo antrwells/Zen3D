@@ -152,6 +152,7 @@
     <ClInclude Include="UIImage.h" />
     <ClInclude Include="UIRect.h" />
     <ClInclude Include="UIRenderer.h" />
+    <ClInclude Include="UIScrollerVert.h" />
     <ClInclude Include="UITheme.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="UIWindowContent.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="UIRect.cpp" />
     <ClCompile Include="UIRenderer.cpp" />
+    <ClCompile Include="UIScrollerVert.cpp" />
     <ClCompile Include="UITheme.cpp" />
     <ClCompile Include="UIWindow.cpp" />
     <ClCompile Include="UIWindowContent.cpp" />

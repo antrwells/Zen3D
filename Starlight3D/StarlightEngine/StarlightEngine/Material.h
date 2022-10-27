@@ -83,23 +83,16 @@
 
 		}
 
-		void SetDiffuse(float3 diffuse) {
-
-			mDiffuse = diffuse;
-
-		}
-
-		void SetSpecular(float3 specular) {
-
-			mSpecular = specular;
-
-		}
 
 		void SetSpecularStrength(float strength) {
 
 			mSpecularStrength = strength;
 
 		}
+
+		void ClearColorMap();
+		void ClearNormalMap();
+		void ClearSpecularMap();
 
 		//static Kinetic::FX::Effect* FXPbr;
 		//static Kinetic::FX::Effect* FXFullBright;
@@ -113,7 +106,10 @@
 		static Texture2D* BlankColor;
 		static Texture2D* BlankNormal;
 		static Texture2D* BlankSpecular;
-		
+		void SetDiffuse(float3 dif);
+		void SetSpecular(float3 spec);
+		float3 GetDiffuse();
+		float3 GetSpecular();
 
 	private:
 

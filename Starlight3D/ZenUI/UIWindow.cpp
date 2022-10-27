@@ -43,6 +43,7 @@ void UIWindow::OnResize() {
 	con_rect.x = 0;
 	con_rect.y = 32;
 	con_rect.h = con_rect.h - 32;
+	con_rect.w = GetRect().w;
 
 
 	mContent->SetRect(con_rect);

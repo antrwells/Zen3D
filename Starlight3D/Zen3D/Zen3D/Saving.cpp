@@ -41,7 +41,8 @@ void ZenUI::LoadScene(const char* path) {
 
 	mGraph->LoadGraph(path);
 	mCurrentCamera = mGraph->GetCamera();
-//	mEditCam = mCurrentCamera;
+	mEditCam = mCurrentCamera;
+
 	auto cam_rot = mGraph->GetProperty("CameraRotation");
 	cam_rotation.x = cam_rot->GetFloat2().x;
 	cam_rotation.y = cam_rot->GetFloat2().y;

@@ -196,6 +196,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Mesh3D.h" />
+    <ClInclude Include="MeshLines.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Node3D.h" />
     <ClInclude Include="NodeActor.h" />
@@ -266,6 +267,7 @@
     <ClCompile Include="kFont.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh3D.cpp" />
+    <ClCompile Include="MeshLines.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="Node3D.cpp" />
     <ClCompile Include="NodeActor.cpp" />

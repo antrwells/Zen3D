@@ -1,6 +1,6 @@
 #pragma once
 #include "Application.h"
-#include "UI.h"
+
 #include "WindowControl.h"
 #include "SceneGraph.h"
 #include "VString.h"
@@ -137,6 +137,10 @@ public:
 	void SetProjectPath(std::string path) {
 		mProjectPath = path;
 	}
+
+	//Other Editors
+	void EditMaterial();
+
 private:
 
 	std::string mProjectPath = "";
@@ -152,6 +156,7 @@ private:
 	bool mLightmapperOpen = false;
 	bool mPPFirst = true;
 	bool mLMFirst = true;
+	bool mEditMatFirst = true;
 	bool mPPOn = false;
 
 	//Raw Data
@@ -294,6 +299,14 @@ private:
 	bool fileBrowseOpen = false;
 	//Misc
 	int empty_index = 0;
+	
+	//Other Editors
+	Material* mEditMaterial = nullptr;
+
+	//Editor Grid
+	MeshLines* mEditGrid;
+
+
 };
 
 

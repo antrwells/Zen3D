@@ -355,6 +355,7 @@ class RayPicker;
 				}
 
 				node->ReadScripts(file);
+				ent->SetPhysicsType((PhysicsType)file->ReadInt());
 
 				int cc = file->ReadInt();
 				for (int i = 0; i < cc; i++) {
@@ -520,6 +521,7 @@ class RayPicker;
 				}
 
 				ent->WriteScripts(file);
+				file->WriteInt((int)ent->GetPhysicsType());
 
 				file->WriteInt(node->ChildrenCount());
 				for (int i = 0; i < node->ChildrenCount(); i++) {
@@ -591,7 +593,9 @@ class RayPicker;
 		std::vector<NodeCamera*> GetCams() {
 			return mCams;
 		}
-
+		MeshRenderer* GetRenderer() {
+			return mRenderer;
+		}
 	private:
 	
 

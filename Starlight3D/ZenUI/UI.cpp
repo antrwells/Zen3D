@@ -152,6 +152,15 @@ void UI::Render() {
 
 		auto ui = list[i];
 
+		auto rect = ui->GetRenderRect();
+		if (ui->GetRoot() != nullptr) {
+			auto r_rect = ui->GetRenderRect();
+			auto pr_rect = ui->GetRoot()->GetRenderRect();
+			if (r_rect.y < pr_rect.y)
+			{
+				continue;
+			}
+		}
 		ui->Render();
 
 	}

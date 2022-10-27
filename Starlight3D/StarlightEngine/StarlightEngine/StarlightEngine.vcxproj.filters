@@ -306,6 +306,9 @@
     <ClInclude Include="PPOutline.h">
       <Filter>PP\PostProcesses</Filter>
     </ClInclude>
+    <ClInclude Include="MeshLines.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -508,6 +511,9 @@
     </ClCompile>
     <ClCompile Include="PPOutline.cpp">
       <Filter>PP\PostProcesses</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshLines.cpp">
+      <Filter>Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

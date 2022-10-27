@@ -16,6 +16,9 @@ void UITest::InitApp()
 	mUI->Add(img1);
 
 
+	auto win2 = new UIWindow("Node Editor");
+	win2->SetRect(UIRect(20, 20, 300, 300));
+	img1->Add(win2);
 
 	auto win = new UIWindow("Viewport");
 	win->SetRect(UIRect(200, 200,400,500));
@@ -32,7 +35,7 @@ void UITest::InitApp()
 
 	auto but3 = new UIButton;
 	but3->SetText("Test");
-	but3->SetRect(UIRect(8, 8, 128, 30));
+	but3->SetRect(UIRect(8, 800, 128, 30));
 	settings.content->Add(but3);
 
 

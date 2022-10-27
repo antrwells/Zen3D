@@ -1,13 +1,12 @@
 #include "ZenUI.h"
-#include "UITheme_Neon.h"
 #include "Importer.h"
 #include "RayPicker.h"
 #include "VString.h"
 #include "DirCollection.h"
 #include "VString.h"
 #include "VFile.h"
-
-
+#include "SmartDraw.h"
+#include "MeshLines.h"
 ZenUI* ZenUI::mUI = nullptr;
 
 SceneGraph* ZenUI::GetGraph() {
@@ -414,6 +413,37 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	//ImFont* font1 = io.Fonts->AddFontDefault();
 	
 
+	//Editor Grid
+	mEditGrid = new MeshLines;
+
+	float x = -50;
+	float z = -50;
+
+	for (int i = 0; i < 100; i++) {
+
+		float3 p1, p2;
+		p1 = float3(x, 0, z);
+		p2 = float3(x, 0, -z);
+
+		mEditGrid->AddLine(p1, p2, float4(1, 1, 1, 1));
+
+		x = x + 1.0f;
+
+	}
+
+	x = -50;
+
+	for (int i = 0; i < 100; i++) {
+		
+		float3 p1, p2;
+		p1 = float3(x, 0, z);
+		p2 = float3(-x, 0, z);
+		z = z + 1.0f;
+		mEditGrid->AddLine(p1, p2, float4(1, 1, 1, 1));
+
+	}
+	mEditGrid->CreateBuffers();
+
 }
 
 ZenUI::ZenUI() {
@@ -469,6 +499,12 @@ void ZenUI::MainWindow() {
 	if (mSaveSceneOpen) {
 
 		SaveSceneDialog();
+
+	}
+
+	if (mEditMaterial != nullptr) {
+
+		EditMaterial();
 
 	}
 

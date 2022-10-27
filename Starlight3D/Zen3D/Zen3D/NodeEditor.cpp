@@ -471,6 +471,18 @@ void ZenUI::MainNodeEditor() {
 					auto mesh = meshes[m];
 					auto mat = mesh->GetMaterial();
 
+
+					ImGui::SameLine();
+					if (ImGui::Button("Edit Material"))
+					{
+
+						mEditMaterial = mat;
+
+					}
+
+
+
+					/*
 					auto col_map = mat->GetColorMap();
 					auto norm_map = mat->GetNormalMap();
 					auto spec_map = mat->GetSpecularMap();
@@ -522,7 +534,8 @@ void ZenUI::MainNodeEditor() {
 					}
 
 				}
-			
+				*/
+				}
 			}
 			
 			ImGui::EndChild();
@@ -551,6 +564,7 @@ void ZenUI::MainNodeEditor() {
 				}
 				ImGui::EndDragDropTarget();
 			}
+	
 
 		}
 

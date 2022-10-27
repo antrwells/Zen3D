@@ -307,6 +307,7 @@ bool Node3D::mSysInit = false;
 		InvalidateTransform();
 		mChanged = true;
 		SetChanged();
+		UpdateRotation();
 	}
 
 
@@ -327,6 +328,7 @@ bool Node3D::mSysInit = false;
 		InvalidateTransform();
 		mChanged = true;
 		SetChanged();
+		UpdateRotation();
 	}
 
 	void Node3D::SetRotation4x4(float4x4 rotation) {

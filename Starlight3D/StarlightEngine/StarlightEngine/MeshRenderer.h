@@ -41,6 +41,7 @@ using namespace Diligent;
 #include "NodeLight.h"
 #include "NodeCamera.h"
 class NodeActor;
+class MeshLines;
 
 class MeshRenderer
 {
@@ -54,6 +55,8 @@ public:
 	void CreateDepthGP();
 	void CreateNormalsGP();
 	void CreatePositionsGP();
+	void CreateMeshLinesGP();
+	void RenderMeshLines(MeshLines* mesh,NodeCamera* cam);
 	void RenderActorDepth(NodeActor* actor, NodeCamera* cam);
 	void RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* light, bool firstPass);
 	void RenderPositions(NodeEntity* entity, NodeCamera* cam);
@@ -72,12 +75,14 @@ private:
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Actor_FP;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Actor_SP;
 	RefCntAutoPtr<IPipelineState>		  m_PSO_Actor_Depth;
+	RefCntAutoPtr<IPipelineState>		  m_PSO_MeshLines;
 	RefCntAutoPtr<IBuffer> m_LitConstants;
 	RefCntAutoPtr<IBuffer> m_NormalsConstants;
 	RefCntAutoPtr<IBuffer> m_DepthConstants;
 	RefCntAutoPtr<IBuffer> m_PositionsConstants;
 	RefCntAutoPtr<IBuffer> m_ActorConstants;
 	RefCntAutoPtr<IBuffer> m_ActorDepthConstants;
+	RefCntAutoPtr<IBuffer> m_MeshLinesConstants;
 	RefCntAutoPtr<IBuffer>                m_VSConstants;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Basic;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Lit;
@@ -86,6 +91,7 @@ private:
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Positions;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Actor;
 	RefCntAutoPtr<IShaderResourceBinding> m_SRB_Actor_Depth;
+	RefCntAutoPtr<IShaderResourceBinding> m_SRB_MeshLines;
 	float4x4                              m_Final;
 
 

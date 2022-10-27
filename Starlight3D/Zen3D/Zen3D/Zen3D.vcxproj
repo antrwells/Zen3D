@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="AppZen.cpp" />
     <ClCompile Include="ContentBrowser.cpp" />
+    <ClCompile Include="EditMaterial.cpp" />
     <ClCompile Include="Lightmapper.cpp" />
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="MainMenu.cpp" />

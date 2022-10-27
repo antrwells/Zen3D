@@ -6,6 +6,57 @@
 using namespace Diligent;
 
 
+float qqx, qqy, qqz, qqw;
+
+inline Quaternion fromMatrix(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) {
+	// Use the Graphics Gems code, from 
+	// ftp://ftp.cis.upenn.edu/pub/graphics/shoemake/quatut.ps.Z
+	float x, y, z, w;
+	float t = m00 + m11 + m22;
+	// we protect the division by s by ensuring that s>=1
+	if (t >= 0) { // by w
+		float s = sqrt(t + 1);
+		w = 0.5 * s;
+		s = 0.5 / s;
+		x = (m21 - m12) * s;
+		y = (m02 - m20) * s;
+		z = (m10 - m01) * s;
+	}
+	else if ((m00 > m11) && (m00 > m22)) { // by x
+		float s = sqrt(1 + m00 - m11 - m22);
+		x = s * 0.5;
+		s = 0.5 / s;
+		y = (m10 + m01) * s;
+		z = (m02 + m20) * s;
+		w = (m21 - m12) * s;
+	}
+	else if (m11 > m22) { // by y
+		float s = sqrt(1 + m11 - m00 - m22);
+		y = s * 0.5;
+		s = 0.5 / s;
+		x = (m10 + m01) * s;
+		z = (m21 + m12) * s;
+		w = (m02 - m20) * s;
+	}
+	else { // by z
+		float s = sqrt(1 + m22 - m00 - m11);
+		z = s * 0.5;
+		s = 0.5 / s;
+		x = (m02 + m20) * s;
+		y = (m21 + m12) * s;
+		w = (m10 - m01) * s;
+	}
+	Quaternion q(x, y, z, w);
+	qqx = x;
+	qqy = y;
+	qqz = z;
+	qqw = w;
+	return q;
+}
+
+
+//-------------
+
 
 	float3 PhysicsBody::GetPosition() {
 
@@ -26,6 +77,25 @@ using namespace Diligent;
 		body->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, x);
 		body->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y, y);
 		body->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, z);
+
+	}
+
+	physx::PxMat33 tomat(float3x3 mat)
+	{
+
+		physx::PxMat33 r;
+
+		r[0][0] = mat[0][0];
+		r[0][1] = mat[0][1];
+		r[0][2] = mat[0][2];
+		r[1][0] = mat[1][0];
+		r[1][1] = mat[1][1];
+		r[1][2] = mat[1][2];
+		r[2][0] = mat[2][0];
+		r[2][1] = mat[2][1];
+		r[2][2] = mat[2][2];
+
+		return r;
 
 	}
 
@@ -61,13 +131,35 @@ using namespace Diligent;
 		auto rot = tm.q;
 
 		auto grot =  Quaternion(rot.x, rot.y, rot.z, rot.w);
-
+		
 
 		return grot.ToMatrix();
 
 		//return res;
 
 
+
+	}
+
+	void PhysicsBody::SetRotation(float3x3 rot)
+	{
+		
+		auto pos = body->getGlobalPose();
+		
+		physx::PxTransform trans;
+		trans.p = pos.p;
+
+		auto rotm = tomat(rot);
+		
+
+		trans.q = physx::PxQuat(rotm);
+		
+//		auto qr = fromMatrix(rot.m00,rot.m01,rot.m02,rot.m10,rot.m11,rot.m12,rot.m20,rot.m21,rot.m22);
+		
+
+	//	trans.q = physx::PxQuat(qqx, qqy, qqz, qqw);
+
+		body->setGlobalPose(trans, true);
 
 	}
 

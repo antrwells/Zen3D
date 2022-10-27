@@ -17,6 +17,8 @@ public:
 	Texture2D* mWindowFrame;
 	Texture2D* mWindowTitle;
 	Texture2D* mWindowMain;
+	Texture2D* mScrollBar;
+	Texture2D* mWhite;
 
 	UIColor mFrameColor;
 	UIColor mButonColor;

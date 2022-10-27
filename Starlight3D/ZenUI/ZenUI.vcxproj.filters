@@ -66,6 +66,9 @@
     <ClInclude Include="WindowPage.h">
       <Filter>UI\Controls\Window</Filter>
     </ClInclude>
+    <ClInclude Include="UIScrollerVert.h">
+      <Filter>UI\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenUI.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="UIWindowContent.cpp">
       <Filter>UI\Controls\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="UIScrollerVert.cpp">
+      <Filter>UI\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

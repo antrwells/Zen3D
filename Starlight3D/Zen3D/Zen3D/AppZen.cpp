@@ -1,6 +1,5 @@
 #include "AppZen.h"
-#include "UITheme_Neon.h"
-#include "ButtonControl.h"
+
 #include "Maths.h"
 #include "ActorAnim.h"
 #include "PostProcessing.h"

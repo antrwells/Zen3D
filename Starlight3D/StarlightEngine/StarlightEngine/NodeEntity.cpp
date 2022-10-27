@@ -164,7 +164,7 @@
 		mBody = new PBBox(bb.x*2, bb.y*2, bb.z*2);
 	    
 		mBody->SetPosition(mPosition);
-		
+		mBody->SetRotation(GetRotation());
 		
 	}
 
@@ -174,6 +174,7 @@
 		float3 bb = GetBounds();
 		mBody = new PBSphere(bb.y / 2.0f + 0.1f);
 		mBody->SetPosition(mPosition);
+		mBody->SetRotation(GetRotation());
 	}
 
 	void NodeEntity::SetPhysicsCapsule() {
@@ -182,6 +183,7 @@
 		float3 bb = GetBounds();
 		mBody = new PBCapsule((bb.y / 2.0f) - 1.1f, bb.x / 2.0f);
 		mBody->SetPosition(mPosition);
+		mBody->SetRotation(GetRotation());
 		
 		
 	}
@@ -193,6 +195,7 @@
 	void NodeEntity::SetPhysicsConvex() {
 		mBody = new PBConvex(mMeshes[0]);
 		mBody->SetPosition(mPosition);
+		mBody->SetRotation(GetRotation());
 	
 	}
 
@@ -220,7 +223,7 @@
 
 		Node3D::SetRotation(pitch, yaw, roll);
 		SetChanged();
-
+		mBody->SetRotation(GetRotation());
 
 	}
 

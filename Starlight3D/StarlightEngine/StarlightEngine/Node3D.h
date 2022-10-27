@@ -40,6 +40,7 @@ enum NodeType {
 
 		}
 
+		virtual void UpdateRotation() {};
 
 
 		float3x3 GetRotation() {

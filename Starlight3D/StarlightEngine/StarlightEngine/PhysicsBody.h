@@ -17,6 +17,7 @@ using namespace Diligent;
 
 		float3 GetPosition();
 		float4x4 GetRotation();
+		void SetRotation(float3x3 rotation);
 		void SetPosition(float3 pos);
 		void SetConstraint(bool x, bool y, bool z);
 		void Turn(float x, float y, float z);

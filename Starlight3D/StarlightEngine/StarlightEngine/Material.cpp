@@ -10,6 +10,16 @@
 
 	std::vector<float4x4> Material::m_FinalBoneMatrices;
 
+	void Material::ClearColorMap() {
+
+		mColorMap = BlankColor;
+
+	 }
+
+	void Material::ClearNormalMap() {
+		mNormalMap = BlankNormal;
+
+	}
 
 	Material::Material() {
 
@@ -30,7 +40,7 @@
 		mSpecularMap = BlankColor;
 
 		mDiffuse = float3(1, 1, 1);
-		mSpecular = float3(1, 1, 1);
+		mSpecular = float3(0.3, 0.3, 0.3);
 		mAmbient = float3(0.2, 0.2, 0.2);
 
 	}
@@ -113,3 +123,26 @@
 	}
 	
 
+	void Material::SetDiffuse(float3 diff)
+	{
+		mDiffuse = diff;
+	}
+
+	void Material::SetSpecular(float3 spec)
+	{
+
+		mSpecular = spec;
+
+	}
+
+	float3 Material::GetDiffuse() {
+
+		return mDiffuse;
+
+	}
+
+	float3 Material::GetSpecular() {
+
+		return mSpecular;
+
+	}

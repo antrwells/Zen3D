@@ -5,6 +5,7 @@
 #include "NodeActor.h"
 #include "RayPicker.h"
 #include "SceneGlobal.h"
+#include "GameUI.h"
 #define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
@@ -17,6 +18,7 @@
 		mRayPick = new RayPicker(this);
 		SceneGlobal::mCurrentScene = this;
 		mCams.push_back(mCam);
+		mGameUI = new GameUI;
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
 
 
@@ -737,6 +739,7 @@
 
 	void SceneGraph::BeginNode(Node3D* node) {
 		if (node->GetEnabled() == false) return;
+		node->SetPlaying(true);
 		node->BeginNode();
 		
 		for (int i = 0; i < node->ChildrenCount(); i++)
@@ -750,6 +753,7 @@
 	{
 		if (node->GetEnabled() == false) return;
 		node->EndNode();
+		node->SetPlaying(false);
 		for (int i = 0; i < node->ChildrenCount(); i++) {
 			EndNode(node->GetChild(i));
 		}
@@ -811,5 +815,23 @@
 
 	}
 
+	void SceneGraph::RenderNodeUI(Node3D* node) {
+
+		if (node->IsPlaying()) {
+			node->RenderUI();
+			for (int i = 0; i < node->ChildrenCount(); i++) {
+
+				RenderNodeUI(node->GetChild(i));
+
+			}
+		}
+	}
+
+	void SceneGraph::RenderUI(float4x4 proj) {
+
+		GameUI::UI->Begin();
+		RenderNodeUI(mRootNode);
+		GameUI::UI->End(proj);
+	}
 
 	SceneGraph* SceneGraph::mThis = nullptr;

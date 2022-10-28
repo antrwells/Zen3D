@@ -309,6 +309,9 @@
     <ClInclude Include="MeshLines.h">
       <Filter>Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -514,6 +517,9 @@
     </ClCompile>
     <ClCompile Include="MeshLines.cpp">
       <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

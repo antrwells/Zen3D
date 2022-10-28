@@ -282,15 +282,20 @@ class Node3D;
 
 			mMaterial = new Material;
 
+			mMaterial->SetDiffuse(file->ReadVec3());
+			mMaterial->SetSpecular(file->ReadVec3());
+
 			mMaterial->SetColorMap(new Texture2D(file->ReadString()));
 			mMaterial->SetNormalMap(new Texture2D(file->ReadString()));
+			mMaterial->SetSpecularMap(new Texture2D(file->ReadString()));
 			
-			MakeDoubleSided();
 			CreateBuffers();
 
 		}
 		void WriteMesh(VFile* file)
 		{
+
+			
 
 			file->WriteInt(mVertices.size());
 			for (int i = 0; i < mVertices.size(); i++) {
@@ -316,11 +321,16 @@ class Node3D;
 
 			auto mat = mMaterial;
 
+			file->WriteVec3(mat->GetDiffuse());
+			file->WriteVec3(mat->GetSpecular());
+
 			auto c_path = mat->GetColorMap()->GetPath();
 			auto n_path = mat->GetNormalMap()->GetPath();
+			auto s_path = mat->GetSpecularMap()->GetPath();
 
 			file->WriteString(c_path.c_str());
 			file->WriteString(n_path.c_str());
+			file->WriteString(s_path.c_str());
 
 
 

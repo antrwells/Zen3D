@@ -307,7 +307,10 @@ void SmartDraw::Begin() {
 
 void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a,bool flip_uv) {
 
-
+    if (drawZ <= 0.0)
+    {
+        drawZ = 1.0f;
+    }
    // flip_uv = true;
     DrawList* list = GetDrawList(tex);
 

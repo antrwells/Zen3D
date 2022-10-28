@@ -189,6 +189,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="FSFile.h" />
     <ClInclude Include="FSPayload.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="GBuffer.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Importer.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="FrameTypeColor.cpp" />
     <ClCompile Include="FSFile.cpp" />
     <ClCompile Include="FSPayload.cpp" />
+    <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="GBuffer.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Importer.cpp" />

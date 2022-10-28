@@ -502,6 +502,10 @@ void ZenUI::MainWindow() {
 
 	}
 
+	if (mSaveNodeOpen) {
+		SaveNodeDialog();
+	}
+
 	if (mEditMaterial != nullptr) {
 
 		EditMaterial();

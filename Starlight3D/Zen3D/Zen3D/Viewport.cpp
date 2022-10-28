@@ -314,9 +314,12 @@ void ZenUI::MainViewPort() {
 		}
 		else {
 			auto ren = mGraph->GetRenderer();
-			ren->RenderMeshLines(mEditGrid, mCurrentCamera);
+			if (mGridOn) {
+				ren->RenderMeshLines(mEditGrid, mCurrentCamera);
+			}
 			mGraph->Render();
 		}
+
 		if (mSelectedNode != nullptr) {
 			mEditGraph->ClearNodes();
 			mEditGraph->SetCamera(mCurrentCamera);
@@ -328,6 +331,10 @@ void ZenUI::MainViewPort() {
 
 		mRenderTarget->ClearDepth();
 		auto cam = mGraph->GetCamera();
+
+		float4x4 pr = float4x4::OrthoOffCenter(0, mRenderTarget->GetWidth(), mRenderTarget->GetHeight(), 0, 0, 100.0f, false);
+
+		mGraph->RenderUI(pr);
 	//	cam->SetViewport(0, 0, win_size.x, win_size.y);
 		mDraw->Begin();
 
@@ -466,8 +473,6 @@ void ZenUI::MainViewPort() {
 			}
 		}
 
-		float4x4 pr = float4x4::OrthoOffCenter(0,mRenderTarget->GetWidth(),mRenderTarget->GetHeight(), 0, 0, 100.0f, false);
-
 
 		mDraw->End(pr);
 
@@ -487,6 +492,8 @@ void ZenUI::MainViewPort() {
 				}
 			}
 		}
+		
+
 	//	}
 		mRenderTarget->Release();
 

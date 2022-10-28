@@ -29,7 +29,7 @@
 
 			BlankColor = new Texture2D("engine/maps/blankcolor.png");
 			BlankNormal = new Texture2D("engine/maps/blanknormal.png");
-
+			//BlankSpecular = new Texture2D("engine/maps/blankspecular.png");
 
 		}
 

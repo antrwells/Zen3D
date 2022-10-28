@@ -1489,6 +1489,7 @@ void MeshRenderer::CreateLitGP() {
     {
         {SHADER_TYPE_PIXEL, "g_Texture",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
         {SHADER_TYPE_PIXEL,"g_TextureNorm",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
+        {SHADER_TYPE_PIXEL,"g_TextureSpec",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
         {SHADER_TYPE_PIXEL,"g_Env",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
         {SHADER_TYPE_PIXEL,"g_Shadow",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC}
     };
@@ -1511,6 +1512,7 @@ void MeshRenderer::CreateLitGP() {
     {
         {SHADER_TYPE_PIXEL, "g_Texture", SamLinearClampDesc},
         {SHADER_TYPE_PIXEL,"g_TextureNorm",SamLinearClampDesc},
+        {SHADER_TYPE_PIXEL,"g_TextureSpec",SamLinearClampDesc},
         {SHADER_TYPE_PIXEL,"g_Env",EnvSam},
         {SHADER_TYPE_PIXEL,"g_Shadow",EnvSam}
     };
@@ -1653,10 +1655,13 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
             auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
             auto norm_view = mesh->GetMaterial()->GetNormalMap()->GetView();
+            auto spec_view = mesh->GetMaterial()->GetSpecularMap()->GetView();
          
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(tex_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+            m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureSpec")->Set(spec_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             auto env_map = mesh->GetMaterial()->GetEnvMap();
+
 
             bool env_On = false;
 
@@ -1773,9 +1778,11 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
             auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
             auto norm_view = mesh->GetMaterial()->GetNormalMap()->GetView();
+            auto spec_view = mesh->GetMaterial()->GetSpecularMap()->GetView();
 
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(tex_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+            m_SRB_Lit->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureSpec")->Set(spec_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             auto env_map = mesh->GetMaterial()->GetEnvMap();
 
             bool env_On = false;

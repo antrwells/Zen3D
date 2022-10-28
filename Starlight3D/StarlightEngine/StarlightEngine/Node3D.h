@@ -133,6 +133,9 @@ enum NodeType {
 
 			}
 		}
+
+		void RenderUI();
+
 		/// <summary>
 		/// Internal use.
 		/// </summary>
@@ -485,7 +488,15 @@ enum NodeType {
 
 		}
 
+		bool IsPlaying() {
+			return mPlaying;
+		}
+		void SetPlaying(bool play) {
+			mPlaying = play;
+		}
+
 	protected:
+
 		static bool mSysInit;
 		bool mTransformInvalidated = true;
 
@@ -527,4 +538,5 @@ enum NodeType {
 		float3 mPushScale;
 		bool mChanged = false;
 		bool mEnabled = true;
+		bool mPlaying = false;
 	};

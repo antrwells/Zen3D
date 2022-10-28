@@ -20,7 +20,7 @@
 #include "RayPicker.h"
 #include "ZContextVar.h"
 #include "SceneGlobal.h"
-
+#include "GameUI.h"
 
 bool Node3D::mSysInit = false;
 
@@ -42,6 +42,18 @@ bool Node3D::mSysInit = false;
 		SetChanged();
 		mEnabled = true;
 		
+
+	}
+
+	void Node3D::RenderUI() {
+
+		if (mEnabled == false) return;
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+			auto obj = mScriptObjs[i];
+
+			obj->CallUI();
+		}
 
 	}
 
@@ -638,6 +650,52 @@ bool Node3D::mSysInit = false;
 
 	}
 
+	// GameUI
+
+	ZContextVar* ui_button(const std::vector<ZContextVar*>& args) {
+
+
+		std::string text = args[0]->GetStringVal();
+		int x, y, w, h;
+		x = args[1]->GetIntVal();
+		y = args[2]->GetIntVal();
+		w = args[3]->GetIntVal();
+		h = args[4]->GetIntVal();
+
+		GameUI::UI->Button(text, x, y, w, h);
+
+		return VMakeInt(1);
+
+	}
+
+	ZContextVar* ui_image(const std::vector<ZContextVar*>& args)
+	{
+		int x, y, w, h;
+		auto img = (Texture2D*)args[0]->GetClassVal()->FindVar("Image")->GetCObj();
+		x = args[1]->GetIntVal();
+		y = args[2]->GetIntVal();
+		w = args[3]->GetIntVal();
+		h = args[4]->GetIntVal();
+		float r, g, b, a;
+		r = args[5]->GetFloatVal();
+		g = args[6]->GetFloatVal();
+		b = args[7]->GetFloatVal();
+		a = args[8]->GetFloatVal();
+
+
+		GameUI::UI->Image(img, x, y, w, h,r,g,b,a);
+
+		return nullptr;
+	}
+
+	ZContextVar* img_load(const std::vector<ZContextVar*>& args) {
+
+		Texture2D* img = new Texture2D(args[0]->GetStringVal().c_str());
+	
+		return VMakeC((void*)img);
+
+	}
+
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
 
 	void Node3D::AddSystemFunctions() {
@@ -647,6 +705,7 @@ bool Node3D::mSysInit = false;
 		con1->LoadLib("math");
 		con1->LoadLib("scene");
 		con1->LoadLib("input");
+		con1->LoadLib("ui");
 
 		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 		
@@ -664,6 +723,9 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction gs_raycast("GameSceneRayCast", gs_raycast);
 		ZSystemFunction gs_getNode("GameSceneGetNode", gs_getNode);
 		ZSystemFunction sys_rnd("random", sys_random);
+		ZSystemFunction gui_button("GUIButton", ui_button);
+		ZSystemFunction gui_image("GUIImage", ui_image);
+		ZSystemFunction i_load("GUILoadImage", img_load);
 
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
@@ -678,7 +740,9 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(gs_raycast);
 		funcs->RegisterFunction(sys_rnd);
 		funcs->RegisterFunction(gs_getNode);
-
+		funcs->RegisterFunction(gui_button);
+		funcs->RegisterFunction(i_load);
+		funcs->RegisterFunction(gui_image);
 		int aa=5;
 	}
 

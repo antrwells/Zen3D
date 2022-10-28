@@ -121,11 +121,17 @@ public:
 		{
 			mSaveSceneOpen = true;
 		}
+		void OpenSaveNode() {
+			mSaveNodeOpen = true;
+		}
 
 		void SaveSceneDialog();
+		void SaveNodeDialog();
 
 		void LoadScene(const char* path);
 		void SaveScene(const char* path);
+		void SaveNode(const char* path);
+		void LoadNode(const char* path);
 
 	//globals
 
@@ -151,6 +157,7 @@ private:
 	bool mContentBrowserOpen = true;
 	bool mNodeEditorOpen = true;
 	bool mSaveSceneOpen = false;
+	bool mSaveNodeOpen = false;
 	//Renderer
 	bool mPostProcessOpen = false;
 	bool mLightmapperOpen = false;
@@ -305,6 +312,7 @@ private:
 
 	//Editor Grid
 	MeshLines* mEditGrid;
+	bool mGridOn = true;
 
 
 };

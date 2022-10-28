@@ -2,6 +2,43 @@
 #include <memory>
 #include "Importer.h"
 #include "RayPicker.h"
+
+void ZenUI::SaveNodeDialog() {
+
+	ImGui::SetNextWindowPos(ImVec2(Application::GetApp()->GetWidth() / 2 - 180, Application::GetApp()->GetHeight() / 2 - 40));
+	ImGui::SetNextWindowSize(ImVec2(360, 80));
+
+	ImGui::Begin("Save Node As...", &mSaveSceneOpen, ImGuiWindowFlags_NoDecoration);
+
+	if (saveName == nullptr) {
+		saveName = (char*)malloc(2049);
+		saveName[0] = "\0"[0];
+	}
+
+	if (ImGui::InputText("Filename", (char*)saveName, 2048)) {
+
+		//mSaveSceneOpen = false;
+
+
+	}
+
+	if (ImGui::Button("Save"))
+	{
+		SaveNode((const char*)saveName);
+
+		mSaveNodeOpen = false;
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Cancel"))
+	{
+		mSaveNodeOpen = false;
+	}
+
+	ImGui::End();
+
+
+}
+
 void ZenUI::SaveSceneDialog() {
 
 	ImGui::SetNextWindowPos(ImVec2(Application::GetApp()->GetWidth() / 2 - 180, Application::GetApp()->GetHeight() / 2 - 40));
@@ -48,6 +85,40 @@ void ZenUI::LoadScene(const char* path) {
 	cam_rotation.y = cam_rot->GetFloat2().y;
 	
 	ZenUI::mUI->Notify("Imported scene.", "Scene imported succesfully.");
+
+}
+void ZenUI::LoadNode(const char* path) {
+
+	VFile* file = new VFile(path, FileMode::Read);
+
+	auto node = mGraph->ReadNodeHeader(file);
+	mGraph->ReadNode(file, node);
+
+	file->Close();
+	mGraph->AddNode(node);
+	ZenUI::mUI->Notify("Imported Node.", "Succesfully imported node.");
+
+}
+void ZenUI::SaveNode(const char* path) {
+	std::string fpath(mContentPath->GetConst());
+	fpath = fpath + "/" + std::string(path);
+	fpath = fpath + ".znode";
+
+	auto node = mSelectedNode;
+
+	if (node->GetType() == NodeType::Entity)
+	{
+		NodeEntity* entity = (NodeEntity*)node;
+
+		VFile* file = new VFile(fpath.c_str(), FileMode::Write);
+
+		//mGraph->WriteTransform(file, node);
+		mGraph->SaveNodeHeader(file, node);
+		mGraph->SaveNode(file, node);
+
+		file->Close();
+
+	}
 
 }
 

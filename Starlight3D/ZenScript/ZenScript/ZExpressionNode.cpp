@@ -755,7 +755,8 @@ ZContextVar* Expression::Evaluate(VarType recv) {
                 return VMakeInt(rv->GetIntVal(),false);
             case VarString:
                 return VMakeString(rv->GetStringVal(),false);
-
+            case VarCObj:
+                return VMakeC(rv->GetCObj(), rv->GetCompare());
             }
 
             int a4a = 5;

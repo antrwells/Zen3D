@@ -125,6 +125,10 @@ void ZenUI::MainContentBrowser() {
 						LoadScene(entry.full.c_str());
 
 					}
+					if (entry.ext == "znode")
+					{
+						LoadNode(entry.full.c_str());
+					}
 					if (entry.ext == "ch")
 					{
 

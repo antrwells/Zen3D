@@ -21,6 +21,7 @@ struct TexItem {
 };
 
 class CubeRenderer;
+class GameUI;
 class RayPicker;
 
 /// <summary>
@@ -239,7 +240,9 @@ class RayPicker;
 		Node3D* GetRoot() {
 			return mRootNode;
 		}
-		
+		void RenderNodeUI(Node3D* node);
+		void RenderUI(float4x4 proj);
+
 		void EndNode(Node3D* node);
 		void BeginNode(Node3D* node);
 		void BeginPlay();
@@ -625,4 +628,5 @@ class RayPicker;
 		RefCntAutoPtr<IBuffer>             m_ScratchBuffer;
 		RefCntAutoPtr<IBuffer>             m_InstanceBuffer;
 		std::vector<NodeProperty*> mProperties;
+		GameUI* mGameUI;
 };

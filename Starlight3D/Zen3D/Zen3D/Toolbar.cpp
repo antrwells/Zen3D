@@ -85,8 +85,8 @@ void ZenUI::MainToolBar() {
 	const char* items[] = { "Local Space", "World Space" };
 	ImGui::Combo("Transform Space", &mSpaceItem, items, 2);
 	//ImGui::Combo("Global Space",&mSpaceItem,"");
-//	ImGui::EndCombo();
-//}
+	//	ImGui::EndCombo();
+	//}
 	switch (mSpaceItem) {
 	case 0:
 
@@ -142,6 +142,11 @@ void ZenUI::MainToolBar() {
 
 
 		ImGui::PopItemWidth();
+	}
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Editor Grid", &mGridOn))
+	{
+
 	}
 
 	ImGui::End();

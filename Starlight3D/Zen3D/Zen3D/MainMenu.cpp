@@ -87,6 +87,15 @@ void ZenUI::MainMenu() {
 			}
 			ImGui::EndMenu();
 		}
+		if (ImGui::BeginMenu("Node"))
+		{
+			if (ImGui::MenuItem("Save Node"))
+			{
+				OpenSaveNode();
+			}
+			ImGui::EndMenu();
+		}
+
 		ImGui::EndMainMenuBar();
 	}
 

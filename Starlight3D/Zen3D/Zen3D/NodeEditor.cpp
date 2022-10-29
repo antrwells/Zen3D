@@ -134,6 +134,22 @@ void ZenUI::MainNodeEditor() {
 				{
 					cam->SetFOV(fov);
 				}
+
+				ImGui::Text("Lens Image");
+				ImGui::Image(cam->GetLensImage()->GetView(), ImVec2(64, 64));
+				if (ImGui::BeginDragDropTarget()) {
+					if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
+					{
+						DirEntry* entry = (DirEntry*)payload->Data;
+
+						cam->SetLensImage(new Texture2D(entry->full.c_str()));
+						//mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
+
+						mDragEntry = nullptr;
+
+					}
+					ImGui::EndDragDropTarget();
+				}
 			}
 			if (mEditNode->GetType() == NodeType::Light)
 			{
@@ -299,7 +315,39 @@ void ZenUI::MainNodeEditor() {
 							free(sbuf);
 
 						}
+						if (ImGui::BeginDragDropTarget()) {
+							if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
+							{
+								DirEntry* entry = (DirEntry*)payload->Data;
+								var->SetString(entry->full.c_str());
+								//cam->SetLensImage(new Texture2D(entry->full.c_str()));
+								//mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
 
+								mDragEntry = nullptr;
+
+							}
+							else if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Sound")) {
+								DirEntry* entry = (DirEntry*)payload->Data;
+								var->SetString(entry->full.c_str());
+								//cam->SetLensImage(new Texture2D(entry->full.c_str()));
+								//mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
+
+								mDragEntry = nullptr;
+
+
+							}
+							else if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Scene")) {
+								DirEntry* entry = (DirEntry*)payload->Data;
+								var->SetString(entry->full.c_str());
+								//cam->SetLensImage(new Texture2D(entry->full.c_str()));
+								//mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
+
+								mDragEntry = nullptr;
+
+
+							}
+							ImGui::EndDragDropTarget();
+						}
 
 
 					}

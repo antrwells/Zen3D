@@ -6,7 +6,11 @@
 #include "VString.h"
 #include "VFile.h"
 // Content Browser
+struct NodeRef {
 
+	Node3D* node = nullptr;
+
+};
 void import_modeldone(FSPayload* pl) {
 
 	//if(pl->GetName())
@@ -46,6 +50,10 @@ void ZenUI::MainContentBrowser() {
 	{
 		int id = 0;
 		ImGui::BeginChild("Content");
+
+		
+
+
 		for (int i = 0; i < mDir->enteries.size(); i++) {
 
 			auto entry = mDir->enteries[i];
@@ -156,6 +164,12 @@ void ZenUI::MainContentBrowser() {
 						{
 							ImGui::SetDragDropPayload("Texture", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
+						else if (mDragEntryRef.ext == "mp3" || mDragEntryRef.ext == "wav" || mDragEntryRef.ext == "ogg") {
+							ImGui::SetDragDropPayload("Sound", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
+						}
+						else if (mDragEntryRef.ext == "zscene") {
+							ImGui::SetDragDropPayload("Scene", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
+						}
 						ImGui::Button(mDragEntryRef.name.c_str(), ImVec2(64, 64));
 						ImGui::EndDragDropSource();
 						
@@ -204,7 +218,21 @@ void ZenUI::MainContentBrowser() {
 			ImGui::EndPopup();
 		}
 		ImGui::EndChild();
+		if (ImGui::BeginDragDropTarget()) {
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Node"))
+			{
+				auto nr = (NodeRef*)payload->Data;
+				auto node2 = nr->node;
+				mSelectedNode = node2;
+				SaveNode(node2->GetName());
+				ScanContent(mContentPath->GetConst());
+				//node2->GetRootNode()->RemoveNode(node2);
+				//node->AddNode(node2);
 
+
+			}
+			ImGui::EndDragDropTarget();
+		} 
 		//ImGui::SetCursorPos(ImVec2(128, 128));
 		//ImGui::Button("Folder");
 		//ImGui::SetCursorPos(ImVec2(5, 64));

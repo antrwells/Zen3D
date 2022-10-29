@@ -119,7 +119,7 @@ void ZenUI::SaveNode(const char* path) {
 		file->Close();
 
 	}
-
+	ScanContent(mContentPath->GetConst());
 }
 
 void ZenUI::SaveScene(const char* path)
@@ -177,7 +177,7 @@ void ZenUI::SaveScene(const char* path)
 
 	//Save file info file for progress bar.
 	*/
-	
+	ScanContent(mContentPath->GetConst());
 	ZenUI::mUI->Notify("Scene Saved", "Succesfully saved scene " + std::string(fpath));
 
 }

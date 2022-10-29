@@ -41,6 +41,7 @@
 #include "Application.h"
 #include "RenderTarget2D.h"
 #include "RenderTargetCube.h"
+#include <vector>
 using namespace Diligent;
 
 
@@ -66,6 +67,9 @@ public:
 	RefCntAutoPtr<ITextureView> GetView() {
 		return m_TextureSRV;
 	}
+	RefCntAutoPtr<ITexture> GetTexture() {
+		return Texture;
+	}
 	IDeviceObject* GetViewPTR() {
 
 		return Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
@@ -81,6 +85,7 @@ private:
 	int mWidth;
 	int mHeight;
 	std::string mPath;
+	static std::vector<Texture2D*> mCache;
 };
 
 

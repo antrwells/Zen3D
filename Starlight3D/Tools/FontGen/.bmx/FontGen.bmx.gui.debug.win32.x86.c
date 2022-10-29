@@ -55,12 +55,6 @@ static BBString _s3={
 	{84,104,101,32,115,116,97,99,107,32,105,115,32,101,109,112,116
 	,121}
 };
-static BBString _s11={
-	&bbStringClass,
-	0xa87ae41da8ef4609,
-	9,
-	{102,111,110,116,49,46,116,116,102}
-};
 static BBString _s4={
 	&bbStringClass,
 	0xf8c407ed2d3563fa,
@@ -94,6 +88,12 @@ static BBString _s6={
 	29,
 	{110,111,100,101,32,112,97,114,101,110,116,32,108,105,115,116,32
 	,105,115,32,100,105,102,102,101,114,101,110,116}
+};
+static BBString _s11={
+	&bbStringClass,
+	0x1fea1e96a458fa51,
+	7,
+	{111,114,98,46,116,116,102}
 };
 static BBString _s8={
 	&bbStringClass,
@@ -199,7 +199,7 @@ int _bb_main(){
 		bbt_lf=&_s11;
 		struct BBDebugStm __stmt_2 = {0x4c8412ee7fec7324, 6, 0};
 		bbOnDebugEnterStm(&__stmt_2);
-		bbt_font=(struct brl_max2d_imagefont_TImageFont_obj*)brl_max2d_LoadImageFont((BBOBJECT)bbt_lf,15,4);
+		bbt_font=(struct brl_max2d_imagefont_TImageFont_obj*)brl_max2d_LoadImageFont((BBOBJECT)bbt_lf,22,4);
 		struct BBDebugStm __stmt_3 = {0x4c8412ee7fec7324, 8, 0};
 		bbOnDebugEnterStm(&__stmt_3);
 		brl_max2d_SetImageFont((struct brl_max2d_imagefont_TImageFont_obj*)bbt_font);

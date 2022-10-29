@@ -175,7 +175,7 @@ public:
         winHeight = height;
         auto SC = m_pSwapChain->GetDesc();
         //m_pImGui.reset(new ImGuiImplWin32(curWin, m_pDevice, SC.ColorBufferFormat, SC.DepthBufferFormat));
-    
+        mResized = true;
     }
 
     RefCntAutoPtr<ISwapChain> GetSwap() {
@@ -262,12 +262,24 @@ public:
 
     virtual void SetPayload() {};
 
+    bool GetResized() {
+
+        if (mResized) {
+
+            mResized = false;
+            return true;
+        }
+        return false;
+
+    }
+
 private:
 
     UserInput* mInput;
 protected:
     FSPayload* mCurrentPayload = nullptr;
 private:
+    bool mResized = false;
     RefCntAutoPtr<IRenderDevice>  m_pDevice;
     RefCntAutoPtr<IDeviceContext> m_pImmediateContext;
     RefCntAutoPtr<ISwapChain>     m_pSwapChain;

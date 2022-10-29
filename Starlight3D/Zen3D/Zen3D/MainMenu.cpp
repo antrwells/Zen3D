@@ -1,5 +1,5 @@
 #include "ZenUI.h"
-
+#include "Importer.h"
 void ZenUI::MainMenu() {
 	//return;
 
@@ -92,6 +92,49 @@ void ZenUI::MainMenu() {
 			if (ImGui::MenuItem("Save Node"))
 			{
 				OpenSaveNode();
+			}
+		
+			if (ImGui::BeginMenu("Add Primitive"))
+			{
+				if (ImGui::MenuItem("Plane"))
+				{
+					Importer* imp = new Importer;
+					auto box = imp->ImportAI("data/primitive/plane.fbx");
+					mGraph->AddNode(box);
+				}
+				if (ImGui::MenuItem("Box"))
+				{
+					Importer* imp = new Importer;
+					auto box = imp->ImportAI("data/primitive/cube.fbx");
+					mGraph->AddNode(box);
+
+
+				}
+				if (ImGui::MenuItem("Sphere"))
+				{
+					Importer* imp = new Importer;
+					auto box = imp->ImportAI("data/primitive/sphere.fbx");
+					mGraph->AddNode(box);
+				}
+				if (ImGui::MenuItem("Cylinder"))
+				{
+					Importer* imp = new Importer;
+					auto box = imp->ImportAI("data/primitive/cylinder.fbx");
+					mGraph->AddNode(box);
+				}
+				if (ImGui::MenuItem("Cone"))
+				{
+					Importer* imp = new Importer;
+					auto box = imp->ImportAI("data/primitive/cone.fbx");
+					mGraph->AddNode(box);
+				}
+				if (ImGui::MenuItem("Torus"))
+				{
+					Importer* imp = new Importer;
+					auto box = imp->ImportAI("data/primitive/torus.fbx");
+					mGraph->AddNode(box);
+				}
+				ImGui::EndMenu();
 			}
 			ImGui::EndMenu();
 		}

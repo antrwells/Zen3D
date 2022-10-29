@@ -46,7 +46,7 @@ void ZenUI::MainViewPort() {
 			mRenderTarget = new RenderTarget2D((int)win_size.x, (int)win_size.y);
 			printf("============================================================>\n");
 			//auto cam = mGraph->dGetCamera();
-			
+
 			//mGameCam->SetViewport(0, 0, win_size.x, win_size.y);
 			first_render = false;
 
@@ -125,7 +125,7 @@ void ZenUI::MainViewPort() {
 								}
 								else {
 									mSelectedNode->Move(float3(((float)Application::GetApp()->GetInput()->GetMouseDX()) * mTranslateRatio, 0, 0));
-										
+
 								}
 							}
 							if (gLock_y) {
@@ -135,7 +135,7 @@ void ZenUI::MainViewPort() {
 									mSelectedNode->SetPosition(new_pos);
 								}
 								else {
-									mSelectedNode->Move(float3(0,((float)Application::GetApp()->GetInput()->GetMouseDY())* mTranslateRatio, 0));
+									mSelectedNode->Move(float3(0, ((float)Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio, 0));
 								}
 
 							}
@@ -146,7 +146,7 @@ void ZenUI::MainViewPort() {
 									mSelectedNode->SetPosition(new_pos);
 								}
 								else {
-									mSelectedNode->Move(float3(0,0,((float)Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio));
+									mSelectedNode->Move(float3(0, 0, ((float)Application::GetApp()->GetInput()->GetMouseDY()) * mTranslateRatio));
 								}
 
 							}
@@ -301,32 +301,47 @@ void ZenUI::MainViewPort() {
 			cam_interact = false;
 		}
 
-		if (mPPOn) {
-		}
-			mPP->PreRender();
 		
-		mGraph->RenderShadowMaps();
-		mRenderTarget->Bind();
+		mPP->PreRender();
+
+		if (mGameGraph != nullptr) {
+			mGameGraph->RenderShadowMaps();
+		}
+		else {
+			mGraph->RenderShadowMaps();
+		}
+	
+			mRenderTarget->Bind();
 		//mGraph->Render();
 		if (mPPOn) {
 			
 		
 		}
 		else {
-			auto ren = mGraph->GetRenderer();
-			if (mGridOn) {
-				ren->RenderMeshLines(mEditGrid, mCurrentCamera);
+			if (mGameGraph == nullptr) {
+				auto ren = mGraph->GetRenderer();
+				if (mGridOn) {
+					ren->RenderMeshLines(mEditGrid, mCurrentCamera);
+				}
+
+				mGraph->Render();
 			}
-			mGraph->Render();
+			else {
+				mGameGraph->SetMain();
+				mGameGraph->Render();
+				printf("Rendering gamegraph");
+			}
 		}
 
-		if (mSelectedNode != nullptr) {
-			mEditGraph->ClearNodes();
-			mEditGraph->SetCamera(mCurrentCamera);
-			mEditGraph->AddNodeTemp(mSelectedNode);
+		if (mGameGraph == nullptr) {
+			if (mSelectedNode != nullptr) {
+				mEditGraph->ClearNodes();
+				mEditGraph->SetCamera(mCurrentCamera);
+				mEditGraph->AddNodeTemp(mSelectedNode);
 
-			mPPOutline->SetGraph(mEditGraph);
-			mPP->Render();
+				mPPOutline->SetGraph(mEditGraph);
+				mPP->Render();
+			}
 		}
 
 		mRenderTarget->ClearDepth();
@@ -334,165 +349,173 @@ void ZenUI::MainViewPort() {
 
 		float4x4 pr = float4x4::OrthoOffCenter(0, mRenderTarget->GetWidth(), mRenderTarget->GetHeight(), 0, 0, 100.0f, false);
 
-		mGraph->RenderUI(pr);
+		Application::GetApp()->GetInput()->SetMouse(real_pos.x, real_pos.y, Application::GetApp()->GetInput()->GetMouseDX(),Application::GetApp()->GetInput()->GetMouseDY());
+		if (mGameGraph != nullptr) {
+			mGameGraph->RenderUI(pr);
+		}
+
 	//	cam->SetViewport(0, 0, win_size.x, win_size.y);
-		mDraw->Begin();
 
-		for (int i = 0; i < mGraph->GetCams().size(); i++) {
+		if (mPlaying == false) {
+			mDraw->Begin();
 
-			auto cam1 = mGraph->GetCams()[i];
-			if (cam1 == mGraph->GetCamera()) continue;
-			float lx, ly;
+			for (int i = 0; i < mGraph->GetCams().size(); i++) {
 
-			lx = 20;
-			ly = 20;
-			float4x4 model = cam1->GetWorldMatrixNoInvert().Inverse();
-			//angX = angX + 0.1f;
+				auto cam1 = mGraph->GetCams()[i];
+				if (cam1 == mGraph->GetCamera()) continue;
+				float lx, ly;
 
-			// Camera is at (0, 0, -5) looking along the Z axis
-			float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
+				lx = 20;
+				ly = 20;
+				float4x4 model = cam1->GetWorldMatrixNoInvert().Inverse();
+				//angX = angX + 0.1f;
 
-			// Get pretransform matrix that rotates the scene according the surface orientation
-			//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
+				// Camera is at (0, 0, -5) looking along the Z axis
+				float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
 
-			// Get projection matrix adjusted to the current screen orientation
-			auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
+				// Get pretransform matrix that rotates the scene according the surface orientation
+				//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
 
-			// Compute world-view-projection matrix
-			float4x4 m_WorldViewProjMatrix = model * View * Proj;
-			m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
+				// Get projection matrix adjusted to the current screen orientation
+				auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
 
-
-			float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
-
-			pos.x /= pos.w;
-			pos.y /= pos.w;
-
-			pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
-			pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
+				// Compute world-view-projection matrix
+				float4x4 m_WorldViewProjMatrix = model * View * Proj;
+				m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
 
 
+				float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
 
-			mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprCam, 1, 1, 1, 1, false);
-			if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
-			{
-				if (Application::GetApp()->GetInput()->IsMouseDown(0))
+				pos.x /= pos.w;
+				pos.y /= pos.w;
+
+				pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
+				pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
+
+
+
+				mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprCam, 1, 1, 1, 1, false);
+				if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
 				{
-					mSelectedNode = cam1;
+					if (Application::GetApp()->GetInput()->IsMouseDown(0))
+					{
+						mSelectedNode = cam1;
 
-					mEditNode = cam1;
+						mEditNode = cam1;
+					}
 				}
 			}
-		}
-		for (int i = 0; i < mGraph->LightCount(); i++) {
-			Node3D* entity = mGraph->GetLight(i);
+			for (int i = 0; i < mGraph->LightCount(); i++) {
+				Node3D* entity = mGraph->GetLight(i);
 
-			float lx, ly;
+				float lx, ly;
 
-			lx = 20;
-			ly = 20;
-			float4x4 model = entity->GetWorldMatrix();
-			//angX = angX + 0.1f;
+				lx = 20;
+				ly = 20;
+				float4x4 model = entity->GetWorldMatrix();
+				//angX = angX + 0.1f;
 
-			// Camera is at (0, 0, -5) looking along the Z axis
-			float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
+				// Camera is at (0, 0, -5) looking along the Z axis
+				float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
 
-			// Get pretransform matrix that rotates the scene according the surface orientation
-			//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
+				// Get pretransform matrix that rotates the scene according the surface orientation
+				//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
 
-			// Get projection matrix adjusted to the current screen orientation
-			auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
+				// Get projection matrix adjusted to the current screen orientation
+				auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
 
-			// Compute world-view-projection matrix
-			float4x4 m_WorldViewProjMatrix = model * View * Proj;
-			m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
+				// Compute world-view-projection matrix
+				float4x4 m_WorldViewProjMatrix = model * View * Proj;
+				m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
 
 
-			float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
+				float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
 
-			pos.x /= pos.w;
-			pos.y /= pos.w;
+				pos.x /= pos.w;
+				pos.y /= pos.w;
 
-			pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
-			pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
+				pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
+				pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
 
-			mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprLight, 1, 1, 1, 1, false);
-			if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
-			{
-				if (Application::GetApp()->GetInput()->IsMouseDown(0))
+				mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprLight, 1, 1, 1, 1, false);
+				if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
 				{
-					mSelectedNode = entity;
-					mEditNode = entity;
+					if (Application::GetApp()->GetInput()->IsMouseDown(0))
+					{
+						mSelectedNode = entity;
+						mEditNode = entity;
+					}
 				}
 			}
-		}
 
-		auto base_node = mGraph->GetRoot();
+			auto base_node = mGraph->GetRoot();
 
-		for (int i = 0; i <base_node->ChildrenCount(); i++) {
-			Node3D* entity = base_node->GetChild(i);
+			for (int i = 0; i < base_node->ChildrenCount(); i++) {
+				Node3D* entity = base_node->GetChild(i);
 
-			if (entity->GetType() != NodeType::Node) continue;
-			float lx, ly;
+				if (entity->GetType() != NodeType::Node) continue;
+				float lx, ly;
 
-			lx = 20;
-			ly = 20;
-			float4x4 model = entity->GetWorldMatrix();
-			//angX = angX + 0.1f;
+				lx = 20;
+				ly = 20;
+				float4x4 model = entity->GetWorldMatrix();
+				//angX = angX + 0.1f;
 
-			// Camera is at (0, 0, -5) looking along the Z axis
-			float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
+				// Camera is at (0, 0, -5) looking along the Z axis
+				float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
 
-			// Get pretransform matrix that rotates the scene according the surface orientation
-			//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
+				// Get pretransform matrix that rotates the scene according the surface orientation
+				//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
 
-			// Get projection matrix adjusted to the current screen orientation
-			auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
+				// Get projection matrix adjusted to the current screen orientation
+				auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
 
-			// Compute world-view-projection matrix
-			float4x4 m_WorldViewProjMatrix = model * View * Proj;
-			m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
+				// Compute world-view-projection matrix
+				float4x4 m_WorldViewProjMatrix = model * View * Proj;
+				m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
 
 
-			float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
+				float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
 
-			pos.x /= pos.w;
-			pos.y /= pos.w;
+				pos.x /= pos.w;
+				pos.y /= pos.w;
 
-			pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
-			pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
+				pos.x = (0.5 + pos.x * 0.5) * mRenderTarget->GetWidth();
+				pos.y = (0.5 - pos.y * 0.5) * mRenderTarget->GetHeight();
 
-			mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprNode, 1, 1, 1, 1, false);
-			if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
-			{
-				if (Application::GetApp()->GetInput()->IsMouseDown(0))
+				mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, mSprNode, 1, 1, 1, 1, false);
+				if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
 				{
-					mSelectedNode = entity;
-					mEditNode = entity;
+					if (Application::GetApp()->GetInput()->IsMouseDown(0))
+					{
+						mSelectedNode = entity;
+						mEditNode = entity;
+					}
 				}
 			}
+
+
+			mDraw->End(pr);
 		}
 
 
-		mDraw->End(pr);
+		if (mPlaying == false) {
+			if (mCurrentCamera == mEditCam) {
+				//if (mCurrentCamera == mEditCam) {
+				if (mCurrentGizmo != nullptr) {
 
-
-		if (mCurrentCamera == mEditCam) {
-			//if (mCurrentCamera == mEditCam) {
-			if (mCurrentGizmo != nullptr) {
-				
-				//else {
+					//else {
 					mGraph->RenderNodeBasic(mCurrentGizmo);
-			//	}
+					//	}
 
-			}
-			if (mSelectedNode != nullptr) {
-				if (mSelectedNode->GetType() == NodeType::Camera) {
-					mGraph->RenderNodeBasic(mCamGizmo);
+				}
+				if (mSelectedNode != nullptr) {
+					if (mSelectedNode->GetType() == NodeType::Camera) {
+						mGraph->RenderNodeBasic(mCamGizmo);
+					}
 				}
 			}
 		}
-		
 
 	//	}
 		mRenderTarget->Release();
@@ -596,7 +619,7 @@ void ZenUI::MainViewPort() {
 	dis = dis / 1.0f;
 	dis = dis * 0.1f;
 	if (dis < 0.5f) dis = 0.5f;
-
+	dis = dis * 1.5f;
 
 	mCurrentGizmo->SetScale(float3(dis, dis, dis));
 

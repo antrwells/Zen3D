@@ -63,7 +63,11 @@
 		for (int k = 0; k < mesh->NumVertices(); k++) {
 
 			auto vert = mesh->GetVertex(k);
-			vertData[vid] = physx::PxVec3(vert.position.x, vert.position.y, vert.position.z);
+
+			float3 p1, p2, p3;
+			p1 = vert.position * mesh->GetOwner()->GetWorldMatrix();
+
+			vertData[vid] = physx::PxVec3(p1.x, p1.y, p1.z);
 			vid++;
 
 		}

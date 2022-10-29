@@ -172,7 +172,7 @@ private:
 
 	//Positions & Size
 	
-	
+	SceneGraph* mGameGraph = nullptr;
 	//ToolBar
 	ImVec2 mToolbarPos;
 	ImVec2 mToolbarSize;

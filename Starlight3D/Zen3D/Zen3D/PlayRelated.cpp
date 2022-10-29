@@ -7,7 +7,14 @@ void ZenUI::BeginPlay() {
 		//	mCurrentCamera = mGameCam;
 	//		mGraph->SetCamera(mGameCam);
 	//	}
-		mGraph->BeginPlay();
+		mGameGraph = new SceneGraph;
+		mGameGraph->SetRoot(mGraph->GetRoot());
+		mGameGraph->SetMain();
+		mGameGraph->BeginPlay();
+		//mGameGraph->SetRoot(new Node3D);
+
+		//mGraph->BeginPlay();
+		
 		mPlaying = true;
 	}
 }
@@ -21,7 +28,8 @@ void ZenUI::EndPlay() {
 	//	}
 	
 		mPlaying = false;
-		mGraph->EndPlay();
+		mGameGraph->EndPlay();
+		mGameGraph = nullptr;
 	}
 
 }

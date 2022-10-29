@@ -3,6 +3,7 @@
 
 #include "Maths.h"
 #include "Application.h"
+#include "Texture2D.h"
 
 	NodeCamera::NodeCamera() {
 
@@ -10,8 +11,13 @@
 		SetViewport(0, 0,Application::GetApp()->GetWidth(),Application::GetApp()->GetHeight());
 		mType = NodeType::Camera;
 		mName = "Game Camera";
-
+		if (mLensDefualt == nullptr) {
+			mLensDefualt = new Texture2D("data/lensImage.png");
+		}
+		mLensImage = mLensDefualt;
 	}
+
+	Texture2D* NodeCamera::mLensDefualt = nullptr;
 
 	void NodeCamera::SetViewport(int x, int y, int w, int h) {
 

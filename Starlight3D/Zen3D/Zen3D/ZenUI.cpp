@@ -309,7 +309,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 	//Scene Viewport Resources
 	mSceneViewPos = ImVec2(240, mToolbarSize.y + 12);
-	mSceneViewSize = ImVec2(750, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
+	mSceneViewSize = ImVec2(1250, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = (NodeEntity*)pUI->GetResource("GizTranslate");//  importer->ImportAI("edit/gizmo/translate1.fbx");
@@ -380,8 +380,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mIconScript = (Texture2D*)pUI->GetResource("ScriptIcon");//  new Texture2D("edit/browser/scripticon.png");
 
 	//Node Editor
-	mNodeEditPos = ImVec2(990, mToolbarSize.y + 12);
-	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() - 990, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
+	mNodeEditPos = ImVec2(1490, mToolbarSize.y + 12);
+	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() - 1490, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 
 
 	//Other Resources
@@ -444,6 +444,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	}
 	mEditGrid->CreateBuffers();
 
+
+	Application::GetApp()->GetResized();
 }
 
 ZenUI::ZenUI() {
@@ -612,11 +614,11 @@ void ZenUI::GetScriptName() {
 
 //////////
 void ZenUI::UpdateUI() {
-
+	
 	if (mPlaying) {
-		mGraph->Update();
+		mGameGraph->Update();
 	}
-
+	
 }
 
 void ZenUI::RenderUI() {

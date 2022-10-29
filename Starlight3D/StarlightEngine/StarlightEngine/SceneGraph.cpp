@@ -6,6 +6,7 @@
 #include "RayPicker.h"
 #include "SceneGlobal.h"
 #include "GameUI.h"
+#include "Audio.h"
 #define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
@@ -20,7 +21,8 @@
 		mCams.push_back(mCam);
 		mGameUI = new GameUI;
 	//	FXDepth = new Kinetic::FX::Effect("engine/shader/depthVS.glsl", "engine/shader/depthFS.glsl");
-
+		mDraw = new SmartDraw(Application::GetApp());
+		
 
 	}
 
@@ -524,6 +526,12 @@
 			}
 		}
 
+		mDraw->Begin();
+
+		//mDraw->DrawTexture(0, 0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), mCam->GetLensImage(), 1, 1, 1, 1);
+
+
+		mDraw->End();
 		
 	
 	}
@@ -812,6 +820,7 @@
 	void SceneGraph::EndPlay() {
 
 		EndNode(mRootNode);
+		Audio::EndSong();
 
 	}
 
@@ -835,3 +844,4 @@
 	}
 
 	SceneGraph* SceneGraph::mThis = nullptr;
+	SceneGraph* SceneGraph::mMainScene = nullptr;

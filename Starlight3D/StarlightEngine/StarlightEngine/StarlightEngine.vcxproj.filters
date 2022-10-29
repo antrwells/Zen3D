@@ -312,6 +312,9 @@
     <ClInclude Include="GameUI.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StarlightEngine.cpp">
@@ -520,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="GameUI.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -115,7 +115,7 @@
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\pxshared;C:\git\PhysX-4.1;C:\git\PhysX-4.1\physx;C:\projects\Starlight3D\diligent\glw\include;C:\projects\Starlight3D\lua\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\projects\Starlight3D\irr\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\pxshared;C:\git\PhysX-4.1;C:\git\PhysX-4.1\physx;C:\projects\Starlight3D\diligent\glw\include;C:\projects\Starlight3D\lua\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -130,10 +130,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;LibPng.lib;ZLib.lib;DiligentCore.lib;assimp-vc142-mtd.lib;Diligent-Imgui.lib;ZenScript.lib;glfw3dll.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;LibPng.lib;ZLib.lib;DiligentCore.lib;assimp-vc142-mtd.lib;Diligent-Imgui.lib;ZenScript.lib;glfw3dll.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>C:\projects\Starlight3D\diligent\pyhsxDebug;C:\projects\Starlight3D\diligent\glw;C:\projects\Starlight3D\lua;C:\projects\Starlight3D\StarlightStudio\x64\Debug;C:\projects\Starlight3D\diligent\debug;C:\projects\Starlight3D\StarlightStudio\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\projects\Starlight3D\irr\lib\Winx64-visualStudio;C:\projects\Starlight3D\diligent\pyhsxDebug;C:\projects\Starlight3D\diligent\glw;C:\projects\Starlight3D\lua;C:\projects\Starlight3D\StarlightStudio\x64\Debug;C:\projects\Starlight3D\diligent\debug;C:\projects\Starlight3D\StarlightStudio\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -178,6 +178,7 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="AtlasNode.h" />
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="BigBuffer.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneInfo.h" />
@@ -253,6 +254,7 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AtlasNode.cpp" />
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="BigBuffer.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneInfo.cpp" />

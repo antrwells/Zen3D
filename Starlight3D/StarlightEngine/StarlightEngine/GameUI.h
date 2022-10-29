@@ -6,6 +6,11 @@
 /// <summary>
 /// mini ui for in game user interfaces.
 /// </summary>
+/// cla
+/// 
+/// 
+class kFont;
+
 class GameUI
 {
 public:
@@ -20,5 +25,6 @@ public:
 private:
 	SmartDraw* mDraw;
 	Texture2D* mButtonImg;
+	kFont* mGameFont;
 };
 

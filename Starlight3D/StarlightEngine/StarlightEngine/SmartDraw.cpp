@@ -14,6 +14,7 @@ SmartDraw::SmartDraw(Application* app) {
     BlendState.RenderTargets[0].SrcBlend = BLEND_FACTOR_SRC_ALPHA;
     BlendState.RenderTargets[0].DestBlend = BLEND_FACTOR_INV_SRC_ALPHA;
     BlendState.AlphaToCoverageEnable = true;
+    //BlendState.IndependentBlendEnable = true;
 
      vertices = new Vertex2D[2048];
      indices = new Uint32[4096];
@@ -335,7 +336,7 @@ void SmartDraw::DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r,
 		info->a = a;
         info->flip_uv = flip_uv;
 
-        drawZ -= 0.002f;
+        drawZ -= 0.001f;
 
 		list->Draws.push_back(info);
 

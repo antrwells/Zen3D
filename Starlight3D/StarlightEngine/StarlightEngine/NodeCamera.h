@@ -1,7 +1,7 @@
 #pragma once
 #include "Node3D.h"
 
-
+class Texture2D;
 
     /// <summary>
     /// The NodeCamera class is how you manipulate the applications view of the scene.
@@ -86,6 +86,20 @@
 
         }
 
+        void SetLensImage(Texture2D* img)
+        {
+
+            mLensImage = img;
+
+        }
+
+        Texture2D* GetLensImage() {
+
+            return mLensImage;
+
+        }
+
+
     private:
 
         float4x4 mProjectionMatrix;
@@ -94,6 +108,8 @@
         float mMinZ = 0.55f;
         float mMaxZ = 80.0f;
         float mWidth, mHeight;
+        Texture2D* mLensImage = nullptr;
+        static Texture2D* mLensDefualt;
   
     };
 

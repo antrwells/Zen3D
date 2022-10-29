@@ -4,7 +4,20 @@
 
 Texture2D::Texture2D(const char* path,bool alpha) {
 
+    for (int i = 0; i < mCache.size(); i++) {
 
+        auto ct = mCache[i];
+        if (ct->GetPath() == std::string(path))
+        {
+
+            m_TextureSRV = ct->GetView();
+            Texture = ct->GetTexture();
+            mPath = ct->GetPath();
+            return;
+
+        }
+
+    }
 
     auto m_pDevice = Application::GetDev();
     TextureLoadInfo loadInfo;
@@ -21,6 +34,7 @@ Texture2D::Texture2D(const char* path,bool alpha) {
    m_TextureSRV = Tex->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
    Texture = Tex;
    mPath = std::string(path);
+   mCache.push_back(this);
 
 }
 
@@ -80,3 +94,5 @@ Texture2D::Texture2D(RenderTargetCube* target, int face)
     Texture = target->GetColorTexture();
     m_TextureSRV = target->GetColorViewFace(face);
 }
+
+std::vector<Texture2D*> Texture2D::mCache;

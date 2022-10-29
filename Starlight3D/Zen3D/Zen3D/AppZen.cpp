@@ -18,7 +18,7 @@ void AppZen::SetPayload() {
 	zUI = new ZenUI();
 	mCurrentPayload = zUI->GetPayload();
 	mCurrentPayload->LoadThreaded();
-
+	Application::GetApp()->GetResized();
 }
 
 void AppZen::InitApp() {

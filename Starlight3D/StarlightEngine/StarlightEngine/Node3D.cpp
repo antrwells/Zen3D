@@ -21,7 +21,7 @@
 #include "ZContextVar.h"
 #include "SceneGlobal.h"
 #include "GameUI.h"
-
+#include "Audio.h"
 bool Node3D::mSysInit = false;
 
 	Node3D::Node3D() {
@@ -261,7 +261,7 @@ bool Node3D::mSysInit = false;
 		}
 		else {
 
-			float4 mv = mRotation * float4(move, 1.0f);// *mRotation;
+			float4 mv = float4(move, 1.0f) *mRotation;
 
 			mPosition += float3(mv.x, mv.y, mv.z);
 
@@ -574,6 +574,20 @@ bool Node3D::mSysInit = false;
 
 	// GameScene - Bindings
 
+	ZContextVar* gs_loadScene(const std::vector<ZContextVar*>& args)
+	{
+
+		std::string path = args[0]->GetStringVal();
+
+		auto ms = SceneGraph::GetMainScene();
+
+		ms->SetRoot(new Node3D);
+		ms->LoadGraph(path);
+
+
+		return nullptr;
+	}
+
 	ZContextVar* gs_raycast(const std::vector<ZContextVar*>& args) {
 
 		auto origin = args[0]->GetClassVal();
@@ -662,10 +676,14 @@ bool Node3D::mSysInit = false;
 		w = args[3]->GetIntVal();
 		h = args[4]->GetIntVal();
 
-		GameUI::UI->Button(text, x, y, w, h);
+		bool res = GameUI::UI->Button(text, x, y, w, h);
 
-		return VMakeInt(1);
-
+		if (res) {
+			return VMakeInt(1);
+		}
+		else {
+			return VMakeInt(0);
+		}
 	}
 
 	ZContextVar* ui_image(const std::vector<ZContextVar*>& args)
@@ -688,12 +706,35 @@ bool Node3D::mSysInit = false;
 		return nullptr;
 	}
 
+	ZContextVar* ui_displayWidth(const std::vector<ZContextVar*>& args) {
+
+		return VMakeInt(Application::GetApp()->GetWidth());
+
+	}
+
+	ZContextVar* ui_displayHeight(const std::vector<ZContextVar*>& args)
+	{
+
+		return VMakeInt(Application::GetApp()->GetHeight());
+	}
+	//image
+
 	ZContextVar* img_load(const std::vector<ZContextVar*>& args) {
 
 		Texture2D* img = new Texture2D(args[0]->GetStringVal().c_str());
 	
 		return VMakeC((void*)img);
 
+	}
+
+	//sound/song
+
+	ZContextVar* sound_PlaySong(const std::vector<ZContextVar*>& args)
+	{
+
+		Audio* audio = new Audio;
+		audio->PlaySong(args[0]->GetStringVal().c_str());
+		return nullptr;
 	}
 
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
@@ -706,6 +747,7 @@ bool Node3D::mSysInit = false;
 		con1->LoadLib("scene");
 		con1->LoadLib("input");
 		con1->LoadLib("ui");
+		con1->LoadLib("sound");
 
 		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 		
@@ -726,6 +768,10 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction gui_button("GUIButton", ui_button);
 		ZSystemFunction gui_image("GUIImage", ui_image);
 		ZSystemFunction i_load("GUILoadImage", img_load);
+		ZSystemFunction ui_disWidth("GUIDisplayWidth", ui_displayWidth);
+		ZSystemFunction ui_disHeight("GUIDisplayHeight", ui_displayHeight);
+		ZSystemFunction s_playSong("MusicPlaySong", sound_PlaySong);
+		ZSystemFunction gs_loadscene("GameSceneLoadScene", gs_loadScene);
 
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
@@ -743,6 +789,10 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(gui_button);
 		funcs->RegisterFunction(i_load);
 		funcs->RegisterFunction(gui_image);
+		funcs->RegisterFunction(ui_disWidth);
+		funcs->RegisterFunction(ui_disHeight);
+		funcs->RegisterFunction(s_playSong);
+		funcs->RegisterFunction(gs_loadscene);
 		int aa=5;
 	}
 

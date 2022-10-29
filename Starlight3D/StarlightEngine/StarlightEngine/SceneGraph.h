@@ -11,6 +11,8 @@
 #include "BigBuffer.h"
 #include "VFile.h"
 
+#include "SmartDraw.h"
+
 
 struct TexItem {
 
@@ -599,8 +601,14 @@ class RayPicker;
 		MeshRenderer* GetRenderer() {
 			return mRenderer;
 		}
+		void SetMain() {
+			mMainScene = this;
+		}
+		static SceneGraph* GetMainScene() {
+			return mMainScene;
+		}
 	private:
-	
+		static SceneGraph* mMainScene;
 
 		std::vector<NodeCamera*> mCams;
 		std::vector<Node3D*> mRTNodes;
@@ -629,4 +637,5 @@ class RayPicker;
 		RefCntAutoPtr<IBuffer>             m_InstanceBuffer;
 		std::vector<NodeProperty*> mProperties;
 		GameUI* mGameUI;
+		SmartDraw* mDraw;
 };

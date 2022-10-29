@@ -410,6 +410,10 @@ void Application::Run() {
                 glfwDestroyWindow(m_Window);
 
                 glfwPollEvents();
+                GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+                const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+                winWidth = mode->width - 40;
+                    winHeight = mode->height - 60;
 
                 m_Window = glfwCreateWindow(winWidth, winHeight, "Zen3D", nullptr, nullptr);
                 if (m_Window == nullptr)
@@ -417,6 +421,7 @@ void Application::Run() {
                     LOG_ERROR_MESSAGE("Failed to create GLFW window");
                     return;
                 }
+                glfwSetWindowPos(m_Window,5,10);
 
                 //winWidth = ;
                 //winHeight = 450;
@@ -473,6 +478,7 @@ void Application::Run() {
 
                 WindowResize(winWidth,winHeight);
                 is_splash = false;
+                mResized = false;
                 InitApp();
 
 

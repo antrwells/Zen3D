@@ -89,6 +89,17 @@ Texture2D::Texture2D(RenderTarget2D* target) {
 
 }
 
+void Texture2D::Free() {
+   
+    Texture->Release();
+    Texture.Detach();
+
+    //Texture.Release();
+    m_TextureSRV->Release();
+    m_TextureSRV.Detach();
+
+}
+
 Texture2D::Texture2D(RenderTargetCube* target, int face)
 {
     Texture = target->GetColorTexture();

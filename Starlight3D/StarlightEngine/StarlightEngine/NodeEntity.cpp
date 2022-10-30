@@ -153,7 +153,12 @@
 
 
 	}
+	void NodeEntity::SetPhysicsBoxSize(float size) {
+		mBody = new PBBox(size,size,size);
 
+		mBody->SetPosition(mPosition);
+		mBody->SetRotation(GetRotation());
+	}
 	void NodeEntity::SetPhysicsBox() {
 
 		
@@ -186,6 +191,17 @@
 		mBody->SetRotation(GetRotation());
 		
 		
+	}
+
+	void NodeEntity::SetPhysicsCapsuleSize(float width, float height) {
+
+
+		float3 bb = GetBounds();
+		mBody = new PBCapsule(height, width);
+		mBody->SetPosition(mPosition);
+		mBody->SetRotation(GetRotation());
+
+
 	}
 
 	void NodeEntity::SetConstraint(bool x, bool y, bool z) {

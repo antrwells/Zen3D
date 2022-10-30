@@ -93,7 +93,27 @@ void ZenUI::MainMenu() {
 			{
 				OpenSaveNode();
 			}
-		
+			if (ImGui::BeginMenu("Add Builtin Node"))
+			{
+				for (int i = 0; i < nodeLists.size(); i++)
+				{
+					auto list = nodeLists[i];
+					if (ImGui::BeginMenu(list.type.c_str()))
+					{
+						
+						for (int j = 0; j < list.names.size(); j++)
+						{
+							if (ImGui::MenuItem(list.names[j].c_str()))
+							{
+								AddNodeAndScript(list.paths[j], list.names[j]);
+							}
+						}
+						ImGui::EndMenu();
+					}
+				}
+				ImGui::EndMenu();
+			}
+
 			if (ImGui::BeginMenu("Add Primitive"))
 			{
 				if (ImGui::MenuItem("Plane"))

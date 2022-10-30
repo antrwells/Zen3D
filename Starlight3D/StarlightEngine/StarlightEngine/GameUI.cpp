@@ -6,7 +6,7 @@ GameUI::GameUI() {
 
 	mDraw = new SmartDraw(Application::GetApp());
 	UI = this;
-	mButtonImg = new Texture2D("UI/gamebg.png");
+	mButtonImg = new Texture2D("UI/ButtonFrame.png");
 	mGameFont = new kFont("data/fonts/f1.pf");
 }
 

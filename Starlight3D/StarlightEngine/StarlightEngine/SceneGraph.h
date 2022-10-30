@@ -161,6 +161,16 @@ class RayPicker;
 
 		//lights
 
+		std::vector<NodeLight*> GetLights() {
+
+			return mLights;
+
+		}
+
+		void SetLights(std::vector<NodeLight*> lights) {
+			mLights = lights;
+		}
+
 		/// <summary>
 		/// Adds a light to the scene. You can use as many as you'd like.
 		/// </summary>
@@ -600,6 +610,10 @@ class RayPicker;
 		}
 		MeshRenderer* GetRenderer() {
 			return mRenderer;
+		}
+		void SetCams(std::vector<NodeCamera*> cams)
+		{
+			mCams = cams;
 		}
 		void SetMain() {
 			mMainScene = this;

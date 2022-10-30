@@ -21,6 +21,7 @@
 #include "ZContextVar.h"
 #include "SceneGlobal.h"
 #include "GameUI.h"
+#include "VideoDecoder.h"
 #include "Audio.h"
 bool Node3D::mSysInit = false;
 
@@ -521,9 +522,27 @@ bool Node3D::mSysInit = false;
 
 		auto nc = (Node3D*)args[0]->GetCObj();
 		
+		float size = args[1]->GetFloatVal();
+
+		NodeEntity* ent = (NodeEntity*)nc;
+	
+		ent->SetPhysicsBoxSize(size);
+
+		return nullptr;
+
+	}
+
+	ZContextVar* node3d_setpycylinder(const std::vector<ZContextVar*>& args)
+	{
+
+		auto nc = (Node3D*)args[0]->GetCObj();
+
+		float height = args[1]->GetFloatVal();
+		float width = args[2]->GetFloatVal();
+
 		NodeEntity* ent = (NodeEntity*)nc;
 
-		ent->SetPhysicsBox();
+		ent->SetPhysicsCapsuleSize(height,width);
 
 		return nullptr;
 
@@ -533,6 +552,8 @@ bool Node3D::mSysInit = false;
 	{
 
 		auto nc = (Node3D*)args[0]->GetCObj();
+
+	
 
 		NodeEntity* ent = (NodeEntity*)nc;
 
@@ -737,7 +758,49 @@ bool Node3D::mSysInit = false;
 		return nullptr;
 	}
 
+
+	// Video
+
+	ZContextVar* video_Start(const std::vector<ZContextVar*>& args)
+	{
+		auto path = args[0]->GetStringVal();
+
+		VideoDecoder* decoder = new VideoDecoder;
+		decoder->OpenVideo(path.c_str());
+
+
+		return VMakeC((void*)decoder);
+	}
+
+	ZContextVar* video_NextFrame(const std::vector<ZContextVar*>& args)
+	{
+		auto video = (VideoDecoder*)args[0]->GetCObj();
+		video->GetCurrentFrame();
+		return VMakeC((void*)video->GetCurrentImage());
+	}
+
+	ZContextVar* util_DrawTexture2D(const std::vector<ZContextVar*>& args)
+	{
+		int x, y, w, h;
+		auto img = (Texture2D*)args[0]->GetCObj();
+		if (img == nullptr) return nullptr;
+
+		x = args[1]->GetIntVal();
+		y = args[2]->GetIntVal();
+		w = args[3]->GetIntVal();
+		h = args[4]->GetIntVal();
+		float r, g, b, a;
+		r = args[5]->GetFloatVal();
+		g = args[6]->GetFloatVal();
+		b = args[7]->GetFloatVal();
+		a = args[8]->GetFloatVal();
+		GameUI::UI->Image(img, x, y, w, h, r, g, b, a);
+		return nullptr;
+	}
+
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
+
+
 
 	void Node3D::AddSystemFunctions() {
 
@@ -748,6 +811,7 @@ bool Node3D::mSysInit = false;
 		con1->LoadLib("input");
 		con1->LoadLib("ui");
 		con1->LoadLib("sound");
+		con1->LoadLib("video");
 
 		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 		
@@ -760,6 +824,7 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction n_getmousemovey("Node3DGetMouseMoveY", node3d_getmousemovey);
 		ZSystemFunction n_setpybox("Node3DSetPyToBox", node3d_setpybox);
 		ZSystemFunction n_setpytris("Node3DSetPyTriMesh", node3d_setpytris);
+		ZSystemFunction n_setcap("Node3DSetPyToCylinder", node3d_setpycylinder);
 		ZSystemFunction n_setpyconvex("Node3DSetPyToConvex", node3d_setpyconvex);
 		ZSystemFunction n_GetName("Node3DGetName", node_GetName);
 		ZSystemFunction gs_raycast("GameSceneRayCast", gs_raycast);
@@ -772,7 +837,9 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction ui_disHeight("GUIDisplayHeight", ui_displayHeight);
 		ZSystemFunction s_playSong("MusicPlaySong", sound_PlaySong);
 		ZSystemFunction gs_loadscene("GameSceneLoadScene", gs_loadScene);
-
+		ZSystemFunction v_play("VideoStart", video_Start);
+		ZSystemFunction v_nextFrame("VideoNextFrame", video_NextFrame);
+		ZSystemFunction util_DrawTexture("UtilDrawTexture", util_DrawTexture2D);
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
 		funcs->RegisterFunction(n_setpos);
@@ -793,6 +860,10 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(ui_disHeight);
 		funcs->RegisterFunction(s_playSong);
 		funcs->RegisterFunction(gs_loadscene);
+		funcs->RegisterFunction(n_setcap);
+		funcs->RegisterFunction(v_play);
+		funcs->RegisterFunction(v_nextFrame);
+		funcs->RegisterFunction(util_DrawTexture);
 		int aa=5;
 	}
 

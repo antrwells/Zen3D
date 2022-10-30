@@ -10,7 +10,11 @@ void ZenUI::BeginPlay() {
 		mGameGraph = new SceneGraph;
 		mGameGraph->SetRoot(mGraph->GetRoot());
 		mGameGraph->SetMain();
+		mGameGraph->SetCamera(mGraph->GetCamera());
+		mGameGraph->SetCams(mGraph->GetCams());
+		mGameGraph->SetLights(mGraph->GetLights());
 		mGameGraph->BeginPlay();
+		
 		//mGameGraph->SetRoot(new Node3D);
 
 		//mGraph->BeginPlay();

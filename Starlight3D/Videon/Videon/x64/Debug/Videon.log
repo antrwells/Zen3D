@@ -1,0 +1,13 @@
+﻿  VidNative.cpp
+C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(195,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(210,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(922,11): warning C4129: 'm': unrecognized character escape sequence
+C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(1053,18): warning C4244: '=': conversion from 'double' to 'int64_t', possible loss of data
+avdevice.lib(avdevice-58.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+avfilter.lib(avfilter-7.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+avformat.lib(avformat-58.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+avutil.lib(avutil-56.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+postproc.lib(postproc-55.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+swresample.lib(swresample-3.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+swscale.lib(swscale-5.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
+  Videon.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Videon.lib

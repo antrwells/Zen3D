@@ -857,6 +857,13 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
                 }
             }
+            for (int i = 0; i < mElements.size(); i++)
+            {
+                if (mElements[i].mType == ExprElementType::EFloat)
+                {
+                    is_float = true;
+                }
+            }
             if (is_float) {
                 return VMakeFloat(evaluateFloat(mElements));
             }

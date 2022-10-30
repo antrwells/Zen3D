@@ -446,6 +446,51 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 
 	Application::GetApp()->GetResized();
+
+	std::string nPath = "script/builtin/";
+
+	DirCollection* dc = new DirCollection(nPath);
+
+	for (int i = 0; i < dc->enteries.size(); i++) {
+
+		auto entry = dc->enteries[i];
+
+		if (entry.name == "." || entry.name == "..")
+		{
+			continue;
+		}
+
+		if (entry.folder) {
+
+			NodeList list;
+			list.type = entry.name;
+			DirCollection* fc = new DirCollection(entry.full);
+			for (int j = 0; j < fc->enteries.size(); j++)
+			{
+				auto sub_entry = fc->enteries[j];
+
+				if (sub_entry.name == "." || sub_entry.name == "..")
+				{
+					continue;
+				}
+				if (sub_entry.folder == false) {
+
+					VString tmp(sub_entry.name.c_str());
+					VString tmp2 = tmp.SubString(0, tmp.Find("."));
+
+					list.names.push_back(tmp2.GetConst());
+					list.paths.push_back(sub_entry.full);
+				}
+			}
+			nodeLists.push_back(list);
+		}
+
+		int aa = 5;
+
+	}
+
+	Notify("Loading nodes", "Loading predefined nodes");
+
 }
 
 ZenUI::ZenUI() {

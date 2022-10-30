@@ -210,8 +210,10 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
     int ds = ((3 * 4) + (4 * 4) + (2*4)) * (size * 4);
 
     if (made) {
+        m_CubeVertexBuffer->Release();
         m_CubeVertexBuffer.Detach();
-        m_CubeVertexBuffer.Release();
+       
+
     }
 
     BufferDesc VertBuffDesc;
@@ -223,6 +225,7 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
     VBData.pData = &vertices[0];
     VBData.DataSize = ds;
     gApp->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_CubeVertexBuffer);
+
     
    // for (int i = 0;i < size * 4;i++) {
   //      delete &vertices[i];
@@ -263,8 +266,10 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
     int ds = 4 * size * 6;
 
     if (made) {
+        m_CubeIndexBuffer->Release();
         m_CubeIndexBuffer.Detach();
-        m_CubeIndexBuffer.Release();
+
+        //m_CubeIndexBuffer.Release();
     }
 
     BufferDesc IndBuffDesc;
@@ -275,6 +280,7 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
     BufferData IBData;
     IBData.pData = &indices[0];
     IBData.DataSize = ds;
+    
     gApp->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_CubeIndexBuffer);
 
   //  delete indices;
@@ -437,7 +443,7 @@ void SmartDraw::End() {
         CreateVertexBuffer(Draws[i]);
         CreateIndexBuffer(Draws[i]);
         made = true;
-
+        //return;
         auto dd = Draws[i];
 
         m_pSRB->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(dd->Tex->GetView(), SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);

@@ -74,35 +74,36 @@ void ZenUI::MainViewPort() {
 
 			float spd = -0.15f;
 			auto cam = mCurrentCamera;// mGraph->GetCamera();
-
-			if (Application::GetApp()->GetInput()->IsMouseDown(1))
-			{
-
-				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyW))
+			if (mPlaying == false) {
+				if (Application::GetApp()->GetInput()->IsMouseDown(1))
 				{
 
-					cam->Move(float3(0, 0, -spd));
+					if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyW))
+					{
 
-				}
-				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyS)) {
-					cam->Move(float3(0, 0, spd));
-				}
-				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyA))
-				{
-					cam->Move(float3(spd, 0, 0));
-				}
-				if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyD))
-				{
-					cam->Move(float3(-spd, 0, 0));
-				}
+						cam->Move(float3(0, 0, -spd));
 
-				cam_interact = true;
+					}
+					if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyS)) {
+						cam->Move(float3(0, 0, spd));
+					}
+					if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyA))
+					{
+						cam->Move(float3(spd, 0, 0));
+					}
+					if (Application::GetApp()->GetInput()->IsKeyDown(KeyID::KeyD))
+					{
+						cam->Move(float3(-spd, 0, 0));
+					}
+
+					cam_interact = true;
+				}
+				else {
+					cam_interact = false;
+				}
 			}
-			else {
-				cam_interact = false;
-			}
 
-			if (Application::GetApp()->GetInput()->IsMouseDown(0)) {
+			if (Application::GetApp()->GetInput()->IsMouseDown(0) && mPlaying ==false) {
 
 				if (gLock) {
 
@@ -221,7 +222,7 @@ void ZenUI::MainViewPort() {
 				}
 				else {
 					bool check_rest = true;
-					if (mSelectedNode != nullptr) {
+					if (mSelectedNode != nullptr && mPlaying ==false) {
 						auto giz_result = mRayPick->MousePickNode((int)real_pos.x, (int)real_pos.y, (int)win_size.x, (int)win_size.y, mCurrentGizmo, mCurrentCamera);
 
 						int bbb = 5;
@@ -329,7 +330,7 @@ void ZenUI::MainViewPort() {
 			else {
 				mGameGraph->SetMain();
 				mGameGraph->Render();
-				printf("Rendering gamegraph");
+				//printf("Rendering gamegraph");
 			}
 		}
 
@@ -539,7 +540,7 @@ void ZenUI::MainViewPort() {
 
 	ImGui::End();
 
-	if (cam_interact) {
+	if (cam_interact && mPlaying == false) {
 
 		int dx = Application::GetApp()->GetInput()->GetMouseDX();
 		int dy = Application::GetApp()->GetInput()->GetMouseDY();
@@ -619,7 +620,7 @@ void ZenUI::MainViewPort() {
 	dis = dis / 1.0f;
 	dis = dis * 0.1f;
 	if (dis < 0.5f) dis = 0.5f;
-	dis = dis * 1.5f;
+	dis = dis * 1.3f;
 
 	mCurrentGizmo->SetScale(float3(dis, dis, dis));
 

@@ -346,6 +346,16 @@ void ZenUI::MainNodeEditor() {
 
 
 							}
+							else if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Movie")) {
+								DirEntry* entry = (DirEntry*)payload->Data;
+								var->SetString(entry->full.c_str());
+								//cam->SetLensImage(new Texture2D(entry->full.c_str()));
+								//mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
+
+								mDragEntry = nullptr;
+
+
+							}
 							ImGui::EndDragDropTarget();
 						}
 

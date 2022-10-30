@@ -115,7 +115,7 @@
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\projects\Starlight3D\irr\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\pxshared;C:\git\PhysX-4.1;C:\git\PhysX-4.1\physx;C:\projects\Starlight3D\diligent\glw\include;C:\projects\Starlight3D\lua\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\projects\Starlight3D\Videon\Videon;C:\projects\Starlight3D\irr\include;C:\git\PhysX-4.1\pxshared\include;C:\git\PhysX-4.1\physx\include;C:\git\PhysX-4.1\pxshared;C:\git\PhysX-4.1;C:\git\PhysX-4.1\physx;C:\projects\Starlight3D\diligent\glw\include;C:\projects\Starlight3D\lua\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -146,7 +146,7 @@
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\projects\Starlight3D\diligent\glw\include;C:\projects\Starlight3D\lua\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\projects\Starlight3D\Videon\Videon;C:\projects\Starlight3D\diligent\glw\include;C:\projects\Starlight3D\lua\include;C:\git\diligent\DiligentEngine\DiligentSamples\Samples\ImguiDemo\src;C:\git\diligent\DiligentEngine\DiligentTools\ThirdParty\imgui;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\..\ThirdParty\imGuIZMO.quat;C:\git\diligent\DiligentEngine\DiligentTools\Imgui\interface;C:\projects\Starlight3D\StarLightEditor\StarLightEditor;C:\git\diligent\DiligentEngine\DiligentTools;C:\git\diligent\DiligentEngine\DiligentCore;C:\projects\Starlight3D\ZenScript\ZenScript;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -245,6 +245,7 @@
     <ClInclude Include="tinydir.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="VFile.h" />
+    <ClInclude Include="VideoDecoder.h" />
     <ClInclude Include="VString.h" />
     <ClInclude Include="ZenFS.h" />
   </ItemGroup>
@@ -322,12 +323,18 @@
     <ClCompile Include="TextureData.cpp" />
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="VFile.cpp" />
+    <ClCompile Include="VideoDecoder.cpp" />
     <ClCompile Include="VString.cpp" />
     <ClCompile Include="ZenFS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\StarLightEditor\StarLightEditor\structures.fxh" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Videon\Videon\Videon.vcxproj">
+      <Project>{c43886d8-8027-43fd-a17a-5779fe71ab74}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

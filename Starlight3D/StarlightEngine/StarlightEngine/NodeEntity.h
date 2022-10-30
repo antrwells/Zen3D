@@ -74,6 +74,7 @@ enum PhysicsType {
         /// Sets the physics collision to a box, wrapped around the entity.
         /// </summary>
         void SetPhysicsBox();
+        void SetPhysicsBoxSize(float size);
         /// <summary>
         /// Sets the physics collision to a sphere, wrapped around the entity.
         /// </summary>
@@ -86,6 +87,7 @@ enum PhysicsType {
         /// sets the physics collision to a capsule.
         /// </summary>
         void SetPhysicsCapsule();
+        void SetPhysicsCapsuleSize(float height,float width);
         /// <summary>
         /// returns the smallest possible bounding box around the mesh.
         /// </summary>

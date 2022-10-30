@@ -58,6 +58,7 @@ public:
 	Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
 	Texture2D(RenderTarget2D* target);
 	Texture2D(RenderTargetCube* cube, int face);
+	void Free();
 	int GetWidth() {
 		return mWidth;
 	}

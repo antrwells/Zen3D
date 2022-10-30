@@ -27,6 +27,14 @@ enum GizmoSpace {
 	Local,Global,Smart
 };
 
+struct NodeList {
+
+	std::string type;
+	std::vector<std::string> names;
+	std::vector<std::string> paths;
+
+};
+
 class ZenUI
 {
 public:
@@ -146,6 +154,16 @@ public:
 
 	//Other Editors
 	void EditMaterial();
+
+	void AddNodeAndScript(std::string path,std::string name) {
+
+		NodeEntity* node = new NodeEntity;
+		node->AddScript(path, name);
+		node->SetName(VString(name.c_str()).GetConst());
+		mGraph->AddNode(node);
+
+
+	}
 
 private:
 
@@ -314,6 +332,8 @@ private:
 	MeshLines* mEditGrid;
 	bool mGridOn = true;
 
+	//Built in nodes.
+	std::vector<NodeList> nodeLists;
 
 };
 

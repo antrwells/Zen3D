@@ -170,6 +170,10 @@ void ZenUI::MainContentBrowser() {
 						else if (mDragEntryRef.ext == "zscene") {
 							ImGui::SetDragDropPayload("Scene", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
+						else if (mDragEntryRef.ext == "mov")
+						{
+							ImGui::SetDragDropPayload("Movie", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
+						}
 						ImGui::Button(mDragEntryRef.name.c_str(), ImVec2(64, 64));
 						ImGui::EndDragDropSource();
 						

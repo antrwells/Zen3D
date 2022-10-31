@@ -76,8 +76,8 @@ public:
      //   const aiScene* scene = importer.ReadFile(animationPath, aiProcess_Triangulate);
         //assert(scene && scene->mRootNode);
         auto animation = scene->mAnimations[0];
-        m_Duration = animation->mDuration;
-        m_TicksPerSecond = animation->mTicksPerSecond;
+        m_Duration = (float)animation->mDuration;
+        m_TicksPerSecond = (float)animation->mTicksPerSecond;
         ReadHeirarchyData(m_RootNode, scene->mRootNode);
         ReadMissingBones(animation, model);
     }
@@ -99,9 +99,9 @@ public:
     }
 
 
-    inline float GetTicksPerSecond() { return m_TicksPerSecond; }
+    inline float GetTicksPerSecond() { return (float)m_TicksPerSecond; }
 
-    inline float GetDuration() { return m_Duration; }
+    inline float GetDuration() { return (float)m_Duration; }
 
     inline const AssimpNodeData& GetRootNode() { return m_RootNode; }
 
@@ -146,7 +146,7 @@ private:
         dest.transformation = aiMatrix4x4ToGlm(&src->mTransformation);
         dest.childrenCount = src->mNumChildren;
 
-        for (int i = 0; i < src->mNumChildren; i++)
+        for (int i = 0; i < (int)src->mNumChildren; i++)
         {
             AssimpNodeData newData;
             ReadHeirarchyData(newData, src->mChildren[i]);

@@ -56,8 +56,8 @@ public:
 	}
 
 private:
-	int mMouseX, mMouseY;
-	int mDeltaX, mDeltaY;
+	int mMouseX=0, mMouseY = 0;
+	int mDeltaX=0, mDeltaY=0;
 	bool KeyIn[512];
 	bool mMouseDown[64];
 };

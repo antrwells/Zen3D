@@ -9,8 +9,8 @@ public:
 	bool Update();
 	std::string GetTitle() { return mTitle; }
 	std::string GetMsg() { return mMsg; }
-	int GetX() { return mX; }
-	int GetY() { return mY; }
+	int GetX() { return (int)mX; }
+	int GetY() { return (int)mY; }
 	bool Done() {
 		return mDone;
 	}

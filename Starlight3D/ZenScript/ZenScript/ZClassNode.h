@@ -32,9 +32,12 @@ public:
 	std::vector<ZVarsNode*> GetVarsVec() {
 		return mVars;
 	}
-	ZMethodNode* FindMethod(std::string name);
+	//ZMethodNode* FindMethod(std::string name);
+	ZMethodNode* FindMethod(size_t hash);
 	ZContextVar* FindVar(std::string name);
+	ZContextVar* FindVar(size_t name);
 	ZContextVar* CallMethod(std::string name, const std::vector<ZContextVar*>& params);
+	ZContextVar* CallMethod(size_t name, const std::vector<ZContextVar*>& params);
 	void SetBaseName(std::string name);
 	void Bind();
 	std::string GetBaseName() {
@@ -42,6 +45,7 @@ public:
 	}
 
 	ZMethodNode* GetMethod(std::string name);
+	ZMethodNode* GetMethod(size_t hash);
 
 	ZContextScope* GetScope()
 	{
@@ -58,7 +62,9 @@ public:
 		}
 		return nullptr;
 	}
-
+	size_t GetHashName() {
+		return mHashName;
+	}
 private:
 	
 	std::string mBaseClassName;
@@ -68,7 +74,7 @@ private:
 	//meths
 	std::vector<ZMethodNode*> mMethods;
 	ZContextScope* mInstanceScope;
-
+	size_t mHashName;
 	std::vector<ZVarsNode*> mVars;
 
 };

@@ -9,6 +9,8 @@
 #include "ZClassNode.h"
 #include "ZSignatureNode.h"
 #include "ZSigParamNode.h"
+
+//#include "ZSystemFunction.h"
 void ZStatementNode::AddCallName(std::string name) {
 
 	mCallNames.push_back(name);
@@ -20,6 +22,7 @@ void ZStatementNode::SetPars(ZParametersNode* pars) {
 	mPars = pars;
 
 }
+
 
 ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 {
@@ -33,15 +36,25 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 	ZMethodNode* meth_node = nullptr;
 
-	if (top_class != nullptr) {
-		if (top_class->FindMethod(mCallNames[0]) != nullptr)
+	if (mCallNames.size() != mHashNames.size()) {
+		std::hash<std::string> hasher;
+		for (int i = 0; i < mCallNames.size();i++)
 		{
-
-			//return 
-			meth_node = top_class->GetMethod(mCallNames[0]);
+			mHashNames.push_back(hasher(mCallNames[i]));
 		}
 	}
 
+	if (mCacheMeth == nullptr) {
+		if (top_class != nullptr) {
+			if (top_class->FindMethod(mHashNames[0]) != nullptr)
+			{
+
+				//return 
+				meth_node = top_class->GetMethod(mHashNames[0]);
+				mCacheMeth = meth_node;
+			}
+		}
+	}
 
 	if (meth_node != nullptr) {
 
@@ -64,7 +77,7 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 		}
 
-		return top_class->CallMethod(mCallNames[0], vpars);
+		return mCacheMeth->Exec(vpars); //; // top_class->CallMethod(mHashNames[0], vpars);
 
 	}
 	else {
@@ -103,8 +116,17 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 	//	}
 
+		if (mCacheFunc.IsAlive()==false) {
+			mCacheFunc = ZSystemFunctions::sFuncs->GetFunction(mHashNames[0]);
+		
+		}
+		else {
+			int aa = 5;
+		}
 
-		return ZSystemFunctions::sFuncs->CallFunction(mCallNames[0], vpars);
+		return mCacheFunc.CallFunction(vpars);
+		//return ZSystemFunctions::sFuncs->CallFunction(mHashNames[0], vpars);
+
 
 	}
 

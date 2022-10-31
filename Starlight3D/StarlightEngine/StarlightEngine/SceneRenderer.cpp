@@ -88,7 +88,8 @@ void SceneRenderer::CreateDRPSO() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory

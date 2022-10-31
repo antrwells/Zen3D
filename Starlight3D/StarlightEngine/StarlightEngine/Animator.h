@@ -83,9 +83,13 @@ public:
         return m_FinalBoneMatrices;
     }
 
+    Animation* GetAnimation() {
+        return m_CurrentAnimation;
+    }
+
 private:
     std::vector<float4x4> m_FinalBoneMatrices;
-    Animation* m_CurrentAnimation;
-    float m_CurrentTime;
-    float m_DeltaTime;
+    Animation* m_CurrentAnimation = nullptr;
+    float m_CurrentTime = 0.0f;
+    float m_DeltaTime = 0.0f;
 };

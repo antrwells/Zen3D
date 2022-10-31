@@ -88,7 +88,8 @@ void PPRenderer::CreateOutlineGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -227,7 +228,7 @@ void PPRenderer::CreateCombineGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+   // UseCombinedTextureSamplers = true;
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -368,7 +369,8 @@ void PPRenderer::CreateBlurGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -506,7 +508,8 @@ void PPRenderer::CreateColorLimitGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -604,7 +607,7 @@ void PPRenderer::RenderCombine(Texture2D* texture,Texture2D* tex2, int w, int h,
     //col_const.lightDiff = float4(light->GetDiffuse(), 1);
    // co_const.lightProps = float4(light->GetRange(), 0, 0, 0);
     //dr_const.g_ViewProjInv = viewProjInv;
-    float4x4 proj = float4x4::OrthoOffCenter(0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
+    float4x4 proj = float4x4::OrthoOffCenter(0, (float)Application::GetApp()->GetWidth(), (float)Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
 
     consts.g_WorldViewProj = proj.Transpose();
     consts.combine = float4(i1, i2, 0, 1.0);
@@ -632,7 +635,7 @@ void PPRenderer::RenderColorLimit(Texture2D* texture, int w, int h,float limit)
     //col_const.lightDiff = float4(light->GetDiffuse(), 1);
    // co_const.lightProps = float4(light->GetRange(), 0, 0, 0);
     //dr_const.g_ViewProjInv = viewProjInv;
-    float4x4 proj = float4x4::OrthoOffCenter(0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
+    float4x4 proj = float4x4::OrthoOffCenter(0, (float)Application::GetApp()->GetWidth(), (float)Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
 
     consts.g_WorldViewProj = proj.Transpose();
     consts.colorLimits = float4(limit, limit, limit, 1.0);
@@ -660,7 +663,7 @@ void PPRenderer::RenderOutline(Texture2D* texture, int w, int h,float diff,float
     //col_const.lightDiff = float4(light->GetDiffuse(), 1);
    // co_const.lightProps = float4(light->GetRange(), 0, 0, 0);
     //dr_const.g_ViewProjInv = viewProjInv;
-    float4x4 proj = float4x4::OrthoOffCenter(0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
+    float4x4 proj = float4x4::OrthoOffCenter(0, (float)Application::GetApp()->GetWidth(), (float)Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
 
     consts.g_WorldViewProj = proj.Transpose();
     consts.outline = float4(diff, inc, 0, 0);
@@ -691,7 +694,7 @@ void PPRenderer::RenderBlur(Texture2D* texture, int w, int h, float blur)
     //col_const.lightDiff = float4(light->GetDiffuse(), 1);
    // co_const.lightProps = float4(light->GetRange(), 0, 0, 0);
     //dr_const.g_ViewProjInv = viewProjInv;
-    float4x4 proj = float4x4::OrthoOffCenter(0, Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
+    float4x4 proj = float4x4::OrthoOffCenter(0, (float)Application::GetApp()->GetWidth(), (float)Application::GetApp()->GetHeight(), 0, 0, 100.0f, false);
 
     consts.g_WorldViewProj = proj.Transpose();
     consts.blur = float4(blur, blur, blur, blur);

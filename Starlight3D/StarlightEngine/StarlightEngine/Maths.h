@@ -14,7 +14,7 @@
 		/// <returns></returns>
 		static float PI() {
 
-			return 3.14159265359;
+			return (float)3.14159265359;
 			
 		}
 
@@ -31,15 +31,15 @@
 
 		static float Rad2Deg(float rad) {
 
-			return rad * (180.0 / 3.141592653589793238463);
+			return (float)(rad * (180.0 / 3.141592653589793238463));
 
 
 		}
 
 		static float CorrectAngle(float ang) {
 
-			if (ang < 0.0) ang = 360.0 + ang;
-			if (ang > 360.0) ang = ang - 360.0;
+			if (ang < 0.0f) ang = 360.0f + ang;
+			if (ang > 360.0f) ang = ang - 360.0f;
 			return ang;
 
 		}
@@ -58,7 +58,7 @@
 			if (ang1 > ang2)
 			{
 				float d1 = ang1 - ang2;
-				float d2 = ang2 + (360.0 - ang1);
+				float d2 = ang2 + (360.0f - ang1);
 				if (d1 < d2) {
 					return -d1;
 				}
@@ -68,7 +68,7 @@
 			}
 			else {
 				float d1 = ang2 - ang1;
-				float d2 = ang1 + (360.0 - ang2);
+				float d2 = ang1 + (360.0f - ang2);
 				if (d1 < d2)
 				{
 					return d1;

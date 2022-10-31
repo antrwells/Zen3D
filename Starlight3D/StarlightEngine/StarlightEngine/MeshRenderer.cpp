@@ -40,7 +40,11 @@ struct ActorConstants {
     float4 lightSpec;
     float4 renderProps;
     float4x4 bones[100];
-
+    int4 lightModes;
+    float4 lightDir;
+    float4 lightCone;
+    float4 matDiff;
+    float4 matSpec;
 
 };
 
@@ -142,7 +146,8 @@ void MeshRenderer::CreateActorDepthGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -297,7 +302,7 @@ void MeshRenderer::CreateActorGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -310,6 +315,7 @@ void MeshRenderer::CreateActorGP() {
     {
         ShaderCI.Desc.ShaderType = SHADER_TYPE_VERTEX;
         ShaderCI.EntryPoint = "main";
+        ShaderCI.Desc.UseCombinedTextureSamplers = true;
         ShaderCI.Desc.Name = "Mesh Actor Lit - VS";
         ShaderCI.FilePath = "data/mesh_actorlit.vsh";
         app->GetDevice()->CreateShader(ShaderCI, &pVS);
@@ -328,6 +334,7 @@ void MeshRenderer::CreateActorGP() {
     RefCntAutoPtr<IShader> pPS;
     {
         ShaderCI.Desc.ShaderType = SHADER_TYPE_PIXEL;
+        ShaderCI.Desc.UseCombinedTextureSamplers = true;
         ShaderCI.EntryPoint = "main";
         ShaderCI.Desc.Name = "Mesh Actor Lit - PS";
         ShaderCI.FilePath = "data/mesh_actorlit.psh";
@@ -365,6 +372,7 @@ void MeshRenderer::CreateActorGP() {
     {
         {SHADER_TYPE_PIXEL, "g_Texture",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
         {SHADER_TYPE_PIXEL,"g_TextureNorm",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
+        {SHADER_TYPE_PIXEL,"g_TextureSpec",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
         {SHADER_TYPE_PIXEL,"g_Env",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC},
         {SHADER_TYPE_PIXEL,"g_Shadow",SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC}
     };
@@ -387,9 +395,11 @@ void MeshRenderer::CreateActorGP() {
     {
         {SHADER_TYPE_PIXEL, "g_Texture", SamLinearClampDesc},
         {SHADER_TYPE_PIXEL,"g_TextureNorm",SamLinearClampDesc},
-        {SHADER_TYPE_PIXEL,"g_Env",EnvSam},
-        {SHADER_TYPE_PIXEL,"g_Shadow",EnvSam}
+        {SHADER_TYPE_PIXEL,"g_TextureSpec",SamLinearClampDesc},
+        {SHADER_TYPE_PIXEL,"g_Env",SamLinearClampDesc},
+        {SHADER_TYPE_PIXEL,"g_Shadow",SamLinearClampDesc}
     };
+
 
     PSOCreateInfo.PSODesc.ResourceLayout.ImmutableSamplers = ImtblSamplers;
     PSOCreateInfo.PSODesc.ResourceLayout.NumImmutableSamplers = _countof(ImtblSamplers);
@@ -449,7 +459,8 @@ void MeshRenderer::CreateActorGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -547,7 +558,8 @@ void MeshRenderer::CreatePositionsGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -677,7 +689,7 @@ void MeshRenderer::RenderPositions(NodeEntity* entity,NodeCamera* cam) {
         //m_SRB_Normals->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
 
 
-        float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+        float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
         //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -731,7 +743,7 @@ void MeshRenderer::RenderPositions(NodeEntity* entity,NodeCamera* cam) {
 
         DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
         DrawAttrs.IndexType = VT_UINT32; // Index type
-        DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+        DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
         // Verify the state of vertex and index buffers
         DrawAttrs.Flags = DRAW_FLAG_NONE;
         m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -788,7 +800,8 @@ void MeshRenderer::CreateNormalsGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -919,7 +932,7 @@ void MeshRenderer::RenderNormals(NodeEntity* entity, NodeCamera* cam)
             //m_SRB_Normals->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
         
 
-            float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+            float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(),(float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
             //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -973,7 +986,7 @@ void MeshRenderer::RenderNormals(NodeEntity* entity, NodeCamera* cam)
 
             DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
             DrawAttrs.IndexType = VT_UINT32; // Index type
-            DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+            DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
             // Verify the state of vertex and index buffers
             DrawAttrs.Flags = DRAW_FLAG_NONE;
             m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -1026,7 +1039,8 @@ void MeshRenderer::CreateSimpleGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -1167,7 +1181,8 @@ void MeshRenderer::CreateDepthGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -1307,7 +1322,7 @@ void MeshRenderer::RenderDepth(NodeEntity* entity, NodeCamera* cam) {
 
 
 
-            float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+            float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
             //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -1365,7 +1380,7 @@ void MeshRenderer::RenderDepth(NodeEntity* entity, NodeCamera* cam) {
 
             DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
             DrawAttrs.IndexType = VT_UINT32; // Index type
-            DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+            DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
             // Verify the state of vertex and index buffers
             DrawAttrs.Flags = DRAW_FLAG_NONE;
             m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -1423,7 +1438,8 @@ void MeshRenderer::CreateLitGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+//    ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -1435,6 +1451,7 @@ void MeshRenderer::CreateLitGP() {
     RefCntAutoPtr<IShader> pVS;
     {
         ShaderCI.Desc.ShaderType = SHADER_TYPE_VERTEX;
+        ShaderCI.Desc.UseCombinedTextureSamplers = true;
         ShaderCI.EntryPoint = "main";
         ShaderCI.Desc.Name = "Mesh Lit - VS";
         ShaderCI.FilePath = "data/mesh_lit.vsh";
@@ -1454,6 +1471,7 @@ void MeshRenderer::CreateLitGP() {
     RefCntAutoPtr<IShader> pPS;
     {
         ShaderCI.Desc.ShaderType = SHADER_TYPE_PIXEL;
+        ShaderCI.Desc.UseCombinedTextureSamplers = true;
         ShaderCI.EntryPoint = "main";
         ShaderCI.Desc.Name = "Mesh Lit - PS";
         ShaderCI.FilePath = "data/mesh_lit.psh";
@@ -1513,8 +1531,8 @@ void MeshRenderer::CreateLitGP() {
         {SHADER_TYPE_PIXEL, "g_Texture", SamLinearClampDesc},
         {SHADER_TYPE_PIXEL,"g_TextureNorm",SamLinearClampDesc},
         {SHADER_TYPE_PIXEL,"g_TextureSpec",SamLinearClampDesc},
-        {SHADER_TYPE_PIXEL,"g_Env",EnvSam},
-        {SHADER_TYPE_PIXEL,"g_Shadow",EnvSam}
+        {SHADER_TYPE_PIXEL,"g_Env",SamLinearClampDesc},
+        {SHADER_TYPE_PIXEL,"g_Shadow",SamLinearClampDesc}
     };
 
     PSOCreateInfo.PSODesc.ResourceLayout.ImmutableSamplers = ImtblSamplers;
@@ -1575,7 +1593,8 @@ void MeshRenderer::CreateLitGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -1676,7 +1695,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
          
 
-            float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+            float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
             //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -1757,7 +1776,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
             DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
             DrawAttrs.IndexType = VT_UINT32; // Index type
-            DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+            DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
             // Verify the state of vertex and index buffers
             DrawAttrs.Flags = DRAW_FLAG_NONE;
             m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -1799,7 +1818,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
             auto m_pImmediateContext = gApp->GetContext();
 
-            float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+            float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
             //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -1878,7 +1897,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
 
             DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
             DrawAttrs.IndexType = VT_UINT32; // Index type
-            DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+            DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
             // Verify the state of vertex and index buffers
             DrawAttrs.Flags = DRAW_FLAG_NONE;
             m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -1909,7 +1928,7 @@ void MeshRenderer::RenderSimple(NodeEntity* entity, NodeCamera* cam) {
 
         auto m_pImmediateContext = gApp->GetContext();
 
-        float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+        float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
         //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -1953,7 +1972,7 @@ void MeshRenderer::RenderSimple(NodeEntity* entity, NodeCamera* cam) {
 
         DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
         DrawAttrs.IndexType = VT_UINT32; // Index type
-        DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+        DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
         // Verify the state of vertex and index buffers
         DrawAttrs.Flags = DRAW_FLAG_NONE;
         m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -1984,9 +2003,11 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
 
             auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
             auto norm_view = mesh->GetMaterial()->GetNormalMap()->GetView();
+            auto spec_view = mesh->GetMaterial()->GetSpecularMap()->GetView();
 
             m_SRB_Actor->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(tex_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             m_SRB_Actor->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+            m_SRB_Actor->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureSpec")->Set(spec_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             auto env_map = mesh->GetMaterial()->GetEnvMap();
 
             bool env_On = false;
@@ -2002,7 +2023,7 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
 
 
 
-            float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+            float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
             //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -2051,6 +2072,20 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
             for (int i = 0;i < 100;i++) {
                 lc.bones[i] = matrices[i].Transpose();
             }
+            bool cs = light->GetCastShadows();
+            int csp = 0;
+            if (cs) csp = 1;
+            lc.lightModes = int4((int)light->GetLightType(), csp, 0, 0);
+            lc.lightCone = float4(light->GetCone().x, light->GetCone().y, 0, 0);
+            lc.matDiff = float4(mesh->GetMaterial()->GetDiffuse(), 1.0);
+            lc.matSpec = float4(mesh->GetMaterial()->GetSpecular(), 1.0);
+            float3 ldir = float3(0, 0, 1) * light->GetRotation();
+
+
+            lc.lightDir = ldir;
+
+
+
 
             //------------------------
 
@@ -2078,7 +2113,7 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
 
             DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
             DrawAttrs.IndexType = VT_UINT32; // Index type
-            DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+            DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
             // Verify the state of vertex and index buffers
             DrawAttrs.Flags = DRAW_FLAG_NONE;
             m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -2098,9 +2133,11 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
 
             auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
             auto norm_view = mesh->GetMaterial()->GetNormalMap()->GetView();
+            auto spec_view = mesh->GetMaterial()->GetSpecularMap()->GetView();
 
             m_SRB_Actor->GetVariableByName(SHADER_TYPE_PIXEL, "g_Texture")->Set(tex_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             m_SRB_Actor->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureNorm")->Set(norm_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
+            m_SRB_Actor->GetVariableByName(SHADER_TYPE_PIXEL, "g_TextureSpec")->Set(spec_view, SET_SHADER_RESOURCE_FLAG_ALLOW_OVERWRITE);
             auto env_map = mesh->GetMaterial()->GetEnvMap();
 
             bool env_On = false;
@@ -2117,7 +2154,7 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
 
             auto m_pImmediateContext = gApp->GetContext();
 
-            float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+            float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
             //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -2166,6 +2203,21 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
             for (int i = 0;i < 100;i++) {
                 lc.bones[i] = matrices[i].Transpose();
             }
+            bool cs = light->GetCastShadows();
+            int csp = 0;
+            if (cs) csp = 1;
+            lc.lightModes = int4((int)light->GetLightType(), csp, 0, 0);
+            lc.lightCone = float4(light->GetCone().x, light->GetCone().y, 0, 0);
+            lc.matDiff = float4(mesh->GetMaterial()->GetDiffuse(), 1.0);
+            lc.matSpec = float4(mesh->GetMaterial()->GetSpecular(), 1.0);
+            float3 ldir = float3(0, 0, 1) * light->GetRotation();
+
+
+            lc.lightDir = ldir;
+
+
+
+
             MapHelper<ActorConstants> CBConstants(cont, m_ActorConstants, MAP_WRITE, MAP_FLAG_DISCARD);
             *CBConstants = lc;
             m_pImmediateContext->SetPipelineState(m_PSO_Actor_SP);
@@ -2186,7 +2238,7 @@ void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* lig
 
             DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
             DrawAttrs.IndexType = VT_UINT32; // Index type
-            DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+            DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
             // Verify the state of vertex and index buffers
             DrawAttrs.Flags = DRAW_FLAG_NONE;
             m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -2236,7 +2288,7 @@ void MeshRenderer::RenderActorDepth(NodeActor* actor, NodeCamera* cam) {
 
 
 
-        float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+        float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
         //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -2309,7 +2361,7 @@ void MeshRenderer::RenderActorDepth(NodeActor* actor, NodeCamera* cam) {
 
         DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
         DrawAttrs.IndexType = VT_UINT32; // Index type
-        DrawAttrs.NumIndices = mesh->GetTris().size() * 3;
+        DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetTris().size() * 3;
         // Verify the state of vertex and index buffers
         DrawAttrs.Flags = DRAW_FLAG_NONE;
         m_pImmediateContext->DrawIndexed(DrawAttrs);
@@ -2362,7 +2414,7 @@ void MeshRenderer::CreateMeshLinesGP() {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -2449,7 +2501,7 @@ void MeshRenderer::RenderMeshLines(MeshLines* mesh,NodeCamera* cam ) {
 
     auto m_pImmediateContext = gApp->GetContext();
 
-    float4x4 proj = float4x4::OrthoOffCenter(0, gApp->GetWidth(), gApp->GetHeight(), 0, 0, 100.0f, false);
+    float4x4 proj = float4x4::OrthoOffCenter(0, (float)gApp->GetWidth(), (float)gApp->GetHeight(), 0, 0, 100.0f, false);
 
     //float4x4 model = float4x4::RotationY(Maths::Deg2Rad(angX));// *float4x4::RotationX(-PI_F * 0.1f);
 
@@ -2495,7 +2547,7 @@ void MeshRenderer::RenderMeshLines(MeshLines* mesh,NodeCamera* cam ) {
 
     DrawIndexedAttribs DrawAttrs;     // This is an indexed draw call
     DrawAttrs.IndexType = VT_UINT32; // Index type
-    DrawAttrs.NumIndices = mesh->GetLines().size() * 2;
+    DrawAttrs.NumIndices = (Diligent::Uint32)mesh->GetLines().size() * 2;
     // Verify the state of vertex and index buffers
     DrawAttrs.Flags = DRAW_FLAG_NONE;
     m_pImmediateContext->DrawIndexed(DrawAttrs);

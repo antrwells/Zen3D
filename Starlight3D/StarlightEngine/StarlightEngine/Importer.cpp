@@ -192,7 +192,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 
 
-	for (int i = 0; i < nd->mNumMeshes; i++) {
+	for (int i = 0; i < (int)nd->mNumMeshes; i++) {
 
 		Mesh3D*mesh = meshes[nd->mMeshes[i]];
 		//printf("Importing Mesh: Verts:%d Tris:%d\n", mesh->mNumVertices, mesh->mNumFaces);
@@ -208,7 +208,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 		*/
 		//printf("Importing Children. Count:%d\n", nd->mNumChildren);
-	for (int i = 0; i < nd->mNumChildren; i++) {
+	for (int i = 0; i <(int) nd->mNumChildren; i++) {
 
 		auto new_entity2 = importNode(sc, nd->mChildren[i]);
 		new_entity->AddNode(new_entity2);
@@ -240,7 +240,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 		}
 		
-		for (int i = 0; i < scene->mNumMaterials; i++) {
+		for (int i = 0; i < (int)scene->mNumMaterials; i++) {
 
 			Material* new_material = new Material;
 
@@ -322,7 +322,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 		printf("Imported");
 
 
-		for (int m = 0; m < scene->mNumMeshes; m++) {
+		for (int m = 0; m <(int) scene->mNumMeshes; m++) {
 
 			const C_STRUCT aiMesh* mesh = scene->mMeshes[m];
 
@@ -335,7 +335,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 			printf("Mesh Verts:%d Faces:%d\n",(int)mesh->mNumVertices, (int)mesh->mNumFaces);
 
-			for (int index = 0; index < mesh->mNumVertices; index++) {
+			for (int index = 0; index < (int)mesh->mNumVertices; index++) {
 
 				auto vertex = mesh->mVertices[index];
 				auto normal = mesh->mNormals[index];
@@ -382,7 +382,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 			}
 
 
-			for (int tri = 0; tri < mesh->mNumFaces; tri++) {
+			for (int tri = 0; tri < (int)mesh->mNumFaces; tri++) {
 
 				auto face = mesh->mFaces[tri];
 
@@ -523,7 +523,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 		}
 
-		for (int i = 0; i < scene->mNumMaterials; i++) {
+		for (int i = 0; i < (int)scene->mNumMaterials; i++) {
 
 			Material* new_material = new Material;
 
@@ -591,7 +591,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 		printf("Imported");
 
 
-		for (int m = 0; m < scene->mNumMeshes; m++) {
+		for (int m = 0; m < (int)scene->mNumMeshes; m++) {
 
 			const C_STRUCT aiMesh* mesh = scene->mMeshes[m];
 
@@ -604,7 +604,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 			printf("Mesh Verts:%d Faces:%d\n", (int)mesh->mNumVertices, (int)mesh->mNumFaces);
 
-			for (int index = 0; index < mesh->mNumVertices; index++) {
+			for (int index = 0; index < (int)mesh->mNumVertices; index++) {
 
 				auto vertex = mesh->mVertices[index];
 				auto normal = mesh->mNormals[index];
@@ -654,9 +654,9 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 			std::map<std::string, BoneInfo> m_BoneInfoMap;
 			int m_BoneCounter = 0;
 
-			int max_verts = new_mesh->GetVertices().size();
+			int max_verts = (int)new_mesh->GetVertices().size();
 
-			for (int boneIndex = 0; boneIndex < mesh->mNumBones; ++boneIndex)
+			for (int boneIndex = 0; boneIndex <(int) mesh->mNumBones; ++boneIndex)
 			{
 
 				int boneID = -1;
@@ -697,7 +697,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 
 
-			for (int tri = 0; tri < mesh->mNumFaces; tri++) {
+			for (int tri = 0; tri <(int) mesh->mNumFaces; tri++) {
 
 				auto face = mesh->mFaces[tri];
 

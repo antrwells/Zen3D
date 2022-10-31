@@ -17,14 +17,14 @@ void ZContextScope::RegisterVar(ZContextVar* var)
 
 }
 
-ZContextVar* ZContextScope::FindVar(std::string name) {
+ZContextVar* ZContextScope::FindVar(size_t hash) {
 
 	//if (mVarsMap.find(name) != mVarsMap.end()) {
 //		return mVarsMap[name];
 //	}
 		//new_token.mType = token_map[old_token.mText];
-	for (int i = mVars.size()-1; i>=0; i--) {
-		if (mVars[i]->GetName() == name) {
+	for (int i = (int)mVars.size()-1; i>=0; i--) {
+		if (mVars[i]->GetHashName() == hash) {
 			return mVars[i];
 		}
 	}

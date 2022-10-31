@@ -265,7 +265,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	//ImGui::StyleColorsDark();
 	//ReallyDarkTheme();
 	//OtherTheme()
-	CoolTheme(false);
+	CoolTheme(true);
 
 	//	BrightTheme();
 
@@ -291,7 +291,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 	//Toolbar
 	mToolbarPos = ImVec2(0, 22);
-	mToolbarSize = ImVec2(Application::GetApp()->GetWidth(), 54);
+	mToolbarSize = ImVec2((float)Application::GetApp()->GetWidth(), 54);
 
 	//Icons
 
@@ -310,7 +310,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	//Scene Viewport Resources
 	mSceneViewPos = ImVec2(240, mToolbarSize.y + 12);
 	mSceneViewSize = ImVec2(1250, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
-	mRenderTarget = new RenderTarget2D(mSceneViewSize.x, mSceneViewSize.y);
+	mRenderTarget = new RenderTarget2D((int)mSceneViewSize.x, (int)mSceneViewSize.y);
 	cam_rotation = ImVec2(0, 0);
 	mTranslateGizmo = (NodeEntity*)pUI->GetResource("GizTranslate");//  importer->ImportAI("edit/gizmo/translate1.fbx");
 	mRotateGizmo = (NodeEntity*)pUI->GetResource("GizRotate");//importer->ImportAI("edit/gizmo/rotate1.fbx");
@@ -370,8 +370,8 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 
 	//Content Browser
-	mContentBrowserPos = ImVec2(0, 12 + Application::GetApp()->GetHeight() - 200 - 22);
-	mContentBrowserSize = ImVec2(Application::GetApp()->GetWidth(), 222 - 12);// mToolbarSize.y);
+	mContentBrowserPos = ImVec2(0, 12 + (float)Application::GetApp()->GetHeight() - 200 - 22);
+	mContentBrowserSize = ImVec2((float)Application::GetApp()->GetWidth(), 222 - 12);// mToolbarSize.y);
 
 	//Icons
 
@@ -381,7 +381,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 
 	//Node Editor
 	mNodeEditPos = ImVec2(1490, mToolbarSize.y + 12);
-	mNodeEditSize = ImVec2(Application::GetApp()->GetWidth() - 1490, Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
+	mNodeEditSize = ImVec2((float)Application::GetApp()->GetWidth() - 1490, (float)Application::GetApp()->GetHeight() - 22 - 200 - mToolbarSize.y);
 
 
 	//Other Resources
@@ -525,6 +525,13 @@ ZenUI::ZenUI() {
 
 }
 
+void ZenUI::ImportModel(std::string path) {
+
+	mImportModelPath = path;
+	mImportModelOpen = true;
+
+}
+
 void ZenUI::MainWindow() {
 
 	MainBGWindow();
@@ -569,6 +576,25 @@ void ZenUI::MainWindow() {
 
 	}
 
+	if (mImportModelOpen) {
+
+		ImportModelWindow();
+
+	}
+
+	if (mEditAnimation != nullptr) {
+
+		EditAnimationsWindow();
+
+	}
+
+	ImGui::Begin("FPS");
+	if (rui == 0) rui = 1;
+
+	std::string fps = "FPS:" + std::to_string(tms);
+	ImGui::Text(fps.c_str());
+
+	ImGui::End();
 
 }
 
@@ -595,7 +621,7 @@ void ZenUI::MainBGWindow()
 	//flags != ImGuiWindowFlags_NoTitleBar;
 
 	ImGui::SetNextWindowPos(ImVec2(0, 23));
-	ImGui::SetNextWindowSize(ImVec2(Application::GetApp()->GetWidth(), Application::GetApp()->GetHeight()));
+	ImGui::SetNextWindowSize(ImVec2((float)Application::GetApp()->GetWidth(), (float)Application::GetApp()->GetHeight()));
 	bool open = true;
 	ImGui::Begin("Zen", &open, flags);
 
@@ -612,6 +638,15 @@ void ZenUI::ScanContent(std::string path) {
 }
 
 ///Othr functionality
+
+NodeActor* ZenUI::ImportActor(const char* path) {
+
+	Importer* importer = new Importer;
+	auto node = importer->ImportActor(path);
+	//mGraph->AddNode(node);
+	return node;
+
+}
 
 Node3D* ZenUI::ImportNode(const char* path) {
 

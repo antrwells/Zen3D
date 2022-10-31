@@ -94,7 +94,8 @@ void SceneRayTracer::CreatePSO() {
     // We will not be using combined texture samplers as they
     // are only required for compatibility with OpenGL, and ray
     // tracing is not supported in OpenGL backend.
-    ShaderCI.UseCombinedTextureSamplers = false;
+    //ShaderCI.UseCombinedTextureSamplers = false;
+
 
     ShaderCI.Macros = Macros;
 

@@ -1,8 +1,15 @@
-﻿  Generating code
-  Not all modules are compiled with -Gy (function comdat), build without incremental LTCG.
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(78): warning C4715: 'applyOpInt': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(107): warning C4715: 'applyOpFloat': not all control paths return a value
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\FSPayload.cpp(72): warning C4715: 'FSPayload::GetResource': not all control paths return a value
-C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(407): warning C4715: 'GetValue': not all control paths return a value
-  Finished generating code
-  Zen3D.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Release\Zen3D.exe
+﻿     Creating library C:\projects\Starlight3D\StarlightStudio\x64\Release\Zen3D.lib and object C:\projects\Starlight3D\StarlightStudio\x64\Release\Zen3D.exp
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol __imp_PxCreateBasePhysics
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol __imp_PxRegisterArticulations
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol __imp_PxRegisterArticulationsReducedCoordinate
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol __imp_PxRegisterHeightFields
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol "public: __cdecl physx::PxDefaultErrorCallback::PxDefaultErrorCallback(void)" (??0PxDefaultErrorCallback@physx@@QEAA@XZ)
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol "public: virtual __cdecl physx::PxDefaultErrorCallback::~PxDefaultErrorCallback(void)" (??1PxDefaultErrorCallback@physx@@UEAA@XZ)
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol __imp_PxCreateFoundation
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol PxCreatePvd
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol PxDefaultPvdSocketTransportCreate
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol __imp_PxCreateCooking
+StarlightEngine.lib(Physics.obj) : error LNK2001: unresolved external symbol "class physx::PxDefaultCpuDispatcher * __cdecl physx::PxDefaultCpuDispatcherCreate(unsigned int,unsigned int *)" (?PxDefaultCpuDispatcherCreate@physx@@YAPEAVPxDefaultCpuDispatcher@1@IPEAI@Z)
+StarlightEngine.lib(Audio.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class irrklang::ISoundEngine * __cdecl irrklang::createIrrKlangDevice(enum irrklang::E_SOUND_OUTPUT_DRIVER,int,char const *,char const *)" (__imp_?createIrrKlangDevice@irrklang@@YAPEAVISoundEngine@1@W4E_SOUND_OUTPUT_DRIVER@1@HPEBD1@Z)
+StarlightEngine.lib(PBBox.obj) : error LNK2001: unresolved external symbol "public: static bool __cdecl physx::PxRigidBodyExt::updateMassAndInertia(class physx::PxRigidBody &,float,class physx::PxVec3 const *,bool)" (?updateMassAndInertia@PxRigidBodyExt@physx@@SA_NAEAVPxRigidBody@2@MPEBVPxVec3@2@_N@Z)
+C:\projects\Starlight3D\StarlightStudio\x64\Release\Zen3D.exe : fatal error LNK1120: 13 unresolved externals

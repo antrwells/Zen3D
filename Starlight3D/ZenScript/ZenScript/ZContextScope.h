@@ -13,7 +13,8 @@ public:
 	ZContextScope(std::string name);
 	void RegisterVar(ZContextVar* var);
 	void RemoveVar(ZContextVar* Var);
-	ZContextVar* FindVar(std::string name);
+	//ZContextVar* FindVar(std::string name);
+	ZContextVar* FindVar(size_t hash);
 	std::vector<ZContextVar*> GetVars();
 	void SetVars(std::vector<ZContextVar*> vars);
 	void PushClass(ZClassNode* node);

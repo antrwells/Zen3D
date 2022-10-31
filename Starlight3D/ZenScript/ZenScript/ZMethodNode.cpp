@@ -5,8 +5,9 @@
 #include "ZExpressionNode.h"
 void ZMethodNode::SetName(std::string name)
 {
-
+	std::hash<std::string> hasher;
 	mMethodName = name;
+	mNameHash = hasher(name);
 
 }
 

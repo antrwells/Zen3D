@@ -12,8 +12,10 @@
 
 		mVertices.resize(0);
 		mMaterial = new Material();
+		mGeoName = "GEO";
 		mMaterial->SetType(MaterialType::PBR);
-
+		mName = "MESH";
+		mOwner = nullptr;
 	}
 
 
@@ -71,7 +73,7 @@
 
 	void Mesh3D::GenerateTangents() {
 
-		uint32_t nIndices = mTris.size() * 3;
+		uint32_t nIndices = (int)mTris.size() * 3;
 
 		uint16_t* indices = (uint16_t*)malloc(nIndices * 4);
 		float3* positions = new float3[mVertices.size() * 3];
@@ -295,7 +297,7 @@
 	void Mesh3D::CreateBuffers() {
 
 
-		int ds = sizeof(Vertex) * mVertices.size();
+		int ds = sizeof(Vertex) * (int)mVertices.size();
 
 		m_VertexBuffer.Detach();
 		m_VertexBuffer.Release();
@@ -328,7 +330,7 @@
 		m_IndexBuffer.Release();
 		int b = 5;
 
-		ds = sizeof(Tri) * mTris.size();
+		ds = sizeof(Tri) * (int)mTris.size();
 
 		BufferDesc IndBuffDesc;
 		IndBuffDesc.Name = "Mesh3D - index buffer";
@@ -403,10 +405,10 @@
 		BLASTriangleDesc Triangles;
 		{
 			Triangles.GeometryName = geo_name.GetConst();
-			Triangles.MaxVertexCount = rtVertices.size();
+			Triangles.MaxVertexCount = (Uint32)rtVertices.size();
 			Triangles.VertexValueType = VT_FLOAT32;
 			Triangles.VertexComponentCount = 3;
-			Triangles.MaxPrimitiveCount = rtIndices.size() / 3;
+			Triangles.MaxPrimitiveCount = (Uint32)rtIndices.size() / 3;
 			Triangles.IndexType = VT_UINT32;
 
 			auto BLASName{ "Mesh RT BLAS" };
@@ -441,7 +443,7 @@
 		TriangleData.pVertexBuffer = m_VertexBuffer;
 		TriangleData.VertexStride =   m_VertexBuffer->GetDesc().ElementByteStride;
 		TriangleData.VertexOffset = 0;//Uint64{ Mesh.FirstVertex } *Uint64{ TriangleData.VertexStride };
-		TriangleData.VertexCount = mVertices.size();
+		TriangleData.VertexCount = (Uint32)mVertices.size();
 		TriangleData.VertexValueType = Triangles.VertexValueType;
 		TriangleData.VertexComponentCount = Triangles.VertexComponentCount;
 		TriangleData.pIndexBuffer = m_IndexBuffer;

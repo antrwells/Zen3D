@@ -15,6 +15,8 @@ cbuffer Constants
     int4 lightMode;
     float4 lightDir;
     float4 lightCone;
+    float4 matDiff;
+    float4 matSpec;
     
 };
 
@@ -53,6 +55,8 @@ struct PSInput
     int4 lightMode : POSITION8;
     float3 lightDir : NORMAL5;
     float3 lightCone : NORMAL6;
+    float3 matDiff : COLOR1;
+    float3 matSpec : COLOR2;
 
 
 };
@@ -107,4 +111,6 @@ void main(in  VSInput VSIn,
     PSIn.lightMode = lightMode;
     PSIn.lightDir = lightDir.xyz;
     PSIn.lightCone = lightCone.xyz;
+    PSIn.matDiff = matDiff;
+    PSIn.matSpec = matSpec;
 }

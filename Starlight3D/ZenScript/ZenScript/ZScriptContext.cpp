@@ -239,6 +239,19 @@ void ZScriptContext::LoadLib(std::string name)
 }
 
 
+bool ZScriptContext::IsStaticClass(size_t name) {
+
+	for (int i = 0; i < mStaticClasses.size(); i++)
+	{
+
+		if (mStaticClasses[i]->GetHashName() == name)
+		{
+			return true;
+		}
+
+	}
+	return false;
+}
 bool ZScriptContext::IsStaticClass(std::string name) {
 
 	for (int i = 0; i < mStaticClasses.size(); i++)
@@ -252,6 +265,23 @@ bool ZScriptContext::IsStaticClass(std::string name) {
 	}
 	return false;
 }
+
+
+ZClassNode* ZScriptContext::GetStaticClass(size_t name) {
+
+	for (int i = 0; i < mStaticClasses.size(); i++)
+	{
+
+		if (mStaticClasses[i]->GetHashName() == name)
+		{
+			return mStaticClasses[i];
+		}
+
+	}
+	return nullptr;
+
+}
+
 
 ZClassNode* ZScriptContext::GetStaticClass(std::string name) {
 

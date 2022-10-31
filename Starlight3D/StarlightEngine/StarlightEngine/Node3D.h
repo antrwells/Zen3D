@@ -39,7 +39,7 @@ enum NodeType {
 			return mType;
 
 		}
-
+		virtual void UpdateActor() {};
 		virtual void UpdateRotation() {};
 
 
@@ -239,7 +239,7 @@ enum NodeType {
 		/// Returnns how many children this node has.
 		/// </summary>
 		/// <returns></returns>
-		int ChildrenCount() {
+		size_t ChildrenCount() {
 			return mChildren.size();
 		}
 		/// <summary>
@@ -456,7 +456,7 @@ enum NodeType {
 
 			WriteScripts(file);
 
-			file->WriteInt(mChildren.size());
+			file->WriteInt((int)mChildren.size());
 			for (int i = 0; i < mChildren.size(); i++) {
 
 				mChildren[i]->WriteNode(file);

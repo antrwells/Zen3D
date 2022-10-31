@@ -14,6 +14,7 @@ public:
 private:
 
     std::string mVarName;
+    size_t mNameHash;
     bool mNegative = false;
 
 };

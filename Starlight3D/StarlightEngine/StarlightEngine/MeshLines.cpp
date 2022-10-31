@@ -9,7 +9,7 @@ MeshLines::MeshLines() {
 
 void MeshLines::CreateBuffers() {
 
-	int ds = sizeof(LinesVertex) * mVertices.size();
+	int ds = sizeof(LinesVertex) * (int)mVertices.size();
 
 	m_VertexBuffer.Detach();
 	m_VertexBuffer.Release();
@@ -42,7 +42,7 @@ void MeshLines::CreateBuffers() {
 	m_IndexBuffer.Release();
 	int b = 5;
 
-	ds = sizeof(Line) * mLines.size();
+	ds = sizeof(Line) * (int)mLines.size();
 
 	BufferDesc IndBuffDesc;
 	IndBuffDesc.Name = "MeshLines - index buffer";

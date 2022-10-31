@@ -4,6 +4,7 @@
 RayPicker::RayPicker(SceneGraph* graph) {
 
 	mGraph = graph;
+	mIgnore = false;
 
 }
 
@@ -132,7 +133,7 @@ PickResult RayPicker::RayPick(rpRay ray)
 	return RayPickMesh(ray);
 
 }
-const float EPSILON = 0.0000001;
+const float EPSILON = 0.0000001f;
 float3 edge1, edge2, h, s, q;
 float a, f, u, v;
 inline PickResult RayPicker::RayToTri(rpRay& ray,rpTri& tri)// float3& vertex0, float3& vertex1, float3& vertex2)
@@ -159,14 +160,14 @@ inline PickResult RayPicker::RayToTri(rpRay& ray,rpTri& tri)// float3& vertex0, 
 		a = Diligent::dot(edge1,h);
 		if (a > -EPSILON && a < EPSILON)
 			return result;    // This ray is parallel to this triangle.
-		f = 1.0 / a;
+		f = 1.0f / a;
 		s = ray.pos - tri.v0;
 		u = f * Diligent::dot(s,h);
-		if (u < 0.0 || u > 1.0)
+		if (u < 0.0f || u > 1.0f)
 			return result;
 		q = Diligent::cross(s,edge1);
 		v = f * Diligent::dot(ray.dir,q);
-		if (v < 0.0 || u + v > 1.0)
+		if (v < 0.0f || u + v > 1.0f)
 			return result;
 		// At this stage we can compute t to find out where the intersection point is on the line.
 		float t = f * Diligent::dot(edge2,q);

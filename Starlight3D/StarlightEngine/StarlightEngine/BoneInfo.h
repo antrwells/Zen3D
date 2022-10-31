@@ -8,7 +8,7 @@ using namespace Diligent;
 	class BoneInfo
 	{
 	public:
-		int id;
+		int id = 0;
 		float4x4 offset;
 	};
 

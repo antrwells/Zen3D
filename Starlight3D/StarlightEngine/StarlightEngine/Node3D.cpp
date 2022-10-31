@@ -71,7 +71,11 @@ bool Node3D::mSysInit = false;
 		UpdateComponents();
 
 		UpdateChildren();
+
+		UpdateActor();
 	}
+
+	
 
 	void Node3D::UpdateComponents() {
 
@@ -449,7 +453,7 @@ bool Node3D::mSysInit = false;
 
 		auto node = (Node3D*)args[0]->GetCObj();
 
-		node->RotateGlobal(VGetInt(args[1]), VGetInt(args[2]), VGetInt(args[3]));
+		node->RotateGlobal(VGetFloat(args[1]), VGetFloat(args[2]), VGetFloat(args[3]));
 
 		int bb = 5;
 
@@ -506,14 +510,14 @@ bool Node3D::mSysInit = false;
 	ZContextVar* node3d_getmousemovex(const std::vector<ZContextVar*>& args)
 	{
 
-		return VMakeFloat(Application::GetApp()->GetInput()->GetMouseDX());
+		return VMakeFloat((float)Application::GetApp()->GetInput()->GetMouseDX());
 
 	}
 
 	ZContextVar* node3d_getmousemovey(const std::vector<ZContextVar*>& args)
 	{
 
-		return VMakeFloat(Application::GetApp()->GetInput()->GetMouseDY());
+		return VMakeFloat((float)Application::GetApp()->GetInput()->GetMouseDY());
 
 	}
 
@@ -870,7 +874,7 @@ bool Node3D::mSysInit = false;
 
 	void Node3D::WriteScripts(VFile* file) {
 
-		file->WriteInt(mScriptObjs.size());
+		file->WriteInt((int)mScriptObjs.size());
 
 		for (int i = 0; i < mScriptObjs.size(); i++) {
 

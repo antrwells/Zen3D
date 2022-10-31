@@ -6,6 +6,8 @@
 #include "VarTypes.h"
 
 class ZParametersNode;
+class ZMethodNode;
+class ZClassNode;
 
 
 
@@ -15,6 +17,7 @@ class ZClassStatementNode :
 public:
     void AddName(std::string name);
     std::vector<std::string> GetNames();
+    std::vector<size_t> GetHashNames();
     ZParametersNode* GetParameters();
     void SetParameters(ZParametersNode* parameters);
     ZContextVar* Exec(const std::vector<ZContextVar*>& params);
@@ -22,7 +25,10 @@ public:
 private:
 
     std::vector<std::string> mNames;
+    std::vector<size_t> mNamesHash;
     ZParametersNode* mPars;
+    ZClassNode* mCacheCls = nullptr;
+    ZMethodNode* mCacheMeth = nullptr;
 
 
 };

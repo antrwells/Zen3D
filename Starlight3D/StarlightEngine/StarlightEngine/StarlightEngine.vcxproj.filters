@@ -67,9 +67,6 @@
     <Filter Include="Draw">
       <UniqueIdentifier>{03ff8941-ad28-4678-97be-1d1905e767b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Import">
-      <UniqueIdentifier>{39b59755-098d-46ce-b058-c0a6bc8f7510}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{2c9440d4-51e1-4211-a944-3e47d63ea804}</UniqueIdentifier>
     </Filter>
@@ -88,11 +85,14 @@
     <Filter Include="App">
       <UniqueIdentifier>{a6ac5ed1-951b-4158-9186-2354c8728e91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Import\Input">
-      <UniqueIdentifier>{dec0b767-2000-43cd-b9d7-b1d9b91a2774}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Video">
       <UniqueIdentifier>{4d69fd5e-9b1d-47f5-ab0a-d9aa203f28c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh\Import">
+      <UniqueIdentifier>{39b59755-098d-46ce-b058-c0a6bc8f7510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh\Import\Input">
+      <UniqueIdentifier>{dec0b767-2000-43cd-b9d7-b1d9b91a2774}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -244,10 +244,10 @@
       <Filter>Draw</Filter>
     </ClInclude>
     <ClInclude Include="Importer.h">
-      <Filter>Import</Filter>
+      <Filter>Mesh\Import</Filter>
     </ClInclude>
     <ClInclude Include="UserInput.h">
-      <Filter>Import\Input</Filter>
+      <Filter>Mesh\Import\Input</Filter>
     </ClInclude>
     <ClInclude Include="VString.h">
       <Filter>Util</Filter>
@@ -471,10 +471,10 @@
       <Filter>Draw</Filter>
     </ClCompile>
     <ClCompile Include="Importer.cpp">
-      <Filter>Import</Filter>
+      <Filter>Mesh\Import</Filter>
     </ClCompile>
     <ClCompile Include="UserInput.cpp">
-      <Filter>Import\Input</Filter>
+      <Filter>Mesh\Import\Input</Filter>
     </ClCompile>
     <ClCompile Include="VString.cpp">
       <Filter>Util</Filter>

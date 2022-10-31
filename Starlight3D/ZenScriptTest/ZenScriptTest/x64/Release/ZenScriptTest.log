@@ -1,52 +1,7 @@
 ﻿  ZenScriptTest.cpp
-ZenScript.lib(ZScriptContext.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZClassNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZSystemFunctions.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParser.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZSystemFunction.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZTokenizer.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZContextVar.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZSource.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZProgramNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseCodeBody.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZScriptNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZVarsNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZMethodNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZContextScope.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZExpressionNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseScript.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZTokenStream.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZCodeBodyNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZIncNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseClassStatement.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseAssign.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseFor.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseVars.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseReturn.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseIf.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseStatement.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseWhile.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseClass.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZClassStatementNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseParameters.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZAssignNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseExpression.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZForNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseNew.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZReturnNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZIfnode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZStatementNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZWhileNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseMethod.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParametersNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZNewNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseSignature.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZSignatureNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZParseSigParam.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-ZenScript.lib(ZSigParamNode.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MT_StaticRelease' in ZenScriptTest.obj
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-ZenScript.lib(ZScriptContext.obj) : error LNK2001: unresolved external symbol __imp_clock
-ZenScript.lib(ZScriptContext.obj) : error LNK2001: unresolved external symbol __imp_wcscpy
-ZenScript.lib(ZScriptContext.obj) : error LNK2001: unresolved external symbol __imp_wcscat
-C:\projects\Starlight3D\StarlightStudio\x64\Release\ZenScriptTest.exe : fatal error LNK1120: 3 unresolved externals
+C:\projects\Starlight3D\ZenScriptTest\ZenScriptTest\ZenScriptTest.cpp(25,60): error C2661: 'ZContextVar::ZContextVar': no overloaded function takes 2 arguments
+C:\projects\Starlight3D\ZenScriptTest\ZenScriptTest\ZenScriptTest.cpp(65,76): error C2661: 'ZContextVar::ZContextVar': no overloaded function takes 2 arguments
+C:\projects\Starlight3D\ZenScriptTest\ZenScriptTest\ZenScriptTest.cpp(78,54): error C2661: 'ZContextVar::ZContextVar': no overloaded function takes 2 arguments
+C:\projects\Starlight3D\ZenScriptTest\ZenScriptTest\ZenScriptTest.cpp(79,54): error C2661: 'ZContextVar::ZContextVar': no overloaded function takes 2 arguments
+C:\projects\Starlight3D\ZenScriptTest\ZenScriptTest\ZenScriptTest.cpp(80,9): error C3536: 'par_a': cannot be used before it is initialized
+C:\projects\Starlight3D\ZenScriptTest\ZenScriptTest\ZenScriptTest.cpp(81,9): error C3536: 'par_b': cannot be used before it is initialized

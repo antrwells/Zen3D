@@ -1,0 +1,1 @@
+- Outline shader mixed with finite rendering range to achieve scan effects.

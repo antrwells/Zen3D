@@ -1,8 +1,8 @@
-﻿  VidNative.cpp
-C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(195,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(210,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(922,11): warning C4129: 'm': unrecognized character escape sequence
-C:\projects\Starlight3D\Videon\Videon\VidNative.cpp(1053,18): warning C4244: '=': conversion from 'double' to 'int64_t', possible loss of data
+﻿  pch.cpp
+C:\projects\Starlight3D\Videon\Videon\pch.h(36,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Videon.cpp
+  VidNative.cpp
+  Generating Code...
 avdevice.lib(avdevice-58.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
 avfilter.lib(avfilter-7.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
 avformat.lib(avformat-58.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored

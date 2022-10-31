@@ -5,6 +5,11 @@
 #include "ZClassNode.h"
 
 ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID,bool comparer) {
+	
+	std::hash<std::string> hasher;
+
+	
+	mHashName = hasher(name);
 
 	mName = name;
 	mType = type;
@@ -19,6 +24,12 @@ ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID,
 std::string ZContextVar::GetName() {
 
 	return mName;
+
+}
+
+size_t ZContextVar::GetHashName() {
+
+	return mHashName;
 
 }
 

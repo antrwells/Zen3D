@@ -1,7 +1,7 @@
 #include "ZParseClass.h"
 #include "ZClassNode.h"
 #include "ZParseMethod.h"
-#include "ZMethodNode.h";
+#include "ZMethodNode.h"
 #include "ZParseVars.h"
 #include "ZVarsNode.h"
 

@@ -19,7 +19,13 @@ struct PSOutput
 void main(in  PSInput  PSIn,
     out PSOutput PSOut)
 {
+
+    float4 img_c = g_Texture.Sample(g_Texture_sampler,PSIn.Uv);
+
+  
+
     PSOut.Color = g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * PSIn.Color;
+    
 }
 
 //

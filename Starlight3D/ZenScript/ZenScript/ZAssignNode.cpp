@@ -5,8 +5,9 @@
 #include "ZClassNode.h"
 void ZAssignNode::SetVarName(std::string name)
 {
-
+	std::hash<std::string> hasher;
 	mVarName = name;
+	mNameHash = hasher(name);
 
 }
 
@@ -24,14 +25,14 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 	if (ZScriptContext::CurrentContext->IsStaticClass(mVarName))
 	{
 		auto scls = ZScriptContext::CurrentContext->GetStaticClass(mVarName);
-		evar = scls->FindVar(mMember);
+		evar = scls->FindVar(mMemberHash);
 	}
 	else {
-		evar = ZScriptContext::CurrentContext->GetScope()->FindVar(mVarName);
+		evar = ZScriptContext::CurrentContext->GetScope()->FindVar(mNameHash);
 
 		if (mMember != "")
 		{
-			evar = evar->GetClassVal()->FindVar(mMember);
+			evar = evar->GetClassVal()->FindVar(mMemberHash);
 			int aa = 5;
 
 		}
@@ -71,5 +72,7 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 void ZAssignNode::SetMemberName(std::string name) {
 
 	mMember = name;
+	std::hash<std::string> hasher;
+	mMemberHash = hasher(name);
 
 }

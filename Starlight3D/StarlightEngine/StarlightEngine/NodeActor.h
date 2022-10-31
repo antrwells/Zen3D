@@ -30,6 +30,7 @@ class Animator;
 
         NodeActor() {
             mType = NodeType::Actor;
+            mCurrentAnim = nullptr;
           
        }
 
@@ -70,7 +71,14 @@ class Animator;
         /// </summary>
         /// <param name="t"></param>
         void UpdateAnim();
+        
+        void UpdateActor() {
 
+            //int aa = 5;
+
+            UpdateAnim();
+
+        }
 
         /// <summary>
          /// Internal use.
@@ -90,7 +98,9 @@ class Animator;
            mAnimations.push_back(anim);
         }
 
-
+        std::vector<ActorAnim*> GetAnims() {
+            return mAnimations;
+        }
 
         /// <summary>
         /// Begins playing the animation.

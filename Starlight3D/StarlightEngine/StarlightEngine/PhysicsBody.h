@@ -50,5 +50,5 @@ using namespace Diligent;
 		bool mHere = false;
 		physx::PxShape* shape;
 		physx::PxMaterial* material;
-		float w, h, d;
+		float w=0, h=0, d=0;
 	};

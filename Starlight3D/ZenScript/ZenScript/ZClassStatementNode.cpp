@@ -7,35 +7,48 @@
 #include "ZMethodNode.h"
 #include "ZSignatureNode.h"
 #include "ZSigParamNode.h"
+#include "ZMethodNode.h"
+#include "ZClassNode.h"
 ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 {
+	//std::hash<std::string> hasher;
+	//ZClassNode* top;
 
-	ZClassNode* top;
+
 
 	int name_id = 0;
 
 	while (true) {
 
-		auto name = mNames[name_id];
+		auto name = mNamesHash[name_id];
 		ZClassNode* cls = nullptr;
 
-		if (ZScriptContext::CurrentContext->IsStaticClass(name)) {
+		if (mCacheCls == nullptr) {
+			if (ZScriptContext::CurrentContext->IsStaticClass(name)) {
 
-			cls = ZScriptContext::CurrentContext->GetStaticClass(name);
-			int bv = 1;
+				cls = ZScriptContext::CurrentContext->GetStaticClass(name);
+				int bv = 1;
+				mCacheCls = cls;
 
+			}
+			else {
 
-		}
-		else {
-
-			auto var = ZScriptContext::CurrentContext->GetScope()->FindVar(name);
-			cls = var->GetClassVal();
+				auto var = ZScriptContext::CurrentContext->GetScope()->FindVar(name);
+				cls = var->GetClassVal();
+				mCacheCls = cls;
+			}
 		}
 		//auto cls = var->GetClassVal();
+		ZMethodNode* meth = nullptr;
+		if (mCacheMeth == nullptr) {
+			meth = mCacheCls->GetMethod(mNamesHash[name_id + 1]);
+			mCacheMeth = meth;
+		}
+		else {
+			meth = mCacheMeth;
+		}
 
-		auto meth_node = cls->GetMethod(mNames[name_id + 1]);
-
-		auto sig_node = meth_node->GetSignature();
+		auto sig_node = meth->GetSignature();
 
 		auto spars = sig_node->GetParams();
 
@@ -56,7 +69,7 @@ ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 
 
-		return cls->CallMethod(mNames[name_id + 1],vpars);
+		return mCacheCls->CallMethod(mNamesHash[name_id + 1],vpars);
 
 		name_id++;
 		break;
@@ -67,7 +80,10 @@ ZContextVar* ZClassStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 void ZClassStatementNode::AddName(std::string name) {
 
+	std::hash<std::string> hasher;
 	mNames.push_back(name);
+	mNamesHash.push_back(hasher(name));
+
 
 }
 
@@ -94,7 +110,7 @@ std::vector<std::string> ZClassStatementNode::GetNames() {
 VarType ZClassStatementNode::GetReturnType() {
 
 
-	auto name = mNames[0];
+	auto name = mNamesHash[0];
 
 	auto var = ZScriptContext::CurrentContext->GetScope()->FindVar(name);
 
@@ -113,5 +129,5 @@ VarType ZClassStatementNode::GetReturnType() {
 		}
 
 	}
-
+	return VarType::VarVoid;
 }

@@ -38,8 +38,8 @@ void ZenUI::MainNodeEditor() {
 
 			bool enable = mEditNode->GetEnabled();
 
-			if(ImGui::Checkbox("Enabled", &enable)){
-	
+			if (ImGui::Checkbox("Enabled", &enable)) {
+
 				mEditNode->SetEnabled(enable);
 
 			}
@@ -91,21 +91,45 @@ void ZenUI::MainNodeEditor() {
 			}
 
 			int pmode = 0;
-
-			if (mEditNode->GetType() == NodeType::Entity) {
-				auto ent = (NodeEntity*)mEditNode;
-			//	ImGui::Text("Physics Type");
+			if (mEditNode->GetType() == NodeType::Actor)
+			{
+				auto ent = (NodeActor*)mEditNode;
+				//	ImGui::Text("Physics Type");
 
 				int pType = (int)ent->GetPhysicsType();
 
 				ImGui::PushItemWidth(128);
 				//if (ImGui::BeginCombo("Transform Space","Transform Space")) {
 					//ImGui::Combo("Local Space",&mSpaceItem,"Local Space 0 Global Space",32);
-				
-				
-				const char* items[] = { "None", "Box", "Sphere","Capsule","Convex","Mesh"};
-				
-				if (ImGui::Combo("Physics Type", &pType, items,6)) {
+
+
+				const char* items[] = { "None", "Box", "Sphere","Capsule","Convex","Mesh" };
+
+				if (ImGui::Combo("Physics Type", &pType, items, 6)) {
+
+					ent->SetPhysicsType((PhysicsType)pType);
+
+				}
+
+
+				ImGui::PopItemWidth();
+			}
+
+
+			if (mEditNode->GetType() == NodeType::Entity) {
+				auto ent = (NodeEntity*)mEditNode;
+				//	ImGui::Text("Physics Type");
+
+				int pType = (int)ent->GetPhysicsType();
+
+				ImGui::PushItemWidth(128);
+				//if (ImGui::BeginCombo("Transform Space","Transform Space")) {
+					//ImGui::Combo("Local Space",&mSpaceItem,"Local Space 0 Global Space",32);
+
+
+				const char* items[] = { "None", "Box", "Sphere","Capsule","Convex","Mesh" };
+
+				if (ImGui::Combo("Physics Type", &pType, items, 6)) {
 
 					ent->SetPhysicsType((PhysicsType)pType);
 
@@ -161,7 +185,7 @@ void ZenUI::MainNodeEditor() {
 				ImGui::PushItemWidth(128);
 				//if (ImGui::BeginCombo("Transform Space","Transform Space")) {
 					//ImGui::Combo("Local Space",&mSpaceItem,"Local Space 0 Global Space",32);
-				const char* items[] = { "Point", "Spot","Directional"};
+				const char* items[] = { "Point", "Spot","Directional" };
 				ImGui::Combo("Light Type", &lightType, items, 3);
 				//ImGui::Combo("Global Space",&mSpaceItem,"");
 			//	ImGui::EndCombo();
@@ -196,8 +220,8 @@ void ZenUI::MainNodeEditor() {
 					light->SetCone(cone);
 
 					//mGizmoSpace = GizmoSpace::Global;
-					}
-					break;
+				}
+				break;
 				case 2:
 					light->SetLightType(LightType::DirectionalLight);
 					break;
@@ -392,9 +416,9 @@ void ZenUI::MainNodeEditor() {
 							}
 						}
 						else {
-							 
-							
-								//****
+
+
+							//****
 							std::string vn = std::string("Empty:");
 							auto bt = var->GetBaseID();
 							vn = vn + bt;
@@ -421,7 +445,7 @@ void ZenUI::MainNodeEditor() {
 								}
 								ImGui::EndDragDropTarget();
 							}
-							
+
 						}
 
 
@@ -511,6 +535,39 @@ void ZenUI::MainNodeEditor() {
 
 
 			//Material
+			if (mEditNode->GetType() == NodeType::Actor) {
+
+				auto entity = (NodeEntity*)mEditNode;
+
+				auto meshes = entity->GetMeshes();
+
+				for (int m = 0; m < meshes.size(); m++)
+				{
+
+					VString name("Mesh:");
+					name.Add(VString(m));
+
+					ImGui::Text(name.GetConst());
+
+					auto mesh = meshes[m];
+					auto mat = mesh->GetMaterial();
+
+
+					ImGui::SameLine();
+					if (ImGui::Button("Edit Material"))
+					{
+
+						mEditMaterial = mat;
+
+					}
+
+					if (ImGui::Button("Edit Animations"))
+					{
+						mEditAnimation = (NodeActor*)entity;
+					}
+
+				}
+			}
 
 			if (mEditNode->GetType() == NodeType::Entity)
 			{
@@ -540,68 +597,15 @@ void ZenUI::MainNodeEditor() {
 
 
 
-					/*
-					auto col_map = mat->GetColorMap();
-					auto norm_map = mat->GetNormalMap();
-					auto spec_map = mat->GetSpecularMap();
-
-					ImGui::Text("Color"); ImGui::SameLine();
-					ImGui::Image(col_map->GetView(), ImVec2(64, 64));
-					if (ImGui::BeginDragDropTarget()) {
-						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
-						{
-							DirEntry* entry = (DirEntry*)payload->Data;
-
-							mat->SetColorMap(new Texture2D(entry->full.c_str()));
-
-							mDragEntry = nullptr;
-
-						}
-						ImGui::EndDragDropTarget();
-					}
-					ImGui::SameLine();
-					ImGui::Text("Normal"); ImGui::SameLine();
-					ImGui::Image(norm_map->GetView(), ImVec2(64, 64));
-					if (ImGui::BeginDragDropTarget()) {
-						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
-						{
-							DirEntry* entry = (DirEntry*)payload->Data;
-
-							mat->SetNormalMap(new Texture2D(entry->full.c_str()));
-
-							mDragEntry = nullptr;
-
-						}
-						ImGui::EndDragDropTarget();
-					}
-
-					ImGui::SameLine();
-					ImGui::Text("Specular"); ImGui::SameLine();
-					ImGui::Image(spec_map->GetView(), ImVec2(64, 64));
-					if (ImGui::BeginDragDropTarget()) {
-						if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Texture"))
-						{
-							DirEntry* entry = (DirEntry*)payload->Data;
-
-							mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
-
-							mDragEntry = nullptr;
-
-						}
-						ImGui::EndDragDropTarget();
-					}
-
-				}
-				*/
 				}
 			}
-			
+
 			ImGui::EndChild();
 			if (ImGui::BeginDragDropTarget()) {
 				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Script"))
 				{
 					DirEntry* entry = (DirEntry*)payload->Data;
-					
+
 					VString vs = VString(entry->name.c_str());
 
 					int mp = vs.Find(".");
@@ -610,7 +614,7 @@ void ZenUI::MainNodeEditor() {
 
 					int vvv = 5;
 
-					mEditNode->AddScript(entry->full,name.GetConst());
+					mEditNode->AddScript(entry->full, name.GetConst());
 
 					int at = 5;
 
@@ -622,17 +626,19 @@ void ZenUI::MainNodeEditor() {
 				}
 				ImGui::EndDragDropTarget();
 			}
-	
+
 
 		}
 
 		//exit(1);
 		//}
 
-		
+
 
 	}
-
+	
 	ImGui::End();
 
 }
+
+

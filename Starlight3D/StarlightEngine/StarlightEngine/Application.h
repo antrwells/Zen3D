@@ -275,7 +275,7 @@ public:
 
 private:
 
-    UserInput* mInput;
+    UserInput* mInput = nullptr;
 protected:
     FSPayload* mCurrentPayload = nullptr;
 private:
@@ -286,16 +286,16 @@ private:
     RefCntAutoPtr<IPipelineState> m_pPSO;
     RefCntAutoPtr<IEngineFactory> m_pEngFac;
     RENDER_DEVICE_TYPE            m_DeviceType = RENDER_DEVICE_TYPE_D3D12;
-    int winWidth, winHeight;
+    int winWidth=0, winHeight=0;
     int frameWidth=-1, frameHeight=-1;
     GLFWwindow* m_Window = nullptr;
 
-    int mMouseX, mMouseY;
-    int mDeltaX, mDeltaY;
+    int mMouseX=0, mMouseY=0;
+    int mDeltaX=0, mDeltaY=0;
     bool mMouseFirst = true;
     
-    Physics* mPhysics;
-    HWND curWin;
+    Physics* mPhysics = nullptr;
+    HWND curWin = 0;
     std::unique_ptr<ImGuiImplWin32> m_pImGui = nullptr;
     static void GLFW_ResizeCallback(GLFWwindow* wnd, int w, int h);
     static void GLFW_KeyCallback(GLFWwindow* wnd, int key, int, int state, int);

@@ -6,14 +6,16 @@
 
 void ZIncNode::SetVarName(std::string name) {
 
+	std::hash<std::string> hasher;
 	mVarName = name;
+	mNameHash = hasher(name);
 
 }
 
 ZContextVar* ZIncNode::Exec(const std::vector<ZContextVar*>& params)
 {
 
-	auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(mVarName);
+	auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(mNameHash);
 
 	int val = 1;
 	if (mNegative) {

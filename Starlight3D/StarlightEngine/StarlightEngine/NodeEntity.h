@@ -182,7 +182,7 @@ enum PhysicsType {
             file->WriteString(mName);
             //WriteTransform(file);
 
-            file->WriteInt(mMeshes.size());
+            file->WriteInt((int)mMeshes.size());
             for (int i = 0; i < mMeshes.size(); i++) {
 
                 mMeshes[i]->WriteMesh(file);
@@ -190,7 +190,7 @@ enum PhysicsType {
             }
             WriteScripts(file);
 
-            file->WriteInt(mChildren.size());
+            file->WriteInt((int)mChildren.size());
             for (int i = 0; i < mChildren.size(); i++) {
 
                 mChildren[i]->WriteNode(file);

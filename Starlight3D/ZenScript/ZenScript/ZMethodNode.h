@@ -3,6 +3,7 @@
 #include <string>
 #include "VarTypes.h"
 #include "ZContextScope.h"
+#include <unordered_map>
 
 class ZCodeBodyNode;
 class ZSignatureNode;
@@ -34,6 +35,9 @@ public:
 	static ZMethodNode* mCurrentNode;
 	void SetVirtual(bool is_virtual);
 	bool GetVirtual();
+	size_t GetHash() {
+		return mNameHash;
+	}
 private:
 	ZExpressionNode* mGuardExpr = nullptr;
 	std::string mMethodName;
@@ -42,6 +46,7 @@ private:
 	ZCodeBodyNode* mCode;
 	ZContextScope* mScope;
 	ZClassNode* mClass;
-	bool mIsVirtual = false;
+	bool mIsVirtual = false; 
+	size_t mNameHash;
 };
 

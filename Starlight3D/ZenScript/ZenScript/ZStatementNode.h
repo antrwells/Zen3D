@@ -2,9 +2,12 @@
 #include "ZScriptNode.h"
 #include <vector>
 #include <string>
+#include "ZSystemFunction.h"
 
 class ZCodeBodyNode;
 class ZParametersNode;
+class ZSystemFunction;
+class ZMethodNode;
 
 class ZStatementNode :
     public ZScriptNode
@@ -19,8 +22,11 @@ public:
 private:
 
     std::vector<std::string> mCallNames;
+    std::vector<size_t> mHashNames;
     ZParametersNode* mPars;
     ZCodeBodyNode* mCode;
+    ZMethodNode* mCacheMeth = nullptr;
+    ZSystemFunction mCacheFunc;
 
 };
 

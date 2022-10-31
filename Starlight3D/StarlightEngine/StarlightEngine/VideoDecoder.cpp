@@ -109,7 +109,7 @@ void VideoDecoder::DecodeNextFrame() {
 	fw = getFrameWidth(pVideo);
 	fh = getFrameHeight(pVideo);
 
-	if (fw < 0 || fw>10000)
+	if (fw <= 0 || fw>10000)
 	{
 		return;
 	}

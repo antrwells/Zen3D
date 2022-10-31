@@ -1,8 +1,6 @@
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zenscript.pch
 c:\projects\starlight3d\starlightstudio\x64\release\zenscript.pdb
 c:\projects\starlight3d\zenscript\zenscript\x64\release\pch.obj
-c:\projects\starlight3d\zenscript\zenscript\x64\release\zparseexpression.obj
-c:\projects\starlight3d\zenscript\zenscript\x64\release\zparsecodebody.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zparseclassstatement.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zparseclass.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zparseassign.obj
@@ -14,6 +12,8 @@ c:\projects\starlight3d\zenscript\zenscript\x64\release\zifnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zfornode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zexpressionnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zenscript.obj
+c:\projects\starlight3d\zenscript\zenscript\x64\release\zenparser.obj
+c:\projects\starlight3d\zenscript\zenscript\x64\release\zenbytecode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zcontextvar.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zcontextscope.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zcodebodynode.obj
@@ -21,8 +21,6 @@ c:\projects\starlight3d\zenscript\zenscript\x64\release\zclassstatementnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zclassnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zassignnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\dircollection.obj
-c:\projects\starlight3d\zenscript\zenscript\x64\release\zsignaturenode.obj
-c:\projects\starlight3d\zenscript\zenscript\x64\release\zscriptnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zscriptcontext.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zreturnnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zprogramnode.obj
@@ -41,6 +39,8 @@ c:\projects\starlight3d\zenscript\zenscript\x64\release\zparsenew.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zparsemethod.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zparseif.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zparsefor.obj
+c:\projects\starlight3d\zenscript\zenscript\x64\release\zparseexpression.obj
+c:\projects\starlight3d\zenscript\zenscript\x64\release\zparsecodebody.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zwhilenode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zvarsnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\ztokenstream.obj
@@ -50,6 +50,8 @@ c:\projects\starlight3d\zenscript\zenscript\x64\release\zsystemfunction.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zstatementnode.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zsource.obj
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zsigparamnode.obj
+c:\projects\starlight3d\zenscript\zenscript\x64\release\zsignaturenode.obj
+c:\projects\starlight3d\zenscript\zenscript\x64\release\zscriptnode.obj
 c:\projects\starlight3d\starlightstudio\x64\release\zenscript.lib
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zenscript.tlog\cl.command.1.tlog
 c:\projects\starlight3d\zenscript\zenscript\x64\release\zenscript.tlog\cl.read.1.tlog

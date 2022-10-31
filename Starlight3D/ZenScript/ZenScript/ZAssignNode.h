@@ -20,6 +20,7 @@ private:
     std::string mVarName = "";
     std::string mMember ="";
     ZExpressionNode* mValue = nullptr;
+    size_t mNameHash, mMemberHash;
 
 };
 

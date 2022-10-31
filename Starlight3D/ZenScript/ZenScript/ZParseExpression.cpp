@@ -42,6 +42,7 @@ ZScriptNode* ZParseExpression::Parse() {
 
 		for (int i = 0; i < 16; i++) {
 			ele.mValName[i] = "";
+			ele.mNameHash[i] = 0;
 		}
 
 		switch (token.mType) {
@@ -159,14 +160,17 @@ ZScriptNode* ZParseExpression::Parse() {
 			break;
 		case TokenType::TokenIdent:
 		{
-
+			std::hash<std::string> hasher;
 			ele.mType = EVar;
 			ele.mValName[0] = token.mText;
+			ele.mNameHash[0] = hasher(token.mText);
 		
 			if (mStream->PeekToken(0).mType == TokenType::TokenPeriod) {
 
 				mStream->NextToken();
-				ele.mValName[1] = mStream->NextToken().mText;
+				//ele.mValName[1] = mStream->NextToken().mText;
+
+				ele.mNameHash[1] = hasher(mStream->NextToken().mText);
 				if (mStream->PeekToken(0).mType == TokenType::TokenLeftPara)
 				{
 					mStream->Back();

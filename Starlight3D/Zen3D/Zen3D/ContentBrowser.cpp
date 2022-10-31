@@ -124,8 +124,9 @@ void ZenUI::MainContentBrowser() {
 						//FSPayload* pl = new FSPayload("Load model");
 						//pl->AddFile("Import", entry.full.c_str(), ResourceType::ModelProp);
 						//LoadPayload(pl, import_modeldone);
-						auto nn = ImportNode(entry.full.c_str());
-						mGraph->AddNode(nn);
+						//auto nn = ImportNode(entry.full.c_str());
+						ImportModel(entry.full.c_str());
+						//mGraph->AddNode(nn);
 					}
 					if (entry.ext == "zscene")
 					{

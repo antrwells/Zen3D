@@ -19,13 +19,30 @@ void ZSystemFunctions::RegisterFunction(ZSystemFunction function) {
 
 }
 
-ZContextVar* ZSystemFunctions::CallFunction(std::string name, const std::vector<ZContextVar*>& params)
+ZSystemFunction ZSystemFunctions::GetFunction(size_t name) {
+
+	for (int i = 0; i < mFunctions.size(); i++) {
+
+		auto func = mFunctions[i];
+
+		if (func.GetHashName() == name) {
+
+			return func;// func.CallFunction(params);
+
+
+		}
+
+	}
+	
+}
+
+ZContextVar* ZSystemFunctions::CallFunction(size_t name, const std::vector<ZContextVar*>& params)
 {
 	for (int i = 0; i < mFunctions.size(); i++) {
 
 		auto func = mFunctions[i];
 
-		if (func.GetName() == name) {
+		if (func.GetHashName() == name) {
 
 			return func.CallFunction(params);
 

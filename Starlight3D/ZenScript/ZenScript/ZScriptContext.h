@@ -17,7 +17,9 @@ public:
 	void AddNode(ZMainNode* node);
 	ZClassNode* FindClass(std::string name);
 	bool IsStaticClass(std::string name);
+	bool IsStaticClass(size_t hash);
 	ZClassNode* GetStaticClass(std::string name);
+	ZClassNode* GetStaticClass(size_t name);
 
 	ZClassNode* CreateInstance(std::string name,std::string instance_name, const std::vector<ZContextVar*>& params);
 	void PushClass(ZClassNode* cls);

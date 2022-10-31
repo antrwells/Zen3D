@@ -40,8 +40,8 @@
 		mSpecularMap = BlankColor;
 
 		mDiffuse = float3(1, 1, 1);
-		mSpecular = float3(0.3, 0.3, 0.3);
-		mAmbient = float3(0.2, 0.2, 0.2);
+		mSpecular = float3(0.3f, 0.3f, 0.3f);
+		mAmbient = float3(0.2f, 0.2f, 0.2f);
 
 	}
 

@@ -33,7 +33,7 @@
 
 		//	return;
 
-		int vc = mesh->NumVertices();
+		int vc = (int)mesh->NumVertices();
 		//	int tc = mesh->NumTris();
 
 		physx::PxVec3* vertData = new physx::PxVec3[vc];
@@ -47,7 +47,7 @@
 
 
 
-		for (int k = 0; k < mesh->NumVertices(); k++) {
+		for (int k = 0; k < (int)mesh->NumVertices(); k++) {
 
 			auto vert = mesh->GetVertex(k);
 			vertData[vid] = physx::PxVec3(vert.position.x, vert.position.y, vert.position.z);

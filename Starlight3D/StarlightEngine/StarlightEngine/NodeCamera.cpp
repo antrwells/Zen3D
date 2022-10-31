@@ -28,8 +28,8 @@
 
 		//float nv = Kinetic::Maths::Deg2Rad(mFOV);
 		//mProjectionMatrix = glm::perspective<float>(nv, (float)w / (float)h, mMinZ, mMaxZ);
-		mWidth = w;
-		mHeight = h;
+		mWidth = (float)w;
+		mHeight = (float)h;
 		//mProj = glm::perspectiveFov(FOV, (float)w, (float)h, minZ, maxZ);
 
 

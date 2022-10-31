@@ -3,9 +3,11 @@
 
 ZSystemFunction::ZSystemFunction(std::string name, ZContextVar* (*func)(const std::vector<ZContextVar*>& params))
 {
-
+	std::hash<std::string> hasher;
 	mName = name;
 	mFunc = func;
+	mHashName = hasher(name);
+	Alive = true;
 
 }
 

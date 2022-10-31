@@ -192,7 +192,7 @@ extern "C" {
 			// Use the first audio stream we can find.
 			// NOTE: There may be more than one, depending on the file.
 			if (formatCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-				videoStreamIndex = i;
+				videoStreamIndex = (int)i;
 				break;
 			}
 		}
@@ -207,7 +207,7 @@ extern "C" {
 			// Use the first audio stream we can find.
 			// NOTE: There may be more than one, depending on the file.
 			if (formatCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
-				audioStreamIndex = i;
+				audioStreamIndex = (int)i;
 				break;
 			}
 		}
@@ -919,7 +919,7 @@ char* getFrameData(videoPB* vid) {
 		aContext = alcCreateContext(aDevice, NULL);
 		if (!alcMakeContextCurrent(aContext)) {
 
-			printf("Context not valid.\m");
+			printf("Context not valid.\n");
 
 		}
 		else {
@@ -1050,7 +1050,7 @@ char* getFrameData(videoPB* vid) {
 		pb->packet = &pb->packet1;
 		pb->apacket = &pb->apacket1;
 
-		pb->last_dts = 0.0;
+		pb->last_dts = 0;
 
 		pb->last_dts = 0;
 		pb->last_pts = 0;

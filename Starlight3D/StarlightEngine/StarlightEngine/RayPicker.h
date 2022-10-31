@@ -10,9 +10,9 @@ struct PickResult {
 	float3 hit_normal;
 	float3 hit_uv;
 	float hit_distance;
-	Node3D* hit_node;
-	NodeEntity* hit_entity;
-	NodeActor* hit_actor;
+	Node3D* hit_node = nullptr;
+	NodeEntity* hit_entity = nullptr;
+	NodeActor* hit_actor = nullptr;
 	Mesh3D* hit_mesh;
 	bool hit = false;
 
@@ -41,7 +41,7 @@ struct PickCache {
 	std::vector<rpTri> tris;
 	float3 bmin;
 	float3 bmax;
-	Node3D* node;
+	Node3D* node = nullptr;
 
 };
 

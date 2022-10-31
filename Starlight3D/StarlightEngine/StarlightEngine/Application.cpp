@@ -489,16 +489,16 @@ void Application::Run() {
         glfwGetCursorPos(m_Window, &xp, &yp);
 
         if (mMouseFirst) {
-            mMouseX = xp;
-            mMouseY = yp;
+            mMouseX = (float)xp;
+            mMouseY = (float)yp;
             mMouseFirst = false;
         }
 
-        mDeltaX = xp - mMouseX;
-        mDeltaY = yp - mMouseY;
+        mDeltaX = (int)xp - mMouseX;
+        mDeltaY = (int)yp - mMouseY;
 
-        mMouseX = xp;
-        mMouseY = yp;
+        mMouseX = (int)xp;
+        mMouseY = (int)yp;
 
         if (is_splash == false) {
             mInput->SetMouse(mMouseX, mMouseY, mDeltaX, mDeltaY);
@@ -556,17 +556,17 @@ void Application::Run() {
                 float cv = 1.0f;
 
                 cv = ((float)a) / 360.0f;
-                cv = 1.0 - cv;
+                cv = 1.0f - cv;
 
                 cv = cv - cl;
 
                 if (cv < 0.0f) {
-                    cv = 1.0 + cv;
+                    cv = 1.0f + cv;
                 }
                 //cv = 0.4;
              
-                cv = 1.0 - cv;
-                draw->DrawTexture(dx-5, dy-5,11,11, white_tex, 0, cv, cv, cv, false);
+                cv = 1.0f - cv;
+                draw->DrawTexture((int)dx-5, (int)dy-5,11,11, white_tex, 0, cv, cv, cv, false);
                 //printf("A:%d\n", a);
                 //printf("CV:%f\n", cv);
             }
@@ -797,7 +797,7 @@ void Application::GLFW_CursorPosCallback(GLFWwindow* wnd, double xpos, double yp
 {
     float xscale = 1;
     float yscale = 1;
-    s_pThis->SetMousePos(xpos, ypos);
+    s_pThis->SetMousePos((int)xpos, (int)ypos);
     
     //glfwGetWindowContentScale(wnd, &xscale, &yscale);
     //auto* pSelf = static_cast<GLFWDemo*>(glfwGetWindowUserPointer(wnd));

@@ -26,16 +26,22 @@ class Expression;
 class ExpressionElement {
 
 public:
+    ExpressionElement() {
+        mNameHash[0] = 0;
+        mNameHash[1] = 0;
+        mNameHash[2] = 0;
+    }
     int mValInt = 0;
     float mValFloat = 0;
     std::string mValName[32];
-    std::string mValString;
-    void* mSubExpression;
-    ExprOperatorType mOp; 
-    ExprElementType mType;
+    size_t mNameHash[32];
+    std::string mValString = "";
+    void* mSubExpression = nullptr;
+    ExprOperatorType mOp;
+    ExprElementType mType = ExprElementType::EInt;
     ZStatementNode* mStatement = nullptr;
     ZClassStatementNode* mClassStatement = nullptr;
-    ZNewNode* mNew;
+    ZNewNode* mNew = nullptr;
 
 };
 int precedence(ExprOperatorType op);

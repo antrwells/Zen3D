@@ -10,6 +10,13 @@ end
 
 static class GameScene
 
+
+    method void LoadScene(string path)
+
+        GameSceneLoadScene(path)
+
+    end 
+
     method Node3D GetSceneNode(string name)
 
         Node3D res = GameSceneGetNode(name)

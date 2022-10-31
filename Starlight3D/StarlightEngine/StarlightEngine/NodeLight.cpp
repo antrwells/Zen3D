@@ -7,7 +7,7 @@
 
 		mDiffuse = float3(1, 1, 1);
 		mSpecular = float3(1, 1, 1);
-		mAmbient = float3(0.2, 0.2, 0.2);
+		mAmbient = float3(0.2f, 0.2f, 0.2f);
 		mRange = 100;
 		if (shadowFB) {
 

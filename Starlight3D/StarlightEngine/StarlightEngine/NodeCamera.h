@@ -62,7 +62,7 @@ class Texture2D;
         /// <param name="z"></param>
         void SetMaxZ(float z) {
             mMaxZ = z;
-            SetViewport(0, 0, mWidth, mHeight);
+            SetViewport(0, 0, (int)mWidth, (int)mHeight);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ class Texture2D;
         void SetFOV(float fov)
         {
             mFOV = fov;
-            SetViewport(0, 0, mWidth, mHeight);
+            SetViewport(0, 0, (int)mWidth, (int)mHeight);
         }
 
         float GetFOV()

@@ -117,7 +117,7 @@ int kFont::getWidth(const char* text) {
 
 	}
 
-	return x;
+	return (int)x;
 
 }
 
@@ -133,7 +133,7 @@ void kFont::drawText(const char* text, int x, int y, float r, float g, float b, 
 	int cc = 0;
 	
 //	draw->Begin();
-	float ax = x;
+	float ax = (float)x;
 
 	while (true) {
 
@@ -152,7 +152,7 @@ void kFont::drawText(const char* text, int x, int y, float r, float g, float b, 
 			//UI::DrawTexture(chars[cnum], ax, y, (float)(chars[cnum]->GetWidth()) * scale, (float)(chars[cnum]->GetHeight()) * scale, r, g, b, a,draw);
 			//game->drawImg(ax, y, (float)(chars[cnum]->w)*scale, (float)(chars[cnum]->h)*scale, 1, 1, 1, 1, chars[cnum]);
 			
-			draw->DrawTexture(ax, y, (float)(chars[cnum]->GetWidth()) * scale, (float)(chars[cnum]->GetHeight()) * scale, chars[cnum], r, g, b, a);
+			draw->DrawTexture(ax, y, (int)(float)(chars[cnum]->GetWidth()) * scale, (int)(float)(chars[cnum]->GetHeight()) * scale, chars[cnum], r, g, b, a);
 			ax = ax + (float)(chars[cnum]->GetWidth()) * scale;
 			
 		}
@@ -172,7 +172,7 @@ void kFont::drawText(const char* text, int x, int y, float r, float g, float b, 
 
 	int cc = 0;
 
-	float ax = x;
+	float ax = (float)x;
 
 	//UI::Drawer->Begin();
 

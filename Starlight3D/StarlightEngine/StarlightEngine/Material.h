@@ -114,13 +114,13 @@
 	private:
 
 		//Type
-		MaterialType mType;
+		MaterialType mType = MaterialType::PBR2;
 
 		//colors
 		float3 mDiffuse;
 		float3 mSpecular;
 		float3 mAmbient;
-		float mSpecularStrength;
+		float mSpecularStrength = 0.3;
 
 
 

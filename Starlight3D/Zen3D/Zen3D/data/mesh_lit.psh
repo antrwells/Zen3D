@@ -4,6 +4,8 @@ Texture2D    g_Texture;
 SamplerState g_Texture_sampler;
 Texture2D g_TextureNorm;
 SamplerState g_TextureNorm_sampler;
+Texture2D g_TextureSpec;
+SamplerState g_TextureSpec_sampler;
 TextureCube  g_Env;
 SamplerState g_Env_sampler;
 TextureCube g_Shadow;
@@ -29,6 +31,8 @@ struct PSInput
     int4 lightMode : POSITION8;
     float3 lightDir : NORMAL5;
     float3 lightCone : NORMAL6;
+    float3 matDiff : COLOR1;
+    float3 matSpec : COLOR2;
    // float3 Norm : NORMAL0;x
 
 };
@@ -140,7 +144,7 @@ float light_GetShadow(float3 fragPos,float3 lightPos,float lightRange){
 
         float closestDepth = g_Shadow.Sample(g_Shadow_sampler,normalize(fragToLight)+sampleOffsetDirections[i] * diskRadius).r;
 
-        if( (currentDepth-0.015)>closestDepth)
+        if( (currentDepth-0.005)>closestDepth)
         {
 
          shadowVal +=1.0f;
@@ -255,11 +259,17 @@ void main(in  PSInput  PSIn,
 
     float4 ffcol =((g_Texture.Sample(g_Texture_sampler, PSIn.Uv) * float4(PSIn.lightDiff.x * light, PSIn.lightDiff.y * light, PSIn.lightDiff.z * light, 1.0)) + env_col)*shadowVal;
 
+
+    ffcol.rgb = ffcol.rgb * PSIn.matDiff;
     ffcol.a = 1.0;
 
     spec = spec * shadowVal;
 
-    ffcol.rgb += float3(spec*PSIn.lightSpec.x,spec*PSIn.lightSpec.y,spec*PSIn.lightSpec.z);
+    float3 tSpec = g_TextureSpec.Sample(g_TextureSpec_sampler,PSIn.Uv).rgb;
+
+    ffcol.rgb += float3(spec*PSIn.lightSpec.x,spec*PSIn.lightSpec.y,spec*PSIn.lightSpec.z) * PSIn.matSpec * tSpec;
+
+
 
     PSOut.Color = ffcol;
 

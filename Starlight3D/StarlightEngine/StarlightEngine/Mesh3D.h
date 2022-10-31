@@ -146,7 +146,7 @@ class Node3D;
 				if (vertex.m_BoneIDS[i] < 0)
 				{
 					vertex.m_Weights[i] = weight;
-					vertex.m_BoneIDS[i] = boneID;
+					vertex.m_BoneIDS[i] = (float)boneID;
 					break;
 				}
 			}
@@ -170,11 +170,11 @@ class Node3D;
 			return mTris[id];
 		}
 
-		int NumTris() {
+		size_t NumTris() {
 			return mTris.size();
 		}
 
-		int NumVertices() {
+		size_t NumVertices() {
 			return mVertices.size();
 		}
 
@@ -297,7 +297,7 @@ class Node3D;
 
 			
 
-			file->WriteInt(mVertices.size());
+			file->WriteInt((int)mVertices.size());
 			for (int i = 0; i < mVertices.size(); i++) {
 				auto v = mVertices[i];
 				file->WriteVec3(v.position);
@@ -308,7 +308,7 @@ class Node3D;
 
 			}
 
-			file->WriteInt(mTris.size());
+			file->WriteInt((int)mTris.size());
 			for (int i = 0; i < mTris.size(); i++) {
 
 				auto t = mTris[i];

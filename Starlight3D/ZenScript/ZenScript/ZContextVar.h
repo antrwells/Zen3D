@@ -13,6 +13,7 @@ public:
 	ZContextVar(std::string name,enum VarType type,std::string baseID,bool comparer);
 
 	std::string GetName();
+	size_t GetHashName();
 	VarType GetType();
 	int GetIntVal();
 	float GetFloatVal();
@@ -56,7 +57,7 @@ private:
 	std::string mPushString;
 	std::string mBaseID;
 	bool mComparer = false;
-
+	size_t mHashName;
 
 };
 

@@ -31,11 +31,11 @@ struct DrawInfo {
 
 	float x[4];
 	float y[4];
-	float z;
+	float z = 0;
 	bool flip_uv = false;
-	Texture2D* Tex;
+	Texture2D* Tex = nullptr;
 	//Kinetic::Textures::Texture2D* Norm;
-	float r, g, b, a;
+	float r=0, g=0, b=0, a=0;
 
 
 };
@@ -46,7 +46,7 @@ struct DrawInfo {
 struct DrawList {
 
 	std::vector<DrawInfo*> Draws;
-	Texture2D* Tex;
+	Texture2D* Tex = nullptr;
 	//Kinetic::Textures::Texture2D* Norm;
 
 
@@ -101,14 +101,14 @@ public:
 private:
 	Application* gApp;
 	std::vector<DrawList*> Draws;
-	float drawZ;
+	float drawZ = 1.0f;
 	RefCntAutoPtr<IPipelineState>         m_pPSO;
 	RefCntAutoPtr<IBuffer>                m_VSConstants;
 	RefCntAutoPtr<IShaderResourceBinding> m_pSRB;
 	float4x4                              m_Proj;
 	RefCntAutoPtr<IBuffer>                m_CubeVertexBuffer;
 	RefCntAutoPtr<IBuffer>                m_CubeIndexBuffer;
-	float cZ;
+	float cZ = 0.0;
 	bool made = false;
 	Vertex2D* vertices;
 	Uint32* indices;

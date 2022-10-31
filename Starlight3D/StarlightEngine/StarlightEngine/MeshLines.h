@@ -44,8 +44,8 @@ public:
 		mVertices.push_back(v0);
 		mVertices.push_back(v1);
 		Line l;
-		l.v0 = mVertices.size() - 2;
-		l.v1 = mVertices.size() - 1;
+		l.v0 = (int)mVertices.size() - 2;
+		l.v1 = (int)mVertices.size() - 1;
 		mLines.push_back(l);
 
 	}

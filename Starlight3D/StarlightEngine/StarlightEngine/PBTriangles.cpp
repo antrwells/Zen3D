@@ -46,8 +46,8 @@
 
 		//	return;
 
-		int vc = mesh->NumVertices();
-		int tc = mesh->NumTris();
+		int vc = (int)mesh->NumVertices();
+		int tc = (int)mesh->NumTris();
 
 		physx::PxVec3* vertData = new physx::PxVec3[vc];
 

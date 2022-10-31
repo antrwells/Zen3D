@@ -11,7 +11,8 @@ public:
 
 	ZSystemFunctions();
 	void RegisterFunction(ZSystemFunction function);
-	ZContextVar* CallFunction(std::string name, const std::vector<ZContextVar*>& params);
+	ZContextVar* CallFunction(size_t name, const std::vector<ZContextVar*>& params);
+	ZSystemFunction GetFunction(size_t name);
 	static ZSystemFunctions* sFuncs;
 
 private:

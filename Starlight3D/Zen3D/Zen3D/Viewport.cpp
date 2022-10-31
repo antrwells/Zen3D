@@ -44,7 +44,7 @@ void ZenUI::MainViewPort() {
 		if ((int)(win_size.x) != mRenderTarget->GetWidth() || (int)(win_size.y) != mRenderTarget->GetHeight() || first_render) {
 
 			mRenderTarget = new RenderTarget2D((int)win_size.x, (int)win_size.y);
-			printf("============================================================>\n");
+		//	printf("============================================================>\n");
 			//auto cam = mGraph->dGetCamera();
 
 			//mGameCam->SetViewport(0, 0, win_size.x, win_size.y);
@@ -352,7 +352,17 @@ void ZenUI::MainViewPort() {
 
 		Application::GetApp()->GetInput()->SetMouse(real_pos.x, real_pos.y, Application::GetApp()->GetInput()->GetMouseDX(),Application::GetApp()->GetInput()->GetMouseDY());
 		if (mGameGraph != nullptr) {
-			mGameGraph->RenderUI(pr);
+			int start = clock();
+			//rui++;
+			//if (rui > 5)
+			//{
+			//	rui = 0;
+				mGameGraph->RenderUI(pr);
+			
+			int end = clock() - start;
+			tms = end;
+
+			//printf("script:%d ms\n",ams);
 		}
 
 	//	cam->SetViewport(0, 0, win_size.x, win_size.y);

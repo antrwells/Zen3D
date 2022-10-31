@@ -83,27 +83,28 @@ float applyOpFloat(float a, float b, ExprOperatorType op) {
     case OpMinus: return a - b;
     case OpMultiply: return a * b;
     case OpDivide: return a / b;
-    case OpGreater: return a > b ? 1 : 0;
-    case OpLess: return a < b ? 1 : 0;
-    case OpEquals: return a == b ? 1 : 0;
-    case OpNot: return a != b ? 1 : 0;
+    case OpGreater: return a > b ? 1.0f : 0.0f;
+    case OpLess: return a < b ? 1.0f : 0.0f;
+    case OpEquals: return a == b ? 1.0f : 0.0f;
+    case OpNot: return a != b ? 1.0f : 0.0f;
     case OpAnd:
     {
         bool res = ((a >= 1) && (b >= 1));
-        if (res) return 1;
-        return 0;
+        if (res) return 1.0f;
+        return 0.0f;
         break;
     }
     case OpOr:
     {
         bool res = ((a >= 1)) || (b >= 1);
-        if (res) return 1;
-        return 0;
+        if (res) return 1.0f;
+        return 0.0f;
         break;
     }
 
     }
-    int bbb = 5;
+    return 0.0f;
+    //int bbb = 5;
 }
 
 
@@ -175,7 +176,7 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                 int depth = 0;
                 for (int i = 0; i < 16; i++)
                 {
-                    if (tok.mValName[i] != "")
+                    if (tok.mNameHash[i] != 0)
                     {
                         depth++;
                     }
@@ -186,30 +187,30 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
 
                 if (depth > 1)
                 {
-                    if (ZScriptContext::CurrentContext->IsStaticClass(tok.mValName[0])) {
+                    if (ZScriptContext::CurrentContext->IsStaticClass(tok.mNameHash[0])) {
 
-                        auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mValName[0]);
+                        auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mNameHash[0]);
 
-                        auto gv = scls->FindVar(tok.mValName[1]);
+                        auto gv = scls->FindVar(tok.mNameHash[1]);
                         values.push(gv->GetIntVal());
 
                     }
                     else {
 
-                        auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
-                        auto av = cls->GetClassVal()->FindVar(tok.mValName[1]);
+                        auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mNameHash[0]);
+                        auto av = cls->GetClassVal()->FindVar(tok.mNameHash[1]);
                         if (av->GetType() == VarType::VarInt)
                         {
 
                             values.push(av->GetIntVal());
                         }
                         else {
-                            values.push(av->GetFloatVal());
+                            values.push((int)av->GetFloatVal());
                         }
                     }//values.push(333);
                 }
                 else {
-                    auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
+                    auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mNameHash[0]);
                     switch (evar->GetType()) {
                     case VarType::VarFloat:
                         values.push((int)evar->GetFloatVal());
@@ -357,7 +358,7 @@ float GetValue(ExpressionElement tok)
         int depth = 0;
         for (int i = 0; i < 16; i++)
         {
-            if (tok.mValName[i] != "")
+            if (tok.mNameHash[i] != 0)
             {
                 depth++;
             }
@@ -368,18 +369,18 @@ float GetValue(ExpressionElement tok)
 
         if (depth > 1)
         {
-            if (ZScriptContext::CurrentContext->IsStaticClass(tok.mValName[0])) {
+            if (ZScriptContext::CurrentContext->IsStaticClass(tok.mNameHash[0])) {
 
-                auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mValName[0]);
+                auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mNameHash[0]);
 
-                auto gv = scls->FindVar(tok.mValName[1]);
+                auto gv = scls->FindVar(tok.mNameHash[1]);
                 //values.push(gv->GetFloatVal());
                 return gv->GetFloatVal();
 
             }
             else {
-                auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
-                auto av = cls->GetClassVal()->FindVar(tok.mValName[1]);
+                auto cls = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mNameHash[0]);
+                auto av = cls->GetClassVal()->FindVar(tok.mNameHash[1]);
                 if (av->GetType() == VarType::VarInt)
                 {
                     return (float)av->GetIntVal();
@@ -392,7 +393,7 @@ float GetValue(ExpressionElement tok)
             }//values.push(333);
         }
         else {
-            auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mValName[0]);
+            auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mNameHash[0]);
             if (evar->GetType() == EInt) {
 
                 //values.push((float)evar->GetIntVal());
@@ -404,6 +405,7 @@ float GetValue(ExpressionElement tok)
             }
         }
     }
+    return 0.0f;
 }
 
 
@@ -517,6 +519,28 @@ Expression ZExpressionNode::GetExpression() {
 
 }
 
+ZContextVar* GetVar(size_t name1, size_t name2) {
+    ZContextVar* var = nullptr;
+    if (ZScriptContext::CurrentContext->IsStaticClass(name1))
+    {
+        auto scls = ZScriptContext::CurrentContext->GetStaticClass(name1);
+        var = scls->FindVar(name2);
+
+    }
+    else {
+
+        var = ZScriptContext::CurrentContext->GetScope()->FindVar(name1);
+        if (name2 != 0)
+        {
+            auto cls = var->GetClassVal();
+            var = cls->FindVar(name2);
+        }
+
+    }
+    return var;
+}
+
+/*
 ZContextVar* GetVar(std::string name1,std::string name2) {
     ZContextVar* var = nullptr;
     if (ZScriptContext::CurrentContext->IsStaticClass(name1))
@@ -537,7 +561,7 @@ ZContextVar* GetVar(std::string name1,std::string name2) {
     }
     return var;
 }
-
+*/
 std::string StringValue(ExpressionElement e)
 {
 
@@ -547,12 +571,12 @@ std::string StringValue(ExpressionElement e)
     case EClassStatement:
         return e.mClassStatement->Exec({})->GetStringVal();
     case EVar:
-        return GetVar(e.mValName[0],e.mValName[1])->GetStringVal();
+        return GetVar(e.mNameHash[0],e.mNameHash[1])->GetStringVal();
         break;
     case EString:
         return e.mValString;
     }
-
+    return "";
 }
 
 bool IsString(ExpressionElement e)
@@ -577,7 +601,7 @@ bool IsString(ExpressionElement e)
         break;
     case EVar:
     {
-        auto vv = GetVar(e.mValName[0], e.mValName[1]);
+        auto vv = GetVar(e.mNameHash[0], e.mNameHash[1]);
         if (vv->GetType() == VarType::VarString)
         {
             return true;
@@ -604,8 +628,8 @@ bool Expression::IsCompare() {
                 if (mElements[0].mType == EVar && mElements[2].mType == EVar) {
                     //return true;
 
-                    auto v1 = GetVar(mElements[0].mValName[0], mElements[0].mValName[1]);
-                    auto v2 = GetVar(mElements[2].mValName[0], mElements[2].mValName[1]);
+                    auto v1 = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
+                    auto v2 = GetVar(mElements[2].mNameHash[0], mElements[2].mNameHash[1]);
                     auto c1 = v1->GetClassVal();
                     auto c2 = v2->GetClassVal();
 
@@ -641,8 +665,8 @@ bool Expression::DoesCompare() {
                 if (mElements[0].mType == EVar && mElements[2].mType == EVar) {
                     //return true;
 
-                    auto v1 = GetVar(mElements[0].mValName[0], mElements[0].mValName[1]);
-                    auto v2 = GetVar(mElements[2].mValName[0], mElements[2].mValName[1]);
+                    auto v1 = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
+                    auto v2 = GetVar(mElements[2].mNameHash[0], mElements[2].mNameHash[1]);
                     auto c1 = v1->GetClassVal();
                     auto c2 = v2->GetClassVal();
 
@@ -784,7 +808,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
         else if (mElements[0].mType == EVar)
         {
 
-            auto rv = GetVar(mElements[0].mValName[0],mElements[0].mValName[1]);
+            auto rv = GetVar(mElements[0].mNameHash[0],mElements[0].mNameHash[1]);
 
             
             switch (rv->GetType()) {
@@ -817,7 +841,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
         {
             auto ele = mElements[0];
 
-            auto quick_v = GetVar(mElements[0].mValName[0],mElements[0].mValName[1]);
+            auto quick_v = GetVar(mElements[0].mNameHash[0],mElements[0].mNameHash[1]);
 
             if (quick_v != nullptr) {
                 return quick_v;
@@ -842,7 +866,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             bool is_float = false;
             for (int i = 0; i < mElements.size(); i++) {
 
-                auto var = GetVar(mElements[i].mValName[0],mElements[i].mValName[1]);
+                auto var = GetVar(mElements[i].mNameHash[0],mElements[i].mNameHash[1]);
                 if (var != nullptr) {
                     if (var->GetType() == VarCObj)
                     {
@@ -884,7 +908,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     case VarCObj:
     {
 
-        auto var = GetVar(mElements[0].mValName[0],mElements[0].mValName[1]);
+        auto var = GetVar(mElements[0].mNameHash[0],mElements[0].mNameHash[1]);
 
         return VMakeC(var->GetCObj());
 
@@ -926,15 +950,15 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
         }
         ZContextVar* var = nullptr;
-        if (ZScriptContext::CurrentContext->IsStaticClass(mElements[0].mValName[0]))
+        if (ZScriptContext::CurrentContext->IsStaticClass(mElements[0].mNameHash[0]))
         {
-            auto scls = ZScriptContext::CurrentContext->GetStaticClass(mElements[0].mValName[0]);
-            var = scls->FindVar(mElements[0].mValName[1]);
+            auto scls = ZScriptContext::CurrentContext->GetStaticClass(mElements[0].mNameHash[0]);
+            var = scls->FindVar(mElements[0].mNameHash[1]);
 
         }
         else {
 
-            var = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[0].mValName[0]);
+            var = ZScriptContext::CurrentContext->GetScope()->FindVar(mElements[0].mNameHash[0]);
         }
         switch (var->GetType()) {
 

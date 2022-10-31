@@ -7,7 +7,7 @@ SmartDraw::SmartDraw(Application* app) {
 
     gApp = app;
 
-    //cZ = 1.00f;
+    cZ = 1.00f;
 
     BlendStateDesc BlendState;
     BlendState.RenderTargets[0].BlendEnable = true;
@@ -53,7 +53,8 @@ SmartDraw::SmartDraw(Application* app) {
     ShaderCI.SourceLanguage = SHADER_SOURCE_LANGUAGE_HLSL;
 
     // OpenGL backend requires emulated combined HLSL texture samplers (g_Texture + g_Texture_sampler combination)
-    ShaderCI.UseCombinedTextureSamplers = true;
+    //ShaderCI.UseCombinedTextureSamplers = true;
+
 
     // In this tutorial, we will load shaders from file. To be able to do that,
     // we need to create a shader source stream factory
@@ -150,10 +151,6 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
     int size = list->Draws.size();
 
 
-
-
-
-
     int vi = 0;
 
     
@@ -207,24 +204,51 @@ void SmartDraw::CreateVertexBuffer(DrawList* list) {
         vi++;
     }
 
-    int ds = ((3 * 4) + (4 * 4) + (2*4)) * (size * 4);
+   // int ds = ((3 * 4) + (4 * 4) + (2*4)) * (size * 4);
 
-    if (made) {
-        m_CubeVertexBuffer->Release();
-        m_CubeVertexBuffer.Detach();
-       
 
+
+    if (m_CubeVertexBuffer == nullptr) {
+
+        BufferDesc VertBuffDesc;
+        VertBuffDesc.Name = "SmartDraw vertex buffer";
+        VertBuffDesc.Usage = USAGE_DYNAMIC;
+        VertBuffDesc.BindFlags = BIND_VERTEX_BUFFER;
+        VertBuffDesc.Size = 1024 * 64;
+        VertBuffDesc.CPUAccessFlags = CPU_ACCESS_WRITE;
+        BufferData VBData;
+        VBData.pData = &vertices[0];
+        VBData.DataSize = 1024 * 64;
+        gApp->GetDevice()->CreateBuffer(VertBuffDesc, nullptr, &m_CubeVertexBuffer);
     }
 
-    BufferDesc VertBuffDesc;
-    VertBuffDesc.Name = "SmartDraw vertex buffer";
-    VertBuffDesc.Usage = USAGE_IMMUTABLE;
-    VertBuffDesc.BindFlags = BIND_VERTEX_BUFFER;
-    VertBuffDesc.Size = ds;
-    BufferData VBData;
-    VBData.pData = &vertices[0];
-    VBData.DataSize = ds;
-    gApp->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_CubeVertexBuffer);
+    {
+        Vertex2D* verts;
+        auto con = gApp->GetContext();
+        MapHelper<Vertex2D> Vertices(con, m_CubeVertexBuffer, MAP_WRITE, MAP_FLAG_DISCARD);
+        memcpy(Vertices, vertices, vi * sizeof(Vertex2D));
+        /*
+        for (Uint32 v = 0; v <vi; ++v)
+        {
+            const auto& SrcVert = vertices[v];
+            Vertices[v].uv = SrcVert.uv;
+            Vertices[v].pos = SrcVert.pos;// *static_cast<float>(1 + 0.2 * sin(m_CurrTime * (1.0 + v * 0.2)));
+            Vertices[v].color = SrcVert.color;
+        }
+        */
+
+        //con->UpdateBuffer(m_CubeVertexBuffer, 0, ds, &vertices[0], RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+        /*
+        con->MapBuffer(m_CubeVertexBuffer, MAP_WRITE, MAP_FLAG_DISCARD, reinterpret_cast<PVoid&>(verts));
+        for (int i = 0; i < vi; i++)
+        {
+            verts[i].pos = vertices[i].pos;
+            verts[i].color = vertices[i].color;
+            verts[i].uv = vertices[i].uv;
+        }
+        con->UnmapBuffer(m_CubeVertexBuffer, MAP_WRITE);
+        */
+    }
 
     
    // for (int i = 0;i < size * 4;i++) {
@@ -247,6 +271,7 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
     int vi = 0;
     int cv = 0;
 
+    indices[0] = 0;
 
     for (int i = 0;i < size;i++) {
 
@@ -266,23 +291,46 @@ void SmartDraw::CreateIndexBuffer(DrawList* list) {
     int ds = 4 * size * 6;
 
     if (made) {
-        m_CubeIndexBuffer->Release();
-        m_CubeIndexBuffer.Detach();
+    
 
         //m_CubeIndexBuffer.Release();
     }
 
-    BufferDesc IndBuffDesc;
-    IndBuffDesc.Name = "SmartDraw index buffer";
-    IndBuffDesc.Usage = USAGE_IMMUTABLE;
-    IndBuffDesc.BindFlags = BIND_INDEX_BUFFER;
-    IndBuffDesc.Size = ds;
-    BufferData IBData;
-    IBData.pData = &indices[0];
-    IBData.DataSize = ds;
-    
-    gApp->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_CubeIndexBuffer);
 
+
+    if (m_CubeIndexBuffer == nullptr) {
+        BufferDesc IndBuffDesc;
+        IndBuffDesc.Name = "SmartDraw index buffer";
+        IndBuffDesc.Usage = USAGE_DYNAMIC;
+        IndBuffDesc.CPUAccessFlags = CPU_ACCESS_WRITE;
+        IndBuffDesc.BindFlags = BIND_INDEX_BUFFER;
+        IndBuffDesc.Size = 1024 * 64;
+        BufferData IBData;
+        IBData.pData = &indices[0];
+        IBData.DataSize = 1024 * 64;
+        gApp->GetDevice()->CreateBuffer(IndBuffDesc, nullptr, &m_CubeIndexBuffer);
+    }
+   
+    auto con = gApp->GetContext();
+    MapHelper<Uint32> Indices(con, m_CubeIndexBuffer, MAP_WRITE, MAP_FLAG_DISCARD);
+    memcpy(Indices, indices, vi * sizeof(Uint32));
+    /*
+    for (Uint32 v = 0; v < vi; ++v)
+    {
+
+        Indices[v] = indices[v];
+
+        //const auto& SrcVert = vertices[v];
+       // Vertices[v].uv = SrcVert.uv;
+      //  Vertices[v].pos = SrcVert.pos;// *static_cast<float>(1 + 0.2 * sin(m_CurrTime * (1.0 + v * 0.2)));
+    //    Vertices[v].color = SrcVert.color;
+    }
+    */
+
+    //else {
+       // auto con = gApp->GetContext();
+       // con->UpdateBuffer(m_CubeIndexBuffer, 0, ds, &indices[0], RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+    //}
   //  delete indices;
   
 

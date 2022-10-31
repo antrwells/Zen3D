@@ -8,9 +8,14 @@
 #include "ZSignatureNode.h"
 #include "ZSigParamNode.h"
 #include "ZNewNode.h"
+#include <unordered_map>
 void ZClassNode::SetName(std::string name) {
 
+	std::hash<std::string> hasher;
+
 	mClassName = name;
+	mHashName = hasher(name);
+
 
 }
 
@@ -162,15 +167,32 @@ ZClassNode* ZClassNode::CreateInstance(std::string name, const std::vector<ZCont
 	new_cls->CreateScope();
 	new_cls->PopulateScope();
 	new_cls->SetBaseName(this->mClassName);
-	if (new_cls->FindMethod(this->mClassName) != nullptr)
+	if (new_cls->FindMethod(mHashName) != nullptr)
 	{
-		new_cls->CallMethod(this->mClassName,params);
+		new_cls->CallMethod(mHashName,params);
 	}
 
 	return new_cls;
 
 }
 
+ZMethodNode* ZClassNode::FindMethod(size_t hash) {
+
+	for (int i = 0; i < mMethods.size(); i++) {
+
+		if (mMethods[i]->GetHash() == hash)
+		{
+			return mMethods[i];
+		}
+
+	}
+	return nullptr;
+	assert(false);
+	return nullptr;
+
+}
+
+/*
 ZMethodNode* ZClassNode::FindMethod(std::string name) {
 
 	for (int i = 0; i < mMethods.size(); i++) {
@@ -186,10 +208,76 @@ ZMethodNode* ZClassNode::FindMethod(std::string name) {
 	return nullptr;
 
 }
+*/
+std::hash<std::string> hasher;
+
+
+ZContextVar* ZClassNode::CallMethod(size_t hash, const std::vector<ZContextVar*>& params)
+{
+
+
+	auto method = FindMethod(hash);
+
+	auto new_scope = mInstanceScope->Clone();
+
+	auto sig = method->GetSignature();
+
+
+	std::vector<ZContextVar*> to_rem;
+	auto pars = sig->GetParams();
+
+	for (int i = 0; i < pars.size(); i++) {
+
+		auto pa = pars[i];
+		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType(), pa->GetName(), params[i]->GetCompare());
+		switch (params[i]->GetType())
+		{
+		case VarInt:
+			v1->SetInt(params[i]->GetIntVal());
+			break;
+		case VarFloat:
+			v1->SetFloat(params[i]->GetFloatVal());
+			break;
+		case VarInstance:
+			v1->SetClass(params[i]->GetClassVal());
+			v1->SetBaseID(params[i]->GetBaseID());
+			break;
+		case VarCObj:
+			v1->SetCObj(params[i]->GetCObj());
+		case VarString:
+			v1->SetString(params[i]->GetStringVal());
+			break;
+		}
+		new_scope->RegisterVar(v1);
+
+		to_rem.push_back(v1);
+	}
+
+	//method->SetScope(new_scope);
+	//ZScriptContext::CurrentScope = method->GetScope();
+
+
+
+
+	ZScriptContext::CurrentContext->PushScope(new_scope);
+	method->SetClassOwner(this);
+	ZScriptContext::CurrentContext->PushClass(this);
+	auto res = method->Exec({});
+	ZScriptContext::CurrentContext->PopClass();
+	ZScriptContext::CurrentContext->PopScope();
+	for (int i = 0; i < to_rem.size(); i++) {
+		new_scope->RemoveVar(to_rem[i]);
+	}
+	return res;
+}
+
+
 
 ZContextVar* ZClassNode::CallMethod(std::string name, const std::vector<ZContextVar*>& params)
 {
-	auto method = FindMethod(name);
+
+	
+	auto method = FindMethod(hasher(name));
 	
 	auto new_scope = mInstanceScope->Clone();
 
@@ -253,11 +341,20 @@ void ZClassNode::SetBaseName(std::string name) {
 
 ZContextVar* ZClassNode::FindVar(std::string name) {
 
-	return mInstanceScope->FindVar(name);
+	std::hash<std::string> hasher;
+	return mInstanceScope->FindVar(hasher(name));
 
 }
+ZContextVar* ZClassNode::FindVar(size_t hash) {
 
+	if (hash == 0) {
+		printf("No hash\n");
+		exit(1);
 
+	}
+	return mInstanceScope->FindVar(hash);
+
+}
 
 void ZClassNode::Bind() {
 
@@ -286,7 +383,17 @@ void ZClassNode::SetExtends(std::string cls)
 	mInherits = cls;
 
 }
+ZMethodNode* ZClassNode::GetMethod(size_t hash) {
 
+	for (int i = 0; i < mMethods.size(); i++)
+	{
+		if (mMethods[i]->GetHash() == hash) {
+			return mMethods[i];
+		}
+	}
+	return nullptr;
+
+}
 ZMethodNode* ZClassNode::GetMethod(std::string name) {
 
 	for (int i = 0; i < mMethods.size(); i++)

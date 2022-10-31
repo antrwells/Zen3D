@@ -4,7 +4,7 @@
 #include "Node3D.h"
 void BigBuffer::AddData(std::vector<Vertex> vertices, std::vector<Tri> tris,Node3D* owner)
 {
-	int pid = mVertices.size();
+	int pid = (int)mVertices.size();
 
 	for (int i = 0;i < vertices.size();i++) {
 
@@ -14,7 +14,7 @@ void BigBuffer::AddData(std::vector<Vertex> vertices, std::vector<Tri> tris,Node
 
 	GeoIndex gindex;
 
-	gindex.start_tri = mTris.size();
+	gindex.start_tri = (int)mTris.size();
 	gindex.g_Model = owner->GetWorldMatrix();
 
 
@@ -37,7 +37,7 @@ void BigBuffer::AddData(std::vector<Vertex> vertices, std::vector<Tri> tris,Node
 
 void BigBuffer::CreateBuffers() {
 
-	int ds = sizeof(Vertex) * mVertices.size();
+	int ds = sizeof(Vertex) * (int)mVertices.size();
 
 	BufferDesc VertBuffDesc;
 	VertBuffDesc.Name = "BigBuffer - vertex buffer";
@@ -62,7 +62,7 @@ void BigBuffer::CreateBuffers() {
 
 	int b = 5;
 
-	ds = sizeof(Tri) * mTris.size();
+	ds = sizeof(Tri) * (int)mTris.size();
 
 	BufferDesc IndBuffDesc;
 	IndBuffDesc.Name = "BigBuffer - index buffer";

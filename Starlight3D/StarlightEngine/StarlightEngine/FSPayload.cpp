@@ -68,7 +68,7 @@ void* FSPayload::GetResource(std::string name) {
 
 		}
 	}
-
+	return nullptr;
 }
 
 FSResource* FSPayload::GetResourceObj(std::string name) {
@@ -92,7 +92,7 @@ std::vector<FSResource*> FSPayload::GetResources() {
 
 bool FSPayload::Loaded() {
 
-	int num = mResources.size();
+	int num = (int)mResources.size();
 
 	for (int i = 0; i < mResources.size(); i++) {
 

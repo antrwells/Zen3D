@@ -221,7 +221,7 @@ class RayPicker;
 		RefCntAutoPtr<ITopLevelAS> GetTLAS() {
 			return mTLAS;
 		}
-		int RTInstanceCount() {
+		size_t RTInstanceCount() {
 			return mRTMeshes.size();
 		}
 		std::vector<TexItem> GetRTTextureList() {
@@ -431,7 +431,7 @@ class RayPicker;
 			SaveNodeHeader(file,mRootNode);
 			SaveNode(file,mRootNode);
 
-			file->WriteInt(mProperties.size());
+			file->WriteInt((int)mProperties.size());
 			for (int i = 0; i < mProperties.size(); i++) {
 
 				auto prop = mProperties[i];
@@ -511,7 +511,7 @@ class RayPicker;
 			{
 				node->WriteScripts(file);
 
-				file->WriteInt(node->ChildrenCount());
+				file->WriteInt((int)node->ChildrenCount());
 				for (int i = 0; i < node->ChildrenCount(); i++) {
 
 					auto sub = node->GetChild(i);
@@ -527,7 +527,7 @@ class RayPicker;
 			{
 				auto ent = (NodeEntity*)node;
 
-				file->WriteInt(ent->GetMeshes().size());
+				file->WriteInt((int)ent->GetMeshes().size());
 				for (int i = 0; i < ent->GetMeshes().size(); i++) {
 
 					ent->GetMesh(i)->WriteMesh(file);
@@ -538,7 +538,7 @@ class RayPicker;
 				ent->WriteScripts(file);
 				file->WriteInt((int)ent->GetPhysicsType());
 
-				file->WriteInt(node->ChildrenCount());
+				file->WriteInt((int)node->ChildrenCount());
 				for (int i = 0; i < node->ChildrenCount(); i++) {
 
 					auto sub = node->GetChild(i);
@@ -560,7 +560,7 @@ class RayPicker;
 
 				node->WriteScripts(file);
 
-				file->WriteInt(node->ChildrenCount());
+				file->WriteInt((int)node->ChildrenCount());
 				for (int i = 0; i < node->ChildrenCount(); i++) {
 
 					auto sub = node->GetChild(i);

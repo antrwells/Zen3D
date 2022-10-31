@@ -8,6 +8,8 @@ class Node3D
 
     end 
 
+   
+
     method void check1()
 
         printf("Check1 called")
@@ -38,9 +40,9 @@ class Node3D
 
     end 
 
-    method void SetPhysicsToBox()
+    method void SetPhysicsToBox(float size)
 
-        Node3DSetPyToBox(Node)
+        Node3DSetPyToBox(Node,size)
 
     end
 
@@ -53,6 +55,12 @@ class Node3D
     method void SetPhysicsToConvex()
 
         Node3DSetPyToConvex(Node)
+
+    end 
+
+    method void SetPhysicsToCylinder(float height,float width)
+
+        Node3DSetPyToCylinder(Node,height,width)
 
     end 
 

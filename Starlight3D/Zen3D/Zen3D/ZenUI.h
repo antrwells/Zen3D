@@ -94,6 +94,7 @@ public:
 
 	//Other functionality.
 	Node3D* ImportNode(const char* path);
+	NodeActor* ImportActor(const char* path);
 
 	// Other Temporary UI
 
@@ -164,9 +165,20 @@ public:
 
 
 	}
+	void EditAnimationsWindow();
+	void ImportModel(std::string path);
+	void ImportModelWindow();
 
 private:
 
+
+	NodeActor* mEditAnimation;
+	bool mEditAnimsFirst = true;
+	bool mEditAnimsOpen = true;
+	bool mImportModelOpen = false;
+	bool mImportModelFirst = true;
+	bool mImportActor = false;
+	std::string mImportModelPath;
 	std::string mProjectPath = "";
 	// Open States
 	bool mMainOpen = true;
@@ -176,6 +188,7 @@ private:
 	bool mNodeEditorOpen = true;
 	bool mSaveSceneOpen = false;
 	bool mSaveNodeOpen = false;
+	//bool mImportModelOpen = false;
 	//Renderer
 	bool mPostProcessOpen = false;
 	bool mLightmapperOpen = false;
@@ -335,6 +348,8 @@ private:
 	//Built in nodes.
 	std::vector<NodeList> nodeLists;
 
+	int rui = 0;
+	int tms = 0;
 };
 
 

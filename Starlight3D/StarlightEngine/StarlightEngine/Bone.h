@@ -4,7 +4,7 @@
 #include <string>
 #include "assimp/scene.h"
 #include "Common/interface/BasicMath.hpp"
-
+#include "VFile.h"
 using namespace Diligent;
 
 struct KeyPosition
@@ -48,7 +48,92 @@ private:
     int m_ID;
 
 public:
+    void Read(VFile* file) {
 
+        m_NumPositions = file->ReadInt();
+        for (int i = 0; i < m_NumPositions; i++)
+        {
+            KeyPosition kp;
+            kp.position = file->ReadVec3();
+            kp.timeStamp = file->ReadFloat();
+            m_Positions.push_back(kp);
+        }
+
+        m_NumRotations = file->ReadInt();
+        for (int i = 0; i < m_NumRotations; i++) {
+
+            KeyRotation kr;
+
+            float x = file->ReadFloat();
+            float y = file->ReadFloat();
+            float z = file->ReadFloat();
+            float w = file->ReadFloat();
+
+            Quaternion qt(x, y, z, w);
+
+            kr.orientation = qt;
+            kr.timeStamp = file->ReadFloat();
+
+            m_Rotations.push_back(kr);
+
+        }
+
+        m_NumScalings = file->ReadInt();
+
+        for (int i = 0; i < m_NumScalings; i++) {
+
+            KeyScale ks;
+            ks.scale = file->ReadVec3();
+            ks.timeStamp = file->ReadFloat();
+            m_Scales.push_back(ks);
+
+        }
+
+        m_LocalTransform = file->ReadMatrix();
+        m_Name = std::string(file->ReadString());
+        m_ID = file->ReadInt();
+
+    }
+    void Write(VFile* file) {
+
+        file->WriteInt(m_NumPositions);
+        for (int i = 0; i < m_NumPositions; i++) {
+
+            auto pos = m_Positions[i];
+            file->WriteVec3(pos.position);
+            file->WriteFloat(pos.timeStamp);
+
+        }
+
+        file->WriteInt(m_NumRotations);
+        for (int i = 0; i < m_NumRotations; i++) {
+
+            auto rot = m_Rotations[i];
+            //file->WriteVec3(pos.position);
+            file->WriteFloat(rot.orientation.q.x);
+            file->WriteFloat(rot.orientation.q.y);
+            file->WriteFloat(rot.orientation.q.z);
+            file->WriteFloat(rot.orientation.q.w);
+            file->WriteFloat(rot.timeStamp);
+
+        }
+
+        file->WriteInt(m_NumScalings);
+        for (int i = 0; i < m_NumScalings; i++) {
+
+            auto scal = m_Scales[i];
+            file->WriteVec3(scal.scale);
+            file->WriteFloat(scal.timeStamp);
+
+        }
+
+        file->WriteMatrix(m_LocalTransform);
+        file->WriteString(m_Name.c_str());
+        file->WriteInt(m_ID);
+
+    }
+
+    Bone() {};
     /*reads keyframes from aiNodeAnim*/
     Bone(const std::string& name, int ID, const aiNodeAnim* channel)
         :

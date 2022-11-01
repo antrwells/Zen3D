@@ -1,0 +1,1 @@
+A function to generate normal maps from diffuse maps/height maps, via a.i(prefably gpu accelerated.)

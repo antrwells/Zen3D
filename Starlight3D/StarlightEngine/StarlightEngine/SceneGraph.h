@@ -10,8 +10,9 @@
 #include "MeshRenderer.h"
 #include "BigBuffer.h"
 #include "VFile.h"
-
+#include "NodeActor.h"
 #include "SmartDraw.h"
+#include "Animator.h"
 
 
 struct TexItem {
@@ -354,6 +355,37 @@ class RayPicker;
 				}
 			}
 				break;
+			case NodeType::Actor:
+			{
+				auto ent = (NodeActor*)node;
+
+				int mc = file->ReadInt();
+				for (int i = 0; i < mc; i++) {
+
+					Mesh3D* mesh = new Mesh3D();
+					mesh->ReadMesh(file,true);
+					ent->AddMesh(mesh);
+					mesh->SetOwner(node);
+
+
+				}
+
+				node->ReadScripts(file);
+				ent->SetPhysicsType((PhysicsType)file->ReadInt());
+
+				ent->ReadAnimations(file);
+				ent->GetAnimator()->ResetBones();
+
+				int cc = file->ReadInt();
+				for (int i = 0; i < cc; i++) {
+
+					auto sub = ReadNodeHeader(file);
+					ReadNode(file, sub);
+					node->AddNode(sub);
+
+				}
+			}
+				break;
 			case NodeType::Entity:
 			{
 				auto ent = (NodeEntity*)node;
@@ -371,6 +403,8 @@ class RayPicker;
 
 				node->ReadScripts(file);
 				ent->SetPhysicsType((PhysicsType)file->ReadInt());
+
+				
 
 				int cc = file->ReadInt();
 				for (int i = 0; i < cc; i++) {
@@ -467,6 +501,9 @@ class RayPicker;
 			Node3D* res = nullptr;
 			NodeType type = (NodeType)file->ReadInt();
 			switch (type) {
+			case NodeType::Actor:
+				res = new NodeActor;
+				break;
 			case NodeType::Node:
 				res = new Node3D;
 				break;
@@ -507,6 +544,39 @@ class RayPicker;
 
 			switch (node->GetType())
 			{
+			case NodeType::Actor:
+			{
+
+				auto ent = (NodeActor*)node;
+
+				file->WriteInt((int)ent->GetMeshes().size());
+				for (int i = 0; i < ent->GetMeshes().size(); i++) {
+
+					ent->GetMesh(i)->WriteMesh(file);
+
+
+				}
+
+				ent->WriteScripts(file);
+				file->WriteInt((int)ent->GetPhysicsType());
+
+				//write anims
+				ent->WriteAnimations(file);
+
+				file->WriteInt((int)node->ChildrenCount());
+				for (int i = 0; i < node->ChildrenCount(); i++) {
+
+					auto sub = node->GetChild(i);
+					SaveNodeHeader(file, sub);
+					SaveNode(file, sub);
+					//mChildren[i]->WriteNode(file);
+
+				}
+
+			}
+
+
+				break;
 			case NodeType::Node:
 			{
 				node->WriteScripts(file);

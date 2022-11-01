@@ -23,6 +23,7 @@
 #include "GameUI.h"
 #include "VideoDecoder.h"
 #include "Audio.h"
+#include "NodeActor.h"
 bool Node3D::mSysInit = false;
 
 	Node3D::Node3D() {
@@ -802,6 +803,21 @@ bool Node3D::mSysInit = false;
 		return nullptr;
 	}
 
+
+	//Actor
+
+	ZContextVar* actor_PlayAnim(const std::vector<ZContextVar*>& args)
+	{
+
+		auto node = (NodeActor*)args[0]->GetCObj();
+
+		auto name = args[1]->GetStringVal();
+
+		node->PlayAnim(name);
+
+		return nullptr;
+
+	}
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
 
 
@@ -844,6 +860,7 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction v_play("VideoStart", video_Start);
 		ZSystemFunction v_nextFrame("VideoNextFrame", video_NextFrame);
 		ZSystemFunction util_DrawTexture("UtilDrawTexture", util_DrawTexture2D);
+		ZSystemFunction actor_playanim("ActorPlayAnim", actor_PlayAnim);
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
 		funcs->RegisterFunction(n_setpos);
@@ -868,6 +885,7 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(v_play);
 		funcs->RegisterFunction(v_nextFrame);
 		funcs->RegisterFunction(util_DrawTexture);
+		funcs->RegisterFunction(actor_playanim);
 		int aa=5;
 	}
 

@@ -1,11 +1,12 @@
 #pragma once
 #include "Animation.h"
-
+#include "VFile.h"
 
 
 class Animator
 {
 public:
+    Animator() {};
     Animator(Animation* Animation)
     {
         m_CurrentTime = 0.0;
@@ -87,6 +88,33 @@ public:
         return m_CurrentAnimation;
     }
 
+    void ResetBones() {
+        for(int i=0;i<m_FinalBoneMatrices.size();i++){
+            m_FinalBoneMatrices[i] = float4x4::Identity();
+        }
+    }
+    void Write(VFile* file) {
+
+        file->WriteInt((int)m_FinalBoneMatrices.size());
+        for (int i = 0; i < m_FinalBoneMatrices.size(); i++) {
+            file->WriteMatrix(m_FinalBoneMatrices[i]);
+        }
+        m_CurrentAnimation->Write(file);
+        file->WriteFloat(m_CurrentTime);
+        file->WriteFloat(m_DeltaTime);
+    }
+    void Read(VFile* file) {
+
+        int size = file->ReadInt();
+        for (int i = 0; i < size; i++) {
+            float4x4 mat = file->ReadMatrix();
+            m_FinalBoneMatrices.push_back(mat);
+        }
+        m_CurrentAnimation = new Animation;
+        m_CurrentAnimation->Read(file);
+        m_CurrentTime = file->ReadFloat();
+        m_DeltaTime = file->ReadFloat();
+    }
 private:
     std::vector<float4x4> m_FinalBoneMatrices;
     Animation* m_CurrentAnimation = nullptr;

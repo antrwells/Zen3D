@@ -762,6 +762,11 @@
 		if (node->GetEnabled() == false) return;
 		node->EndNode();
 		node->SetPlaying(false);
+		if (node->GetType() == NodeType::Actor)
+		{
+			auto act = (NodeActor*)node;
+			act->StopAnim();
+		}
 		for (int i = 0; i < node->ChildrenCount(); i++) {
 			EndNode(node->GetChild(i));
 		}

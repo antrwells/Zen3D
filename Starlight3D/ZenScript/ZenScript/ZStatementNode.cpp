@@ -56,7 +56,8 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 		}
 	}
 
-	if (meth_node != nullptr) {
+	meth_node = mCacheMeth;
+	if (mCacheMeth != nullptr) {
 
 		auto sig = meth_node->GetSignature();
 
@@ -77,7 +78,7 @@ ZContextVar* ZStatementNode::Exec(const std::vector<ZContextVar*>& params)
 
 		}
 
-		return mCacheMeth->Exec(vpars); //; // top_class->CallMethod(mHashNames[0], vpars);
+		return top_class->CallMethod(mHashNames[0], vpars);
 
 	}
 	else {

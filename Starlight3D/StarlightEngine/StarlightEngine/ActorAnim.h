@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "VFile.h"
 enum AnimType {
 	Forward,Backward,PingPong,Once
 };
@@ -15,6 +15,29 @@ public:
 	float mSpeed = 0.0;
 	std::string mName;
 	AnimType mType;
+
+	void Write(VFile* file) {
+
+		file->WriteInt((int)mType);
+		file->WriteFloat(mStartTime);
+		file->WriteFloat(mEndTime);
+		file->WriteFloat(mCurTime);
+		file->WriteFloat(mSpeed);
+		file->WriteString(mName.c_str());
+
+	}
+
+	void Read(VFile* file) {
+
+		mType = (AnimType)file->ReadInt();
+		mStartTime = file->ReadFloat();
+		mEndTime = file->ReadFloat();
+		mCurTime = file->ReadFloat();
+		mSpeed = file->ReadFloat();
+		mName = std::string(file->ReadString());
+
+
+	}
 
 	ActorAnim(std::string name, float start, float end,float speed,AnimType type)
 	{

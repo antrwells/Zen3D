@@ -808,6 +808,10 @@ ZContextVar* Expression::Evaluate(VarType recv) {
         else if (mElements[0].mType == EVar)
         {
 
+            if (mElements[0].mValName[0] == "anim")
+            {
+                int bb = 5;
+            }
             auto rv = GetVar(mElements[0].mNameHash[0],mElements[0].mNameHash[1]);
 
             

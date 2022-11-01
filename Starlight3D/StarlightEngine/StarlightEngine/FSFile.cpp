@@ -1,3 +1,4 @@
+#pragma once
 #include "pch.h"
 #include "FSFile.h"
 #include "Texture2D.h"

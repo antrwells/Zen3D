@@ -8,6 +8,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+
 //#include "MeshActor.h"
 
 
@@ -72,6 +73,8 @@ class Animator;
         /// <param name="t"></param>
         void UpdateAnim();
         
+        void StopAnim();
+
         void UpdateActor() {
 
             //int aa = 5;
@@ -114,6 +117,8 @@ class Animator;
             return mAnimator;
         }
      
+        void WriteAnimations(VFile* file);
+        void ReadAnimations(VFile* file);
     private:
         std::map<std::string,BoneInfo> m_BoneInfoMap; //
         int m_BoneCounter = 0;

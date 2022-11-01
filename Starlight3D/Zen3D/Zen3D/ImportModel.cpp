@@ -19,11 +19,13 @@ void ZenUI::ImportModelWindow() {
 		if (mImportActor) {
 			auto node = ImportActor(mImportModelPath.c_str());
 			mGraph->AddNode((Node3D*)node);
+			node->SetFilePath(mImportModelPath.c_str());
 
 		}
 		else {
 			auto node = ImportNode(mImportModelPath.c_str());
 			mGraph->AddNode(node);
+			node->SetFilePath(mImportModelPath.c_str());
 		}
 	}
 

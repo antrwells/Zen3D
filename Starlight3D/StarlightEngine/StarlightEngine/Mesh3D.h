@@ -257,7 +257,7 @@ class Node3D;
 		}
 
 
-		void ReadMesh(VFile* file)
+		void ReadMesh(VFile* file,bool actor = false)
 		{
 			int vc = file->ReadInt();
 			for (int i = 0; i < vc; i++)
@@ -268,7 +268,15 @@ class Node3D;
 				vert.bi_normal = file->ReadVec3();
 				vert.tangent = file->ReadVec3();
 				vert.texture_coord = file->ReadVec3();
+				vert.m_BoneIDS = file->ReadVec4();
+				vert.m_Weights = file->ReadVec4();
 				mVertices.push_back(vert);
+				//if (actor) {
+				//	AddVertex(vert, true);
+				//}
+				//else {
+				//	AddVertex(vert, false);
+				//}
 			}
 			int tc = file->ReadInt();
 			for (int i = 0; i < tc; i++)
@@ -305,6 +313,8 @@ class Node3D;
 				file->WriteVec3(v.bi_normal);
 				file->WriteVec3(v.tangent);
 				file->WriteVec3(v.texture_coord);
+				file->WriteVec4(v.m_BoneIDS);
+				file->WriteVec4(v.m_Weights);
 
 			}
 

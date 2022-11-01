@@ -146,6 +146,16 @@ void VFile::WriteVec3(float3 v) {
 
 }
 
+void VFile::WriteVec4(float4 v)
+{
+
+	WriteFloat(v.x);
+	WriteFloat(v.y);
+	WriteFloat(v.z);
+	WriteFloat(v.w);
+
+}
+
 void VFile::WriteMatrix(float4x4 mat)
 {
 
@@ -200,6 +210,16 @@ float4x4 VFile::ReadMatrix() {
 	mat.m33 = ReadFloat();
 
 	return mat;
+
+}
+
+float4 VFile::ReadVec4() {
+
+	float xv = ReadFloat();
+	float yv = ReadFloat();
+	float zv = ReadFloat();
+	float wv = ReadFloat();
+	return float4(xv, yv, zv, wv);
 
 }
 

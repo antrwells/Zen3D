@@ -27,8 +27,10 @@ public:
 	void WriteBytes(void* data, int length);
 	void WriteBool(bool b);
 	void WriteVec3(float3 v);
+	void WriteVec4(float4 v);
 	void WriteMatrix(float4x4 v);
 	float3 ReadVec3();
+	float4 ReadVec4();
 	//void WriteVec3(Vec3 v);
 	void WriteLong(long v);
 	void WriteLine(const char* str);

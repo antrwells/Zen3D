@@ -7,7 +7,7 @@
 #include "NodeActor.h"
 #include "BoneInfo.h"
 #include "Bone.h"
-
+#include "VFile.h"
 inline float4x4 aiMatrix4x4ToGlm(const aiMatrix4x4* from)
 {
     
@@ -58,6 +58,29 @@ struct AssimpNodeData
     std::string name;
     int childrenCount;
     std::vector<AssimpNodeData> children;
+
+    void Write(VFile* file) {
+
+        file->WriteMatrix(transformation);
+        file->WriteString(name.c_str());
+        file->WriteInt(childrenCount);
+        for (int i = 0; i < childrenCount; i++) {
+            children[i].Write(file);
+        }
+
+    }
+    void Read(VFile* file) {
+
+        transformation = file->ReadMatrix();
+        name = std::string(file->ReadString());
+        childrenCount = file->ReadInt();
+        for (int i = 0; i < childrenCount; i++) {
+            AssimpNodeData data;
+            data.Read(file);
+            children.push_back(data);
+        }
+
+    }
 };
 
 
@@ -108,6 +131,54 @@ public:
     inline const std::map<std::string, BoneInfo>& GetBoneIDMap()
     {
         return m_BoneInfoMap;
+    }
+
+
+    void Read(VFile* file) {
+
+        m_Duration = file->ReadFloat();
+        m_TicksPerSecond = file->ReadInt();
+        int size = file->ReadInt();
+        for (int i = 0; i < size; i++) {
+            Bone bone;
+            bone.Read(file);
+            m_Bones.push_back(bone);
+        }
+
+        size = file->ReadInt();
+        for (int i = 0; i < size; i++) {
+
+            std::string name = std::string(file->ReadString());
+            BoneInfo info;
+            info.Read(file);
+            m_BoneInfoMap.insert(std::make_pair(name, info));
+
+        }
+
+        m_RootNode.Read(file);
+
+    }
+
+    void Write(VFile* file) {
+
+        file->WriteFloat(m_Duration);
+        file->WriteInt(m_TicksPerSecond);
+        file->WriteInt((int)m_Bones.size());
+        for (int i = 0; i < (int)m_Bones.size(); i++) {
+            m_Bones[i].Write(file);
+        }
+        std::map<std::string, BoneInfo>::iterator itr;
+        file->WriteInt((int)m_BoneInfoMap.size());
+        for (itr = m_BoneInfoMap.begin(); itr != m_BoneInfoMap.end(); ++itr) {
+            // cout << '\t' << itr->first << '\t' << itr->second
+             //    << '\n';
+
+            file->WriteString(itr->first.c_str());
+            itr->second.Write(file);
+        }
+
+        m_RootNode.Write(file);
+
     }
 
 private:

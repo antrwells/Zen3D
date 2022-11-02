@@ -106,7 +106,7 @@ void ZenUI::SaveNode(const char* path) {
 
 	auto node = mSelectedNode;
 
-	if (node->GetType() == NodeType::Entity)
+	if (node->GetType() == NodeType::Entity || node->GetType()==NodeType::Actor)
 	{
 		NodeEntity* entity = (NodeEntity*)node;
 

@@ -1,11 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  ActorAnim.cpp
-  NodeActor.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,27): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeActor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file NodeActor.cpp)
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(223): warning C4715: 'Bone::GetRotationIndex': not all control paths return a value
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(211): warning C4715: 'Bone::GetPositionIndex': not all control paths return a value
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(235): warning C4715: 'Bone::GetScaleIndex': not all control paths return a value
+  Importer.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Replacing x64\Debug\DirCollection.obj
   Replacing x64\Debug\pch.obj
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

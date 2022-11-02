@@ -631,6 +631,9 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 				if (mesh->HasVertexColors(0)) {
 					color = mesh->mColors[0][index];
 				}
+				if (mesh->HasVertexColors(0)) {
+					color = mesh->mColors[0][index];
+				}
 
 				Vertex new_vertex;
 				new_vertex.position = float3(vertex.x, vertex.y,vertex.z);

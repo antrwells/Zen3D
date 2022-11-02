@@ -609,6 +609,7 @@ bool Node3D::mSysInit = false;
 
 		ms->SetRoot(new Node3D);
 		ms->LoadGraph(path);
+		ms->BeginPlay();
 
 
 		return nullptr;
@@ -818,6 +819,22 @@ bool Node3D::mSysInit = false;
 		return nullptr;
 
 	}
+
+	ZContextVar* input_MouseDown(const std::vector<ZContextVar*>& args)
+	{
+
+		int button = args[0]->GetIntVal();
+
+		auto res = Application::GetApp()->GetInput()->IsMouseDown(button);
+
+		if (res) {
+			return VMakeInt(1);
+		}
+		else {
+			return VMakeInt(0);
+		}
+
+	}
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
 
 
@@ -861,6 +878,7 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction v_nextFrame("VideoNextFrame", video_NextFrame);
 		ZSystemFunction util_DrawTexture("UtilDrawTexture", util_DrawTexture2D);
 		ZSystemFunction actor_playanim("ActorPlayAnim", actor_PlayAnim);
+		ZSystemFunction input_mousedown("InputMouseDown", input_MouseDown);
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
 		funcs->RegisterFunction(n_setpos);
@@ -886,6 +904,7 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(v_nextFrame);
 		funcs->RegisterFunction(util_DrawTexture);
 		funcs->RegisterFunction(actor_playanim);
+		funcs->RegisterFunction(input_mousedown);
 		int aa=5;
 	}
 

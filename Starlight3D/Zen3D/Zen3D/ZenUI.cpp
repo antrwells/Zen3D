@@ -255,7 +255,10 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	ImGuiStyle& style = ImGui::GetStyle();
 	ImGuiIO& io = ImGui::GetIO();
 	fileBrowse = ImGui::FileBrowser();
+	saveCineBrowse = ImGui::FileBrowser();
 	fileBrowse.SetTitle("Select file to open..");
+	saveCineBrowse.SetTitle("Select name for Cinematic...");
+	
 
 	style.Colors[ImGuiCol_Text] = ImColor(220, 220, 220);
 	style.Colors[ImGuiCol_WindowBg] = ImColor(5, 5, 5);
@@ -342,6 +345,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	auto red_tex = (Texture2D*)pUI->GetResource("Red");
 	auto blue_tex = (Texture2D*)pUI->GetResource("Green");// new Texture2D("edit/gizmo/blue.png");
 	auto green_tex = (Texture2D*)pUI->GetResource("Blue"); //new Texture2D("edit/gizmo/green.png");
+	mTrackImage = (Texture2D*)pUI->GetResource("TrackImage");
 
 	mTranslateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(blue_tex);
 	mTranslateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(red_tex);
@@ -368,6 +372,11 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mRotateGizmo->SetPosition(float3(0, 1, 0));
 	mScaleGizmo->SetPosition(float3(0, 1, 0));
 
+
+	//CinematicsEditor
+
+	mCinematicsPos = ImVec2(0, 12 + (float)Application::GetApp()->GetHeight() - 200 - 22-62);
+	mCinematicsSize = ImVec2(Application::GetApp()->GetWidth(), 222 - 12);
 
 	//Content Browser
 	mContentBrowserPos = ImVec2(0, 12 + (float)Application::GetApp()->GetHeight() - 200 - 22);
@@ -517,6 +526,7 @@ ZenUI::ZenUI() {
 	pUI->AddFile("GizScale", "edit/gizmo/scale1.fbx", ResourceType::ModelProp);
 	pUI->AddFile("GizCam", "edit/gizmo/cam1.fbx", ResourceType::ModelProp);
 	pUI->AddFile("WhiteTex", "edit/white.png", ResourceType::TextureFlat);
+	pUI->AddFile("TrackImage", "ui/trackImage.png", ResourceType::TextureFlat);
 	//pUI->LoadThreaded();
 
 	mLMRes[0] = 512;
@@ -556,6 +566,11 @@ void ZenUI::MainWindow() {
 
 	}
 
+	if (saveCineBrowseOpen)
+	{
+		SaveCineDialog();
+	}
+
 	if (mSaveNodeOpen) {
 		SaveNodeDialog();
 	}
@@ -576,6 +591,11 @@ void ZenUI::MainWindow() {
 
 	}
 
+	if (saveCineBrowseOpen)
+	{
+		saveCineBrowse.Display();
+	}
+
 	if (mImportModelOpen) {
 
 		ImportModelWindow();
@@ -586,6 +606,10 @@ void ZenUI::MainWindow() {
 
 		EditAnimationsWindow();
 
+	}
+
+	if (mCinematicsOpen) {
+		CinematicsEditorWindow();
 	}
 
 	ImGui::Begin("FPS");

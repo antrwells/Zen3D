@@ -154,6 +154,7 @@ inline Quaternion fromMatrix(float m00, float m01, float m02, float m10, float m
 
 		trans.q = physx::PxQuat(rotm);
 		
+	
 //		auto qr = fromMatrix(rot.m00,rot.m01,rot.m02,rot.m10,rot.m11,rot.m12,rot.m20,rot.m21,rot.m22);
 		
 

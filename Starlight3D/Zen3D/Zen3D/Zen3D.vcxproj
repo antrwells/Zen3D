@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppZen.cpp" />
+    <ClCompile Include="CinematicsEditor.cpp" />
     <ClCompile Include="ContentBrowser.cpp" />
     <ClCompile Include="EditAnimations.cpp" />
     <ClCompile Include="EditMaterial.cpp" />

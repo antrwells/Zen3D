@@ -615,6 +615,16 @@ bool Node3D::mSysInit = false;
 		return nullptr;
 	}
 
+	ZContextVar* gs_LoadCine(const std::vector<ZContextVar*>& args)
+	{
+
+		auto ms = SceneGraph::GetMainScene();
+		ms->LoadCine(args[0]->GetStringVal().c_str());
+		ms->PlayCine();
+
+		return nullptr;
+	}
+
 	ZContextVar* gs_raycast(const std::vector<ZContextVar*>& args) {
 
 		auto origin = args[0]->GetClassVal();
@@ -849,6 +859,7 @@ bool Node3D::mSysInit = false;
 		con1->LoadLib("ui");
 		con1->LoadLib("sound");
 		con1->LoadLib("video");
+		con1->LoadLib("cine");
 
 		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 		
@@ -879,6 +890,7 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction util_DrawTexture("UtilDrawTexture", util_DrawTexture2D);
 		ZSystemFunction actor_playanim("ActorPlayAnim", actor_PlayAnim);
 		ZSystemFunction input_mousedown("InputMouseDown", input_MouseDown);
+		ZSystemFunction gc_playcine("GameCinePlay", gs_LoadCine);
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
 		funcs->RegisterFunction(n_setpos);
@@ -905,6 +917,7 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(util_DrawTexture);
 		funcs->RegisterFunction(actor_playanim);
 		funcs->RegisterFunction(input_mousedown);
+		funcs->RegisterFunction(gc_playcine);
 		int aa=5;
 	}
 

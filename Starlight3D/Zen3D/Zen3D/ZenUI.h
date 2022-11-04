@@ -13,7 +13,13 @@
 #include "ZNotification.h"
 #include <stack>
 #include "imfilebrowser.h"
+
+class Cinematic;
+class CineTrack;
+class TrackKeyFrame;
+
 class RayPicker;
+
 
 //class DirCollection;
 
@@ -125,6 +131,8 @@ public:
 	float PayloadPercent();
 		void LoadingIndicator();
 
+		void LoadCine(const char* path);
+		void SaveCine(const char* path);
 	//Scene IO
 		void OpenSaveScene()
 		{
@@ -133,6 +141,8 @@ public:
 		void OpenSaveNode() {
 			mSaveNodeOpen = true;
 		}
+
+		void SaveCineDialog();
 
 		void SaveSceneDialog();
 		void SaveNodeDialog();
@@ -168,6 +178,7 @@ public:
 	void EditAnimationsWindow();
 	void ImportModel(std::string path);
 	void ImportModelWindow();
+	void CinematicsEditorWindow();
 
 private:
 
@@ -176,6 +187,8 @@ private:
 	bool mEditAnimsFirst = true;
 	bool mEditAnimsOpen = true;
 	bool mImportModelOpen = false;
+	bool mCinematicsFirst = true;
+	bool mCinematicsOpen = false;
 	bool mImportModelFirst = true;
 	bool mImportActor = false;
 	std::string mImportModelPath;
@@ -267,6 +280,8 @@ private:
 	//Content Browser
 	ImVec2 mContentBrowserPos;
 	ImVec2 mContentBrowserSize;
+	ImVec2 mCinematicsPos;
+	ImVec2 mCinematicsSize;
 	bool mCBF = false;
 	bool mGetScriptName = false;
 	char* mScriptNameBuf;
@@ -333,8 +348,10 @@ private:
 
 
 	ImGui::FileBrowser fileBrowse;
+	ImGui::FileBrowser saveCineBrowse;
 
 	bool fileBrowseOpen = false;
+	bool saveCineBrowseOpen = false;
 	//Misc
 	int empty_index = 0;
 	
@@ -350,6 +367,11 @@ private:
 
 	int rui = 0;
 	int tms = 0;
+
+	//Cinematics
+	Cinematic* mCurrentCine = nullptr;
+	Texture2D* mTrackImage = nullptr;
+
 };
 
 

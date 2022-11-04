@@ -379,6 +379,15 @@ void ZenUI::MainNodeEditor() {
 								mDragEntry = nullptr;
 
 
+							} if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Cine")) {
+								DirEntry* entry = (DirEntry*)payload->Data;
+								var->SetString(entry->full.c_str());
+								//cam->SetLensImage(new Texture2D(entry->full.c_str()));
+								//mat->SetSpecularMap(new Texture2D(entry->full.c_str()));
+
+								mDragEntry = nullptr;
+
+
 							}
 							ImGui::EndDragDropTarget();
 						}
@@ -587,6 +596,7 @@ void ZenUI::MainNodeEditor() {
 					auto mat = mesh->GetMaterial();
 
 
+					ImGui::PushID(128 + m);
 					ImGui::SameLine();
 					if (ImGui::Button("Edit Material"))
 					{
@@ -594,7 +604,7 @@ void ZenUI::MainNodeEditor() {
 						mEditMaterial = mat;
 
 					}
-
+					ImGui::PopID();
 
 
 				}

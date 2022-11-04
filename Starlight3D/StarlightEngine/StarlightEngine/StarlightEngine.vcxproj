@@ -188,6 +188,8 @@
     <ClInclude Include="BigBuffer.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneInfo.h" />
+    <ClInclude Include="Cinematic.h" />
+    <ClInclude Include="CineTrack.h" />
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="DirCollection.h" />
@@ -249,6 +251,7 @@
     <ClInclude Include="TextureCube.h" />
     <ClInclude Include="TextureData.h" />
     <ClInclude Include="tinydir.h" />
+    <ClInclude Include="TrackKeyFrame.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="VFile.h" />
     <ClInclude Include="VideoDecoder.h" />
@@ -265,6 +268,8 @@
     <ClCompile Include="BigBuffer.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneInfo.cpp" />
+    <ClCompile Include="Cinematic.cpp" />
+    <ClCompile Include="CineTrack.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="DirCollection.cpp" />
     <ClCompile Include="DockUsage.cpp" />
@@ -327,6 +332,7 @@
     <ClCompile Include="TextureAtlas.cpp" />
     <ClCompile Include="TextureCube.cpp" />
     <ClCompile Include="TextureData.cpp" />
+    <ClCompile Include="TrackKeyFrame.cpp" />
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="VFile.cpp" />
     <ClCompile Include="VideoDecoder.cpp" />

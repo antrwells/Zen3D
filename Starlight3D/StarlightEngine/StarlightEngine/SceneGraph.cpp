@@ -7,6 +7,7 @@
 #include "SceneGlobal.h"
 #include "GameUI.h"
 #include "Audio.h"
+#include "Cinematic.h"
 #define HIT_GROUP_STRIDE  2
 	SceneGraph::SceneGraph() {
 
@@ -32,12 +33,21 @@
 		return mRootNode->FindNode(name);
 
 	}
-	
+	void SceneGraph::PlayCine() {
+
+		mCurrentCine->Play();
+		
+	}
 	void SceneGraph::Update() {
 
 		if (mRootNode->GetEnabled() == true)
 		{
 			mRootNode->Update();
+		}
+		if (mCurrentCine != nullptr) {
+
+			mCurrentCine->Update();
+
 		}
 		for (int i = 0; i < mBillboards.size(); i++) {
 
@@ -846,6 +856,20 @@
 		GameUI::UI->Begin();
 		RenderNodeUI(mRootNode);
 		GameUI::UI->End(proj);
+	}
+
+
+	void SceneGraph::LoadCine(const char* path)
+	{
+
+		mCurrentCine = new Cinematic;
+
+		VFile* file = new VFile(path, FileMode::Read);
+
+		mCurrentCine->Read(file,this);
+
+		file->Close();
+
 	}
 
 	SceneGraph* SceneGraph::mThis = nullptr;

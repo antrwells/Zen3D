@@ -1,1 +1,3 @@
 -  A High poly grid, becoming more defined(Lower poly) towards the left, a symbol of zen. 3D below the logo.
+
+- Possible: A video splash screen.

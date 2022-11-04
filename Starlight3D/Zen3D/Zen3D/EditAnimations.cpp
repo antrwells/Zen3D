@@ -104,9 +104,9 @@ void ZenUI::EditAnimationsWindow() {
 
 		ImGui::EndChild();
 
+		ImGui::End();
 	}
 
-	ImGui::End();
 
 
 }

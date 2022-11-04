@@ -1,0 +1,7 @@
+- The animation system has several built in rows, for things like active camera,
+
+any rows beneath are a single node, and this node line can record any property/script property per frame. 
+
+The actor row, also has the ability to play animations across a defined span of time, this is on top of the usual node rotation/position/scale keys.
+
+- Camer track will have the abilit to wait or morph into the next key.

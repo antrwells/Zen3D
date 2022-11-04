@@ -145,6 +145,10 @@ void ZenUI::MainContentBrowser() {
 
 
 					}
+					if (entry.ext == "zcine")
+					{
+						LoadCine(entry.full.c_str());
+					}
 				}
 
 					if (ImGui::BeginDragDropSource()) {
@@ -171,9 +175,13 @@ void ZenUI::MainContentBrowser() {
 						else if (mDragEntryRef.ext == "zscene") {
 							ImGui::SetDragDropPayload("Scene", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
-						else if (mDragEntryRef.ext == "mov")
+						else if (mDragEntryRef.ext == "mov" || mDragEntryRef.ext == "mkv")
 						{
 							ImGui::SetDragDropPayload("Movie", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
+						}
+						else if (mDragEntryRef.ext == "zcine")
+						{
+							ImGui::SetDragDropPayload("Cine", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
 						ImGui::Button(mDragEntryRef.name.c_str(), ImVec2(64, 64));
 						ImGui::EndDragDropSource();

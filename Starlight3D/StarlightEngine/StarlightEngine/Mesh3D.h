@@ -270,6 +270,7 @@ class Node3D;
 				vert.texture_coord = file->ReadVec3();
 				vert.m_BoneIDS = file->ReadVec4();
 				vert.m_Weights = file->ReadVec4();
+				vert.color = file->ReadVec4();
 				mVertices.push_back(vert);
 				//if (actor) {
 				//	AddVertex(vert, true);
@@ -315,6 +316,7 @@ class Node3D;
 				file->WriteVec3(v.texture_coord);
 				file->WriteVec4(v.m_BoneIDS);
 				file->WriteVec4(v.m_Weights);
+				file->WriteVec4(v.color);
 
 			}
 

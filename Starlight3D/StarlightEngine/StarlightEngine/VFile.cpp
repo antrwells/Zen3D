@@ -181,6 +181,42 @@ void VFile::WriteMatrix(float4x4 mat)
 
 }
 
+void VFile::WriteMatrix3x3(float3x3 mat)
+{
+	WriteFloat(mat[0][0]);
+	WriteFloat(mat[0][1]);
+	WriteFloat(mat[0][2]);
+
+	WriteFloat(mat[1][0]);
+	WriteFloat(mat[1][1]);
+	WriteFloat(mat[1][2]);
+
+	WriteFloat(mat[2][0]);
+	WriteFloat(mat[2][1]);
+	WriteFloat(mat[2][2]);
+
+}
+
+float3x3 VFile::ReadMatrix3x3() {
+
+	float3x3 mat;
+
+	mat[0][0] = ReadFloat();
+	mat[0][1] = ReadFloat();
+	mat[0][2] = ReadFloat();
+
+	mat[1][0] = ReadFloat();
+	mat[1][1] = ReadFloat();
+	mat[1][2] = ReadFloat();
+
+	mat[2][0] = ReadFloat();
+	mat[2][1] = ReadFloat();
+	mat[2][2] = ReadFloat();
+
+	return mat;
+
+
+}
 
 float4x4 VFile::ReadMatrix() {
 

@@ -159,6 +159,19 @@ void ZenUI::MainMenu() {
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::BeginMenu("Tools"))
+		{
+
+			if (ImGui::MenuItem("Cinematics Editor"))
+			{
+
+				mCinematicsOpen = true;
+
+			}
+			
+			ImGui::EndMenu();
+		}
+
 		ImGui::EndMainMenuBar();
 	}
 

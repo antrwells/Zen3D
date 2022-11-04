@@ -26,7 +26,7 @@ struct TexItem {
 class CubeRenderer;
 class GameUI;
 class RayPicker;
-
+class Cinematic;
 /// <summary>
 /// Vivid::Graph is the namespace for the Vivid3D scene graph, this is what allows you to construct/render and update game scenes.
 /// </summary>
@@ -59,7 +59,7 @@ class RayPicker;
 		/// Will update the scene graph by calling each node's update method.
 		/// </summary>
 		void Update();
-
+		void PlayCine();
 
 		Node3D* FindNode(std::string name);
 
@@ -283,6 +283,8 @@ class RayPicker;
 			}
 			mLights = new_list;
 		}
+
+	
 
 		void LoadGraph(std::string path)
 		{
@@ -691,6 +693,7 @@ class RayPicker;
 		static SceneGraph* GetMainScene() {
 			return mMainScene;
 		}
+		void LoadCine(const char* path);
 	private:
 		static SceneGraph* mMainScene;
 
@@ -722,4 +725,5 @@ class RayPicker;
 		std::vector<NodeProperty*> mProperties;
 		GameUI* mGameUI;
 		SmartDraw* mDraw;
+		Cinematic* mCurrentCine = nullptr;
 };

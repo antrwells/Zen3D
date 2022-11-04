@@ -58,6 +58,40 @@ enum NodeType {
 			
 		}
 
+		void SetRotation3x3(float3x3 rot) {
+
+			mRotation[0][0] = rot[0][0];
+			mRotation[0][1] = rot[0][1];
+			mRotation[0][2] = rot[0][2];
+
+			mRotation[1][0] = rot[1][0];
+			mRotation[1][1] = rot[1][1];
+			mRotation[1][2] = rot[1][2];
+
+			mRotation[2][0] = rot[2][0];
+			mRotation[2][1] = rot[2][1];
+			mRotation[2][2] = rot[2][2];
+
+		}
+
+		Node3D* FindNode(std::string name) {
+
+			if (std::string(mName) == name)
+			{
+				return this;
+			}
+			for (int i = 0; i < mChildren.size(); i++)
+			{
+
+				auto res = mChildren[i]->FindNode(name);
+				if (res != nullptr) {
+					return res;
+				}
+
+			}
+			return nullptr;
+		}
+
 		float4x4 GetRotation4x4() {
 
 			return mRotation;
@@ -313,22 +347,7 @@ enum NodeType {
 			return float3(0, 0, 0) * GetWorldMatrix();
 		}
 
-		Node3D* FindNode(std::string name) {
-
-			if (std::string(mName) == name) {
-				return this;
-			}
-			for (int i = 0; i < mChildren.size(); i++) {
-				
-				auto res = mChildren[i]->FindNode(name);
-				if (res != nullptr) {
-					return res;
-				}
-
-			}
-
-			return nullptr;
-		}
+	
 		/// <summary>
 		/// Removes a node from the children nodes.
 		/// </summary>

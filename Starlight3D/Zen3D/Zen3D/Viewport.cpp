@@ -350,7 +350,7 @@ void ZenUI::MainViewPort() {
 
 		float4x4 pr = float4x4::OrthoOffCenter(0, mRenderTarget->GetWidth(), mRenderTarget->GetHeight(), 0, 0, 100.0f, false);
 
-		Application::GetApp()->GetInput()->SetMouse(real_pos.x, real_pos.y, Application::GetApp()->GetInput()->GetMouseDX(),Application::GetApp()->GetInput()->GetMouseDY());
+		//Application::GetApp()->GetInput()->SetMouse(real_pos.x, real_pos.y, Application::GetApp()->GetInput()->GetMouseDX(),Application::GetApp()->GetInput()->GetMouseDY());
 		if (mGameGraph != nullptr) {
 			int start = clock();
 			//rui++;

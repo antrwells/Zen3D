@@ -61,9 +61,6 @@
     <Filter Include="Picking">
       <UniqueIdentifier>{1b913d1a-9e57-4e31-939a-465eb9305359}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{13f71937-4590-40d5-9a4e-08a7085cc4ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Draw">
       <UniqueIdentifier>{03ff8941-ad28-4678-97be-1d1905e767b8}</UniqueIdentifier>
     </Filter>
@@ -93,6 +90,12 @@
     </Filter>
     <Filter Include="Mesh\Import\Input">
       <UniqueIdentifier>{dec0b767-2000-43cd-b9d7-b1d9b91a2774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material\Math">
+      <UniqueIdentifier>{13f71937-4590-40d5-9a4e-08a7085cc4ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cine">
+      <UniqueIdentifier>{3d0cd345-485b-4c0c-9822-ca4d30c6ebcf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -274,7 +277,7 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Maths.h">
-      <Filter>Math</Filter>
+      <Filter>Material\Math</Filter>
     </ClInclude>
     <ClInclude Include="ScriptObject.h">
       <Filter>Scripting</Filter>
@@ -320,6 +323,15 @@
     </ClInclude>
     <ClInclude Include="VideoDecoder.h">
       <Filter>Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Cinematic.h">
+      <Filter>Cine</Filter>
+    </ClInclude>
+    <ClInclude Include="CineTrack.h">
+      <Filter>Cine</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackKeyFrame.h">
+      <Filter>Cine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +547,15 @@
     </ClCompile>
     <ClCompile Include="VideoDecoder.cpp">
       <Filter>Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Cinematic.cpp">
+      <Filter>Cine</Filter>
+    </ClCompile>
+    <ClCompile Include="CineTrack.cpp">
+      <Filter>Cine</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackKeyFrame.cpp">
+      <Filter>Cine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

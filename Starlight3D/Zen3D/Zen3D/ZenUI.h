@@ -179,10 +179,15 @@ public:
 	void ImportModel(std::string path);
 	void ImportModelWindow();
 	void CinematicsEditorWindow();
+	void KeyFrameParsWindow();
 
 private:
 
 
+	bool mKeyFrameParsFirst = true;
+	bool mKeyFramePars = false;
+	TrackKeyFrame* mSelectedKey = nullptr;
+	CineTrack* mSelectedTrack = nullptr;
 	NodeActor* mEditAnimation;
 	bool mEditAnimsFirst = true;
 	bool mEditAnimsOpen = true;

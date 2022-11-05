@@ -2,6 +2,7 @@
 #include "TrackKeyFrame.h"
 #include "Helper.h"
 #include "VFile.h"
+#include "NodeActor.h"
 TrackKeyFrame::TrackKeyFrame() {
 
 	mTime =0;
@@ -166,7 +167,8 @@ void TrackKeyFrame::Write(VFile* file) {
 	file->WriteVec3(mPosition);
 	file->WriteVec3(mScale);
 	file->WriteMatrix3x3(mRotation);
-
+	file->WriteBool(mPlayAnim);
+	file->WriteString(mAnimName.c_str());
 }
 
 void TrackKeyFrame::Read(VFile* file) {
@@ -175,5 +177,61 @@ void TrackKeyFrame::Read(VFile* file) {
 	mPosition = file->ReadVec3();
 	mScale = file->ReadVec3();
 	mRotation = file->ReadMatrix3x3();
+	mPlayAnim = file->ReadBool();
+	mAnimName = std::string(file->ReadString());
+}
+
+bool TrackKeyFrame::GetPlayAnim() {
+
+	return mPlayAnim;
+
+}
+
+void TrackKeyFrame::SetPlayAnim(bool play) {
+
+	mPlayAnim = play;
+
+}
+
+std::string TrackKeyFrame::GetAnimName() {
+
+	return mAnimName;
+
+}
+
+void TrackKeyFrame::SetAnimName(std::string name) {
+
+	mAnimName = name;
+
+}
+
+void TrackKeyFrame::Activate()
+{
+
+	if (mNode->GetType() == NodeType::Actor) {
+
+		auto act = (NodeActor*)mNode;
+
+		if (mPlayAnim)
+		{
+
+			act->PlayAnim(mAnimName);
+			printf("Playing Animation!\n");
+
+		}
+
+	}
+
+}
+
+void TrackKeyFrame::Deactivate() {
+
+
+}
+
+void TrackKeyFrame::SetNode(Node3D* node)
+{
+
+	mNode = node;
 
 }

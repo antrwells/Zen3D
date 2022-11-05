@@ -19,12 +19,14 @@ public:
 	std::string GetNodeName() {
 		return mNodeName;
 	}
-
+	bool GetSolo();
+	void SetSolo(bool solo);
 private:
 
 	Node3D* mNode;
 	std::string mNodeName;
 	std::vector<TrackKeyFrame*> mKeyFrames;
-
+	TrackKeyFrame* mCurrentKey = nullptr;
+	bool mRecordSolo = false;
 };
 

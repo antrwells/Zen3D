@@ -551,7 +551,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 				char* tex_path = (char*)GetTexturePath(path, diff_path.C_Str());
 
 				int b = 5;
-				new_material->SetColorMap(new Texture2D(tex_path));
+//				new_material->SetColorMap(new Texture2D(tex_path));
 
 			}
 			if (norm_tex_count > 0) {
@@ -561,7 +561,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 				char* tex_path = (char*)GetTexturePath(path, norm_path.C_Str());
 
 				int b = 5;
-				new_material->SetNormalMap(new Texture2D(tex_path));
+//				new_material->SetNormalMap(new Texture2D(tex_path));
 
 			}
 			else {
@@ -642,7 +642,7 @@ NodeEntity* importNode(const C_STRUCT aiScene* sc, const C_STRUCT aiNode* nd)
 
 				new_vertex.tangent = float3(tangent.x, tangent.y, tangent.z);
 
-				new_vertex.texture_coord = float3(uv.x, uv.y, uv.z);									 
+				new_vertex.texture_coord = float3(uv.x, 1.0-uv.y, uv.z);									 
 
 				new_vertex.color = float4(color.r, color.g, color.b, color.a);
 

@@ -254,6 +254,7 @@ void ZenUI::CreateUI(SceneGraph* graph) {
 	mUI = this;
 	ImGuiStyle& style = ImGui::GetStyle();
 	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigWindowsMoveFromTitleBarOnly = true;
 	fileBrowse = ImGui::FileBrowser();
 	saveCineBrowse = ImGui::FileBrowser();
 	fileBrowse.SetTitle("Select file to open..");
@@ -610,6 +611,13 @@ void ZenUI::MainWindow() {
 
 	if (mCinematicsOpen) {
 		CinematicsEditorWindow();
+	}
+
+	if (mKeyFramePars)
+	{
+
+		KeyFrameParsWindow();
+
 	}
 
 	ImGui::Begin("FPS");

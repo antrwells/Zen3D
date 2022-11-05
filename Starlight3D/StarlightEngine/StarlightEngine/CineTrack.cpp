@@ -27,7 +27,7 @@ void CineTrack::InsertKeyFrame(TrackKeyFrame* frame)
 
 //	std::vector<TrackKeyFrame*> newKeys;
 
-
+	frame->SetNode(mNode);
 	mKeyFrames.push_back(frame);
 
 	if (mKeyFrames.size() > 1)
@@ -54,13 +54,37 @@ TrackKeyFrame* CineTrack::GetCurrentKey(float time) {
 	}
 
 	if (f1 == -1) {
+		if (mKeyFrames[mKeyFrames.size() - 1] != mCurrentKey)
+		{
+			if (mCurrentKey != nullptr) {
+				mCurrentKey->Deactivate();
+			}
+			mCurrentKey = mKeyFrames[mKeyFrames.size() - 1];
+			mKeyFrames[mKeyFrames.size() - 1]->Activate();
+		}
 		return mKeyFrames[mKeyFrames.size() - 1];
 	}
 	f2 = f1 + 1;
 	if (f2 >= mKeyFrames.size()) {
+		if (mKeyFrames[f1] != mCurrentKey)
+		{
+			if (mCurrentKey != nullptr) {
+				mCurrentKey->Deactivate();
+			}
+			mCurrentKey = mKeyFrames[f1];
+			mKeyFrames[f1]->Activate();
+		}
 		return mKeyFrames[f1];
 	}
 
+	if (mKeyFrames[f1] != mCurrentKey)
+	{
+		if (mCurrentKey != nullptr) {
+			mCurrentKey->Deactivate();
+		}
+		mCurrentKey = mKeyFrames[f1];
+		mCurrentKey->Activate();
+	}
 	return mKeyFrames[f1]->GetCurrentKey(mKeyFrames[f2], time, false);
 
 
@@ -94,13 +118,22 @@ void CineTrack::UpdateTrack(float time) {
 
 	mNode->SetPosition(key->GetPosition());
 	mNode->SetScale(key->GetScale());
-	mNode->SetRotation3x3(key->GetRotation());
-
+	if (mNode->GetType() == NodeType::Camera) {
+		mNode->SetRotation3x3(key->GetRotation().Inverse());
+	}
+	else {
+		mNode->SetRotation3x3(key->GetRotation());
+	}
 }
 
 void CineTrack::SetNode(Node3D* node) {
 
 	mNode = node;
+	for (int i = 0; i < mKeyFrames.size(); i++) {
+
+		mKeyFrames[i]->SetNode(mNode);
+
+	}
 
 }
 
@@ -119,6 +152,7 @@ std::vector<TrackKeyFrame*> CineTrack::GetKeys() {
 
 void CineTrack::Write(VFile* file)
 {
+	file->WriteBool(GetSolo());
 	file->WriteString(mNode->GetName());
 	file->WriteInt(mKeyFrames.size());
 	for (int i = 0; i < mKeyFrames.size(); i++)
@@ -130,6 +164,7 @@ void CineTrack::Write(VFile* file)
 
 void CineTrack::Read(VFile* file) {
 
+	SetSolo(file->ReadBool());
 	mNodeName = std::string(file->ReadString());
 	int frames = file->ReadInt();
 	for (int i = 0; i < frames; i++) {
@@ -139,5 +174,17 @@ void CineTrack::Read(VFile* file) {
 		mKeyFrames.push_back(frame);
 
 	}
+
+}
+
+bool CineTrack::GetSolo() {
+
+	return mRecordSolo;
+
+}
+
+void CineTrack::SetSolo(bool solo) {
+
+	mRecordSolo = solo;
 
 }

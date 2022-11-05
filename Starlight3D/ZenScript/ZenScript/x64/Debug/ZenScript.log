@@ -12,7 +12,6 @@
   ZExpressionNode.cpp
   ZForNode.cpp
   ZIfnode.cpp
-  ZIncNode.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2824,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -42,25 +41,26 @@ C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see r
               _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ] (compiling source file DirCollection.cpp)
+  ZIncNode.cpp
   ZMethodNode.cpp
   ZNewNode.cpp
   ZParametersNode.cpp
   ZParseAssign.cpp
-  ZParseClass.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZExpressionNode.cpp(78): warning C4715: 'applyOpInt': not all control paths return a value
+  ZParseClass.cpp
   ZParseClassStatement.cpp
   ZParseCodeBody.cpp
   ZParseExpression.cpp
   ZParseFor.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseAssign.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseClass.cpp)
-  ZParseIf.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseClassStatement.cpp)
+  ZParseIf.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseClass.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseCodeBody.cpp)
-  ZParseMethod.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseExpression.cpp)
-  ZParseNew.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseFor.cpp)
+  ZParseMethod.cpp
+  ZParseNew.cpp
   ZParseNode.cpp
   ZParseParameters.cpp
   ZParser.cpp
@@ -68,10 +68,10 @@ C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: '
   ZParseReturn.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseMethod.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseNew.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseNode.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseParameters.cpp)
-  ZParseScript.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseNode.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParser.cpp)
+  ZParseScript.cpp
   ZParseSignature.cpp
   ZParseSigParam.cpp
   ZParseStatement.cpp
@@ -80,10 +80,10 @@ C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: '
   ZParseVars.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseScript.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseSignature.cpp)
-C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseSigParam.cpp)
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseStatement.cpp)
-  ZParseWhile.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseValue.cpp)
+C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseSigParam.cpp)
+  ZParseWhile.cpp
   ZProgramNode.cpp
   ZReturnNode.cpp
   ZScriptContext.cpp
@@ -95,12 +95,9 @@ C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: '
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZParseWhile.cpp)
   ZStatementNode.cpp
   ZSystemFunction.cpp
-  ZSystemFunctions.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZParseNode.h(16,8): warning C4101: 'stop': unreferenced local variable (compiling source file ZScriptContext.cpp)
+  ZSystemFunctions.cpp
   ZTokenizer.cpp
-  ZTokenStream.cpp
-C:\projects\Starlight3D\ZenScript\ZenScript\ZSystemFunctions.cpp(37): warning C4715: 'ZSystemFunctions::GetFunction': not all control paths return a value
-  ZVarsNode.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2824,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -130,6 +127,9 @@ C:\projects\Starlight3D\ZenScript\ZenScript\DirCollection.h(43): message : see r
               _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ] (compiling source file ZScriptContext.cpp)
+  ZTokenStream.cpp
+C:\projects\Starlight3D\ZenScript\ZenScript\ZSystemFunctions.cpp(37): warning C4715: 'ZSystemFunctions::GetFunction': not all control paths return a value
+  ZVarsNode.cpp
   ZWhileNode.cpp
 C:\projects\Starlight3D\ZenScript\ZenScript\ZScriptContext.cpp(180): warning C4715: 'ZScriptContext::FindInstance': not all control paths return a value
   ZenScript.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenScript.lib

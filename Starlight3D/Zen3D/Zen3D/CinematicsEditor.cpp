@@ -1,7 +1,7 @@
 #include "ZenUI.h"
 #include "Cinematic.h"
 #include "CineTrack.h"
-
+#include "ActorAnim.h"
 struct NodeRef {
 
 	Node3D* node = nullptr;
@@ -14,6 +14,8 @@ float time_pick = 0;
 float cur_time = 0;
 bool mPreviewCine = false;
 float preview_time = 0.0f;
+CineTrack* soloTrack = nullptr;
+TrackKeyFrame* DragKey = nullptr;
 
 void ZenUI::CinematicsEditorWindow() {
 
@@ -27,7 +29,7 @@ void ZenUI::CinematicsEditorWindow() {
 
 
 
-	if (ImGui::Begin("Cinematics Editor", &mCinematicsOpen,ImGuiWindowFlags_MenuBar))
+	if (ImGui::Begin("Cinematics Editor", &mCinematicsOpen,ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar))
 	{
 
 		if (ImGui::BeginMenuBar())
@@ -67,25 +69,40 @@ void ZenUI::CinematicsEditorWindow() {
 			if (ImGui::Button("Record"))
 			{
 
-				auto tracks = mCurrentCine->GetTracks();
+				if (soloTrack != nullptr) {
 
-				for (int i = 0; i < tracks.size(); i++) {
-
-					auto track = tracks[i];
-
-					auto node = track->GetNode();
+					auto node = soloTrack->GetNode();
 
 					TrackKeyFrame* frame = new TrackKeyFrame;
 					frame->SetTime(cur_time);
 					frame->SetPosition(node->GetPosition());
 					frame->SetScale(node->GetScale());
 					frame->SetRotation(node->GetRotation());
-					track->InsertKeyFrame(frame);
+					soloTrack->InsertKeyFrame(frame);
 
 				}
+				else {
 
+					auto tracks = mCurrentCine->GetTracks();
+
+					for (int i = 0; i < tracks.size(); i++) {
+
+						auto track = tracks[i];
+
+						auto node = track->GetNode();
+
+						TrackKeyFrame* frame = new TrackKeyFrame;
+						frame->SetTime(cur_time);
+						frame->SetPosition(node->GetPosition());
+						frame->SetScale(node->GetScale());
+						frame->SetRotation(node->GetRotation());
+						track->InsertKeyFrame(frame);
+
+					}
+
+				}
 			}
-
+			ImGui::SameLine();
 			if (ImGui::Button("Preview"))
 			{
 
@@ -122,7 +139,7 @@ void ZenUI::CinematicsEditorWindow() {
 			if (mPreviewCine)
 			{
 				preview_time += 0.05f;
-				if (preview_time > 5.0f)
+				if (preview_time > mCurrentCine->GetLength())
 				{
 					preview_time = 0.0f;
 				}
@@ -205,7 +222,7 @@ void ZenUI::CinematicsEditorWindow() {
 			if (Application::GetApp()->GetInput()->IsMouseDown(0))
 			{
 
-				if ((Application::GetApp()->GetInput()->GetMouseY() - ImGui::GetWindowPos().y)>62)
+				if ((Application::GetApp()->GetInput()->GetMouseY() - ImGui::GetWindowPos().y)>32)
 				{
 
 					time_pick = Application::GetApp()->GetInput()->GetMouseX() - ImGui::GetWindowPos().x;
@@ -232,7 +249,7 @@ void ZenUI::CinematicsEditorWindow() {
 
 
 			ImGui::SetCursorPos(ImVec2(time_pick+ox, vy));
-			ImGui::Image(mTrackImage->GetView(), ImVec2(4, mCinematicsSize.y));
+			ImGui::Image(mTrackImage->GetView(), ImVec2(4, mCinematicsSize.y+256));
 
 
 			while (true) {
@@ -257,15 +274,33 @@ void ZenUI::CinematicsEditorWindow() {
 			int dx = 5 - trackx;
 
 
-
+			int tn = 0;
 			for (int i = 0; i < tracks.size(); i++) {
+				tn = i;
 				ImGui::SetCursorPos(ImVec2(dx, dy));
-				ImGui::Image(mTrackImage->GetView(), ImVec2(128, 32));
+				ImGui::Image(mTrackImage->GetView(), ImVec2(128, 42));
+				ImGui::SetCursorPos(ImVec2(dx + 98, dy + 5));
+				bool tSolo = tracks[i]->GetSolo();
+				ImGui::PushID(299 + i);
+				if (ImGui::Checkbox(" ", &tSolo))
+				{
+					tracks[i]->SetSolo(tSolo);
+					if (tSolo) {
+						soloTrack = tracks[i];
+						for (int k = 0; k < tracks.size(); k++)
+						{
+							if (k != i) {
+								tracks[k]->SetSolo(false);
+							}
+						}
+					}
+				}
+				ImGui::PopID();
 				ImGui::SetCursorPos(ImVec2(dx+7, dy + 10));
 				ImGui::Text(tracks[i]->GetNode()->GetName());
-				ImGui::SetCursorPos(ImVec2(dx, dy + 32));
+				ImGui::SetCursorPos(ImVec2(dx, dy + 42));
 				ImGui::Image(mTrackImage->GetView(), ImVec2(mCinematicsSize.x, 2));
-				dy = dy + 34;
+				dy = dy + 44;
 
 				auto keys = tracks[i]->GetKeys();
 
@@ -276,9 +311,50 @@ void ZenUI::CinematicsEditorWindow() {
 
 					float adx = 134 + k_time * 100.0f;
 
-					ImGui::SetCursorPos(ImVec2(adx-2+ox, vy));
-					ImGui::Image(mTrackImage->GetView(), ImVec2(8,128));
+					int mmx, mmy;
+					mmx = Application::GetApp()->GetInput()->GetMouseX() - ImGui::GetWindowPos().x;
+					mmy = Application::GetApp()->GetInput()->GetMouseY() - ImGui::GetWindowPos().y;
 
+					int by, by2;
+
+					by = vy + 4 + (42 * tn);
+
+					if (mmx > adx - 2 + ox && mmx < adx - 2 + ox + 8) {
+						if (mmy > by && mmy < by +42)
+						{
+							ImGui::SetCursorPos(ImVec2(adx - 2 + ox - 3,by));
+							ImGui::Image(mTrackImage->GetView(), ImVec2(14, 42));
+							if (Application::GetApp()->GetInput()->IsMouseDown(0))
+							{
+								if (DragKey == nullptr) {
+									DragKey = key;
+									if (ImGui::IsMouseDoubleClicked(0)) {
+										
+										mKeyFramePars = true;
+										mSelectedKey = key;
+										mSelectedTrack = tracks[i];
+
+									}
+
+								}
+							}
+						}
+					}
+					if (!Application::GetApp()->GetInput()->IsMouseDown(0)) {
+						DragKey = nullptr;
+					}
+					else {
+						if (DragKey != nullptr) {
+							DragKey->SetTime(cur_time);
+						}
+					}
+
+					ImGui::SetCursorPos(ImVec2(adx-2+ox, vy+4+(42*tn)));
+					ImGui::Image(mTrackImage->GetView(), ImVec2(8,42));
+
+					
+
+			
 
 
 
@@ -314,4 +390,82 @@ void ZenUI::CinematicsEditorWindow() {
 		
 		ImGui::End();
 	}
+}
+
+void ZenUI::KeyFrameParsWindow() {
+
+	if (mKeyFrameParsFirst) {
+
+		ImGui::SetNextWindowPos(ImVec2(150, 300));
+		ImGui::SetNextWindowSize(ImVec2(400, 500));
+
+		mKeyFrameParsFirst = false;
+	}
+
+	auto node = mSelectedTrack->GetNode();
+
+	if (ImGui::Begin("Key Parameters", &mKeyFramePars))
+	{
+
+		ImGui::Text("Transformation");
+
+
+
+		float pos[3];
+		pos[0] = mSelectedKey->GetPosition().x;
+		pos[1] = mSelectedKey->GetPosition().y;
+		pos[2] = mSelectedKey->GetPosition().z;
+		if (ImGui::DragFloat3("Position", pos, 0.1f))
+		{
+			mSelectedKey->SetPosition(float3(pos[0], pos[1], pos[2]));
+		}
+
+		float scal[3];
+		scal[0] = mSelectedKey->GetScale().x;// node->GetScale().x;
+		scal[1] = mSelectedKey->GetScale().y;
+		scal[2] = mSelectedKey->GetScale().z;
+
+		if (ImGui::DragFloat3("Scale",scal))
+		{
+			mSelectedKey->SetScale(float3(scal[0], scal[1], scal[2]));
+
+		}
+
+		if (node->GetType() == NodeType::Actor)
+		{
+			auto act = (NodeActor*)node;
+			bool play_anim = mSelectedKey->GetPlayAnim();
+			if (ImGui::Checkbox("Start Anim", &play_anim))
+			{
+				mSelectedKey->SetPlayAnim(play_anim);
+			}
+
+			//const char* items[] = { "Point", "Spot","Directional" };
+			if (play_anim) {
+				std::vector<const char*> items;
+				for (int i = 0; i < act->GetAnims().size(); i++)
+				{
+					auto anim = act->GetAnims()[i];
+					items.push_back(anim->mName.c_str());
+				}
+				int anum = 0;
+				std::string cur = mSelectedKey->GetAnimName();
+				for (int a = 0; a < items.size(); a++) {
+					if (items[a] == cur)
+					{
+						anum = a;
+						break;
+					}
+				}
+
+				if (ImGui::Combo("Anim", &anum, items.data(), items.size())) {
+				}
+					mSelectedKey->SetAnimName(items[anum]);
+
+				
+			}
+		}
+
+	}
+	ImGui::End();
 }

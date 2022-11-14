@@ -8,6 +8,6 @@ float3 GetGLMVec(aiVector3D v) {
 
 Quaternion GetGLMQuat(aiQuaternion q) {
 
-    return Quaternion(q.x, q.y, q.z, q.w);
+    return Quaternion(q.x, q.y, q.z,q.w);
 
 }

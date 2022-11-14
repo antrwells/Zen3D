@@ -248,6 +248,12 @@ void ZenUI::CinematicsEditorWindow() {
 			cur_time = rtime;
 
 
+				if (mCurrentCine != nullptr) {
+
+					mCurrentCine->SetTime(cur_time);
+				}
+	
+
 			ImGui::SetCursorPos(ImVec2(time_pick+ox, vy));
 			ImGui::Image(mTrackImage->GetView(), ImVec2(4, mCinematicsSize.y+256));
 

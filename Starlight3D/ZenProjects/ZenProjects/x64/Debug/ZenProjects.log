@@ -1,7 +1,44 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   AppProjects.cpp
   ProjectsUI.cpp
 C:\projects\Starlight3D\ZenProjects\ZenProjects\ProjectsUI.cpp(244,37): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  VFile.cpp
+  VString.cpp
   ZenProjects.cpp
   Generating Code...
-  ZenProjects.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenProjects.exe
+StarlightEngine.lib(Win32Debug.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Win32Debug.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(BasicPlatformDebug.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicPlatformDebug.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(BasicFileSystem.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicFileSystem.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: __cdecl VFile::VFile(char const *,enum FileMode)" (??0VFile@@QEAA@PEBDW4FileMode@@@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::Close(void)" (?Close@VFile@@QEAAXXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: static bool __cdecl VFile::Exists(char const *)" (?Exists@VFile@@SA_NPEBD@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "long __cdecl GetFileSize(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?GetFileSize@@YAJV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: static long __cdecl VFile::Length(char const *)" (?Length@VFile@@SAJPEBD@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: bool __cdecl VFile::ReadBool(void)" (?ReadBool@VFile@@QEAA_NXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: char __cdecl VFile::ReadByte(void)" (?ReadByte@VFile@@QEAADXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void * __cdecl VFile::ReadBytes(int)" (?ReadBytes@VFile@@QEAAPEAXH@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: float __cdecl VFile::ReadFloat(void)" (?ReadFloat@VFile@@QEAAMXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: int __cdecl VFile::ReadInt(void)" (?ReadInt@VFile@@QEAAHXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: long __cdecl VFile::ReadLong(void)" (?ReadLong@VFile@@QEAAJXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: struct Diligent::Matrix4x4<float> __cdecl VFile::ReadMatrix(void)" (?ReadMatrix@VFile@@QEAA?AU?$Matrix4x4@M@Diligent@@XZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: char const * __cdecl VFile::ReadString(void)" (?ReadString@VFile@@QEAAPEBDXZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: struct Diligent::Vector3<float> __cdecl VFile::ReadVec3(void)" (?ReadVec3@VFile@@QEAA?AU?$Vector3@M@Diligent@@XZ) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteBool(bool)" (?WriteBool@VFile@@QEAAX_N@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteByte(char)" (?WriteByte@VFile@@QEAAXD@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteBytes(void *,int)" (?WriteBytes@VFile@@QEAAXPEAXH@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteFloat(float)" (?WriteFloat@VFile@@QEAAXM@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteInt(int)" (?WriteInt@VFile@@QEAAXH@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteLine(char const *)" (?WriteLine@VFile@@QEAAXPEBD@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteLong(long)" (?WriteLong@VFile@@QEAAXJ@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteMatrix(struct Diligent::Matrix4x4<float>)" (?WriteMatrix@VFile@@QEAAXU?$Matrix4x4@M@Diligent@@@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteString(char const *)" (?WriteString@VFile@@QEAAXPEBD@Z) already defined in VFile.obj
+StarlightEngine.lib(VFile.obj) : error LNK2005: "public: void __cdecl VFile::WriteVec3(struct Diligent::Vector3<float>)" (?WriteVec3@VFile@@QEAAXU?$Vector3@M@Diligent@@@Z) already defined in VFile.obj
+StarlightEngine.lib(SpinLock.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(SpinLock.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(GraphicsAccessories.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(GraphicsAccessories.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(GraphicsUtilities.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(GraphicsUtilities.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(StandardFile.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(StandardFile.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(Win32FileSystem.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Win32FileSystem.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(DataBlobImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(DataBlobImpl.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(BasicFileStream.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicFileStream.obj)' or at ''; linking object as if no debug info
+     Creating library C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenProjects.lib and object C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenProjects.exp
+C:\projects\Starlight3D\StarlightStudio\x64\Debug\ZenProjects.exe : fatal error LNK1169: one or more multiply defined symbols found

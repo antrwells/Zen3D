@@ -43,6 +43,11 @@ TrackKeyFrame* CineTrack::GetCurrentKey(float time) {
 
 	int f1=-1, f2;
 
+	if (mKeyFrames.size() == 0)
+	{
+		return new TrackKeyFrame;
+	}
+
 	for (int i = mKeyFrames.size()-1; i>=0; i--) {
 
 		auto key = mKeyFrames[i];

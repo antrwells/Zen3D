@@ -218,7 +218,7 @@ void ZenUI::CinematicsEditorWindow() {
 			float time = 0.0f;
 
 			int ox = tx - 134;
-
+			bool time_changed = false;
 			if (Application::GetApp()->GetInput()->IsMouseDown(0))
 			{
 
@@ -230,6 +230,7 @@ void ZenUI::CinematicsEditorWindow() {
 						time_pick = vx;
 					}
 					time_pick -= ox;
+					time_changed = true;
 					//time_pick + vx;
 				}
 			
@@ -247,11 +248,12 @@ void ZenUI::CinematicsEditorWindow() {
 			printf("Time:%f\n", rtime);
 			cur_time = rtime;
 
-
+			if (time_changed) {
 				if (mCurrentCine != nullptr) {
 
 					mCurrentCine->SetTime(cur_time);
 				}
+			}
 	
 
 			ImGui::SetCursorPos(ImVec2(time_pick+ox, vy));

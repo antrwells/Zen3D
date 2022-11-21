@@ -29,11 +29,11 @@ int main()
     appH = 860;
     std::cout << "Hello Zen!\n";
 
-    VFile* load_proj = new VFile("project.load", FileMode::Read);
+    //VFile* load_proj = new VFile("project.load", FileMode::Read);
 
-    std::string proj_path = std::string(load_proj->ReadString());
+    std::string proj_path = "c:\\zencontent\\";
 
-    load_proj->Close();
+  //  load_proj->Close();
 
     AppZen* zen = new AppZen;
     int APIHint = GLFW_NO_API;

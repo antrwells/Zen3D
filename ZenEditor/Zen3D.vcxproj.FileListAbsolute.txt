@@ -1,0 +1,2 @@
+C:\ZenEditor\assimp-vc142-mtd.dll
+C:\ZenEditor\Zen3D.exe

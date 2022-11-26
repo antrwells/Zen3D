@@ -1,6 +1,6 @@
 // ZenScriptTest.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include <vector>
 #include <iostream>
 #include "ZTokenizer.h"
 #include "ZParser.h"
@@ -9,6 +9,7 @@
 #include "ZClassNode.h"
 #include "ZSystemFunctions.h"
 #include "ZSystemFunction.h"
+
 struct t1 {
     int vv = 5;
     int bb = 10;
@@ -22,10 +23,11 @@ ZContextVar* sysfunc_getc(const std::vector<ZContextVar*>& args)
     n1->bb = 22;
     n1->vv = 44;
 
-    ZContextVar* rv = new ZContextVar("", VarType::VarCObj);
-    rv->SetCObj(n1);
+    //ZContextVar* rv = new ZContextVar("", VarType::VarCObj);
 
-    return rv;
+    //rv->SetCObj(n1);
+
+    return nullptr;
 }
 ZContextVar* sysfunc_test(const std::vector<ZContextVar*>& args)
 {
@@ -62,7 +64,7 @@ int main()
 
 
 
-   std::vector<ZContextVar*> pars = {new ZContextVar("v1",VarType::VarCObj)};
+   std::vector<ZContextVar*> pars = {new ZContextVar("v1",VarType::VarCObj,"v1",false)};
 
    t1 check;
    check.bb = 5;
@@ -70,15 +72,17 @@ int main()
 
    pars[0]->SetCObj(&check);
 
-   auto cls_inst = context1->CreateInstance("testClass", "test",pars);
+   auto cls_inst = context1->CreateInstance("testScript", "test",pars);
 
-   cls_inst->CallMethod("test", {});
+   //cls_inst->CallMethod("test", {});
+
     
    //int aa = 5;
-   auto par_a = new ZContextVar("a", VarType::VarInt);
-   auto par_b = new ZContextVar("b", VarType::VarInt);
-   par_a->SetInt(67);
-   par_b->SetInt(10);
+   //auto par_a = new ZContextVar("a", VarType::VarInt);
+   //auto par_b = new ZContextVar("b", VarType::VarInt);
+   //par_a->SetInt(67);
+   //par_b->SetInt(10);
+
 
   
 

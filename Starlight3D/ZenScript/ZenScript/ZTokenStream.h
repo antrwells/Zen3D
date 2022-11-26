@@ -8,7 +8,7 @@ enum TokenType {
 	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma,
 	TokenPlus,TokenMinus,TokenDivide,TokenMultiply,TokenEndOfLine,TokenEquals,TokenNew,TokenVoid,TokenGreater,TokenLess,TokenTo,TokenReturn,
 	TokenWhile,TokenDebugStop,TokenParseStop,TokenInc,TokenDec,TokenColon,TokenSame,TokenNotSame,TokenOr,TokenUMinus,TokenCObj,TokenStatic,
-	TokenVirtual
+	TokenVirtual,TokenVar
 };
 
 std::string TokenToString(enum TokenType type);

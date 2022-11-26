@@ -91,6 +91,7 @@ CodeType ZParseCodeBody::PredictType() {
 		case TokenType::TokenFloat:
 		case TokenType::TokenString:
 		case TokenType::TokenCObj:
+		case TokenType::TokenVar:
 			return CodeType::CodeDeclareVars;
 			break;
 		case TokenType::TokenEndOfLine:

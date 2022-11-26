@@ -1,8 +1,160 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Animation.cpp
+  Animator.cpp
+  BigBuffer.cpp
+  Cinematic.cpp
   CineTrack.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float'
+  CubeRenderer.cpp
+  FrameTypeColor.cpp
+  FSFile.cpp
+  GameUI.cpp
+  GBuffer.cpp
+  Importer.cpp
+  kFont.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(127,41): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,115): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\kFont.cpp(155,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\GameUI.cpp(16,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\GameUI.cpp(17,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Cinematic.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file GBuffer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file FSFile.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file CineTrack.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file CubeRenderer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file FrameTypeColor.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Animator.cpp)
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\CineTrack.cpp(51,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\projects\Starlight3D\StarlightEngine\StarlightEngine\CineTrack.cpp(162,34): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file Importer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file Animator.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file Cinematic.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Importer.cpp(645,48): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file Animation.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file GBuffer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file CubeRenderer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Cinematic.cpp(54,31): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file FrameTypeColor.cpp)
+  Material.cpp
+  Mesh3D.cpp
+  MeshLines.cpp
+  MeshRenderer.cpp
+  Node3D.cpp
+  NodeActor.cpp
+  NodeAnimator.cpp
+  NodeBillboard.cpp
+  NodeCamera.cpp
+  NodeEntity.cpp
+  NodeLight.cpp
+  NodeParticleBillboard.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Material.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Mesh3D.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Mesh3D.cpp(42,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file MeshRenderer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file Node3D.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file MeshRenderer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file Node3D.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeActor.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeAnimator.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeBillboard.cpp)
+  NodeTerrain.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file NodeAnimator.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeEntity.cpp)
+  PostProcess.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file NodeActor.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeLight.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeParticleBillboard.cpp)
+  PPBloom.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file NodeLight.cpp)
+  PPFrameType.cpp
+  PPOutline.cpp
+  PPRenderer.cpp
+  RayPicker.cpp
+  RenderTarget2D.cpp
+  RenderTargetCube.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(235): warning C4715: 'Bone::GetScaleIndex': not all control paths return a value
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(223): warning C4715: 'Bone::GetRotationIndex': not all control paths return a value
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Bone.h(211): warning C4715: 'Bone::GetPositionIndex': not all control paths return a value
+  SceneGraph.cpp
+  SceneRenderer.cpp
+  SmartDraw.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file NodeTerrain.cpp)
+  Texture2D.cpp
+  TrackKeyFrame.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file PPOutline.cpp)
+  VideoDecoder.cpp
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file RayPicker.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file PPOutline.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file RayPicker.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file SceneGraph.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\RayPicker.cpp(241,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file SceneRenderer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file SceneGraph.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(151,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(226,19): warning C4101: 'verts': unreferenced local variable
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(267,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(374,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(375,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(376,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(377,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(379,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(380,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(381,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(382,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(405,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(406,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(407,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(408,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(410,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(411,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(412,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(413,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(470,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(502,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(502,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(526,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(559,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(559,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SmartDraw.cpp(582,58): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file SceneRenderer.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(585,24): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(653,48): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneGraph.cpp(735,43): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRenderer.cpp(221,115): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\SceneRenderer.cpp(221,79): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float' (compiling source file TrackKeyFrame.cpp)
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\VideoDecoder.cpp(150,17): warning C4309: '=': truncation of constant value
+C:\projects\Starlight3D\StarlightEngine\StarlightEngine\VideoDecoder.cpp(157,23): warning C4244: '=': conversion from 'int64_t' to 'int', possible loss of data
   Replacing x64\Debug\DirCollection.obj
   Replacing x64\Debug\pch.obj
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

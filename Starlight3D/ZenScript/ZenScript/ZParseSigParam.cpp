@@ -16,6 +16,9 @@ ZScriptNode* ZParseSigParam::Parse() {
 	VarType var_type;
 
 	switch (token.mType) {
+	case TokenType::TokenVar:
+		var_type = VarType::VarVar;
+		break;
 	case TokenType::TokenInt:
 		var_type = VarType::VarInt;
 		break;

@@ -17,6 +17,10 @@ public:
 	VarType GetType();
 	int GetIntVal();
 	float GetFloatVal();
+	VarType GetCurrentType() {
+		return mCurrentType;
+	}
+	
 	std::string GetStringVal();
 	ZClassNode* GetClassVal();
 	void SetInt(int val);
@@ -47,6 +51,7 @@ private:
 
 	std::string mName;
 	VarType mType;
+	VarType mCurrentType;
 	int mIntVal;
 	float mFloatVal;
 	std::string mStringVal;

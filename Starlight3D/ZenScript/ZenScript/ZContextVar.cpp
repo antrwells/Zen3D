@@ -79,6 +79,7 @@ void ZContextVar::SetInt(int val) {
 		mFloatVal = (float)val;
 	}
 	mIntVal = val;
+	mCurrentType = VarInt;
 
 }
 
@@ -89,6 +90,7 @@ void ZContextVar::SetFloat(float val) {
 		mIntVal = (int)val;
 	}
 	mFloatVal = val;
+	mCurrentType = VarFloat;
 
 }
 
@@ -96,6 +98,7 @@ void ZContextVar::SetString(std::string val)
 {
 
 	mStringVal = val;
+	mCurrentType = VarString;
 
 }
 

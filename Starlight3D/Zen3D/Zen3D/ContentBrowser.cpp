@@ -175,7 +175,7 @@ void ZenUI::MainContentBrowser() {
 						else if (mDragEntryRef.ext == "zscene") {
 							ImGui::SetDragDropPayload("Scene", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}
-						else if (mDragEntryRef.ext == "mov" || mDragEntryRef.ext == "mkv")
+						else if (mDragEntryRef.ext == "mov" || mDragEntryRef.ext == "mkv" || mDragEntryRef.ext == "mp4")
 						{
 							ImGui::SetDragDropPayload("Movie", mDragEntry, sizeof(DirEntry), ImGuiCond_Once);
 						}

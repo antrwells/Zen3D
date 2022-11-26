@@ -63,6 +63,7 @@ ZScriptNode* ZParseSignature::Parse() {
 			break;
 		case TokenType::TokenInt:
 		case TokenType::TokenFloat:
+		case TokenType::TokenVar:
 
 			parse_par = new ZParseSigParam(mStream);
 			mStream->Back();

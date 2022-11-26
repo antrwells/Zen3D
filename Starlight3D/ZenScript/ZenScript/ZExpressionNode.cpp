@@ -218,6 +218,18 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                     case VarType::VarInt:
                         values.push(evar->GetIntVal());
                         break;
+                    case VarType::VarVar:
+
+                        switch (evar->GetCurrentType()) {
+                        case VarInt:
+                            values.push(evar->GetIntVal());
+                            break;
+                        case VarFloat:
+                            values.push((int)evar->GetFloatVal());
+                            break;
+                        }
+
+                        break;
                     }
                 }
             }
@@ -394,15 +406,32 @@ float GetValue(ExpressionElement tok)
         }
         else {
             auto evar = ZScriptContext::CurrentContext->GetScope()->FindVar(tok.mNameHash[0]);
-            if (evar->GetType() == EInt) {
+            if (evar->GetType() == VarType::VarInt) {
 
                 //values.push((float)evar->GetIntVal());
                 return (float)evar->GetIntVal();
             }
-            else {
+            else if (evar->GetType() == VarType::VarFloat) {
                 //values.push(evar->GetFloatVal());
                 return evar->GetFloatVal();
             }
+            else if (evar->GetType() == VarType::VarVar)
+            {
+                
+            switch (evar->GetCurrentType()) {
+            case VarInt:
+                return (float)evar->GetIntVal();
+                //values.push(evar->GetIntVal());
+                break;
+            case VarFloat:
+                return evar->GetFloatVal();
+                break;
+            }
+
+      
+
+            }
+
         }
     }
     return 0.0f;
@@ -866,6 +895,21 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
                 return VMakeString(mElements[0].mValString);
             }
+            if (GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]) != nullptr) {
+
+                auto vt3 = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
+                if (vt3->GetType() == VarVar)
+                {
+
+                    if (vt3->GetCurrentType() == VarString)
+                    {
+                        return VMakeString(vt3->GetStringVal());
+                    }
+
+                }
+
+            }
+
 
             bool is_float = false;
             for (int i = 0; i < mElements.size(); i++) {
@@ -891,6 +935,19 @@ ZContextVar* Expression::Evaluate(VarType recv) {
                 {
                     is_float = true;
                 }
+                if (GetVar(mElements[i].mNameHash[0], mElements[i].mNameHash[1]) != nullptr) {
+
+                    auto v1 = GetVar(mElements[i].mNameHash[0], mElements[i].mNameHash[1]);
+                    int aa = 5;
+                    if (v1->GetType() == VarVar)
+                    {
+                        if (v1->GetCurrentType() == VarFloat)
+                        {
+                            is_float = true;
+                        }
+                    }
+                }
+
             }
             if (is_float) {
                 return VMakeFloat(evaluateFloat(mElements));

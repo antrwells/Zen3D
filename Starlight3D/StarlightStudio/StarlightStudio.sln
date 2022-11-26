@@ -9,6 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StarlightEngine", "..\Starl
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZenScriptTest", "..\ZenScriptTest\ZenScriptTest\ZenScriptTest.vcxproj", "{999719FA-46B0-4550-940F-3DE80404334E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FC6ECA50-6342-4F72-9544-B0DA0C35AB52} = {FC6ECA50-6342-4F72-9544-B0DA0C35AB52}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zen3D", "..\Zen3D\Zen3D\Zen3D.vcxproj", "{99016C36-964F-41F1-BA92-392C49AF73A6}"
 	ProjectSection(ProjectDependencies) = postProject

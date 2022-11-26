@@ -39,6 +39,24 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 	}
 
 	switch (evar->GetType()) {
+	case VarType::VarVar:
+	{
+		auto val2 = mValue->Exec({});
+
+		switch (val2->GetCurrentType())
+		{
+		case VarInt:
+			evar->SetInt(val2->GetIntVal());
+			break;
+		case VarFloat:
+			evar->SetFloat(val2->GetFloatVal());
+		case VarString:
+			evar->SetString(val2->GetStringVal());
+		}
+
+		int aaa = 5;
+	}
+		break;
 	case VarType::VarInt:
 		
 		ZExpressionNode::RecvType = VarInt;

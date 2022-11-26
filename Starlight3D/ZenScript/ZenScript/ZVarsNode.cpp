@@ -84,6 +84,29 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 		ZExpressionNode::RecvType = mVarType;
 
 		switch (mVarType) {
+		case VarVar:
+			if (var->def != nullptr) {
+
+				auto vt = var->def->Exec({});
+
+				auto vtype = vt->GetType();
+
+				//new_var->SetValue(var->def->Exec({})->GetValue());
+				switch (vtype) {
+				case VarInt:
+					new_var->SetInt(vt->GetIntVal());
+					break;
+				case VarFloat:
+					new_var->SetFloat(vt->GetFloatVal());
+					break;
+				case VarString:
+					new_var->SetString(vt->GetStringVal());
+					break;
+				}
+				int bb = 5;
+
+			}
+			break;
 		case VarString:
 			if (var->def != nullptr) {
 

@@ -4,6 +4,8 @@
 //#include "glm/gtc/matrix_transform.hpp"
 //#include "glm/gtx/transform.hpp"
 #include "Maths.h"
+//#include "VarTypes.h"
+
 
 #include "ScriptObject.h"
 #include "ZScriptContext.h"
@@ -847,7 +849,125 @@ bool Node3D::mSysInit = false;
 	}
 	//----- SYSTEM FUNCTIONS -> ZSCRIPT
 
+	ZContextVar* sys_getprop(const std::vector<ZContextVar*>& args)
+	{
 
+		auto scene = SceneGraph::GetMainScene();
+
+		auto prop = scene->GetProperty(args[0]->GetStringVal());
+
+		switch (prop->GetType()) {
+		case PropertyType::Int:
+			return VMakeInt(prop->GetInt());
+			break;
+		case PropertyType::Float:
+			return VMakeFloat(prop->GetFloat());
+			break;
+		case PropertyType::String:
+			return VMakeString(prop->GetString());
+			break;
+		case PropertyType::Float3:
+
+			std::vector<ZContextVar*> pars;
+
+			pars.push_back(VMakeFloat(prop->GetFloat3().x));
+			pars.push_back(VMakeFloat(prop->GetFloat3().y));
+			pars.push_back(VMakeFloat(prop->GetFloat3().z));
+
+			auto v3 = ZScriptContext::CurrentContext->CreateInstance("Vec3", "res", pars);
+
+			return VMakeClass(v3, false);
+
+
+			break;
+		}
+
+		return nullptr;
+
+	}
+
+	ZContextVar* sys_setprop(const std::vector<ZContextVar*>& args)
+	{
+
+		auto scene = SceneGraph::GetMainScene();
+
+		if (scene->GetProperty(args[0]->GetStringVal())!=nullptr)
+		{
+
+			auto prop = scene->GetProperty(args[0]->GetStringVal());
+			switch (args[1]->GetCurrentType()) {
+			case 0:
+				prop->SetInt(args[1]->GetIntVal());
+				break;
+			case 1:
+				prop->SetFloat(args[1]->GetFloatVal());
+				break;
+			case 2:
+				prop->SetString(args[1]->GetStringVal());
+				break;
+			case 4:
+			{
+				auto cls = args[1]->GetClassVal();
+
+				auto base_name = cls->GetBaseName();
+
+				int aa = 5;
+			}
+
+				break;
+
+			}
+
+
+		}
+		else {
+			auto prop = new NodeProperty(args[0]->GetStringVal());
+
+			switch (args[1]->GetCurrentType()) {
+			case 0:
+				prop->SetInt(args[1]->GetIntVal());
+				break;
+			case 1:
+				prop->SetFloat(args[1]->GetFloatVal());
+				break;
+			case 2:
+				prop->SetString(args[1]->GetStringVal());
+				break;
+			case 4:
+
+
+			{
+				auto cls = args[1]->GetClassVal();
+
+				auto base_name = cls->GetBaseName();
+
+				if (base_name == "Vec3")
+				{
+
+					float3 fv;
+
+					fv.x = cls->FindVar("x")->GetFloatVal();
+					fv.y = cls->FindVar("y")->GetFloatVal();
+					fv.z = cls->FindVar("z")->GetFloatVal();
+
+					prop->SetFloat3(fv);
+					//return;
+
+				}
+
+				int aa = 5;
+			}
+
+				break;
+				
+			}
+
+			scene->AddProperty(prop);
+		}
+
+		return nullptr;
+
+	}
 
 	void Node3D::AddSystemFunctions() {
 
@@ -860,6 +980,7 @@ bool Node3D::mSysInit = false;
 		con1->LoadLib("sound");
 		con1->LoadLib("video");
 		con1->LoadLib("cine");
+		con1->LoadLib("system");
 
 		auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 		
@@ -891,6 +1012,8 @@ bool Node3D::mSysInit = false;
 		ZSystemFunction actor_playanim("ActorPlayAnim", actor_PlayAnim);
 		ZSystemFunction input_mousedown("InputMouseDown", input_MouseDown);
 		ZSystemFunction gc_playcine("GameCinePlay", gs_LoadCine);
+		ZSystemFunction sys_setproperty("SystemSetProperty", sys_setprop);
+		ZSystemFunction sys_getproperty("SystemGetProperty", sys_getprop);
 		funcs->RegisterFunction(n_turn);
 		funcs->RegisterFunction(n_getpos);
 		funcs->RegisterFunction(n_setpos);
@@ -918,6 +1041,8 @@ bool Node3D::mSysInit = false;
 		funcs->RegisterFunction(actor_playanim);
 		funcs->RegisterFunction(input_mousedown);
 		funcs->RegisterFunction(gc_playcine);
+		funcs->RegisterFunction(sys_setproperty);
+		funcs->RegisterFunction(sys_getproperty);
 		int aa=5;
 	}
 

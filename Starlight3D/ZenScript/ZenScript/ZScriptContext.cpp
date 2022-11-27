@@ -44,6 +44,28 @@ ZContextVar* sysfunc_printf(const std::vector<ZContextVar*>& args)
 			printf(arg->GetStringVal().c_str());
 			printf("\n");
 			break;
+		case VarType::VarInstance:
+
+		{
+			if (arg->GetBaseID() == "Vec3")
+			{
+
+				auto cv = arg->GetClassVal();
+
+				float vx, vy, vz;
+				vx = cv->FindVar("x")->GetFloatVal();
+				vy = cv->FindVar("y")->GetFloatVal();
+				vz = cv->FindVar("z")->GetFloatVal();
+
+				printf("X:%f Y:%f Z:%f", vx, vy, vz);
+				printf("\n");
+
+			}
+
+			int aa = 5;
+		}
+
+			break;
 		default:
 			assert(false);
 			break;
@@ -127,7 +149,7 @@ ZClassNode* ZScriptContext::CreateInstance(std::string name,std::string instance
 
 		if (cls->GetName() == name) {
 
-			auto cl =  cls->CreateInstance(instance_name,params);
+			auto cl =  cls->CreateInstance(name,params);
 			cls->Bind();
 			//mInstances.push_back(cl);
 			return cl;

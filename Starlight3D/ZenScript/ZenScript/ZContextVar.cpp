@@ -105,6 +105,7 @@ void ZContextVar::SetString(std::string val)
 void ZContextVar::SetClass(ZClassNode* cls) {
 
 	mClassVal = cls;
+	mCurrentType = VarInstance;
 
 }
 

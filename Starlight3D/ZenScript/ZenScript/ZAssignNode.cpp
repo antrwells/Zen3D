@@ -50,8 +50,16 @@ ZContextVar* ZAssignNode::Exec(const std::vector<ZContextVar*>& params)
 			break;
 		case VarFloat:
 			evar->SetFloat(val2->GetFloatVal());
+			break;
 		case VarString:
+		
 			evar->SetString(val2->GetStringVal());
+			break;
+		case VarInstance:
+			evar->SetClass(val2->GetClassVal());
+			evar->SetBaseID(val2->GetBaseID());
+			
+			break;
 		}
 
 		int aaa = 5;

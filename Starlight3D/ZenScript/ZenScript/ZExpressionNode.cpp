@@ -861,6 +861,29 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             case VarString:
                 return VMakeString(rv->GetStringVal());
                 break;
+            case VarVar:
+                
+                switch (rv->GetCurrentType()) {
+                case VarInt:
+                    return VMakeInt(rv->GetIntVal(), false);
+                    break;
+                case VarFloat:
+                    return VMakeFloat(rv->GetFloatVal(), false);
+                    break;
+                case VarString:
+
+                    return VMakeString(rv->GetStringVal(), false);
+
+                    break;
+                case VarInstance:
+
+                    return VMakeClass(rv->GetClassVal(), false);
+
+                    break;
+
+                }
+
+                break;
             }
 
             int aaa = 5;

@@ -229,7 +229,7 @@ ZContextVar* ZClassNode::CallMethod(size_t hash, const std::vector<ZContextVar*>
 	for (int i = 0; i < pars.size(); i++) {
 
 		auto pa = pars[i];
-		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType(), pa->GetName(), params[i]->GetCompare());
+		ZContextVar* v1 = new ZContextVar(pa->GetName(), pa->GetType(), pa->GetName(), false);
 		switch (params[i]->GetType())
 		{
 		case VarInt:

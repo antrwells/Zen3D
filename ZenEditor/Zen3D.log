@@ -1,51 +1,135 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(502,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  ContentBrowser.cpp
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Material.h(123,9): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\Animation.h(103,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(62,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(62,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(76,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(76,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(101,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(101,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(191,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(191,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(200,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\projects\Starlight3D\Zen3D\Zen3D\ContentBrowser.cpp(200,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2857,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
-          with
-          [
-              _Elem=char
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2718,1): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=wchar_t *,
-              _Sent=wchar_t *,
-              _Size=unsigned __int64
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2718,37): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=wchar_t *,
-              _Sent=wchar_t *,
-              _Size=unsigned __int64
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\DirCollection.h(43,1): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
-C:\projects\Starlight3D\StarlightEngine\StarlightEngine\DirCollection.h(43,19): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
+StarlightEngine.lib(ImGuiImplWin32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ImGuiImplWin32.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(imgui.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(imgui_widgets.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_widgets.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ImGuiImplDiligent.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ImGuiImplDiligent.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(imgui_impl_win32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_impl_win32.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(Win32Debug.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Win32Debug.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(imgui_draw.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_draw.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(imgui_tables.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(imgui_tables.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(TextureUtilities.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(TextureUtilities.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ImGuiDiligentRenderer.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ImGuiDiligentRenderer.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(BasicPlatformDebug.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicPlatformDebug.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ExtDefaultErrorCallback.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ExtDefaultErrorCallback.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ExtDefaultCpuDispatcher.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ExtDefaultCpuDispatcher.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvd.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvd.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdDefaultSocketTransport.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdDefaultSocketTransport.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(TextureLoaderImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(TextureLoaderImpl.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ExtRigidBodyExt.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ExtRigidBodyExt.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(BasicFileSystem.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicFileSystem.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(ExtCpuWorkerThread.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(ExtCpuWorkerThread.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdImpl.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(SpinLock.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(SpinLock.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(Image.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Image.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(KTXLoader.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(KTXLoader.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(DDSLoader.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(DDSLoader.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(GraphicsAccessories.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(GraphicsAccessories.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(GraphicsUtilities.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(GraphicsUtilities.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(StandardFile.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(StandardFile.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(Win32FileSystem.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(Win32FileSystem.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(DataBlobImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(DataBlobImpl.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PNGCodec.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PNGCodec.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(JPEGCodec.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(JPEGCodec.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdDataStream.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdDataStream.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdObjectModelMetaData.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdObjectModelMetaData.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdObjectRegistrar.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdObjectRegistrar.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdMemClient.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdMemClient.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxProfileEventImpl.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxProfileEventImpl.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(PxPvdProfileZoneClient.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(PxPvdProfileZoneClient.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_close.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_close.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_dir.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dir.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_strip.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_strip.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_read.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_read.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_open.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_open.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(SGILoader.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(SGILoader.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(BasicFileStream.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(BasicFileStream.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(png.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(png.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngread.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngread.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngwrite.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngwrite.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngerror.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngerror.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngrtran.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngrtran.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngtrans.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngtrans.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngwio.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngwio.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngrio.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngrio.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngget.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngget.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngset.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngset.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jerror.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jerror.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcapimin.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcapimin.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdapimin.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdapimin.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdatadst.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdatadst.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdatasrc.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdatasrc.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcparam.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcparam.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcapistd.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcapistd.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdapistd.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdapistd.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_win32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_win32.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_flush.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_flush.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_dirinfo.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dirinfo.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_dirread.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dirread.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_error.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_error.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_warning.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_warning.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_swab.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_swab.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_compress.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_compress.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_aux.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_aux.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_tile.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_tile.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngmem.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngmem.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(inflate.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(inflate.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(adler32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(adler32.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(crc32.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(crc32.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngrutil.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngrutil.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngwutil.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngwutil.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(deflate.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(deflate.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(pngwtran.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(pngwtran.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcomapi.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcomapi.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcmarker.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcmarker.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jmemmgr.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jmemmgr.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jutils.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jutils.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdinput.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdinput.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdmarker.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmarker.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcinit.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcinit.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdmaster.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmaster.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_write.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_write.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_dirwrite.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dirwrite.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_codec.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_codec.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(zutil.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(zutil.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(inftrees.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(inftrees.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(inffast.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(inffast.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(trees.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(trees.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jmemnobs.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jmemnobs.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcmaster.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcmaster.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcmainct.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcmainct.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcprepct.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcprepct.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jccoefct.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jccoefct.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jccolor.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jccolor.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcsample.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcsample.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcdctmgr.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcdctmgr.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jchuff.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jchuff.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jcarith.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jcarith.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdmainct.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmainct.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdcoefct.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdcoefct.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdpostct.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdpostct.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdhuff.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdhuff.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdarith.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdarith.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jddctmgr.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jddctmgr.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdsample.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdsample.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdcolor.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdcolor.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jquant1.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jquant1.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jquant2.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jquant2.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jdmerge.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jdmerge.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_dumpmode.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_dumpmode.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_packbits.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_packbits.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_fax3.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_fax3.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_thunder.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_thunder.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_next.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_next.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_lzw.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_lzw.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_luv.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_luv.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jfdctint.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jfdctint.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jfdctfst.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jfdctfst.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jfdctflt.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jfdctflt.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jaricom.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jaricom.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jidctint.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jidctint.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jidctfst.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jidctfst.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(jidctflt.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(jidctflt.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_fax3sm.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_fax3sm.obj)' or at ''; linking object as if no debug info
+StarlightEngine.lib(tif_predict.obj) : warning LNK4099: PDB '' was not found with 'StarlightEngine.lib(tif_predict.obj)' or at ''; linking object as if no debug info
+     Creating library C:\ZenEditor\Zen3D.lib and object C:\ZenEditor\Zen3D.exp
   Zen3D.vcxproj -> C:\ZenEditor\Zen3D.exe

@@ -58,6 +58,7 @@ public:
 	//Main UI
 	void MainBGWindow();
 	void MainWindow();
+	void MainWindow2D();
 	void MainToolBar();
 	void MainMenu();
 	void MainViewPort();
@@ -71,6 +72,10 @@ public:
 	//Content Browser Related
 	void ScanContent(std::string path);
 
+
+	//import defaults
+	float3 impScale;
+	float3 impRot;
 
 	//Menu/Optional
 	

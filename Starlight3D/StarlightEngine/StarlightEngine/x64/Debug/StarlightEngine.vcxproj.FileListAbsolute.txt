@@ -1,1 +1,2 @@
 C:\projects\Starlight3D\StarlightStudio\x64\Debug\assimp-vc142-mtd.dll
+C:\Projects\Zen3D\Starlight3D\StarlightStudio\x64\Debug\assimp-vc142-mtd.dll

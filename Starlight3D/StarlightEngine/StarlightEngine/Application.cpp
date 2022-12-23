@@ -452,25 +452,9 @@ void Application::Run() {
                 io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
                 io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-                io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
+             
 
-                io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-                io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-                io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-                io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-                io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
-                io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
-                io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
-                io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
-                io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
-                io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
-                io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-                io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
-                io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
-                io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
-                io.KeyMap[ImGuiKey_KeyPadEnter] = GLFW_KEY_KP_ENTER;
-
-                io.WantCaptureKeyboard = true;
+              //  io.WantCaptureKeyboard = true;
 
                 //glfwSetWindowPos(m_Window, 128, 128);
                 //glfwSetWindowSize(m_Window, 1400, 860);
@@ -737,7 +721,7 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int scancode, int s
     ImGuiIO& io = ImGui::GetIO();
     if (action == GLFW_PRESS || action == GLFW_REPEAT)
     {
-        io.KeysDown[key] = true;
+       // io.KeysDown[key] = true;
         if (key != GLFW_KEY_LEFT_SHIFT && key != GLFW_KEY_RIGHT_SHIFT && key != GLFW_KEY_BACKSPACE && key != GLFW_KEY_DELETE && key!= GLFW_KEY_ENTER)
         {
 
@@ -754,8 +738,8 @@ void Application::GLFW_KeyCallback(GLFWwindow* wnd, int key, int scancode, int s
         }
 
     }
-    if (action == GLFW_RELEASE)
-        io.KeysDown[key] = false;
+    //if (action == GLFW_RELEASE)
+     //   io.KeysDown[key] = false;
 
    
    // printf("KEy down!!!!!!!!!!!!!!!\n");

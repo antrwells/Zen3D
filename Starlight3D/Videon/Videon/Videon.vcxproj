@@ -129,7 +129,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\projects\Starlight3D\StarlightStudio\packages\OpenAL.Soft.1.19.1\runtimes\win-x64\native;C:\projects\Starlight3D\StarlightStudio\packages\FFmpeg.Nightly.20200831.1.0\build\native\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Projects\Zen3D\Starlight3D\StarlightStudio\packages\OpenAL.Soft.1.19.1\runtimes\win-x64\native;C:\Projects\Zen3D\Starlight3D\StarlightStudio\packages\FFmpeg.Nightly.20200831.1.0\build\native\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

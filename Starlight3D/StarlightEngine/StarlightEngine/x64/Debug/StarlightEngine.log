@@ -1,4 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ZenEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Application.cpp
+C:\Projects\Zen3D\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(476,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\Zen3D\Starlight3D\StarlightEngine\StarlightEngine\Application.cpp(477,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Replacing x64\Debug\DirCollection.obj
   Replacing x64\Debug\pch.obj
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
@@ -61,13 +64,14 @@ LibJpeg.lib(jccoefct.obj) : warning LNK4006: jinit_c_coef_controller already def
 LibJpeg.lib(jccolor.obj) : warning LNK4006: jinit_color_converter already defined in DiligentTools.lib(jccolor.obj); second definition ignored
 LibJpeg.lib(jcdctmgr.obj) : warning LNK4006: jinit_forward_dct already defined in DiligentTools.lib(jcdctmgr.obj); second definition ignored
 LibJpeg.lib(jchuff.obj) : warning LNK4006: jinit_huff_encoder already defined in DiligentTools.lib(jchuff.obj); second definition ignored
+LibJpeg.lib(jcinit.obj) : warning LNK4006: jpeg_calc_jpeg_dimensions already defined in DiligentTools.lib(jcinit.obj); second definition ignored
 LibJpeg.lib(jcinit.obj) : warning LNK4006: jinit_compress_master already defined in DiligentTools.lib(jcinit.obj); second definition ignored
 LibJpeg.lib(jcmainct.obj) : warning LNK4006: jinit_c_main_controller already defined in DiligentTools.lib(jcmainct.obj); second definition ignored
 LibJpeg.lib(jcmarker.obj) : warning LNK4006: jinit_marker_writer already defined in DiligentTools.lib(jcmarker.obj); second definition ignored
-LibJpeg.lib(jcmaster.obj) : warning LNK4006: jpeg_calc_jpeg_dimensions already defined in DiligentTools.lib(jcmaster.obj); second definition ignored
 LibJpeg.lib(jcmaster.obj) : warning LNK4006: jinit_c_master_control already defined in DiligentTools.lib(jcmaster.obj); second definition ignored
 LibJpeg.lib(jcomapi.obj) : warning LNK4006: jpeg_alloc_quant_table already defined in DiligentTools.lib(jcomapi.obj); second definition ignored
 LibJpeg.lib(jcomapi.obj) : warning LNK4006: jpeg_alloc_huff_table already defined in DiligentTools.lib(jcomapi.obj); second definition ignored
+LibJpeg.lib(jcomapi.obj) : warning LNK4006: jpeg_std_huff_table already defined in DiligentTools.lib(jcomapi.obj); second definition ignored
 LibJpeg.lib(jcomapi.obj) : warning LNK4006: jpeg_abort already defined in DiligentTools.lib(jcomapi.obj); second definition ignored
 LibJpeg.lib(jcomapi.obj) : warning LNK4006: jpeg_destroy already defined in DiligentTools.lib(jcomapi.obj); second definition ignored
 LibJpeg.lib(jcparam.obj) : warning LNK4006: jpeg_set_defaults already defined in DiligentTools.lib(jcparam.obj); second definition ignored
@@ -215,6 +219,8 @@ LibTiff.lib(tif_aux.obj) : warning LNK4006: TIFFGetFieldDefaulted already define
 LibTiff.lib(tif_aux.obj) : warning LNK4006: TIFFVGetFieldDefaulted already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
 LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFMultiply32 already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
 LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFMultiply64 already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
+LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFMultiplySSize already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
+LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFCastUInt64ToSSize already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
 LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFCheckMalloc already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
 LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFCheckRealloc already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
 LibTiff.lib(tif_aux.obj) : warning LNK4006: _TIFFUInt64ToDouble already defined in DiligentTools.lib(tif_aux.obj); second definition ignored
@@ -252,6 +258,7 @@ LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFFreeDirectory already defined in
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFCreateDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFCreateCustomDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFCreateEXIFDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
+LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFCreateGPSDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFLastDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFSetDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFSetSubDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
@@ -262,7 +269,6 @@ LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFUnsetField already defined in Di
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFSetTagExtender already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: TIFFDefaultDirectory already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: _TIFFsetByteArray already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
-LibTiff.lib(tif_dir.obj) : warning LNK4006: _TIFFsetString already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: _TIFFsetShortArray already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: _TIFFsetLongArray already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
 LibTiff.lib(tif_dir.obj) : warning LNK4006: _TIFFsetFloatArray already defined in DiligentTools.lib(tif_dir.obj); second definition ignored
@@ -276,20 +282,24 @@ LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldDataType already define
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldPassCount already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldReadCount already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldWriteCount already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
+LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldSetGetSize already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
+LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldSetGetCountSize already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
+LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFFieldIsAnonymous already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFDataWidth already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: TIFFMergeFieldInfo already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFGetFields already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFGetExifFields already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
+LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFGetGpsFields already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFSetupFields already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFPrintFieldInfo already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFMergeFields already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFFindOrRegisterField already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFCreateAnonField already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFCheckFieldIsValidForCodec already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
-LibTiff.lib(tif_dirinfo.obj) : warning LNK4006: _TIFFDataSize already defined in DiligentTools.lib(tif_dirinfo.obj); second definition ignored
 LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFReadDirectory already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
 LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFReadCustomDirectory already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
 LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFReadEXIFDirectory already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
+LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFReadGPSDirectory already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
 LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFGetStrileOffset already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
 LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFGetStrileByteCount already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
 LibTiff.lib(tif_dirread.obj) : warning LNK4006: TIFFGetStrileOffsetWithErr already defined in DiligentTools.lib(tif_dirread.obj); second definition ignored
@@ -360,6 +370,7 @@ LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFIsByteSwapped already defined i
 LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFIsUpSampled already defined in DiligentTools.lib(tif_open.obj); second definition ignored
 LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFIsMSB2LSB already defined in DiligentTools.lib(tif_open.obj); second definition ignored
 LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFIsBigEndian already defined in DiligentTools.lib(tif_open.obj); second definition ignored
+LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFIsBigTIFF already defined in DiligentTools.lib(tif_open.obj); second definition ignored
 LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFGetReadProc already defined in DiligentTools.lib(tif_open.obj); second definition ignored
 LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFGetWriteProc already defined in DiligentTools.lib(tif_open.obj); second definition ignored
 LibTiff.lib(tif_open.obj) : warning LNK4006: TIFFGetSeekProc already defined in DiligentTools.lib(tif_open.obj); second definition ignored
@@ -469,411 +480,425 @@ LibTiff.lib(tif_win32.obj) : warning LNK4006: _TIFFfree already defined in Dilig
 LibTiff.lib(tif_win32.obj) : warning LNK4006: TIFFOpen already defined in DiligentTools.lib(tif_win32.obj); second definition ignored
 LibTiff.lib(tif_win32.obj) : warning LNK4006: TIFFOpenW already defined in DiligentTools.lib(tif_win32.obj); second definition ignored
 LibTiff.lib(tif_win32.obj) : warning LNK4006: TIFFFdOpen already defined in DiligentTools.lib(tif_win32.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_sRGB_table already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_sRGB_base already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_sRGB_delta already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_access_version_number already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_set_sig_bytes already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_sig_cmp already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_reset_zstream already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_create_info_struct already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_info_init_3 already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_convert_to_rfc1123 already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_convert_to_rfc1123_buffer already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_build_grayscale_palette already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_destroy_info_struct already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_init_io already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_get_io_ptr already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_free_data already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_data_freer already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_handle_as_unknown already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_get_copyright already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_get_header_ver already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_get_header_version already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_get_libpng_ver already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_save_int_32 already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_image_free already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_set_option already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_zstream_error already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_fixed already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_user_version_check already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_create_png_struct already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_zalloc already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_zfree already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_reset_crc already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_calculate_crc already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_chunk_unknown_handling already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_set_gamma already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_sync_info already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_sync already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_set_chromaticities already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_set_endpoints already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_set_sRGB already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_set_ICC already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_icc_check_length already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_icc_check_header already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_icc_check_tag_table already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_icc_set_sRGB already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_colorspace_set_rgb_coefficients already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_check_IHDR already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_ascii_from_fp already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_ascii_from_fixed already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_check_fp_number already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_check_fp_string already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_muldiv already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_muldiv_warn already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_reciprocal already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_reciprocal2 already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_gamma_significant already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_gamma_correct already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_gamma_16bit_correct already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_gamma_8bit_correct already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_destroy_gamma_table already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_build_gamma_table already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(png.obj) : warning LNK4006: png_image_error already defined in DiligentTools.lib(png.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_set_longjmp_fn already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_longjmp already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_set_error_fn already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_get_error_ptr already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_chunk_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_chunk_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_benign_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_chunk_benign_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_free_jmpbuf already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_fixed_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_safecat already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_format_number already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_warning_parameter already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_warning_parameter_unsigned already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_warning_parameter_signed already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_formatted_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_app_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_app_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_chunk_report already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_safe_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_safe_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngerror.obj) : warning LNK4006: png_safe_execute already defined in DiligentTools.lib(pngerror.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_compression_buffer_size already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_rgb_to_gray_status already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_user_chunk_ptr already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_valid already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_rowbytes already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_rows already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_channels already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_image_width already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_image_height already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_bit_depth already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_color_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_filter_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_interlace_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_compression_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pixels_per_meter already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_x_pixels_per_meter already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_y_pixels_per_meter already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pixel_aspect_ratio already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pixel_aspect_ratio_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_x_offset_pixels already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_y_offset_pixels already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_x_offset_microns already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_y_offset_microns already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_signature already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_bKGD already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_cHRM already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_cHRM_XYZ already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_cHRM_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_cHRM_XYZ_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_gAMA already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_gAMA_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_hIST already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_IHDR already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_oFFs already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pCAL already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pHYs already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_PLTE already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_sBIT already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_sRGB already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_iCCP already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_sPLT already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_text already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_tIME already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_tRNS already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_sCAL already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_sCAL_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_sCAL_s already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_unknown_chunks already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_user_width_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_user_height_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_chunk_cache_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_chunk_malloc_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pixels_per_inch already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_x_pixels_per_inch already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_y_pixels_per_inch already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_x_offset_inches already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_x_offset_inches_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_y_offset_inches already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_y_offset_inches_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_pHYs_dpi already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_io_state already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_io_chunk_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngget.obj) : warning LNK4006: png_get_palette_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_set_mem_fn already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_get_mem_ptr already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_malloc already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_calloc already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_malloc_warn already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_free already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_malloc_default already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_free_default already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_malloc_base already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_malloc_array already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_realloc_array already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngmem.obj) : warning LNK4006: png_destroy_png_struct already defined in DiligentTools.lib(pngmem.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_set_progressive_read_fn already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_get_progressive_ptr already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_process_data already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_process_data_pause already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_process_data_skip already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_progressive_combine_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_fill_buffer already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_read_chunk already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_read_sig already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_crc_skip already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_crc_finish already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_save_buffer already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_restore_buffer already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_read_IDAT already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_process_IDAT_data already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_process_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_have_info already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_have_end already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_push_have_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_process_some_data already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngpread.obj) : warning LNK4006: png_read_push_finish_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_create_read_struct already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_create_read_struct_2 already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_info already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_start_read_image already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_update_info already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_rows already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_row already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_image already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_end already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_destroy_read_struct already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_set_read_status_fn already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_read_png already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_image_begin_read_from_file already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_image_begin_read_from_stdio already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_image_begin_read_from_memory already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngread.obj) : warning LNK4006: png_image_finish_read already defined in DiligentTools.lib(pngread.obj); second definition ignored
-LibPng.lib(pngrio.obj) : warning LNK4006: png_set_read_fn already defined in DiligentTools.lib(pngrio.obj); second definition ignored
-LibPng.lib(pngrio.obj) : warning LNK4006: png_default_read_data already defined in DiligentTools.lib(pngrio.obj); second definition ignored
-LibPng.lib(pngrio.obj) : warning LNK4006: png_read_data already defined in DiligentTools.lib(pngrio.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_expand already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_expand_gray_1_2_4_to_8 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_palette_to_rgb already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_tRNS_to_alpha already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_expand_16 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_gray_to_rgb already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_rgb_to_gray already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_rgb_to_gray_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_alpha_mode already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_alpha_mode_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_strip_alpha already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_background already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_background_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_scale_16 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_strip_16 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_quantize already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_gamma already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_gamma_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_crc_action already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_set_read_user_transform_fn already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_read_transform_info already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_do_read_transformations already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrtran.obj) : warning LNK4006: png_init_read_transformations already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_get_uint_32 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_get_uint_16 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_get_int_32 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_get_uint_31 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_sig already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_chunk_header already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_crc_read already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_crc_finish already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_crc_error already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_combine_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_do_read_interlace already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_filter_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_IDAT_data already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_finish_IDAT already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_finish_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_read_start_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_IHDR already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_PLTE already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_IEND already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_bKGD already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_cHRM already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_gAMA already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_hIST already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_iCCP already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_iTXt already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_oFFs already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_pCAL already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_pHYs already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_sBIT already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_sCAL already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_sPLT already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_sRGB already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_tEXt already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_tIME already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_tRNS already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_zTXt already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_check_chunk_name already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngrutil.obj) : warning LNK4006: png_handle_unknown already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_compression_buffer_size already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_read_user_chunk_fn already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_benign_errors already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_rows already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_bKGD already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_cHRM already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_cHRM_XYZ already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_cHRM_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_cHRM_XYZ_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_gAMA already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_gAMA_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_hIST already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_IHDR already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_oFFs already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_pCAL already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_pHYs already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_PLTE already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sBIT already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sRGB already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sRGB_gAMA_and_cHRM already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_iCCP already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sPLT already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_text already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_tIME already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_tRNS already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sCAL already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sCAL_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_sCAL_s already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_keep_unknown_chunks already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_unknown_chunks already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_unknown_chunk_location already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_invalid already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_permit_mng_features already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_user_limits already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_chunk_cache_max already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_chunk_malloc_max already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_check_for_invalid_index already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngset.obj) : warning LNK4006: png_set_text_2 already defined in DiligentTools.lib(pngset.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_bgr already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_swap_alpha already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_invert_alpha already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_filler already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_add_alpha already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_swap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_packing already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_packswap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_shift already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_interlace_handling already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_invert_mono already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_set_user_transform_info already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_get_user_transform_ptr already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_get_current_row_number already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_get_current_pass_number already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_do_strip_channel already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_do_swap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_do_packswap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_do_invert already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_do_bgr already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngtrans.obj) : warning LNK4006: png_do_check_palette_indexes already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
-LibPng.lib(pngwio.obj) : warning LNK4006: png_set_write_fn already defined in DiligentTools.lib(pngwio.obj); second definition ignored
-LibPng.lib(pngwio.obj) : warning LNK4006: png_default_write_data already defined in DiligentTools.lib(pngwio.obj); second definition ignored
-LibPng.lib(pngwio.obj) : warning LNK4006: png_default_flush already defined in DiligentTools.lib(pngwio.obj); second definition ignored
-LibPng.lib(pngwio.obj) : warning LNK4006: png_write_data already defined in DiligentTools.lib(pngwio.obj); second definition ignored
-LibPng.lib(pngwio.obj) : warning LNK4006: png_flush already defined in DiligentTools.lib(pngwio.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_create_write_struct already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_create_write_struct_2 already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_info_before_PLTE already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_info already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_convert_from_struct_tm already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_convert_from_time_t already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_flush already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_flush already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_row already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_rows already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_image already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_end already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_destroy_write_struct already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_filter already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_filter_heuristics already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_filter_heuristics_fixed already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_compression_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_compression_mem_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_compression_strategy already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_compression_window_bits already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_compression_method already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_mem_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_strategy already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_window_bits already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_method already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_write_status_fn already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_set_write_user_transform_fn already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_write_png already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_image_write_to_file already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwrite.obj) : warning LNK4006: png_image_write_to_stdio already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
-LibPng.lib(pngwtran.obj) : warning LNK4006: png_do_write_transformations already defined in DiligentTools.lib(pngwtran.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_sig already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_chunk already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_chunk_start already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_chunk_data already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_chunk_end already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_save_uint_32 already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_save_uint_16 already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_free_buffer_list already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_IHDR already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_PLTE already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_compress_IDAT already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_IEND already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_gAMA_fixed already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_sBIT already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_cHRM_fixed already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_sRGB already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_iCCP already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_sPLT already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_tRNS already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_bKGD already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_hIST already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_tEXt already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_zTXt already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_iTXt already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_oFFs already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_pCAL already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_pHYs already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_tIME already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_sCAL_s already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_finish_row already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_start_row already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_do_write_interlace already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
-LibPng.lib(pngwutil.obj) : warning LNK4006: png_write_find_filter already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_sRGB_table already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_sRGB_base already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_sRGB_delta already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_access_version_number already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_set_sig_bytes already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_sig_cmp already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_reset_zstream already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_create_info_struct already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_info_init_3 already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_convert_to_rfc1123 already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_convert_to_rfc1123_buffer already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_build_grayscale_palette already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_destroy_info_struct already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_init_io already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_get_io_ptr already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_free_data already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_data_freer already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_handle_as_unknown already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_get_copyright already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_get_header_ver already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_get_header_version already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_get_libpng_ver already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_save_int_32 already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_image_free already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_set_option already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_zstream_error already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_fixed already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_user_version_check already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_create_png_struct already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_zalloc already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_zfree already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_reset_crc already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_calculate_crc already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_chunk_unknown_handling already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_set_gamma already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_sync_info already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_sync already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_set_chromaticities already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_set_endpoints already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_set_sRGB already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_set_ICC already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_icc_check_length already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_icc_check_header already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_icc_check_tag_table already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_icc_set_sRGB already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_colorspace_set_rgb_coefficients already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_check_IHDR already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_ascii_from_fp already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_ascii_from_fixed already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_check_fp_number already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_check_fp_string already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_muldiv already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_muldiv_warn already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_reciprocal already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_reciprocal2 already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_gamma_significant already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_gamma_correct already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_gamma_16bit_correct already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_gamma_8bit_correct already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_destroy_gamma_table already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_build_gamma_table already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(png.obj) : warning LNK4006: png_image_error already defined in DiligentTools.lib(png.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_set_longjmp_fn already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_longjmp already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_set_error_fn already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_get_error_ptr already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_chunk_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_chunk_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_benign_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_chunk_benign_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_free_jmpbuf already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_fixed_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_safecat already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_format_number already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_warning_parameter already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_warning_parameter_unsigned already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_warning_parameter_signed already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_formatted_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_app_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_app_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_chunk_report already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_safe_error already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_safe_warning already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngerror.obj) : warning LNK4006: png_safe_execute already defined in DiligentTools.lib(pngerror.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_compression_buffer_size already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_rgb_to_gray_status already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_user_chunk_ptr already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_valid already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_rowbytes already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_rows already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_channels already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_image_width already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_image_height already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_bit_depth already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_color_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_filter_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_interlace_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_compression_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pixels_per_meter already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_x_pixels_per_meter already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_y_pixels_per_meter already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pixel_aspect_ratio already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pixel_aspect_ratio_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_x_offset_pixels already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_y_offset_pixels already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_x_offset_microns already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_y_offset_microns already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_signature already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_bKGD already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_cHRM already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_cHRM_XYZ already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_cHRM_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_cHRM_XYZ_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_eXIf already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_eXIf_1 already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_gAMA already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_gAMA_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_hIST already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_IHDR already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_oFFs already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pCAL already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pHYs already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_PLTE already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_sBIT already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_sRGB already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_iCCP already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_sPLT already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_text already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_tIME already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_tRNS already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_sCAL already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_sCAL_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_sCAL_s already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_unknown_chunks already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_user_width_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_user_height_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_chunk_cache_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_chunk_malloc_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pixels_per_inch already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_x_pixels_per_inch already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_y_pixels_per_inch already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_x_offset_inches already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_x_offset_inches_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_y_offset_inches already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_y_offset_inches_fixed already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_pHYs_dpi already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_io_state already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_io_chunk_type already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngget.obj) : warning LNK4006: png_get_palette_max already defined in DiligentTools.lib(pngget.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_set_mem_fn already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_get_mem_ptr already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_malloc already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_calloc already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_malloc_warn already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_free already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_malloc_default already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_free_default already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_malloc_base already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_malloc_array already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_realloc_array already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngmem.obj) : warning LNK4006: png_destroy_png_struct already defined in DiligentTools.lib(pngmem.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_set_progressive_read_fn already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_get_progressive_ptr already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_process_data already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_process_data_pause already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_process_data_skip already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_progressive_combine_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_fill_buffer already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_read_chunk already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_read_sig already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_save_buffer already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_restore_buffer already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_read_IDAT already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_process_IDAT_data already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_process_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_have_info already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_have_end already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_push_have_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_process_some_data already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngpread.obj) : warning LNK4006: png_read_push_finish_row already defined in DiligentTools.lib(pngpread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_create_read_struct already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_create_read_struct_2 already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_info already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_start_read_image already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_update_info already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_rows already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_row already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_image already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_end already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_destroy_read_struct already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_set_read_status_fn already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_read_png already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_image_begin_read_from_file already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_image_begin_read_from_stdio already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_image_begin_read_from_memory already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngread.obj) : warning LNK4006: png_image_finish_read already defined in DiligentTools.lib(pngread.obj); second definition ignored
+libpng16_staticd.lib(pngrio.obj) : warning LNK4006: png_set_read_fn already defined in DiligentTools.lib(pngrio.obj); second definition ignored
+libpng16_staticd.lib(pngrio.obj) : warning LNK4006: png_default_read_data already defined in DiligentTools.lib(pngrio.obj); second definition ignored
+libpng16_staticd.lib(pngrio.obj) : warning LNK4006: png_read_data already defined in DiligentTools.lib(pngrio.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_expand already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_expand_gray_1_2_4_to_8 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_palette_to_rgb already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_tRNS_to_alpha already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_expand_16 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_gray_to_rgb already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_rgb_to_gray already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_rgb_to_gray_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_alpha_mode already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_alpha_mode_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_strip_alpha already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_background already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_background_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_scale_16 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_strip_16 already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_quantize already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_gamma already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_gamma_fixed already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_crc_action already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_set_read_user_transform_fn already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_read_transform_info already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_do_read_transformations already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrtran.obj) : warning LNK4006: png_init_read_transformations already defined in DiligentTools.lib(pngrtran.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_get_uint_32 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_get_uint_16 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_get_int_32 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_get_uint_31 already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_sig already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_chunk_header already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_crc_read already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_crc_finish already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_crc_error already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_combine_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_do_read_interlace already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_filter_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_IDAT_data already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_finish_IDAT already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_finish_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_read_start_row already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_zlib_inflate already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_IHDR already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_PLTE already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_IEND already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_bKGD already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_cHRM already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_eXIf already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_gAMA already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_hIST already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_iCCP already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_iTXt already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_oFFs already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_pCAL already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_pHYs already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_sBIT already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_sCAL already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_sPLT already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_sRGB already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_tEXt already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_tIME already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_tRNS already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_zTXt already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_check_chunk_name already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_check_chunk_length already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngrutil.obj) : warning LNK4006: png_handle_unknown already defined in DiligentTools.lib(pngrutil.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_compression_buffer_size already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_read_user_chunk_fn already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_benign_errors already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_rows already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_bKGD already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_cHRM already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_cHRM_XYZ already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_cHRM_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_cHRM_XYZ_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_eXIf already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_eXIf_1 already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_gAMA already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_gAMA_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_hIST already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_IHDR already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_oFFs already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_pCAL already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_pHYs already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_PLTE already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sBIT already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sRGB already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sRGB_gAMA_and_cHRM already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_iCCP already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sPLT already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_text already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_tIME already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_tRNS already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sCAL already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sCAL_fixed already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_sCAL_s already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_keep_unknown_chunks already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_unknown_chunks already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_unknown_chunk_location already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_invalid already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_permit_mng_features already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_user_limits already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_chunk_cache_max already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_chunk_malloc_max already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_check_for_invalid_index already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_set_text_2 already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngset.obj) : warning LNK4006: png_check_keyword already defined in DiligentTools.lib(pngset.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_bgr already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_swap_alpha already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_invert_alpha already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_filler already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_add_alpha already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_swap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_packing already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_packswap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_shift already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_interlace_handling already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_invert_mono already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_set_user_transform_info already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_get_user_transform_ptr already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_get_current_row_number already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_get_current_pass_number already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_do_strip_channel already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_do_swap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_do_packswap already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_do_invert already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_do_bgr already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngtrans.obj) : warning LNK4006: png_do_check_palette_indexes already defined in DiligentTools.lib(pngtrans.obj); second definition ignored
+libpng16_staticd.lib(pngwio.obj) : warning LNK4006: png_set_write_fn already defined in DiligentTools.lib(pngwio.obj); second definition ignored
+libpng16_staticd.lib(pngwio.obj) : warning LNK4006: png_default_write_data already defined in DiligentTools.lib(pngwio.obj); second definition ignored
+libpng16_staticd.lib(pngwio.obj) : warning LNK4006: png_default_flush already defined in DiligentTools.lib(pngwio.obj); second definition ignored
+libpng16_staticd.lib(pngwio.obj) : warning LNK4006: png_write_data already defined in DiligentTools.lib(pngwio.obj); second definition ignored
+libpng16_staticd.lib(pngwio.obj) : warning LNK4006: png_flush already defined in DiligentTools.lib(pngwio.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_create_write_struct already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_create_write_struct_2 already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_info_before_PLTE already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_info already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_convert_from_struct_tm already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_convert_from_time_t already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_flush already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_flush already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_row already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_rows already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_image already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_end already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_destroy_write_struct already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_filter already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_filter_heuristics already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_filter_heuristics_fixed already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_compression_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_compression_mem_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_compression_strategy already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_compression_window_bits already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_compression_method already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_mem_level already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_strategy already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_window_bits already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_text_compression_method already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_write_status_fn already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_set_write_user_transform_fn already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_write_png already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_image_write_to_file already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_image_write_to_stdio already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwrite.obj) : warning LNK4006: png_image_write_to_memory already defined in DiligentTools.lib(pngwrite.obj); second definition ignored
+libpng16_staticd.lib(pngwtran.obj) : warning LNK4006: png_do_write_transformations already defined in DiligentTools.lib(pngwtran.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_sig already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_chunk already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_chunk_start already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_chunk_data already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_chunk_end already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_save_uint_32 already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_save_uint_16 already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_free_buffer_list already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_IHDR already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_PLTE already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_compress_IDAT already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_IEND already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_gAMA_fixed already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_sBIT already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_cHRM_fixed already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_sRGB already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_eXIf already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_iCCP already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_sPLT already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_tRNS already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_bKGD already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_hIST already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_tEXt already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_zTXt already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_iTXt already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_oFFs already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_pCAL already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_pHYs already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_tIME already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_sCAL_s already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_finish_row already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_start_row already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_do_write_interlace already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
+libpng16_staticd.lib(pngwutil.obj) : warning LNK4006: png_write_find_filter already defined in DiligentTools.lib(pngwutil.obj); second definition ignored
 ZLib.lib(adler32.obj) : warning LNK4006: adler32 already defined in DiligentTools.lib(adler32.obj); second definition ignored
+ZLib.lib(adler32.obj) : warning LNK4006: adler32_z already defined in DiligentTools.lib(adler32.obj); second definition ignored
 ZLib.lib(adler32.obj) : warning LNK4006: adler32_combine already defined in DiligentTools.lib(adler32.obj); second definition ignored
 ZLib.lib(adler32.obj) : warning LNK4006: adler32_combine64 already defined in DiligentTools.lib(adler32.obj); second definition ignored
 ZLib.lib(compress.obj) : warning LNK4006: compress already defined in DiligentTools.lib(compress.obj); second definition ignored
 ZLib.lib(compress.obj) : warning LNK4006: compress2 already defined in DiligentTools.lib(compress.obj); second definition ignored
 ZLib.lib(compress.obj) : warning LNK4006: compressBound already defined in DiligentTools.lib(compress.obj); second definition ignored
 ZLib.lib(crc32.obj) : warning LNK4006: crc32 already defined in DiligentTools.lib(crc32.obj); second definition ignored
+ZLib.lib(crc32.obj) : warning LNK4006: crc32_z already defined in DiligentTools.lib(crc32.obj); second definition ignored
+ZLib.lib(crc32.obj) : warning LNK4006: crc32_combine_op already defined in DiligentTools.lib(crc32.obj); second definition ignored
 ZLib.lib(crc32.obj) : warning LNK4006: crc32_combine already defined in DiligentTools.lib(crc32.obj); second definition ignored
+ZLib.lib(crc32.obj) : warning LNK4006: crc32_combine_gen already defined in DiligentTools.lib(crc32.obj); second definition ignored
 ZLib.lib(crc32.obj) : warning LNK4006: get_crc_table already defined in DiligentTools.lib(crc32.obj); second definition ignored
 ZLib.lib(crc32.obj) : warning LNK4006: crc32_combine64 already defined in DiligentTools.lib(crc32.obj); second definition ignored
+ZLib.lib(crc32.obj) : warning LNK4006: crc32_combine_gen64 already defined in DiligentTools.lib(crc32.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflate_copyright already defined in DiligentTools.lib(deflate.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflate already defined in DiligentTools.lib(deflate.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflateEnd already defined in DiligentTools.lib(deflate.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflateSetDictionary already defined in DiligentTools.lib(deflate.obj); second definition ignored
+ZLib.lib(deflate.obj) : warning LNK4006: deflateGetDictionary already defined in DiligentTools.lib(deflate.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflateCopy already defined in DiligentTools.lib(deflate.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflateReset already defined in DiligentTools.lib(deflate.obj); second definition ignored
 ZLib.lib(deflate.obj) : warning LNK4006: deflateParams already defined in DiligentTools.lib(deflate.obj); second definition ignored
@@ -903,6 +928,7 @@ ZLib.lib(gzlib.obj) : warning LNK4006: gztell64 already defined in DiligentTools
 ZLib.lib(gzlib.obj) : warning LNK4006: gzoffset64 already defined in DiligentTools.lib(gzlib.obj); second definition ignored
 ZLib.lib(gzlib.obj) : warning LNK4006: gz_error already defined in DiligentTools.lib(gzlib.obj); second definition ignored
 ZLib.lib(gzread.obj) : warning LNK4006: gzread already defined in DiligentTools.lib(gzread.obj); second definition ignored
+ZLib.lib(gzread.obj) : warning LNK4006: gzfread already defined in DiligentTools.lib(gzread.obj); second definition ignored
 ZLib.lib(gzread.obj) : warning LNK4006: gzgets already defined in DiligentTools.lib(gzread.obj); second definition ignored
 ZLib.lib(gzread.obj) : warning LNK4006: gzgetc already defined in DiligentTools.lib(gzread.obj); second definition ignored
 ZLib.lib(gzread.obj) : warning LNK4006: gzungetc already defined in DiligentTools.lib(gzread.obj); second definition ignored
@@ -911,6 +937,7 @@ ZLib.lib(gzread.obj) : warning LNK4006: gzclose_r already defined in DiligentToo
 ZLib.lib(gzread.obj) : warning LNK4006: gzgetc_ already defined in DiligentTools.lib(gzread.obj); second definition ignored
 ZLib.lib(gzwrite.obj) : warning LNK4006: gzsetparams already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
 ZLib.lib(gzwrite.obj) : warning LNK4006: gzwrite already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
+ZLib.lib(gzwrite.obj) : warning LNK4006: gzfwrite already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
 ZLib.lib(gzwrite.obj) : warning LNK4006: gzprintf already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
 ZLib.lib(gzwrite.obj) : warning LNK4006: gzputs already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
 ZLib.lib(gzwrite.obj) : warning LNK4006: gzputc already defined in DiligentTools.lib(gzwrite.obj); second definition ignored
@@ -936,11 +963,13 @@ ZLib.lib(inflate.obj) : warning LNK4006: inflateInit_ already defined in Diligen
 ZLib.lib(inflate.obj) : warning LNK4006: inflateInit2_ already defined in DiligentTools.lib(inflate.obj); second definition ignored
 ZLib.lib(inflate.obj) : warning LNK4006: inflateSyncPoint already defined in DiligentTools.lib(inflate.obj); second definition ignored
 ZLib.lib(inflate.obj) : warning LNK4006: inflateUndermine already defined in DiligentTools.lib(inflate.obj); second definition ignored
+ZLib.lib(inflate.obj) : warning LNK4006: inflateValidate already defined in DiligentTools.lib(inflate.obj); second definition ignored
+ZLib.lib(inflate.obj) : warning LNK4006: inflateCodesUsed already defined in DiligentTools.lib(inflate.obj); second definition ignored
 ZLib.lib(inflate.obj) : warning LNK4006: inflateResetKeep already defined in DiligentTools.lib(inflate.obj); second definition ignored
 ZLib.lib(inftrees.obj) : warning LNK4006: inflate_copyright already defined in DiligentTools.lib(inftrees.obj); second definition ignored
 ZLib.lib(inftrees.obj) : warning LNK4006: inflate_table already defined in DiligentTools.lib(inftrees.obj); second definition ignored
-ZLib.lib(trees.obj) : warning LNK4006: _dist_code already defined in DiligentTools.lib(trees.obj); second definition ignored
 ZLib.lib(trees.obj) : warning LNK4006: _length_code already defined in DiligentTools.lib(trees.obj); second definition ignored
+ZLib.lib(trees.obj) : warning LNK4006: _dist_code already defined in DiligentTools.lib(trees.obj); second definition ignored
 ZLib.lib(trees.obj) : warning LNK4006: _tr_init already defined in DiligentTools.lib(trees.obj); second definition ignored
 ZLib.lib(trees.obj) : warning LNK4006: _tr_tally already defined in DiligentTools.lib(trees.obj); second definition ignored
 ZLib.lib(trees.obj) : warning LNK4006: _tr_flush_block already defined in DiligentTools.lib(trees.obj); second definition ignored
@@ -948,12 +977,11 @@ ZLib.lib(trees.obj) : warning LNK4006: _tr_flush_bits already defined in Diligen
 ZLib.lib(trees.obj) : warning LNK4006: _tr_align already defined in DiligentTools.lib(trees.obj); second definition ignored
 ZLib.lib(trees.obj) : warning LNK4006: _tr_stored_block already defined in DiligentTools.lib(trees.obj); second definition ignored
 ZLib.lib(uncompr.obj) : warning LNK4006: uncompress already defined in DiligentTools.lib(uncompr.obj); second definition ignored
+ZLib.lib(uncompr.obj) : warning LNK4006: uncompress2 already defined in DiligentTools.lib(uncompr.obj); second definition ignored
 ZLib.lib(zutil.obj) : warning LNK4006: z_errmsg already defined in DiligentTools.lib(zutil.obj); second definition ignored
-ZLib.lib(zutil.obj) : warning LNK4006: z_verbose already defined in DiligentTools.lib(zutil.obj); second definition ignored
 ZLib.lib(zutil.obj) : warning LNK4006: zlibVersion already defined in DiligentTools.lib(zutil.obj); second definition ignored
 ZLib.lib(zutil.obj) : warning LNK4006: zlibCompileFlags already defined in DiligentTools.lib(zutil.obj); second definition ignored
 ZLib.lib(zutil.obj) : warning LNK4006: zError already defined in DiligentTools.lib(zutil.obj); second definition ignored
-ZLib.lib(zutil.obj) : warning LNK4006: z_error already defined in DiligentTools.lib(zutil.obj); second definition ignored
 ZLib.lib(zutil.obj) : warning LNK4006: zcalloc already defined in DiligentTools.lib(zutil.obj); second definition ignored
 ZLib.lib(zutil.obj) : warning LNK4006: zcfree already defined in DiligentTools.lib(zutil.obj); second definition ignored
 DiligentCore.lib(D3D12Loader.obj) : warning LNK4006: "long (__cdecl* Diligent::D3D12CreateDevice)(struct IUnknown *,enum D3D_FEATURE_LEVEL,struct _GUID const &,void * *)" (?D3D12CreateDevice@Diligent@@3P6AJPEAUIUnknown@@W4D3D_FEATURE_LEVEL@@AEBU_GUID@@PEAPEAX@ZEA) already defined in Diligent-GraphicsEngineD3D12-static.lib(D3D12Loader.obj); second definition ignored
@@ -1410,6 +1438,8 @@ DiligentCore.lib(GLSLUtils.obj) : warning LNK4006: "class std::basic_string<char
 DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "struct Diligent::ShaderMacro const * __cdecl Diligent::GetShaderTypeMacros(enum Diligent::SHADER_TYPE)" (?GetShaderTypeMacros@Diligent@@YAPEBUShaderMacro@1@W4SHADER_TYPE@1@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
 DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "void __cdecl Diligent::AppendShaderMacros(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,struct Diligent::ShaderMacro const *)" (?AppendShaderMacros@Diligent@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBUShaderMacro@1@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
 DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "void __cdecl Diligent::AppendShaderTypeDefinitions(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,enum Diligent::SHADER_TYPE)" (?AppendShaderTypeDefinitions@Diligent@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4SHADER_TYPE@1@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
+DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "void __cdecl Diligent::AppendShaderSourceLanguageDefinition(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,enum Diligent::SHADER_SOURCE_LANGUAGE)" (?AppendShaderSourceLanguageDefinition@Diligent@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4SHADER_SOURCE_LANGUAGE@1@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
+DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "enum Diligent::SHADER_SOURCE_LANGUAGE __cdecl Diligent::ParseShaderSourceLanguageDefinition(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?ParseShaderSourceLanguageDefinition@Diligent@@YA?AW4SHADER_SOURCE_LANGUAGE@1@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
 DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "struct Diligent::ShaderSourceFileData __cdecl Diligent::ReadShaderSourceFile(char const *,unsigned __int64,struct Diligent::IShaderSourceInputStreamFactory *,char const *)" (?ReadShaderSourceFile@Diligent@@YA?AUShaderSourceFileData@1@PEBD_KPEAUIShaderSourceInputStreamFactory@1@0@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
 DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "void __cdecl Diligent::AppendShaderSourceCode(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,struct Diligent::ShaderCreateInfo const &)" (?AppendShaderSourceCode@Diligent@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBUShaderCreateInfo@1@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
 DiligentCore.lib(ShaderToolsCommon.obj) : warning LNK4006: "bool __cdecl Diligent::ProcessShaderIncludes(struct Diligent::ShaderCreateInfo const &,class std::function<void __cdecl(struct Diligent::ShaderIncludePreprocessInfo const &)>)" (?ProcessShaderIncludes@Diligent@@YA_NAEBUShaderCreateInfo@1@V?$function@$$A6AXAEBUShaderIncludePreprocessInfo@Diligent@@@Z@std@@@Z) already defined in Diligent-ShaderTools.lib(ShaderToolsCommon.obj); second definition ignored
@@ -1933,6 +1963,7 @@ Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsItemTogg
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsAnyItemHovered(void)" (?IsAnyItemHovered@ImGui@@YA_NXZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsAnyItemActive(void)" (?IsAnyItemActive@ImGui@@YA_NXZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsAnyItemFocused(void)" (?IsAnyItemFocused@ImGui@@YA_NXZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
+Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "unsigned int __cdecl ImGui::GetItemID(void)" (?GetItemID@ImGui@@YAIXZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImVec2 __cdecl ImGui::GetItemRectMin(void)" (?GetItemRectMin@ImGui@@YA?AUImVec2@@XZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImVec2 __cdecl ImGui::GetItemRectMax(void)" (?GetItemRectMax@ImGui@@YA?AUImVec2@@XZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImVec2 __cdecl ImGui::GetItemRectSize(void)" (?GetItemRectSize@ImGui@@YA?AUImVec2@@XZ) already defined in DiligentTools.lib(imgui.obj); second definition ignored
@@ -1963,6 +1994,7 @@ Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsKeyRelea
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "int __cdecl ImGui::GetKeyPressedAmount(enum ImGuiKey,float,float)" (?GetKeyPressedAmount@ImGui@@YAHW4ImGuiKey@@MM@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "char const * __cdecl ImGui::GetKeyName(enum ImGuiKey)" (?GetKeyName@ImGui@@YAPEBDW4ImGuiKey@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::SetNextFrameWantCaptureKeyboard(bool)" (?SetNextFrameWantCaptureKeyboard@ImGui@@YAX_N@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
+Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::Shortcut(int,unsigned int,int)" (?Shortcut@ImGui@@YA_NHIH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseDown(int)" (?IsMouseDown@ImGui@@YA_NH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseClicked(int,bool)" (?IsMouseClicked@ImGui@@YA_NH_N@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseReleased(int)" (?IsMouseReleased@ImGui@@YA_NH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
@@ -2143,6 +2175,7 @@ Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImGuiWindowSettings * _
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::AddSettingsHandler(struct ImGuiSettingsHandler const *)" (?AddSettingsHandler@ImGui@@YAXPEBUImGuiSettingsHandler@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::RemoveSettingsHandler(char const *)" (?RemoveSettingsHandler@ImGui@@YAXPEBD@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImGuiSettingsHandler * __cdecl ImGui::FindSettingsHandler(char const *)" (?FindSettingsHandler@ImGui@@YAPEAUImGuiSettingsHandler@@PEBD@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
+Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::LocalizeRegisterEntries(struct ImGuiLocEntry const *,int)" (?LocalizeRegisterEntries@ImGui@@YAXPEBUImGuiLocEntry@@H@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::SetScrollX(struct ImGuiWindow *,float)" (?SetScrollX@ImGui@@YAXPEAUImGuiWindow@@M@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::SetScrollY(struct ImGuiWindow *,float)" (?SetScrollY@ImGui@@YAXPEAUImGuiWindow@@M@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::SetScrollFromPosX(struct ImGuiWindow *,float,float)" (?SetScrollFromPosX@ImGui@@YAXPEAUImGuiWindow@@MM@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
@@ -2203,7 +2236,7 @@ Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::SetNavID(u
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImGuiKeyData * __cdecl ImGui::GetKeyData(enum ImGuiKey)" (?GetKeyData@ImGui@@YAPEAUImGuiKeyData@@W4ImGuiKey@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::GetKeyChordName(int,char *,int)" (?GetKeyChordName@ImGui@@YAXHPEADH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseDragPastThreshold(int,float)" (?IsMouseDragPastThreshold@ImGui@@YA_NHM@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
-Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImVec2 __cdecl ImGui::GetKeyVector2d(enum ImGuiKey,enum ImGuiKey,enum ImGuiKey,enum ImGuiKey)" (?GetKeyVector2d@ImGui@@YA?AUImVec2@@W4ImGuiKey@@000@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
+Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImVec2 __cdecl ImGui::GetKeyMagnitude2d(enum ImGuiKey,enum ImGuiKey,enum ImGuiKey,enum ImGuiKey)" (?GetKeyMagnitude2d@ImGui@@YA?AUImVec2@@W4ImGuiKey@@000@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "float __cdecl ImGui::GetNavTweakPressedAmount(enum ImGuiAxis)" (?GetNavTweakPressedAmount@ImGui@@YAMW4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "int __cdecl ImGui::CalcTypematicRepeatAmount(float,float,float,float)" (?CalcTypematicRepeatAmount@ImGui@@YAHMMMM@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::GetTypematicRepeatRate(int,float *,float *)" (?GetTypematicRepeatRate@ImGui@@YAXHPEAM0@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
@@ -2218,7 +2251,6 @@ Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsKeyRelea
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseDown(int,unsigned int)" (?IsMouseDown@ImGui@@YA_NHI@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseClicked(int,unsigned int,int)" (?IsMouseClicked@ImGui@@YA_NHIH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::IsMouseReleased(int,unsigned int)" (?IsMouseReleased@ImGui@@YA_NHI@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
-Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::Shortcut(int,unsigned int,int)" (?Shortcut@ImGui@@YA_NHIH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::SetShortcutRouting(int,unsigned int,int)" (?SetShortcutRouting@ImGui@@YA_NHIH@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "bool __cdecl ImGui::TestShortcutRouting(int,unsigned int)" (?TestShortcutRouting@ImGui@@YA_NHI@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "struct ImGuiKeyRoutingData * __cdecl ImGui::GetShortcutRoutingData(int)" (?GetShortcutRoutingData@ImGui@@YAPEAUImGuiKeyRoutingData@@H@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
@@ -2300,6 +2332,7 @@ Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::DebugNodeW
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::DebugNodeWindowsList(struct ImVector<struct ImGuiWindow *> *,char const *)" (?DebugNodeWindowsList@ImGui@@YAXPEAU?$ImVector@PEAUImGuiWindow@@@@PEBD@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::DebugNodeWindowsListByBeginStackParent(struct ImGuiWindow * *,int,struct ImGuiWindow *)" (?DebugNodeWindowsListByBeginStackParent@ImGui@@YAXPEAPEAUImGuiWindow@@HPEAU2@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::DebugNodeViewport(struct ImGuiViewportP *)" (?DebugNodeViewport@ImGui@@YAXPEAUImGuiViewportP@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
+Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::DebugRenderKeyboardPreview(struct ImDrawList *)" (?DebugRenderKeyboardPreview@ImGui@@YAXPEAUImDrawList@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui.obj) : warning LNK4006: "void __cdecl ImGui::DebugRenderViewportThumbnail(struct ImDrawList *,struct ImGuiViewportP *,struct ImRect const &)" (?DebugRenderViewportThumbnail@ImGui@@YAXPEAUImDrawList@@PEAUImGuiViewportP@@AEBUImRect@@@Z) already defined in DiligentTools.lib(imgui.obj); second definition ignored
 Diligent-Imgui.lib(imgui_draw.obj) : warning LNK4006: "void __cdecl ImGui::StyleColorsDark(struct ImGuiStyle *)" (?StyleColorsDark@ImGui@@YAXPEAUImGuiStyle@@@Z) already defined in DiligentTools.lib(imgui_draw.obj); second definition ignored
 Diligent-Imgui.lib(imgui_draw.obj) : warning LNK4006: "void __cdecl ImGui::StyleColorsLight(struct ImGuiStyle *)" (?StyleColorsLight@ImGui@@YAXPEAUImGuiStyle@@@Z) already defined in DiligentTools.lib(imgui_draw.obj); second definition ignored
@@ -2678,17 +2711,17 @@ Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "void __cdecl ImGui::Ta
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "void __cdecl ImGui::TabItemLabelAndCloseButton(struct ImDrawList *,struct ImRect const &,int,struct ImVec2,char const *,unsigned int,unsigned int,bool,bool *,bool *)" (?TabItemLabelAndCloseButton@ImGui@@YAXPEAUImDrawList@@AEBUImRect@@HUImVec2@@PEBDII_NPEA_N5@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "void __cdecl ImGui::TextEx(char const *,char const *,int)" (?TextEx@ImGui@@YAXPEBD0H@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::ButtonEx(char const *,struct ImVec2 const &,int)" (?ButtonEx@ImGui@@YA_NPEBDAEBUImVec2@@H@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
-Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::CloseButton(unsigned int,struct ImVec2 const &)" (?CloseButton@ImGui@@YA_NIAEBUImVec2@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
-Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::CollapseButton(unsigned int,struct ImVec2 const &,struct ImGuiDockNode *)" (?CollapseButton@ImGui@@YA_NIAEBUImVec2@@PEAUImGuiDockNode@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::ArrowButtonEx(char const *,int,struct ImVec2,int)" (?ArrowButtonEx@ImGui@@YA_NPEBDHUImVec2@@H@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
-Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "void __cdecl ImGui::Scrollbar(enum ImGuiAxis)" (?Scrollbar@ImGui@@YAXW4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
-Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::ScrollbarEx(struct ImRect const &,unsigned int,enum ImGuiAxis,__int64 *,__int64,__int64,int)" (?ScrollbarEx@ImGui@@YA_NAEBUImRect@@IW4ImGuiAxis@@PEA_J_J3H@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::ImageButtonEx(unsigned int,void *,struct ImVec2 const &,struct ImVec2 const &,struct ImVec2 const &,struct ImVec4 const &,struct ImVec4 const &)" (?ImageButtonEx@ImGui@@YA_NIPEAXAEBUImVec2@@11AEBUImVec4@@2@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
-Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "struct ImRect __cdecl ImGui::GetWindowScrollbarRect(struct ImGuiWindow *,enum ImGuiAxis)" (?GetWindowScrollbarRect@ImGui@@YA?AUImRect@@PEAUImGuiWindow@@W4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
-Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "unsigned int __cdecl ImGui::GetWindowScrollbarID(struct ImGuiWindow *,enum ImGuiAxis)" (?GetWindowScrollbarID@ImGui@@YAIPEAUImGuiWindow@@W4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "void __cdecl ImGui::SeparatorEx(int)" (?SeparatorEx@ImGui@@YAXH@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::CheckboxFlags(char const *,__int64 *,__int64)" (?CheckboxFlags@ImGui@@YA_NPEBDPEA_J_J@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::CheckboxFlags(char const *,unsigned __int64 *,unsigned __int64)" (?CheckboxFlags@ImGui@@YA_NPEBDPEA_K_K@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
+Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::CloseButton(unsigned int,struct ImVec2 const &)" (?CloseButton@ImGui@@YA_NIAEBUImVec2@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
+Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::CollapseButton(unsigned int,struct ImVec2 const &,struct ImGuiDockNode *)" (?CollapseButton@ImGui@@YA_NIAEBUImVec2@@PEAUImGuiDockNode@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
+Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "void __cdecl ImGui::Scrollbar(enum ImGuiAxis)" (?Scrollbar@ImGui@@YAXW4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
+Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::ScrollbarEx(struct ImRect const &,unsigned int,enum ImGuiAxis,__int64 *,__int64,__int64,int)" (?ScrollbarEx@ImGui@@YA_NAEBUImRect@@IW4ImGuiAxis@@PEA_J_J3H@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
+Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "struct ImRect __cdecl ImGui::GetWindowScrollbarRect(struct ImGuiWindow *,enum ImGuiAxis)" (?GetWindowScrollbarRect@ImGui@@YA?AUImRect@@PEAUImGuiWindow@@W4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
+Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "unsigned int __cdecl ImGui::GetWindowScrollbarID(struct ImGuiWindow *,enum ImGuiAxis)" (?GetWindowScrollbarID@ImGui@@YAIPEAUImGuiWindow@@W4ImGuiAxis@@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::ButtonBehavior(struct ImRect const &,unsigned int,bool *,bool *,int)" (?ButtonBehavior@ImGui@@YA_NAEBUImRect@@IPEA_N1H@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::DragBehavior(unsigned int,int,void *,float,void const *,void const *,char const *,int)" (?DragBehavior@ImGui@@YA_NIHPEAXMPEBX1PEBDH@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
 Diligent-Imgui.lib(imgui_widgets.obj) : warning LNK4006: "bool __cdecl ImGui::SliderBehavior(struct ImRect const &,unsigned int,int,void *,void const *,void const *,char const *,int,struct ImRect *)" (?SliderBehavior@ImGui@@YA_NAEBUImRect@@IHPEAXPEBX2PEBDHPEAU2@@Z) already defined in DiligentTools.lib(imgui_widgets.obj); second definition ignored
@@ -2839,4 +2872,4 @@ PhysXFoundation_64.lib(PhysXFoundation_64.dll) : warning LNK4006: __NULL_IMPORT_
 irrKlang.lib(irrKlang.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
 Importer.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
 Importer.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
-  StarlightEngine.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\StarlightEngine.lib
+  StarlightEngine.vcxproj -> C:\Projects\Zen3D\Starlight3D\StarlightStudio\x64\Debug\StarlightEngine.lib

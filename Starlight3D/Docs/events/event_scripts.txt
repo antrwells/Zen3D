@@ -1,0 +1,1 @@
+a simple form of the zenscript language, to enable events such as collisions and triggers.

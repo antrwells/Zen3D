@@ -1,13 +1,1 @@
-﻿  pch.cpp
-C:\projects\Starlight3D\Videon\Videon\pch.h(36,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Videon.cpp
-  VidNative.cpp
-  Generating Code...
-avdevice.lib(avdevice-58.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-avfilter.lib(avfilter-7.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-avformat.lib(avformat-58.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-avutil.lib(avutil-56.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-postproc.lib(postproc-55.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-swresample.lib(swresample-3.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-swscale.lib(swscale-5.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in avcodec.lib(avcodec-58.dll); second definition ignored
-  Videon.vcxproj -> C:\projects\Starlight3D\StarlightStudio\x64\Debug\Videon.lib
+﻿  Videon.vcxproj -> C:\Projects\Zen3D\Starlight3D\StarlightStudio\x64\Debug\Videon.lib

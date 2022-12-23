@@ -540,6 +540,34 @@ void ZenUI::ImportModel(std::string path) {
 
 	mImportModelPath = path;
 	mImportModelOpen = true;
+	std::string inf = path;
+	inf = inf + ".inf";
+	if (VFile::Exists(inf.c_str()))
+	{
+
+		VFile* rinf = new VFile(inf.c_str(), FileMode::Read);
+
+		impScale = rinf->ReadVec3();
+		impRot = rinf->ReadVec3();
+		bool isAct = rinf->ReadBool();
+		rinf->Close();
+
+		if (isAct) {
+			auto node = ImportActor(mImportModelPath.c_str());
+			mGraph->AddNode((Node3D*)node);
+			node->SetFilePath(mImportModelPath.c_str());
+			node->SetScale(impScale);
+		}
+		else
+		{
+			auto node = ImportNode(mImportModelPath.c_str());
+			mGraph->AddNode(node);
+			node->SetFilePath(mImportModelPath.c_str());
+			node->SetScale(impScale);
+		}
+		mImportModelOpen = false;
+	}
+
 
 }
 
